@@ -26,7 +26,7 @@ baseurl                  : #""
 repository               : "https://github.com/CarefreeLife98/carefreelife98.github.io"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 logo                     : # path of logo image to display in the masthead, e.g. "/assets/images/88x88.png"
-masthead_title           : "Do my best"
+masthead_title           : "Build Carefree Life"
 # breadcrumbs            : false # true, false (default)
 words_per_minute         : 200
 comments:
@@ -105,7 +105,7 @@ analytics:
 # Site Author
 author:
   name             : "Chae Seungmin"
-  avatar           : "/assets/KakaoTalk_Photo_2023-03-11-14-56-36.jpeg"
+  avatar           : "/assets/images/KakaoTalk_Photo_2023-03-11-14-56-36.jpeg"
   bio              : "I am a programmer chasing carefree life."
   location         : "Incheon, Republic of Korea"
   email            : "csm4903@naver.com"
@@ -284,10 +284,11 @@ defaults:
       path: ""
       type: posts
     values:
+      show_date: true
       layout: single
       author_profile: true
       read_time: true
-      comments: # true
+      comments: true
       share: true
       related: true
       
