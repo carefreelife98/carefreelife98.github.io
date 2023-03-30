@@ -291,13 +291,13 @@ defaults:
       comments: true
       share: true
       related: true
-```yaml
+# yaml
   - scope:
       path: ""
       type: tag
     values:
       author_profile: true
-```
+
       
 # _pages                      : 해당 하단 영역이 새로 추가되었습니다.
   - scope:
