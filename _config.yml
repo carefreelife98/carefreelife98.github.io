@@ -103,7 +103,7 @@ analytics:
 
 
 # Site Author
-author:
+author_profile:
   name             : "Chae Seungmin"
   avatar           : "/assets/images/KakaoTalk_Photo_2023-03-11-14-56-36.jpeg"
   bio              : "I am a programmer chasing carefree life."
@@ -291,13 +291,6 @@ defaults:
       comments: true
       share: true
       related: true
-# yaml
-  - scope:
-      path: ""
-      type: tag
-    values:
-      author_profile: true
-
       
 # _pages                      : 해당 하단 영역이 새로 추가되었습니다.
   - scope:
