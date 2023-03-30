@@ -2,14 +2,14 @@
 #-------------------------------
 # General Site Settings
 
-title: Kross
+title: Carefree Life
 logo:
-author: themefisher
-description: this is meta description
-email: steve.fruits@email.com
-phone: +880 2544 658 256
-address: 125/A, CA Commercial Area, California, USA
-copyright: Copyright &copy; 2020 Designed by [Themefisher](https://themefisher.com) & Developed by [Getjekyllthemes](https://getjekyllthemes.com)
+author: Chae Seung Min
+description: Programming for Carefree Life!
+email: csm4903@naver.com
+phone: +82 010 2532 4903
+address: Incheon,<br>Republic of Korea
+copyright: Copyright &copy; Seungmin Chae 2023 Designed by [Themefisher](https://themefisher.com) & Developed by [Getjekyllthemes](https://getjekyllthemes.com)
 
 menu:
   - { name: About, link: "/about" }
@@ -36,19 +36,19 @@ disqus-identifier: # Add your shortname for Disqus Comment. For example mr-brown
 # Hero Section
 
 hero:
-  hero-title: Hi! I’m <br> Christoher <br> UX designer
+  hero-title: Hi! I’m <br> SeungMin Chae <br> I am a programmer <br> chasing Carefree Life.
 
 social:
-  - { icon: "ti-facebook", link: "#" }
-  - { icon: "ti-instagram", link: "#" }
-  - { icon: "ti-dribbble", link: "#" }
-  - { icon: "ti-twitter", link: "#" }
+  - { icon: "ti-facebook", link: "https://www.facebook.com/profile.php?id=100009196937832" }
+  - { icon: "ti-instagram", link: "https://www.instagram.com/carefreelife._.98/" }
+  - { icon: "ti-github", link: "https://github.com/carefreelife98/" }
+  # - { icon: "ti-twitter", link: "#" }
 
 #-------------------------------
 # About (Section and Page)
 
 # About Section
-blurb: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+blurb: What is Carefree Life?
 
 blurb-btn-link: "/about"
 blurb-btn-name: know more
@@ -57,41 +57,41 @@ blurb-btn-name: know more
 
 # Work Process Section
 work-process:
-  - title: "Research and Plan"
+  - title: "프로그램 설계"
     icon: "assets/images/icons/plan.png"
-    content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+    content: " <br> 1. ChatGPT / Google <br> - 빠르고 정확한 정보 탐색 및 수집 <br><br> 2. Algorithm <br> - 알고리즘을 통한 효율적인 <br> 프로그램 설계"
 
-  - title: "Design and Develop"
+  - title: "개발, 그리고 디자인"
     icon: "assets/images/icons/design.png"
-    content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+    content: " <br> 1. Spring Framework <br> - Spring Boot를 활용한 서버 구현. <br><br> 2. Maria DB <br> - Database 연동 및 관리  <br><br> 3. HTML <br> - 얄팍한 HTML 지식으로 <br> 최대한의 웹 디자인"
 
-  - title: "Deliver"
+  - title: "배포"
     icon: "assets/images/icons/print.png"
-    content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+    content: "<br><br>배포...준비중....."
 
 # My Team Section
 team:
-  - title: "Jack Schenziwe"
-    image: "assets/images/team/member-1.png"
-    designation: "Project Manager"
+  - title: "Kang han"
+    image: ""
+    designation: "Backend Developer"
 
-  - title: "Julias Carlie"
+  - title: "Recruit!"
     image: "assets/images/team/member-2.png"
     designation: "Web Developer"
 
-  - title: "John Doe"
+  - title: "Recruit!"
     image: "assets/images/team/member-3.png"
-    designation: "Designer"
+    designation: "Project Manager"
 
 #-------------------------------
 # Skills Section
 
 skills-title: Skills
 skills:
-  - { name: Web Design, color: "#fdb157", value: "90%" }
-  - { name: Logo Design, color: "#9473e6", value: "60%" }
-  - { name: After Effects, color: "#bdecf6", value: "80%" }
-  - { name: Web App, color: "#ffbcaa", value: "70%" }
+  - { name: Back-end (Spring), color: "#fdb157", value: "90%" }
+  - { name: Maria DB, color: "#9473e6", value: "60%" }
+  - { name: Computer Science, color: "#bdecf6", value: "80%" }
+  - { name: HTML / Network, color: "#ffbcaa", value: "70%" }
 
 #-------------------------------
 # Exprerience Section
@@ -99,22 +99,22 @@ skills:
 experience-title: Experience
 experience:
   - {
-      name: Junior UX Designer,
+      name: Dept.<br>Computer Science<br>& Engineering,
       icon: "icon-1.png",
-      date: "Jan 2007 - Feb 2009",
-      organization: "WEBEX",
+      date: "Mar 2017 - ",
+      organization: "Incheon National University",
     }
   - {
-      name: UX & UI Designer,
+      name: Back-End Developer<br>- Spring Boot,
       icon: "icon-2.png",
-      date: "Mar 2009 - Aug 2014",
-      organization: "AUGMEDIX",
+      date: "Nov 2022 - ",
+      organization: "Inflearn",
     }
   - {
-      name: Senior UI Designer,
+      name: Coming Sooooon,
       icon: "icon-3.png",
-      date: "Sep 2014 - Present",
-      organization: "THEMEFISHER",
+      date: "2024",
+      organization: "CarefreeLife",
     }
 
 #-------------------------------
@@ -123,24 +123,24 @@ experience:
 education-title: Education
 education:
   - {
-      name: Marters in UX Design,
-      date: "2006",
-      organization: "Masassusets Institute of Technology",
+      name: Computer Science & Engineering <br><br> English Language & Literature,
+      date: "2017 - 2023",
+      organization: "Incheon National University",
     }
   - {
-      name: Honours in Fine Arts,
-      date: "2004",
-      organization: "Harvard University",
+      name: 고등학교 졸업,
+      date: "2016",
+      organization: "유성 고등학교",
     }
   - {
-      name: Higher Secondary Certificat,
-      date: "2000",
-      organization: "Cardiff School",
+      name: 중학교 졸업,
+      date: "2013",
+      organization: "반포 중학교",
     }
   - {
-      name: Secondary School Certificate,
-      date: "1998",
-      organization: "Cardiff School",
+      name: 초등학교 졸업,
+      date: "2010",
+      organization: "당정 초등학교",
     }
 
 #-------------------------------
@@ -149,21 +149,21 @@ education:
 services-title: Services
 services:
   - {
-      name: UI Design,
+      name: Software Design,
       icon: ti-palette,
-      description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      description: "Fast, Efficiency and accuracy.",
       active: ,# Add true to select section
     }
   - {
-      name: UX Design,
+      name: Back-End Develop,
       icon: ti-vector,
-      description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      description: "Java,<br>Spring Framework,<br>Spring Boot.",
       active: true, # Add true to select section
     }
   - {
-      name: Interaction Design,
+      name: Database,
       icon: ti-panel,
-      description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      description: "Maria DB Management",
       active: ,# Add true to select section
     }
 
@@ -247,20 +247,20 @@ portfolio-items:
 # Testimonials Section
 
 testimonial-items:
-  - name: "Jesica Gomez"
+  - name: "Care"
     image: "assets/images/testimonial/client-1.png"
     designation: "CEO, Funder"
-    content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, <strong>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</strong> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    content: "Coming Soooon"
 
-  - name: "Jesica Gomez"
+  - name: "Free"
     image: "assets/images/testimonial/client-1.png"
     designation: "CEO, Funder"
-    content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, <strong>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</strong> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    content: "Coming Soooon"
 
-  - name: "Jesica Gomez"
+  - name: "Life"
     image: "assets/images/testimonial/client-1.png"
     designation: "CEO, Funder"
-    content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, <strong>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</strong> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    content: "Coming Soooon"
 
 #-------------------------------
 # Client Slider Section
@@ -300,4 +300,4 @@ client-slider-items:
 # Contact Section
 
 contact-title: Contact Info
-contact-email: steve.fruits@email.com
+contact-email: csm4903@naver.com
