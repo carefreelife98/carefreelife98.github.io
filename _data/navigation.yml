@@ -7,6 +7,6 @@ main:
   - title: "Posts"
     url: /year-archive/
   - title: "Collections"
-    url: /collection-archive/
+    url: /categories/ #/collection-archive/
   - title: "Sitemap"
     url: /sitemap/
