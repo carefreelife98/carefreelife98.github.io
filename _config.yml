@@ -290,7 +290,7 @@ defaults:
       comments: true
       share: true
       related: true
-# _pages                      : 해당 하단 영역이 새로 추가되었습니다.
+  # _pages                      : 해당 하단 영역이 새로 추가되었습니다.
   - scope:
       path: "_pages"
       type: pages
