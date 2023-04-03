@@ -6,6 +6,9 @@ tags:
   - memo
   - daily
   - blog
+toc: true
+toc_sticky: true
+toc_label: "Carefree to See"
 ---
 
 ### 드디어.............
@@ -44,6 +47,7 @@ minimal-mistakes theme 가 너무 복잡한가
 ```
 <br> 내가 이거 하나 때문에 몇시간을 투자한건지.. <br>회의감이 살짝 들었지만  ```모든 일엔 이유가 있다``` 는 말처럼 이 또한 배움이며, <br>언젠간 도움이 될 것이라 믿고 ```실제로 지금까지 말한 과정중에 새로 배운것들이 많았다.``` <br><br>이제 개발 블로그를 시작해보려 한다.
 
+### Start!!
 ```
 Carefree Life start ~ !
 ```
