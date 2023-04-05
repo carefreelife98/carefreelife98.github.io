@@ -15,7 +15,7 @@ toc_label: "Carefree to See"
 ```
 <img src="/assets/images/INU/datastructure.png" alt="datastructure_Procdess" width="100%" min-width="200px" itemprop="image">`사진출처: 인프런` [Inflearn](https://www.inflearn.com/course/c%EB%A1%9C-%EB%B0%B0%EC%9A%B0%EB%8A%94-%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0-%EB%B0%8F-%EC%97%AC%EB%9F%AC%EA%B0%80%EC%A7%80-%EC%98%88%EC%A0%9C-%EC%8B%A4%EC%8A%B5)<br><br><br>
 > "컴퓨터과학에서 <span style="color:red">`데이터를 구조적으로 표현하는 방식`</span> 과 <span style="color:red">`이를 구현하는 데 필요한 알고리즘`</span>"<br>
-- 컴퓨터의 메모리는 1차원 구조(1) 이기 때문에 현실 세계의 다차원 데이터를 다루기 위해서는 이것을 1차원인 선 형태로 바꾸는 것이 필요하다.<br>
+- 컴퓨터의 메모리는 1차원 구조<a href="https://carefreelife98.github.io/inu/data_structure/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/DataStructure/#task-lists" class="btn">[1]</a> 이기 때문에 현실 세계의 다차원 데이터를 다루기 위해서는 이것을 1차원인 선 형태로 바꾸는 것이 필요하다.<br>
 - 위와 같은 기초 알고리즘에는 2차원 배열 및 이진 트리, 그래프 등의 자료구조가 있다.<br>
 - <span style="color:blue">`List, Stack, Queue, Circular Queues, Heap tree, Graph`</span> 정도의<br>대표적인 7가지 개념을 주축으로 포스팅 해보겠다.<br>
 
@@ -93,7 +93,7 @@ Nat_Number add(x,y)
 ```
 
 <br><br><br>
-
+[처음으로~](#){: .btn .btn--primary }
 
 
 
@@ -106,7 +106,7 @@ Nat_Number add(x,y)
 
 ### Task Lists
 > 
-`(1) 하드웨어의 구조는 2차원 이지만, CPU가 인지하는 것에 있어 논리적 메모리 공간은 1차원 이다.`
+`[1] 하드웨어의 구조는 2차원 이지만, CPU가 인지하는 것에 있어 논리적 메모리 공간은 1차원임.`
 - [x] 자료구조(Data Structure)란?
 - [x] 자료형(Data Type)이란?
 - [x] 추상적자료형(Abstract Data Type)이란?
