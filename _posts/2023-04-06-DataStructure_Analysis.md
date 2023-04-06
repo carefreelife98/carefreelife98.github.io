@@ -17,6 +17,9 @@ toc_label: "Carefree to See"
 ```
 Data Structure : 알고리즘의 성능 분석
 ```
+
+<img src="/assets/images/INU/analysis.png" alt="analysis_Procdess" width="100%" min-width="200px" itemprop="image">`사진출처:`[AIHR](https://www.aihr.com/blog/job-analysis/)<br>
+
 > 과학과 기술은 시간이 갈수록 기하급수적으로 방대해지고, 발전에 발전을 거듭하게 된다.<br><br>
 이는 어떠한 기술이 생겨나고, upgrade 될수록 그것을 바탕으로 또 다른 길이 열릴 수 있기 때문이다.<br><br>
 이와 마찬가지로 컴퓨터 공학도 시간이 흐를수록 큰 변화가 생겨 이전 단계와는 이질적으로 Upgrade 되는 것을 우리는 실생활에서 느낄 수 있다.<br><br>
@@ -55,8 +58,7 @@ Data Structure : 알고리즘의 성능 분석
 <br>
 바로 해당 알고리즘을 프로그래밍 언어로 작성하여<br><span style="color:green">`Prototype을 개발 후 execute 해보는 것이다.`</span><br><br>
 <img src="/assets/images/INU/Algorithm_After_EDF.png" alt="Algorithm_After_EDF_Procdess" width="100%" min-width="200px" itemprop="image"><br>
-위 사진은 운영체제 수업 실습 과정에서 RM algorithm 과 EDF algorithm을 직접 분석해 본 것인데,<br>
-동일한 Simulation Environment 에서 동일한 Task를 처리하는 것 임에도<br><span style="color:blue">***`어떠한 방식의 algorithm을 적용하는지에 따라 수행 능력이 달라지는 것을 볼 수 있다.`***</span><br><br>
+위 사진은 운영체제 수업 실습 과정에서 RM algorithm 과 EDF algorithm을 직접 분석해 본 것인데, 동일한 Simulation Environment 에서 동일한 Task를 처리하는 것 임에도<br><span style="color:blue">***`어떠한 방식의 algorithm을 적용하는지에 따라 수행 능력이 달라지는 것을 볼 수 있다.`***</span><br><br>
 - 아쉽게도 Dynamic analysis는 단점이 존재한다.<br>당연히, ***Prototype 을 구현하고 테스트 해야 한다는 것 자체가 단점이다.***<br>
 - 또한 본문의 Simulation 처럼, 같은 Environment에서 Prototype을 구현하고 테스트 해봐야 한다는 것이다.<br>
 - 더 뛰어난 Environment에서는 알고리즘의 Execution time이 줄어들 수 있기 때문이다.<br>
