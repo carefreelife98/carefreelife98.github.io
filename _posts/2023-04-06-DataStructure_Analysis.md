@@ -57,7 +57,7 @@ Data Structure : 알고리즘의 성능 분석
 ```
 <br>
 바로 해당 알고리즘을 프로그래밍 언어로 작성하여<br><span style="color:green">`Prototype을 개발 후 execute 해보는 것이다.`</span><br><br>
-<img src="/assets/images/INU/Algorithm_After_EDF.png" alt="Algorithm_After_EDF_Procdess" width="100%" min-width="200px" itemprop="image"><br>
+<img src="/assets/images/INU/Algorithm_After_EDF.png" alt="Algorithm_After_EDF_Procdess" width="100%" min-width="200px" itemprop="image"><br><br>
 위 사진은 운영체제 수업 실습 과정에서 RM algorithm 과 EDF algorithm을 직접 분석해 본 것인데, 동일한 Simulation Environment 에서 동일한 Task를 처리하는 것 임에도<br><span style="color:blue"> ***`어떠한 방식의 algorithm을 적용하는지에 따라 수행 능력이 달라지는 것을 볼 수 있다.`***</span><br><br>
 - 아쉽게도 Dynamic analysis는 단점이 존재한다.<br>당연히, ***Prototype 을 구현하고 테스트 해야 한다는 것 자체가 단점이다.***<br>
 - 또한 본문의 Simulation 처럼, 같은 Environment에서 Prototype을 구현하고 테스트 해봐야 한다는 것이다.<br>
