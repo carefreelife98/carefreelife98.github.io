@@ -67,6 +67,40 @@ Data Structure : 알고리즘의 성능 분석
 ```
 2.  Static analysis : Complexity analysis (알고리즘의 복잡도 분석)
 ```
+> **- 알고리즘의 분석은 두가지 관점에서 수행할 수 있다.** <br>
+1. 알고리즘의 수행시간 분석 : 시간 복잡도(time complexity) <br>
+<img src="/assets/images/INU/TimeComplexity.png" alt="TimeComplexity_Procdess" width="100%" min-width="200px" itemprop="image"><br>
+`사진출처:`[adrianmejia](https://adrianmejia.com/how-to-find-time-complexity-of-an-algorithm-code-big-o-notation/)<br>
+<br>
+시간 복잡도는 알고리즘의 절대적인 수행시간을 분석하는 것이 아닌, "해당 알고리즘을 이루고 있는 연산들이 몇 번 수행되는지를 숫자로 표시한다."<br>
+여기서 연산이란, 기본적인 산술 연산 뿐만 아니라 대입연산, 비교연산(<,>,= 등) 및 이동연산 등 대부분의 연산을 포함한다.<br> 
+시간복잡도는 위 연산들의 수행 횟수를 계산하여 여러 알고리즘 사이에서 비교 분석을 가능하게 해준다.
+<br>
+<img src="/assets/images/INU/GoodWorker.png" alt="GoodWorker_Procdess" width="50%" min-width="200px" itemprop="image"><br>
+`사진출처:`[sporbiz](http://www.sporbiz.co.kr/news/articleView.html?idxno=389891)<br>
+
+동일한 환경에서 동일한 일을 수행하고 동일한 결과를 출력한다는 가정하에 수행과정이 복잡하지 않고 덜 피곤하게 수행해내 빠르게 결과를 출력할 수 있는 사람을 우리는 통칭 "에이스" 라고 한다..<br>
+동일한 매커니즘으로 우리는 여러 알고리즘 중 연산의 횟수가 더 적은 알고리즘을 "에이스" 알고리즘이라 생각하고 선택하여 적용할 것이다. 이것이 "시간복잡도"의 기본 개념이다.<br>
+<img src="/assets/images/INU/T(n).png" alt="T(n)_Procdess" width="100%" min-width="200px" itemprop="image"><br>
+**- 시간 복잡도 함수**<br>
+연산은 프로그램에 주어지는 입력의 개수 n에 따라 변하기 때문에 연산의 수를 입력의 개수 n의 함수로 나타낸 것을 시간복잡도 함수 라고 하며, T(n) 으로 표기한다.<br>
+
+<details>
+<summary><span style="color:blue">시간복잡도 함수 T(n) 예제(클릭)</span></summary>
+
+<!-- summary 아래 한칸 공백 두어야함 -->
+<img src="/assets/images/INU/EX_T(n).png" alt="EX_T(n)_Procdess" width="100%" min-width="200px" itemprop="image">
+</details><br>
+
+## 빅오 표기법 - O(n)
+```
+빅오 표기법(점근 표기법)
+```
+
+
+
+
+2. 알고리즘이 사용하는 기억공간(자원)의 분석 : 공간 복잡도(space complexity)
 
 
 
