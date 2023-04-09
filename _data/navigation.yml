@@ -1,7 +1,5 @@
 # main links
 main:
-  # - title: "Quick-Start Guide"
-  #   url: https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/
   - title: "Introduce"
     url: /about/
   - title: "Posts"
@@ -10,3 +8,18 @@ main:
     url: /categories/ #/collection-archive/
   - title: "Sitemap"
     url: /sitemap/
+
+sidebar-category:
+  - title: "Carefree Lists"
+    children:
+      - title: "INU/Operating System"
+        url: "/INU-OS/"
+        category: "INU-OS"
+      - title: "INU/Data Structure"
+        url: "/INU-DataStructure/"
+        category: "INU-DataStructure"
+      # - title: "Spring Framework"
+      #   url:  "/spring/"
+      - title: "Memo"
+        url:  "/Memo/"
+        category: "Memo"

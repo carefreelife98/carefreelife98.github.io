@@ -1,7 +1,7 @@
 ---
 title: "Data Structure : Introduction"
 categories:
-  - INU/Data_Structure
+  - INU-DataStructure
 tags:
   - Data Structure
   - 자료구조

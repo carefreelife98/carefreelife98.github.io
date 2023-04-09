@@ -12,7 +12,7 @@
   max-width: 100%;
   padding-left: 1em;
   padding-right: 1em;
-  font-family: $sans-serif;
+  font-family: $new;
   -webkit-animation: $intro-transition;
   animation: $intro-transition;
   -webkit-animation-delay: 0.3s;
@@ -55,13 +55,13 @@
   float: left;
   margin-top: 1em;
   padding-top: 1em;
-  width: 100%;
+  width: 50%;
 
   ul {
     margin: 0;
     padding: 0;
     list-style-type: none;
-    font-family: $sans-serif;
+    font-family: $new;
   }
 
   li {
@@ -73,7 +73,7 @@
       display: block;
       margin-bottom: 0.25em;
       padding: 0.5em 1em;
-      font-family: $sans-serif;
+      font-family: $new;
       font-size: 14px;
       font-weight: bold;
       line-height: 1.5;
@@ -95,7 +95,7 @@
 
       &.disabled {
         color: rgba($muted-text-color, 0.5);
-        pointer-events: none;
+        pointer-events: auto;
         cursor: not-allowed;
       }
     }
@@ -123,7 +123,7 @@
     padding: 1em 2em;
     float: left;
     width: 50%;
-    font-family: $sans-serif;
+    font-family: $new;
     font-size: $type-size-5;
     font-weight: bold;
     text-align: center;
@@ -351,7 +351,7 @@
       position: relative;
       display: inline-block;
       padding: 0.5em 2.5em 0.5em 1em;
-      color: $gray;
+      color: rgb(198, 134, 134);
       font-size: $type-size-6;
       font-weight: bold;
       border: 1px solid $light-gray;
@@ -442,7 +442,7 @@
   font-size: 1.25rem;
 
   a {
-    color: inherit;
+    color: rgb(149, 76, 56);
   }
 
   .active {
@@ -483,7 +483,7 @@
 .nav__title {
   margin: 0;
   padding: 0.5rem 0.75rem;
-  font-family: $sans-serif-narrow;
+  font-family: $new;
   font-size: $type-size-5;
   font-weight: bold;
 }
@@ -492,7 +492,7 @@
   display: block;
   margin: 0.5rem 0;
   padding: 0.25rem 0;
-  font-family: $sans-serif-narrow;
+  font-family: $new;
   font-size: $type-size-6;
   font-weight: bold;
   text-transform: uppercase;
@@ -504,8 +504,8 @@
      ========================================================================== */
 
 .toc {
-  font-family: $sans-serif-narrow;
-  color: $gray;
+  font-family: $new;
+  color: rgb(225, 178, 121);
   background-color: $background-color;
   border: 1px solid $border-color;
   border-radius: $border-radius;
@@ -513,7 +513,7 @@
   box-shadow: $box-shadow;
 
   .nav__title {
-    color: #fff;
+    color: #ffffff;
     font-size: $type-size-6;
     background: $primary-color;
     border-top-left-radius: $border-radius;

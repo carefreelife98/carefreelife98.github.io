@@ -27,7 +27,7 @@ repository               : "https://github.com/CarefreeLife98/carefreelife98.git
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 logo                     : # path of logo image to display in the masthead, e.g. "/assets/images/88x88.png"
 masthead_title           : "Build Carefree Life"
-# breadcrumbs            : false # true, false (default)
+breadcrumbs              : true # false (default)
 words_per_minute         : 200
 comments:
   provider               : "disqus"                                # comment 처리 사이트 명칭 기재
@@ -290,7 +290,10 @@ defaults:
       comments: true
       share: true
       related: true
-      # nav: "categories"
+      sidebar_main: true
+      # sidebar:                  # 추가한 부분
+      #   nav: "sidebar-category" # 추가한 부분
+      # # nav: "categories"
   # _pages                      : 해당 하단 영역이 새로 추가되었습니다.
   - scope:
       path: "_pages"

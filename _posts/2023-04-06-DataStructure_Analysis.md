@@ -1,12 +1,13 @@
 ---
 title: "Data Structure : Analysis"
 categories:
-  - INU/Data_Structure
+  - INU-DataStructure
 tags:
   - Data Structure
   - Dynamic analysis
   - Static analysis
   - Complexity analysis
+sidebar: true
 toc: true
 toc_sticky: true
 toc_label: "Carefree to See"

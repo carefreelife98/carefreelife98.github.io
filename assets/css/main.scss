@@ -7,3 +7,19 @@ search: false
 
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
 @import "minimal-mistakes"; // main partials
+
+// Font 변경
+@import url('https://fonts.googleapis.com/css?family=Inconsolata');
+@font-face {
+    font-family: 'KCC-Ganpan';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/KCC-Ganpan.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+};
+
+$serif              : "KCC-Ganpan", monospace, "PT Serif", Georgia, Times, serif; //Inconsolata
+$sans-serif-narrow  : "KCC-Ganpan", monospace, "PT Sans Narrow", -apple-system, BlinkMacSystemFont, "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", Arial, sans-serif; //Inconsolata
+
+$global-font-family : $serif;
+$header-font-family : $sans-serif-narrow;
+$caption-font-family: $serif !default;

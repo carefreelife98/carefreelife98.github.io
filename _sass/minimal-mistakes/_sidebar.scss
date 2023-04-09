@@ -173,7 +173,7 @@
   }
 }
 .sidebar .author__name {
-  font-family: $sans-serif;
+  font-family: $new;
   font-size: $type-size-5;
 }
 
@@ -190,7 +190,7 @@
   position: relative;
   display: table-cell;
   vertical-align: middle;
-  font-family: $sans-serif;
+  font-family: $new;
   z-index: 20;
   cursor: pointer;
 
@@ -215,7 +215,7 @@
     margin-bottom: 0;
 
     &:before {
-      @supports (pointer-events: none) {
+      @supports (pointer-events: visiblePainted) {
         content: '';
         position: fixed;
         top: 0;
@@ -248,7 +248,7 @@
   border: 1px solid $border-color;
   border-radius: $border-radius;
   background: $background-color;
-  box-shadow: 0 2px 4px 0 rgba(#000, 0.16), 0 2px 10px 0 rgba(#000, 0.12);
+  box-shadow: 0 2px 4px 0 rgba(#75acc7, 0.16), 0 2px 10px 0 rgba(#938d8d, 0.12);
   cursor: default;
 
   &.is--visible {
@@ -291,7 +291,7 @@
     width: 0;
     border-style: solid;
     border-width: 0 10px 10px;
-    border-color: $background-color transparent;
+    border-color: $background-color crimson;
     z-index: 1;
 
     @include breakpoint($large) {
@@ -314,7 +314,7 @@
     padding-right: 5px;
     padding-top: 2px;
     padding-bottom: 2px;
-    color: inherit;
+    color: rgb(223, 149, 149);
     font-size: $type-size-5;
     text-decoration: none;
 
