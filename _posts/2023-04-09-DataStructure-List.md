@@ -1,5 +1,5 @@
 ---
-title: "Data Structure 6 : Analysis"
+title: "Data Structure 6 : List"
 categories:
   - INU-DataStructure
 tags:
