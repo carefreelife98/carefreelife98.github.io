@@ -2,9 +2,13 @@
 title: "Data Structure (2) : 순환(Recursion)"
 categories:
   - INU-DataStructure
+  - C
 tags:
   - Data Structure
   - Recursion
+  - Iteration
+  - Tower of Hanoi
+  - C/C++
 toc: true
 toc_sticky: true
 toc_label: "Carefree to See"
@@ -34,7 +38,7 @@ Data Structure : 순환(Recursion) 이란?
 팩토리얼 프로그래밍을 해보자.
 ```
 <img src="/assets/images/INU/factorial.png" alt="factorial_Procdess" width="100%" min-width="200px" itemprop="image">`factorial의 정의`<br><br>
-- 위 사진을 보면 <span style="color:green">`Factorial n! 을 정의하는 과정에서 다시 Factorial (n-1)! 이 사용되었다.`</span><br>
+- 정의: <span style="color:green">`Factorial n! 을 정의하는 과정에서 다시 Factorial (n-1)! 이 사용되었다.`</span><br>
 이것에 유의하여 아래 코드를 보도록 하자.<br>
 - 우선 팩토리얼 프로그램의 알고리즘은 아래와 같다.<br><br>
 ```
@@ -97,9 +101,10 @@ int factorial(int n){
 ```
 <img src="/assets/images/INU/RecIter.png" alt="RecIter_Procdess" width="100%" min-width="200px" itemprop="image">`왼쪽이 Recursion, 오른쪽이 Iteration``사진출처:`[edward-huang](https://edward-huang.com/2021/02/17/is-recursion-really-slower-than-iteration/)<br><br>
 **순환(Recursion)**
-- 순환이란, 주어진 task를 수행하기 위하여 자기 자신을 다시 호출(순환 호출)하여 작업을 수행해 나가는 방식이다.
+- 주어진 task를 수행하기 위하여 <span style="color:blue">자기 자신을 다시 호출(순환 호출)</span>하여 작업을 수행해 나가는 방식이다.
 - 순환은 본질적으로 순환적(Rcursive)인 문제나 그러한 자료구조를 다루는 프로그램에 적합하다.
-- 하지만 자기 자신이란 함수를 반복하여 호출하므로 반복에 비해 수행속도가 떨어지거나 함수 호출의 오버헤드가 발생할 수 있다.<br>
+- 하지만 자기 자신이란 함수를 반복하여 호출하므로<br>
+<span style="color:red">반복에 비해 수행속도가 떨어지거나 함수 호출의 오버헤드가 발생할 수 있다.</span><br>
 
 **순환의 원리**<br><br>
 Factorial 함수를 잘 보자. 문제를 하나씩 해결한 후에 다음 순환을 실행한다.<br>
@@ -113,8 +118,8 @@ Factorial 함수를 잘 보자. 문제를 하나씩 해결한 후에 다음 순�
 > <img src="/assets/images/INU/faciter.png" alt="faciter_Procdess" width="100%" min-width="200px" itemprop="image">`Factorial 함수를 Iterator 로 작성한 모습.`<br>
 <br>
 **반복(Iteration)**
-- 반복이란 for, while 등의 반복구조로 되풀이하는 방법이다.<br>
-- 변수를 사용하여 일정 횟수의 반복이나 어떠한 조건을 만족시킬 때까지 반복시킬 수도 있다.
+- 반복이란 <span style="color:blue">`for, while 등의 반복구조로 되풀이`</span>하는 방법이다.<br>
+- 변수를 사용하여 일정 횟수의 반복이나 어떠한 조건을 만족시킬 때까지 반복시킨다.
 - 간단명료하며 빠르고 효율적으로 되풀이를 수행할 수 있지만 순환적인 문제에서는 프로그램 작성이 어려울 수도 있다.
 
 기본적으로 반복과 순환은 문제 해결 능력이 같다.<br>
@@ -188,13 +193,15 @@ N개의 원판이 막대 A에 쌓여있는 경우,
 ```
 - *여기서 궁금증이 들 것이다.*<br><br>
 **"그러니까 N-1개를 막대 B로 어떻게 옮기냐는 말이냐구요 ㅋㅋ.."**<br><br>
-**<span style="color:red"><u>`"정답."`</u></span><br><br>**
-- 방금 당신은 정확히 순환(Recursion)을 필요로 한 것이다.
+**<span style="color:red">`"정답"`</span><br><br>**
+- 방금 당신은 정확히 <span style="color:green">`순환(Recursion)`</span>을 필요로 한 것이다.
 - 문제를 다시 보면, N-1개의 원판들을 다시 다른 막대로 옮기는 작업은<br>
   <span style="color:green">`우리가 기존에 했던 N에 대한 작업과 같은 작업이다.`</span><br>
 
-아직 이해가 안된다면, 아래 코드를 같이 보도록 하자.<br><br>
-
+🤬 아직 이해가 안된다면, 아래 코드를 같이 보도록 하자.
+{: .notice--danger}
+{: style="text-align: center;"}
+## C언어: 하노이 탑 구현
 ```c
 // sudo 코드로 구현한 하노이 탑
 // 막대 from에 쌓여있는 n개의 원판을 막대 tmp를 사용하여 막대 to로 옮긴다.
@@ -235,7 +242,7 @@ void hanoi_tower(int n, char from, char tmp, char to) {
 void hanoi_tower(int n, char from, char tmp, char to) {
 
   if( n==1 ) printf("원판 1을 %c 에서 %c으로 옮긴다.\n",from,to);
-  
+
   else {
 	hanoi_tower(n-1, from, to, tmp); // 순환 호출
 	printf("원판 %d을 %c에서 %c으로 옮긴다.\n",n, from, to);
@@ -247,22 +254,31 @@ void main() {
     hanoi_tower(4, 'A', 'B', 'C');
 }
 ```
+<br><br>
 
+**<span style="color:green">`결과:`</span>**<br>
+<img src="/assets/images/INU/rshanoi.png" alt="rshanoi_Procdess" width="100%" min-width="200px" itemprop="image"><br>`C 언어로 구현한 하노이 탑`<br>
 
-
+`이상으로 자료구조 - 순환 포스팅을 마친다.`
+{: .notice--success}
+{: style="text-align: center;"}
 
 
 [처음으로~](#){: .btn .btn--primary }
 
 
 
-`참고: 나무위키` [Data_Structure](https://namu.wiki/w/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0)<br>
 <span style="color:grey">`참고: C언어로 쉽게 풀어쓴 자료구조 <개정 3판> 천인국, 공용해, 하상국 지음`</span><br><br><br>
 
 
 ### Task Lists
 > 
-`[1] 하드웨어의 구조는 2차원 이지만, CPU가 인지하는 것에 있어 논리적 메모리 공간은 1차원임.`
-- [x] 자료구조(Data Structure)란?
-- [x] 자료형(Data Type)이란?
-- [x] 추상적자료형(Abstract Data Type)이란?
+- [x] Data Structure : 순환(Recursion) 이란?
+- [x] 순환(Recursion)의 예
+- [x] 팩토리얼 프로그래밍을 해보자.
+- [x] 순환 알고리즘의 구조
+- [x] 순환 / 반복
+- [x] 순환의 원리
+- [x] 반복 사용의 예 - 피보나치 수열
+- [x] 순환 사용의 예 - 하노이 탑
+- [x] C언어: 하노이 탑 구현
