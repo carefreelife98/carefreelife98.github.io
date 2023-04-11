@@ -1,5 +1,5 @@
 ---
-title: "Data Structure : Analysis"
+title: "Data Structure : (1) Analysis"
 categories:
   - INU-DataStructure
 tags:

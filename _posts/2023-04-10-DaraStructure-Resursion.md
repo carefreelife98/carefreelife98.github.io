@@ -1,5 +1,5 @@
 ---
-title: "Data Structure (2) : 순환(Recursion)"
+title: "Data Structure : (2) 순환(Recursion)"
 categories:
   - INU-DataStructure
   - C
