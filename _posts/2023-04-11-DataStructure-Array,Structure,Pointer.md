@@ -57,7 +57,7 @@ C 의 배열을 사용하여 다항식을 풀어보자.
 
 > **다항식의 계산 방법1.**<br>
 <img src="/assets/images/INU/poly1.png" alt="poly1_Procdess" width="70%" min-width="200px" itemprop="image">`다항식 계산 알고리즘 1`
-- 첫번째 방법은 `모든 차수의 계수값`을 배열에 저장하는 것이다.
+- 첫번째 방법은 <span style="color:blue">`모든 차수의 계수값을 배열에 저장`</span>하는 것이다.
 - 위와 같이 다항식을 다시 풀어 해석해보자.
 - 모든 차수에 대한 계수값의 리스트인 (10, 0, 0, 0, 6, 3) 을 배열 coef 에 저장한다.
 - 여기서 다항식의 차수는 degree에 저장된다.<br>

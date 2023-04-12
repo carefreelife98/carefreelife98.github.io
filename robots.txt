@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://x2info.github.io/sitemap.xml
+Sitemap: https://carefreelife98.github.io/sitemap.xml
