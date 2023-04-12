@@ -14,7 +14,7 @@ toc_sticky: true
 toc_label: "Carefree to See"
 ---
 ---
-# Data Structure --- 순환 (Recursion)
+# Data Structure :: 순환 (Recursion)
 
 ```
 Data Structure : 순환(Recursion) 이란?
