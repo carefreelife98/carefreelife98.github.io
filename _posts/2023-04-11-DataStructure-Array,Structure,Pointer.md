@@ -64,6 +64,10 @@ C 의 배열을 사용하여 다항식을 풀어보자.
 <span style="color:green"><u>가장 높은 차수만 알면 index로 이루어져 순서를 가진 배열내에서 나머지 항들의 차수도 알 수 있다.</u></span><br>
 - 아래 코드를 같이 보도록 하자.
 
+```
+다항식의 구조체 정의
+```
+
 ```c
 #define MAX_DEGREE 101    // 다항식의 최대차수 + 1
 
@@ -74,12 +78,85 @@ typedef struct {          // 구조체의 정의
 
 polynomial a = { 5, {10, 0, 0, 0, 6, 3} };
 ```
+```
+다항식 덧셈 프로그램 #1
+```
+
+```c
+#include <stdio.h>
+#define MAX(a,b) (((a) > (b)) ? (a) : (b))
+#define MAX_DEGREE 101    // 다항식의 최대차수 + 1
+
+typedef struct {          // 구조체의 정의
+	int degree;             // int형 degree
+	float coef[MAX_DEGREE]; // float형 리스트 coef[]
+} polynomial;             // 구조체의 이름
+
+polynomial a = { 5, {10, 0, 0, 0, 6, 3} };
+
+// C = A+B 여기서 A와 B는 다항식이다.
+polynomial poly_add1(polynomial A, polynomial B) {	
+	polynomial C;			
+	int Apos=0, Bpos=0, Cpos=0;		// 배열 인덱스 변수
+
+	int degree_a=A.degree; // 다항식 A의 차수
+
+	int degree_b=B.degree; // 다항식 B의 차수
+
+	C.degree = MAX(A.degree, B.degree);		// 결과 다항식 차수. 코드 상단에 define 되어있다. 둘중에 큰 차수가 반환 된다.
+
+  // 다항식의 최대 차수항은 순서열로 이루어진 다항식 배열에서 가장 마지막 인덱스이기 때문에 배열 인덱스 변수가 각 다항식의 최고차항에 도달 할 때까지 while 문을 돌린다.
+	while( Apos<=A.degree && Bpos<=B.degree ) {
+		if( degree_a > degree_b ) {		// A항 > B항
+		  C.coef[Cpos++]= A.coef[Apos++];
+		  degree_a--;
+		} 
+    else if( degree_a == degree_b ){		// A항 == B항
+		  C.coef[Cpos++]=A.coef[Apos++]+B.coef[Bpos++];
+		  degree_a--; degree_b--;
+		} 
+    else {				// B항 > A항
+		  C.coef[Cpos++]= B.coef[Bpos++];
+		  degree_b--;
+		}
+	}
+	return C;
+}
+
+// 결과를 출력하기 위한 함수
+void print_poly(polynomial p){
+    for (int i = p.degree; i > 0; i--){
+        printf("%3.1fx^%d + ", p.coef[p.degree - i], i);
+    }
+    printf("%3.1f \n", p.coef[p.degree]);
+}
+
+//메인 함수
+int main(void) {
+	polynomial a = { 5, {3, 6, 0, 0, 0, 10} };
+	polynomial b = { 4, {7, 0, 5, 0, 1} };
+	polynomial c;
+
+    print_poly(a);
+    print_poly(b);
+	c = poly_add1(a,b);
+    printf("--------------------다항식 A + B 결과----------------------\n");
+    print_poly(c);
+    return 0;
+}
+```
 
 ```
 방법 1
 장점: 다항식의 각종 연산이 간단해진다.
 단점: 대부분의 항의 개수가 0이면 공간의 낭비가 심해진다.
 ```
+
+```
+결과..!
+```
+
+<img src="/assets/images/INU/Cpoly.png" alt="Cpoly_Procdess" width="100%" min-width="200px" itemprop="image">`C 언어로 구현한 Polynomial 다항식의 덧셈 결과`
 
 위의 방법 1은 간단하고 쉽지만, 만약 대부분의 항의 계수가 0인 다항식의 계산에서는 메모리 낭비가 심하다는 단점이 있다.<br>
 (10x^100 + 6 과 같은 다항식에선 101개의 공간 중에서 오직 2개만 사용한다.)
