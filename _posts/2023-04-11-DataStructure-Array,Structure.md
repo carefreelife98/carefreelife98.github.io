@@ -349,12 +349,9 @@ typedef struct ListNode {
 
 ### Task Lists
 > 
-- [x] Data Structure : 순환(Recursion) 이란?
-- [x] 순환(Recursion)의 예
-- [x] 팩토리얼 프로그래밍을 해보자.
-- [x] 순환 알고리즘의 구조
-- [x] 순환 / 반복
-- [x] 순환의 원리
-- [x] 반복 사용의 예 - 피보나치 수열
-- [x] 순환 사용의 예 - 하노이 탑
-- [x] C언어: 하노이 탑 구현
+- [x] Data Structure : 배열(Array) 이란?
+- [x] 배열 ADT 란?
+- [x] polynomial : 다항식 덧셈 프로그램 #1
+- [x] polynomial : 다항식 덧셈 프로그램 #2
+- [x] 구조체(Structure) 란?
+- [x] 자체 참조 구조체 (Self-referential Structure)
