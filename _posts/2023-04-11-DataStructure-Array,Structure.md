@@ -1,5 +1,5 @@
 ---
-title: "Data Structure : (3) 배열, 구조체, 포인터 (Array,Structure,Pointer)"
+title: "Data Structure : (3) 배열, 구조체 (Array & Structure)"
 categories:
   - INU-DataStructure
   - C
@@ -7,7 +7,6 @@ tags:
   - Data Structure
   - Array
   - Structure
-  - Pointer
   - C/C++
 toc: true
 toc_sticky: true
@@ -22,7 +21,7 @@ toc_label: "Carefree to See"
 > <img src="/assets/images/INU/arraydef.png" alt="recursion_Procdess" width="100%" min-width="200px" itemprop="image">`사진출처:`[laboputer](https://laboputer.github.io/ps/2017/09/05/array-and-list/)<br><br>
 **<span style="color:red">`"배열이란, 동일한 타입의 데이터를 연속으로 저장할 수 있는 자료구조이다."`</span>**<br>
 - 배열은 기본이 되는 중요한 자료형이며 많은 자료 구조들이 배열을 사용하여 구현된다.
-- 배열은 데이터마다 다른 이름을 부여하지 않고 쉽게 사용하기 위해 
+- 배열은 데이터마다 다른 이름을 부여하지 않고 쉽게 사용하기 위해<br>
   각 데이터마다 인덱스(Index)를 대응시킨다.
 - 인덱스(Index)는 순차적인 숫자로 표현되며, 첫번째로부터 상대적인 위치를 나타낸다.<br><br>
 📣 검색 연산은 빠르지만, 추가 및 삭제 연산이 느리다. 📣
@@ -44,7 +43,7 @@ toc_label: "Carefree to See"
 {: .notice--info}
 {: style="text-align: center;"}
 
-## 배열의 응용 : 다항식
+## 배열의 응용 : 다항식 (1)
 
 ```
 C 의 배열을 사용하여 다항식을 풀어보자.
@@ -52,9 +51,8 @@ C 의 배열을 사용하여 다항식을 풀어보자.
 > <img src="/assets/images/INU/poly.png" alt="poly_Procdess" width="50%" min-width="200px" itemprop="image">`다항식의 일반적인 형태`<br>
 - 위의 다항식에서, a: 계수, x:변수, n: 차수라 부른다.
 - 가장 큰 차수를 **다항식의 차수**라 부른다.
-- 위와 같은 다항식을 계산할 때, 어떤 자료구조가 가장 편리하고, 메모리를 적게 사용할 것인가?
+- 다항식을 계산할 때, <span style="color:green">`어떤 자료구조가 가장 편리하고, 메모리를 적게 사용할 것인가?`</span>
 - 이것이 우리가 자료구조를 배우는 이유이자 목적이다.
-
 > **다항식의 계산 방법1.**<br>
 <img src="/assets/images/INU/poly1.png" alt="poly1_Procdess" width="70%" min-width="200px" itemprop="image">`다항식 계산 알고리즘 1`
 - 첫번째 방법은 <span style="color:blue">`모든 차수의 계수값을 배열에 저장`</span>하는 것이다.
@@ -78,8 +76,10 @@ typedef struct {          // 구조체의 정의
 
 polynomial a = { 5, {10, 0, 0, 0, 6, 3} };
 ```
+<br>
+
 ```
-다항식 덧셈 프로그램 #1
+polynomial : 다항식 덧셈 프로그램 #1
 ```
 
 ```c
@@ -164,7 +164,110 @@ int main(void) {
 {: style="text-align: center;"}
 
 
+## 배열의 응용 2 : 다항식 (2)
 
+```
+메모리의 절약
+```
+> <img src="/assets/images/INU/poly2.png" alt="poly2_Procdess" width="80%" min-width="200px" itemprop="image"><br>**(A = 8x^3 + 7x + 1) , (B = 10x^3 + 3x^2 + 1)**<br>`하나의 배열로 여러 개의 다항식 저장`<br><br>
+**<span style="color:blue">"다항식의 0이 아닌 항들을 (계수, 차수) 형태로 구조체 배열에 저징"</span>**<br>
+<img src="/assets/images/INU/expoly2.png" alt="expoly2_Procdess" width="50%" min-width="200px" itemprop="image">
+- 다항식의 0이 아닌 항들은 (계수, 차수) 형식으로 구조체 배열에 저장된다.
+- 이 방식으로 하나의 배열에 여러 개의 다항식을 저장 할 수 있다.
+- 먼저 (계수, 차수) 형식의 순서쌍을 구조체로 선언하고 이 구조체의 배열을 생성하여 저장한다.
+
+```c
+// (계수, 차수) 형식의 순서쌍을 구조체로 선언.
+#define MAX_TERMS 101
+struct {
+  float coef;
+  int expon;
+} terms[MAX_TERMS];
+int avail; // 현재 비어있는 요소의 인덱스를 가리킨다.
+```
+>
+<img src="/assets/images/INU/algopoly2.png" alt="algopoly2_Procdess" width="100%" min-width="200px" itemprop="image"><br>`다항식의 덧셈 전 과 후`
+
+🔥 알고리즘 🔥<br><br>
+두 개의 다항식 A, B를 더하여 다항식 C를 구하려고 한다.<br>
+A와 B의 각 항의 차수를 비교 후 같으면 계수를 더해 C의 첫번째 칸으로 보내고, 다르다면 더 큰 차수의 항을 C로 보낸다.<br>
+(각 배열의 첫번째 칸이 최고차 항)<br>
+이 과정을 어느 한 쪽의 다항식이 끝날 때까지 계속한다.
+{: .notice--info}
+{: style="text-align: center;"}
+
+```
+polynomial : 다항식 덧셈 프로그램 #2
+```
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+
+#define MAX_TERMS 101
+struct {
+	float coef;
+	int expon;
+} terms[MAX_TERMS]={ {8,3}, {7,1}, {1,0}, {10,3}, {3,2},{1,0} };
+int avail=6;
+
+// 두개의 정수를 비교
+char compare(int a, int b) {
+	if( a>b ) return '>';
+	else if( a==b ) return '=';
+	else return '<';
+}
+
+// 새로운 항을 다항식에 추가한다.
+void attach(float coef, int expon) {
+	if( avail>MAX_TERMS ){
+		fprintf(stderr, "항의 개수가 너무 많음\n");
+		exit(1);
+	}
+	terms[avail].coef=coef;
+	terms[avail++].expon=expon; //빈 공간을 가르키는 avail 변수의 증가
+}
+
+// C = A + B
+// int형 파라미터들은 각 다항식의 처음과 끝을 가리킨다.
+poly_add2(int Astart, int Aend, int Bstart, int Bend, int *Cstart, int *Cend) {
+	float tempcoef;
+	*Cstart = avail;
+
+	while( Astart <= Aend && Bstart <= Bend )
+	  switch(compare(terms[Astart].expon,terms[Bstart].expon)){ 
+	    
+      case '>': 	// A의 차수 > B의 차수
+	        attach(terms[Astart].coef, terms[Astart].expon);
+	        Astart++; break;
+	    case '=': 	// A의 차수 == B의 차수
+		      tempcoef = terms[Astart].coef + terms[Bstart].coef;
+		      if( tempcoef )
+              attach(tempcoef,terms[Astart].expon);
+		      Astart++; Bstart++; break;
+	    case '<': 	// A의 차수 < B의 차수
+		      attach(terms[Bstart].coef, terms[Bstart].expon);
+		      Bstart++; break;
+	}
+	// A의 나머지 항들을 이동함
+	for(;Astart<=Aend;Astart++)
+      attach(terms[Astart].coef, terms[Astart].expon);
+	// B의 나머지 항들을 이동함
+	for(;Bstart<=Bend;Bstart++)
+      attach(terms[Bstart].coef, terms[Bstart].expon);
+	*Cend = avail -1;
+}
+
+void main() {
+	int Cstart, Cend;
+	poly_add2(0,2,3,5,&Cstart,&Cend);
+}
+```
+
+```
+실행 결과..!
+```
+<img src="/assets/images/INU/rspoly2.png" alt="rspoly2_Procdess" width="100%" min-width="200px" itemprop="image">`잘 작동하는 것을 볼 수 있다.`<br><br><br>
 
 
 
@@ -174,7 +277,7 @@ int main(void) {
 구조체(Structure) 란?
 ```
 > <img src="/assets/images/INU/structure.png" alt="structure_Procdess" width="100%" min-width="200px" itemprop="image">`구조체와 배열의 모습`<br>
-**<span style="color:red">"타입이 다른 데이터를 하나로 묶는 방법."</span>**
+**<span style="color:red">"타입이 다른 데이터를 하나로 묶는 방법."</span>**<br>
 구조체의 형식은 다음과 같이 정의한다.<br>
 
 ```c
@@ -215,7 +318,7 @@ student s = {"kim", 20, 4.3};
 ```
 자체 참조 구조체 (Self-referential Structure):
 ```
-- 필드 중에 자기 자신을 가리키는 포인터가 한 개 이상 존재 하는 구조체.
+- 필드 중에 <span style="color:blue">`자기 자신을 가리키는 포인터`</span>가 한 개 이상 존재 하는 구조체.
 - 연결리스트(Linked List) 나 트리(Tree)에 많이 등장.
 
 ```c
@@ -225,9 +328,33 @@ typedef struct ListNode {
 } ListNode;
 ```
 
-후에 List 에 관해 포스팅 할 때 예제와 함께 더욱 자세하게 다뤄 보겠다.<br>
+- 후에 List 에 관해 포스팅 할 때 예제와 함께 더욱 자세하게 다뤄 보겠다.<br>
 
 
 📣 배열(Array)는 타입이 같은 데이터들을 하나로 묶는 방법이므로 구조체(Structure)과는 다르다 📣
 {: .notice--warning}
 {: style="text-align: center;"}
+
+이상으로 배열, 구조체 (Array & Structure) 포스팅을 마치겠다.
+{: .notice--success}
+{: style="text-align: center;"}
+
+
+[처음으로~](#){: .btn .btn--primary }
+
+
+
+<span style="color:grey">`참고: C언어로 쉽게 풀어쓴 자료구조 <개정 3판> 천인국, 공용해, 하상국 지음`</span><br><br><br>
+
+
+### Task Lists
+> 
+- [x] Data Structure : 순환(Recursion) 이란?
+- [x] 순환(Recursion)의 예
+- [x] 팩토리얼 프로그래밍을 해보자.
+- [x] 순환 알고리즘의 구조
+- [x] 순환 / 반복
+- [x] 순환의 원리
+- [x] 반복 사용의 예 - 피보나치 수열
+- [x] 순환 사용의 예 - 하노이 탑
+- [x] C언어: 하노이 탑 구현
