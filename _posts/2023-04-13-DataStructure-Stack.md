@@ -219,13 +219,24 @@ typedef struct {
 void init_stack(StackType *s) {
   s->top = -1;
   s->capacity = 1; // 하나의 요소가 들어오기 위한 여유 공간 확보
-  s->data = (element *)malloc(s->data, s->capacity*sizeof(element));
+  s->data = (element *)malloc(s->data, s->capacity * sizeof(element)); // 동적 스택
 }
 
-// 스택 삭제 함수(메모리 반환)
+// 스택 삭제 함수(동적 메모리 사용 후 메모리 반환)
 void delete(StackType *s){
-  free
+  free(s);
 }
+
+// 공백 상태 검출 함수
+int is_empty(StackType *s) {
+  return s->top == -1 ? 1 : 0;
+}
+
+// 포화 상태 검출 함수
+int is_full(StackType *s) {
+  return (s->capacity - 1) == s->top;
+}
+
 
 void push(StackType *s, element item) {
   if (is_full(s)) {
@@ -235,6 +246,37 @@ void push(StackType *s, element item) {
     s->data = (element *)realloc(s->data, s->capacity * sizeof(element));
   }
   s->data[++(s->top)] = item // top을 먼저 증가시켜 다음 공간을 지정한 후 item(요소) 를 넣는다.
+}
+
+// 삭제 함수
+element pop(StackType *s) {
+  if(is_empty(s)) {
+    fprintf(stderr, "이미 비어있는 스택입니다.\n");
+    exit(1);
+  }
+  else {
+    // element e = s->data;
+    // s->top = s->top - 1;
+    // return e;
+
+    return s->data[(s->top)--];
+  }
+}
+
+int main(void) {
+  StackType *s;
+
+  s = (StackType *)malloc(sizeof(StackType));
+  init_stack(s);
+
+  push(s, 1);
+	push(s, 2);
+	push(s, 3);
+	printf("%d\n", pop(s));
+	printf("%d\n", pop(s));
+
+	printf("%d\n", pop(s));
+	free(s);
 }
 ```
 
