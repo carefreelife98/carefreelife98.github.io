@@ -207,6 +207,10 @@ pop(S, x): // 스택 배열 구조체와 삭제될 요소를 매개 변수로 �
 ```
 
 ```c
+#include <stdio.h>
+#include <stdlib.h>
+
+
 typedef int element;
 
 typedef struct {
@@ -219,7 +223,7 @@ typedef struct {
 void init_stack(StackType *s) {
   s->top = -1;
   s->capacity = 1; // 하나의 요소가 들어오기 위한 여유 공간 확보
-  s->data = (element *)malloc(s->data, s->capacity * sizeof(element)); // 동적 스택
+  s->data = (element *)malloc(s->capacity * sizeof(element)); // 동적 스택
 }
 
 // 스택 삭제 함수(동적 메모리 사용 후 메모리 반환)
@@ -243,9 +247,11 @@ void push(StackType *s, element item) {
 
     // 동적 메모리 할당 (공간이 부족하면 메모리를 2배로 더 확보한다.)
     s->capacity *= 2;
+
+    // realloc() 함수는 동적 메모리의 크기를 변경하는 함수로서, 현재 내용은 유지하면서 주어진 크기로 동적 메모리를 재할당한다.
     s->data = (element *)realloc(s->data, s->capacity * sizeof(element));
   }
-  s->data[++(s->top)] = item // top을 먼저 증가시켜 다음 공간을 지정한 후 item(요소) 를 넣는다.
+  s->data[++(s->top)] = item; // top을 먼저 증가시켜 다음 공간을 지정한 후 item(요소) 를 넣는다.
 }
 
 // 삭제 함수
@@ -280,8 +286,31 @@ int main(void) {
 }
 ```
 
+> <img src="/assets/images/INU/arrstackrs.png" alt="arrstackrs_Procdess" width="100%" min-width="200px" itemprop="image">`동적 배열 스택 프로그램 실행 결과`
+<br><br>
 
+## 스택의 응용
 
+```
+스택의 응용 : 괄호 검사
+```
+>
+- 스택을 사용하여 프로그램에 사용된 괄호의 쌍이 올바른지 검사하는 프로그램을 만들어보자.
+
+괄호의 종류: 대괄호 (‘[’, ‘]’), 중괄호 (‘{’, ‘}’), 소괄호 (‘(’, ‘)’)<br>
+<br>
+조건<br>
+<br>
+1. 왼쪽 괄호의 개수와 오른쪽 괄호의 개수가 같아야 한다.
+2. 같은 괄호에서 왼쪽 괄호는 오른쪽 괄호보다 먼저 나와야 한다.
+3. 괄호 사이에는 포함 관계만 존재한다.
+<br>
+잘못된 괄호 사용의 예<br>
+		(a(b)<br>
+		a(b)c)<br>
+		a{b(c[d]e}f)<br>
+{: .notice--info}
+{: style="text-align: left;"}
 
 <!-- 📣 순환은 본질적으로 순환적인 문제나, 그러한 자료구조를 다루는 프로그램에 적합하다. 📣
 {: .notice--warning}
