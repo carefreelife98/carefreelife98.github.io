@@ -289,7 +289,7 @@ int main(void) {
 > <img src="/assets/images/INU/arrstackrs.png" alt="arrstackrs_Procdess" width="100%" min-width="200px" itemprop="image">`동적 배열 스택 프로그램 실행 결과`
 <br><br>
 
-## 스택의 응용 : 괄호 검사
+## 스택의 응용 1 : 괄호 검사
 
 ```
 스택을 사용하여 괄호 검사 프로그램을 작성해보자.
@@ -467,6 +467,354 @@ int main(void) {
     return 0;
 }
 ```
+
+><img src="/assets/images/INU/matchingstack.png" alt="matchingstack_Procdess" width="100%" min-width="200px" itemprop="image">`괄호 검사 프로그램 실행 결과`
+
+
+## 스택의 응용 2-1 : 후위 표기 수식의 계산
+
+```
+스택을 사용하여 후위 표기 수식 계산 프로그램을 작성해보자.
+```
+
+>
+**수식의 표기 방법:**
+  - 전위(prefix) : 연산자가 피연산자 사이에 있다. (1 + 2 * a)
+  - 중위(infix) : 연산자가 피연산자 뒤에 있다. (12*+)
+  - 후위(postfix) : 연산자가 피연산자 앞에 있다. (+1*2a)
+<br>
+<img src="/assets/images/INU/postfix.png" alt="postfix_Procdess" width="100%" min-width="200px" itemprop="image">`수식의 표기 방법`<br><br>
+- **컴퓨터에서의 수식 계산 순서**
+  - 프로그래머가 중위 표기식으로 작성한 수식을 컴파일러가 후위 표기식으로 변환 후에 계산한다.
+  - 중위 표기식 ▶️ 후위 표기식 ▶️ 계산 실행
+    (ex.) 2+3*4 ▶️ 234*+ ▶️ 14
+- `모두 스택을 사용`한다.
+<br>
+
+
+```
+후위 표기식 계산 알고리즘
+```
+
+<img src="/assets/images/INU/calpostfix.png" alt="calpostfix_Procdess" width="100%" min-width="200px" itemprop="image">`후위 표기식의 계산 (82/3-32*+)`<br><br>
+1. 수식을 왼쪽에서 오른쪽으로 스캔 해나간다.
+2. 피연산자 이면 스택에 저장.
+3. 연산자를 만나는 순간 필요한 만큼의 피연산자를 스택에서 꺼내 연산 실행, 그 결과를 다시 스택에 저장.<br>
+<img src="/assets/images/INU/calpostfix2.png" alt="calpostfix2_Procdess" width="100%" min-width="200px" itemprop="image">`후위 표기식의 계산 과정 (82/3-32*+)`<br><br>
+
+```
+pseudo code
+```
+
+```c
+스택 s를 생성하고 초기화한다. 
+
+for 항목 in 후위표기식 
+  do if (항목이 피연산자이면) 
+        push(s, item) 
+     if (항목이 연산자 op이면) 
+        then second ← pop(s) 
+              first ← pop(s) 
+              result ← first op second // op 는 +-*/중의 하나 
+              push(s, result) 
+final_result ← pop(s); 
+```
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MAX_STACK_SIZE 100
+
+typedef char element;
+
+typedef struct {
+    int top;
+    element data[MAX_STACK_SIZE];
+} StackType;
+
+// 스택 초기화
+void init_stack(StackType *s) {
+    s->top = -1; 
+}
+
+// 스택 포화 검사
+int is_full(StackType *s){
+    return s->top == MAX_STACK_SIZE -1;
+}
+// 스택 공백 검사
+
+int is_empty(StackType *s) {
+    return s->top == -1;
+}
+// push()
+void push(StackType *s, element item) {
+    if(is_full(s)){
+        fprintf(stderr, "error");
+        exit(1);
+    }
+    s->data[++(s->top)] = item;
+}
+// pop()
+element pop(StackType *s) {
+    if(is_empty(s)) {
+        fprintf(stderr, "error");
+        exit(1);
+    }
+    return s->data[(s->top)--];
+}
+// peek()
+element peek(StackType *s) {
+    if(is_empty(s)) {
+        fprintf(stderr, "error");
+        exit(1);
+    }
+    return s->data[s->top];
+}
+
+// 후위 표기 수식 계산 함수
+int eval(char exp[]) {
+    int op1, op2, value, i = 0;
+    int len = strlen(exp);
+    char ch;
+    StackType *s = (StackType *)malloc(sizeof(StackType));
+
+    init_stack(s);
+
+    for(i = 0; i<len; i++) {
+        ch = exp[i]; // 매개변수로 넘어온 문자열 exp의 인덱스 0 부터 문자 하나를 꺼내 ch에 저장한다.
+        if(ch != '+' && ch != '-' && ch != '*' && ch != '/') {
+            value = ch - '0'; // ?
+            push(s, value);
+        }
+        else {  // 연산자이면 피연산자를 스택에서 제거.
+            op2 = pop(s);
+            op1 = pop(s);
+            switch(ch) {
+                case '+': push(s, op1 + op2); break;
+                case '-': push(s, op1 - op2); break;
+                case '*': push(s, op1 * op2); break;
+                case '/': push(s, op1 / op2); break;
+            }
+        }
+    }
+    return pop(s); // 모든 연산이 끝나고 남은 결과를 pop 반환
+}
+
+int main(void) {
+    int result;
+    printf("후위 표기식은 82/3-32*+\n");
+    result = eval("82/3-32*+");
+    printf("결과값은 %d", result);
+    return 0;
+}
+```
+
+> <img src="/assets/images/INU/rspostfix.png" alt="rspostfix_Procdess" width="100%" min-width="200px" itemprop="image">`후위 표기식 프로그램의 실행 결과 (82/3-32*+)`<br><br>
+
+## 스택의 응용 2-2 : 중위 표기식을 후위 표기식으로 변환
+
+```
+중위 표기식을 후위 표기식으로 변환해보자.
+```
+
+> <img src="/assets/images/INU/inpostfix.png" alt="inpostfix_Procdess" width="100%" min-width="200px" itemprop="image">`후위 표기식 프로그램의 실행 결과 (82/3-32*+)`<br><br>
+- 기본적으로 프로그래머는 중위 표기식으로 연산을 표현하며, 컴퓨터는 후위 표기식으로 연산을 실행한다.
+- 따라서 우리는 중위 표기식을 후위 표기식으로 변환해줄 필요가 있다.
+  - 중위 표기법과 후위 표기법의 공통점은 피연산자의 순서가 동일하다는 것.
+  - 연산자의 순서는 우선 순위 순서로 다르다.
+    - 연산자만 스택에 저장 후 출력하면 된다.
+    - (ex.) 2+3*4 ▶️ 234*+ 
+
+```
+위 내용을 바탕으로 pseudo code를 작성해보자.
+```
+
+```c
+infix_to_postfix(exp) :
+
+스택 s를 생성하고 초기화 
+while (exp에 처리할 문자가 남아 있으면) 
+     ch ← 다음에 처리할 문자 
+     switch (ch) 
+       case 연산자: 
+         while ( peek(s)의 우선순위 ≥ ch의 우선순위 ) 
+           do e ← pop(s) 
+              e를 출력             
+         push(s, ch); 
+         break; 
+       case 왼쪽 괄호:      
+         push(s, ch); 
+         break; 
+       case 오른쪽 괄호: 
+         e ← pop(s); 
+         while( e ≠ 왼쪽괄호 ) 
+           do e를 출력 
+              e ← pop(s) 
+         break; 
+       case 피연산자: 
+         ch를 출력 
+         break;
+
+while( not is_empty(s) )  
+      do e ← pop(s) 
+         e를 출력
+```
+
+```
+C언어로 구현한 
+중위 표기 수식을 후위 표기 수식으로 변환하는 프로그램
+```
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MAX_STACK_SIZE 100
+
+typedef char element;
+
+typedef struct {
+    int top;
+    element data[MAX_STACK_SIZE];
+} StackType;
+
+// 스택 초기화
+void init_stack(StackType *s) {
+    s->top = -1; 
+}
+
+// 스택 포화 검사
+int is_full(StackType *s){
+    return s->top == MAX_STACK_SIZE -1;
+}
+// 스택 공백 검사
+
+int is_empty(StackType *s) {
+    return (s->top == -1);
+}
+// push()
+void push(StackType *s, element item) {
+    if(is_full(s)){
+        fprintf(stderr, "push error");
+        exit(1);
+    }
+    else s->data[++(s->top)] = item;
+}
+// pop()
+element pop(StackType *s) {
+    if(is_empty(s)) {
+        fprintf(stderr, "pop error");
+        exit(1);
+    }
+    else return s->data[(s->top)--];
+}
+// peek()
+element peek(StackType *s) {
+    if(is_empty(s)) {
+        fprintf(stderr, "peek error");
+        exit(1);
+    }
+    return s->data[s->top];
+}
+
+// 연산자의 우선순위를 반환한다.
+int prec(char op) {
+    switch(op) {
+        // 왼쪽 괄호는 보이는 순간 무조건 스택에 삽입하며, 왼쪽 괄호는 스택에 삽입되는 순간 가장 우선순위가 낮은 연산자로 취급된다.
+        // 즉 왼쪽괄호 이후 연산자들은 스택에 모두 삽입되며 오른쪽 괄호를 만나게되면 스택에 쌓여있는 연산자들을 왼쪽 괄호가 삭제될 때까지 출력한다.
+        case '(': case ')': return 0;
+        case '+': case '-': return 1;           
+        case '*': case '/': return 2;
+    }
+    return -1;
+}
+
+// 중위 표기 수식을 후위 표기 수식으로 변환하는 프로그램.
+void infix_to_postfix(char exp[]) {
+    int i = 0;
+    char ch, top_op;
+    int len = strlen(exp);
+    StackType *s = (StackType *)malloc(sizeof(StackType));
+
+    // 스택 초기화
+    init_stack(s);
+
+    for(i = 0; i<len; i++) {
+        
+        ch = exp[i];
+
+        switch (ch) {
+        // 연산자
+        case '+': case '-': case '*': case '/': 
+            // 스택에 있는 연산자의 우선순위가 더 크거나 같으면 출력
+            while (!is_empty(s) && (prec(ch) <= prec(peek(s)))) {
+                printf("%c", pop(s));
+            }
+            push(s, ch);
+            break;
+        // 왼쪽 괄호 - 무조건 삽입.
+        case '(':
+            push(s, ch);
+            break;
+        // 오른쪽 괄호 
+        case ')':
+            top_op = pop(s);
+            // 왼쪽 괄호를 만날때까지 출력
+            while(top_op != '(') {
+                printf("%c", top_op);
+                top_op = pop(s);
+            }
+            break;
+        // 피연산자 (default : case 에 속하지 않는 것들)
+        default:
+            printf("%c", ch);
+            break;
+        }
+    }
+    // 스택에 저장된 연산자들 출력
+    while (!is_empty(s)) {
+        printf("%c", pop(s));
+    }
+}
+
+int main(void) {
+	char *s = "(2+3)*4+9";
+	printf("중위표시수식 %s \n", s);
+	printf("후위표시수식 ");
+	infix_to_postfix(s);
+	printf("\n");
+	return 0;
+}
+```
+
+> <img src="/assets/images/INU/in_postfix.png" alt="in_postfix_Procdess" width="100%" min-width="200px" itemprop="image">`후위 표기식 변환 프로그램의 실행 결과 (2+3)*4+9`<br><br>
+
+## 스택의 응용 3 : 미로 문제 (Maze Solving Problem)
+
+```
+이제 스택의 마지막 예제이다.
+
+미로를 탈출하는 방법을 스택을 이용해 찾아보자.
+```
+
+> <img src="/assets/images/INU/Traquair_House_Maze.jpg" alt="Traquair_House_Maze_Procdess" width="100%" min-width="200px" itemprop="image">`사진출처`[Maze](https://ko.wikipedia.org/wiki/%ED%8C%8C%EC%9D%BC:Traquair_House_Maze.jpg)<br><br>
+- 미로의 출구를 찾는 방법 중 가장 기본적인 방법은 시행착오 방법이다.
+  - 시행착오 방법: 하나의 경로를 선택하여 한번 시도해보고 안되면 다시 다른 경로를 시도하는 것.
+- 막다른 길에 도달 시 해당 위치에서 가장 가까웠던 다른 경로를 찾아야 한다.
+- 해당 위치에서 가장 가까운 다른 경로란, 가장 최근에 저장된 다른 경로이다.
+- 가장 최근에 저장한 경로를 쉽게 추출할 수 있는 자료구조에는 스택(Stack)이 적합하다.
+
+> **문제 해결의 순서**
+  1. 현재 위치에서 갈 수 있는 방들의 좌표를 스택에 저장.
+    - 위, 아래, 왼쪽, 오른쪽 순서로 스택에 저장.
+    - 스택의 top에 저장된 위치를 자신의 위치로 대치.
+    - 현재 위치가 출구의 위치와 같거나 모든 위치를 다 검사할 때까지 반복.
+    - 한번 거쳐간 위치를 다시 검사하지 않도록 지나간 경로에는 표시.
+  2. 막다른 길 도달시 가장 최근에 저장된 가능 경로로 이동.
+  3. 한번 지나간 방은 지나가지 않기 위해 방문했다는 표시를 한다.
 
 
 <!-- 📣 순환은 본질적으로 순환적인 문제나, 그러한 자료구조를 다루는 프로그램에 적합하다. 📣
