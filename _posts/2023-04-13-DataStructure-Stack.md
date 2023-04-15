@@ -289,28 +289,185 @@ int main(void) {
 > <img src="/assets/images/INU/arrstackrs.png" alt="arrstackrs_Procdess" width="100%" min-width="200px" itemprop="image">`동적 배열 스택 프로그램 실행 결과`
 <br><br>
 
-## 스택의 응용
+## 스택의 응용 : 괄호 검사
 
 ```
-스택의 응용 : 괄호 검사
+스택을 사용하여 괄호 검사 프로그램을 작성해보자.
 ```
 >
 - 스택을 사용하여 프로그램에 사용된 괄호의 쌍이 올바른지 검사하는 프로그램을 만들어보자.
-
-괄호의 종류: 대괄호 (‘[’, ‘]’), 중괄호 (‘{’, ‘}’), 소괄호 (‘(’, ‘)’)<br>
 <br>
-조건<br>
+**조건**<br>
 <br>
-1. 왼쪽 괄호의 개수와 오른쪽 괄호의 개수가 같아야 한다.
-2. 같은 괄호에서 왼쪽 괄호는 오른쪽 괄호보다 먼저 나와야 한다.
-3. 괄호 사이에는 포함 관계만 존재한다.
+    - (1) 왼쪽 괄호의 개수와 오른쪽 괄호의 개수가 같아야 한다.<br>
+    - (2) 같은 괄호에서 왼쪽 괄호는 오른쪽 괄호보다 먼저 나와야 한다.<br>
+    - (3) 괄호 사이에는 포함 관계만 존재한다.<br><br>
+**괄호의 종류:**<br>
+대괄호 (‘[’, ‘]’), 중괄호 (‘{’, ‘}’), 소괄호 (‘(’, ‘)’)<br>
 <br>
-잘못된 괄호 사용의 예<br>
+**잘못된 괄호 사용의 예**<br>
 		(a(b)<br>
 		a(b)c)<br>
 		a{b(c[d]e}f)<br>
 {: .notice--info}
 {: style="text-align: left;"}
+> **<span style="color:blue">괄호 검사 프로그램의 알고리즘</span>**<br><br>
+<img src="/assets/images/INU/stackmatching.png" alt="stackmatching_Procdess" width="100%" min-width="200px" itemprop="image">`괄호 검사 프로그램의 알고리즘`
+<br><br>
+- 알고리즘의 개요
+  - 괄호들은 가장 가까운 거리에 있는 괄호들끼리 서로 쌍을 이루어야 한다.
+  - 문자열에 저장되어 있는 괄호를 차례대로 조사하면서 왼쪽 괄호를 만나면 스택에 삽입(push)하고, 오른쪽 괄호를 만나면 스택에서 top괄호를 삭제(pop)한 후 오른쪽 괄호와 짝이 맞는지를 검사한다.
+  - 이때, 스택이 비어있으면 조건 1 또는 조건 2 위배. 괄호의 짝이 맞지 않으면 조건 3 등에 위배된다.
+  - 마지막 괄호까지 조사한 후에도 스택에 괄호가 남아 있으면 조건 1에 위배되므로 0(거짓)을 반환하고, 그렇지 않으면 1(참)을 반환한다.
+
+```
+괄호 검사 알고리즘을 pseudocode로 설계해보자.
+```
+
+```c
+check_matching(expr) :
+
+while (입력 expr의 끝이 아니면) 
+  ch ← expr의 다음 글자 
+  switch(ch) 
+    case '(': case '[': case '{': // 왼쪽 괄호 이면 스택에 삽입.
+       ch를 스택에 삽입 
+       break 
+    case ')': case ']': case ']': // 오른쪽 괄호를 만나면 스택에서 pop후 두 괄호를 비교.
+       if ( 스택이 비어 있으면 ) 
+         then 오류 
+       else 스택에서 open_ch를 꺼낸다 
+           if (ch 와 open_ch가 같은 짝이 아니면) 
+               then 오류 보고 
+       break 
+if( 스택이 비어 있지 않으면 ) 
+  then 오류
+```
+<br><br>
+
+```
+이제 괄호 검사 프로그램을 이전에 작성한 pseudo code 를 바탕으로 구현해보자.
+```
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MAX_STACK_SIZE 100
+
+typedef char element; // 괄호가 들어갈 것이기 때문에 char 선언 할 것!
+
+typedef struct {
+    int top;
+    element data[MAX_STACK_SIZE];
+} StackType;
+
+// 스택 생성
+void init_stack(StackType *s) {
+    s->top = -1;
+}
+
+// 메모리 반환
+void delete(StackType *s) {
+    free(s);
+}
+
+// 포화 상태 검사
+int is_full(StackType *s) {
+    return s->top == MAX_STACK_SIZE - 1;
+}
+
+// 공백 상태 검사
+int is_empty(StackType *s) {
+    return s->top == -1;
+}
+// 스택 추가
+void push(StackType *s, element item) {
+    if(is_full(s)) {
+        fprintf(stderr, "스택이 포화 상태입니다.");
+        exit(1);
+    }
+    else {
+        s->data[++(s->top)] = item;
+    }
+}
+
+// 스택 삭제
+element pop(StackType *s) {
+    if(is_empty(s)) {
+        fprintf(stderr, "스택이 이미 공백 상태입니다.");
+        exit(1);
+    }
+    else {
+        return s->data[(s->top)--];
+    }
+}
+
+// peek함수
+element peek(StackType *s) {
+    if(is_empty(s)) {
+        fprintf(stderr, "스택이 공백 상태 입니다.");
+        exit(1);
+    }
+    else {
+        return s->data[s->top];
+    }
+}
+
+int check_matching(const char *in) {
+    StackType s;
+    char ch, open_ch;
+    int i, n = strlen(in); // n = 문자열의 길이
+    
+    init_stack(&s); // 스택의 생성, 초기화
+
+    for(i = 0; i < n; i++) {
+        
+        ch = in[i]; // ch = 확인 대상인 문자열의 문자가 하나씩 들어온다.
+        
+        // switch 문으로 ch를 하나씩 검사한다. 
+        switch (ch) {
+            case '(': case '[': case '{': // 왼쪽 괄호이면 스택에 push,
+                push(&s, ch);
+                break;
+            case ')': case ']': case '}': // 오른쪽 괄호이면 기존 스택의 데이터를 
+                if(is_empty(&s)) {
+                    return 0;
+                }
+                else {
+                    open_ch = pop(&s); // pop()하여 open_ch 변수에 저장하고,
+                    
+                    // 기존 스택의 괄호(왼쪽 괄호, open_ch)와 새로 만난 오른쪽 괄호(ch)가 다르다면 종료. 
+                    if ((open_ch == '(' && ch != ')') ||
+                        (open_ch == '[' && ch != ']') ||
+                        (open_ch == '{' && ch != '}')) {
+                            return 0;
+                        }
+                    else break;
+                }
+        }
+    }
+    // 스택에 데이터가 하나라도 남아 있으면 오류.
+    if(!is_empty(&s)) {
+        printf("오류: 스택에 괄호가 남아있습니다.");
+        return 0;
+    }
+    else return 1;
+}
+
+int main(void) {
+    char *p = "{ A[(i+1)]=0; }";
+    if (check_matching(p) == 1){
+        printf("%s 괄호 검사 성공!\n ", p);
+    }
+    else {
+        printf("%s 괄호 검사 실패...\n ", p);
+    }
+    return 0;
+}
+```
+
 
 <!-- 📣 순환은 본질적으로 순환적인 문제나, 그러한 자료구조를 다루는 프로그램에 적합하다. 📣
 {: .notice--warning}
