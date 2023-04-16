@@ -29,12 +29,13 @@ toc_label: "Carefree to See"
 스택의 특징
 ```
 > <img src="/assets/images/INU/stacklifo.png" alt="stacklifo_Procdess" width="100%" min-width="200px" itemprop="image">`후입선출(LIFO: Last-In First-Out)`<br>
-- 위 사진처럼 스택에서의 입출력은 가장 윗단에서만 일어나고 그 외의 위치에서는 데이터의 삭제가 이루어지지 못한다.<br><br>
+- 위 사진처럼 스택에서의 입출력은 가장 윗단에서만 일어나고<br>
+  그 외의 위치에서는 데이터의 삭제가 이루어지지 못한다.<br><br>
 - **<span style="color:blue">후입선출</span>**<br>
   - 자료구조에서의 스택은 자료의 출력 순서가 입력 순서의 역순으로 이루어져야 할 경우에 매우 요긴하게 사용된다.<br>
-  - ex. (a, b, c, d, e) 형태의 데이터를 (e, d, c, b, a) 와 같은 역순으로 정렬하고 싶을때<br>
-  스택에 데이터를 전부 입력 후 출력을 하게되면 `후입선출: LIFO (가장 늦게 입력된 데이터가 가장 먼저 출력된다.)` 원리에 따라 데이터가 역순으로 정렬된다.
-  <br><br>
+  - ex. (a, b, c, d, e) 형태의 데이터를 (e, d, c, b, a) 와 같은 역순으로 정렬하고 싶을때 스택에 데이터를 전부 입력 후 출력을 하게되면 **<span style="color:blue">`후입선출: LIFO (가장 늦게 입력된 데이터가 가장 먼저 출력된다.)`</span>** 원리에 따라 데이터가 역순으로 정렬된다.
+
+<br><br>
 
 ```
 스택의 구조
@@ -44,6 +45,7 @@ toc_label: "Carefree to See"
 - 스택 하단(stack bottom): 스택의 바닥부분. 가장 먼저 입력된 요소가 있다.
 - 요소(element): 스택에 저장되는 것
 - 공백 스택(empty stack): 스택에 요소가 하나도 없는 비어있는 스택.
+
 <br><br>
 
 ```
@@ -53,7 +55,8 @@ toc_label: "Carefree to See"
 >
 - 프로그래밍을 할 때 수많은 함수들이 호출되어 실행되는 것을 볼 수 있다.
 - 함수는 호출이 되어 실행이 된 후 자신을 호출한 함수로 돌아가야 하는데 이때 스택이 사용된다.
-- 함수는 들어온 길을 되돌아가야 하기 때문이다. 즉, 호출된 순서의 역순으로 빠져나가야 한다.
+- 함수는 들어온 길을 되돌아가야 하기 때문이다.<br>
+즉, **<span style="color:green">`호출된 순서의 역순으로 빠져나가야 한다.`</span>**
 - 이처럼 스택은 함수가 복귀할 주소를 저장하는 데에 사용된다.
 
 > **<span style="color:blue">시스템 스택</span>**<br><br>
@@ -108,11 +111,11 @@ toc_label: "Carefree to See"
 ```
 
 > <img src="/assets/images/INU/calstack.png" alt="calstack_Procdess" width="100%" min-width="200px" itemprop="image">`스택의 push() & pop() 연산 과정`<br><br>
-- push() : 스택에 데이터(요소)를 추가.
+- **<span style="color:blue">push() : 스택에 데이터(요소)를 추가.</span>**
   - 생성된 스택의 가장 밑부분 부터 데이터를 쌓는다.
   - 만약 스택의 상태가 full한 상태에서 push()를 하게 되면 오류가 발생한다.
 <br><br>
-- pop() : 스택에서 데이터(요소)를 삭제.
+- **<span style="color:red">pop() : 스택에서 데이터(요소)를 삭제.</span>**
   - 스택의 가장 윗부분(top)의 데이터를 꺼내 삭제한다.
   - 스택에 더 이상 남아있는 데이터가 없는 상태에서 pop()을 한다면 오류가 발생한다.
 {: .notice--warning}
@@ -172,6 +175,8 @@ is_full(S):
     else return FALSE
 ```
 
+<br><br>
+
 ```
 스택 - 배열 : push() , pop() 연산
 ```
@@ -201,6 +206,10 @@ pop(S, x): // 스택 배열 구조체와 삭제될 요소를 매개 변수로 �
     top←top-1 // 배열의 크기를 줄여 스택을 삭제한다.
     return e  // 해당 공간에 있던 요소를 반환해준다.
 ```
+
+<br><br>
+
+## 동적 배열 스택 프로그램
 
 ```
 이제 학습한 ADT와 함께 동적 배열 스택을 C언어로 구현해보자.
@@ -280,8 +289,8 @@ int main(void) {
 	push(s, 3);
 	printf("%d\n", pop(s));
 	printf("%d\n", pop(s));
-
 	printf("%d\n", pop(s));
+
 	free(s);
 }
 ```
@@ -296,12 +305,11 @@ int main(void) {
 ```
 >
 - 스택을 사용하여 프로그램에 사용된 괄호의 쌍이 올바른지 검사하는 프로그램을 만들어보자.
-<br>
-**조건**<br>
-<br>
-    - (1) 왼쪽 괄호의 개수와 오른쪽 괄호의 개수가 같아야 한다.<br>
-    - (2) 같은 괄호에서 왼쪽 괄호는 오른쪽 괄호보다 먼저 나와야 한다.<br>
-    - (3) 괄호 사이에는 포함 관계만 존재한다.<br><br>
+<br><br>
+**조건:**<br>
+    - 왼쪽 괄호의 개수와 오른쪽 괄호의 개수가 같아야 한다.<br>
+    - 같은 괄호에서 왼쪽 괄호는 오른쪽 괄호보다 먼저 나와야 한다.<br>
+    - 괄호 사이에는 포함 관계만 존재한다.<br><br>
 **괄호의 종류:**<br>
 대괄호 (‘[’, ‘]’), 중괄호 (‘{’, ‘}’), 소괄호 (‘(’, ‘)’)<br>
 <br>
@@ -343,6 +351,7 @@ while (입력 expr의 끝이 아니면)
 if( 스택이 비어 있지 않으면 ) 
   then 오류
 ```
+
 <br><br>
 
 ```
@@ -470,6 +479,7 @@ int main(void) {
 
 ><img src="/assets/images/INU/matchingstack.png" alt="matchingstack_Procdess" width="100%" min-width="200px" itemprop="image">`괄호 검사 프로그램 실행 결과`
 
+<br><br>
 
 ## 스택의 응용 2-1 : 후위 표기 수식의 계산
 
@@ -479,18 +489,18 @@ int main(void) {
 
 >
 **수식의 표기 방법:**
-  - 전위(prefix) : 연산자가 피연산자 사이에 있다. (1 + 2 * a)
-  - 중위(infix) : 연산자가 피연산자 뒤에 있다. (12*+)
-  - 후위(postfix) : 연산자가 피연산자 앞에 있다. (+1*2a)
+  - 전위(prefix) : 연산자가 피연산자 앞에 있다. (+1*2a)
+  - 중위(infix) : 연산자가 피연산자 사이에 있다. (1 + 2 * a)
+  - 후위(postfix) : 연산자가 피연산자 뒤에 있다. (12*+)
 <br>
 <img src="/assets/images/INU/postfix.png" alt="postfix_Procdess" width="100%" min-width="200px" itemprop="image">`수식의 표기 방법`<br><br>
 - **컴퓨터에서의 수식 계산 순서**
   - 프로그래머가 중위 표기식으로 작성한 수식을 컴파일러가 후위 표기식으로 변환 후에 계산한다.
   - 중위 표기식 ▶️ 후위 표기식 ▶️ 계산 실행
     (ex.) 2+3*4 ▶️ 234*+ ▶️ 14
-- `모두 스택을 사용`한다.
-<br>
+- `모두 스택을 사용한다.`
 
+<br><br>
 
 ```
 후위 표기식 계산 알고리즘
@@ -499,7 +509,7 @@ int main(void) {
 <img src="/assets/images/INU/calpostfix.png" alt="calpostfix_Procdess" width="100%" min-width="200px" itemprop="image">`후위 표기식의 계산 (82/3-32*+)`<br><br>
 1. 수식을 왼쪽에서 오른쪽으로 스캔 해나간다.
 2. 피연산자 이면 스택에 저장.
-3. 연산자를 만나는 순간 필요한 만큼의 피연산자를 스택에서 꺼내 연산 실행, 그 결과를 다시 스택에 저장.<br>
+3. 연산자를 만나는 순간 필요한 만큼의 피연산자를 스택에서 꺼내 연산을 실행하고, 그 결과를 다시 스택에 저장한다.<br>
 <img src="/assets/images/INU/calpostfix2.png" alt="calpostfix2_Procdess" width="100%" min-width="200px" itemprop="image">`후위 표기식의 계산 과정 (82/3-32*+)`<br><br>
 
 ```
@@ -518,6 +528,12 @@ for 항목 in 후위표기식
               result ← first op second // op 는 +-*/중의 하나 
               push(s, result) 
 final_result ← pop(s); 
+```
+
+<br><br>
+
+```
+C언어로 후위 표기 수식 계산 프로그램을 만들어보자.
 ```
 
 ```c
@@ -625,7 +641,9 @@ int main(void) {
   - 중위 표기법과 후위 표기법의 공통점은 피연산자의 순서가 동일하다는 것.
   - 연산자의 순서는 우선 순위 순서로 다르다.
     - 연산자만 스택에 저장 후 출력하면 된다.
-    - (ex.) 2+3*4 ▶️ 234*+ 
+    - (ex.) 2+3*4 ▶️ 234*+
+
+<br><br>
 
 ```
 위 내용을 바탕으로 pseudo code를 작성해보자.
@@ -661,6 +679,7 @@ while( not is_empty(s) ) 
       do e ← pop(s) 
          e를 출력
 ```
+<br><br>
 
 ```
 C언어로 구현한 
@@ -723,8 +742,10 @@ element peek(StackType *s) {
 // 연산자의 우선순위를 반환한다.
 int prec(char op) {
     switch(op) {
-        // 왼쪽 괄호는 보이는 순간 무조건 스택에 삽입하며, 왼쪽 괄호는 스택에 삽입되는 순간 가장 우선순위가 낮은 연산자로 취급된다.
-        // 즉 왼쪽괄호 이후 연산자들은 스택에 모두 삽입되며 오른쪽 괄호를 만나게되면 스택에 쌓여있는 연산자들을 왼쪽 괄호가 삭제될 때까지 출력한다.
+        // 왼쪽 괄호는 보이는 순간 무조건 스택에 삽입하며,
+        // 왼쪽 괄호는 스택에 삽입되는 순간 가장 우선순위가 낮은 연산자로 취급된다.
+        // 즉 왼쪽괄호 이후 연산자들은 스택에 모두 삽입되며 
+        // 오른쪽 괄호를 만나게되면 스택에 쌓여있는 연산자들을 왼쪽 괄호가 삭제될 때까지 출력한다.
         case '(': case ')': return 0;
         case '+': case '-': return 1;           
         case '*': case '/': return 2;
@@ -802,21 +823,211 @@ int main(void) {
 
 > <img src="/assets/images/INU/Traquair_House_Maze.jpg" alt="Traquair_House_Maze_Procdess" width="100%" min-width="200px" itemprop="image">`사진출처`[Maze](https://ko.wikipedia.org/wiki/%ED%8C%8C%EC%9D%BC:Traquair_House_Maze.jpg)<br><br>
 - 미로의 출구를 찾는 방법 중 가장 기본적인 방법은 시행착오 방법이다.
-  - 시행착오 방법: 하나의 경로를 선택하여 한번 시도해보고 안되면 다시 다른 경로를 시도하는 것.
+  - **<span style="color:green">`시행착오 방법: 하나의 경로를 선택하여 한번 시도해보고 안되면 다시 다른 경로를 시도.`</span>**
 - 막다른 길에 도달 시 해당 위치에서 가장 가까웠던 다른 경로를 찾아야 한다.
 - 해당 위치에서 가장 가까운 다른 경로란, 가장 최근에 저장된 다른 경로이다.
-- 가장 최근에 저장한 경로를 쉽게 추출할 수 있는 자료구조에는 스택(Stack)이 적합하다.
+- 가장 최근에 저장한 경로를 쉽게 추출할 수 있는 자료구조에는 스택(Stack)이 적합.
 
 > **문제 해결의 순서**
-  1. 현재 위치에서 갈 수 있는 방들의 좌표를 스택에 저장.
-    - 위, 아래, 왼쪽, 오른쪽 순서로 스택에 저장.
-    - 스택의 top에 저장된 위치를 자신의 위치로 대치.
-    - 현재 위치가 출구의 위치와 같거나 모든 위치를 다 검사할 때까지 반복.
-    - 한번 거쳐간 위치를 다시 검사하지 않도록 지나간 경로에는 표시.
-  2. 막다른 길 도달시 가장 최근에 저장된 가능 경로로 이동.
-  3. 한번 지나간 방은 지나가지 않기 위해 방문했다는 표시를 한다.
+  1. **현재 위치에서 갈 수 있는 방들의 좌표를 스택에 저장.**<br>
+    - 위, 아래, 왼쪽, 오른쪽 순서로 스택에 저장.<br>
+    - 스택의 top에 저장된 위치를 자신의 위치로 대치.<br>
+    - 현재 위치가 출구의 위치와 같거나 모든 위치를 다 검사할 때까지 반복.<br>
+    - 한번 거쳐간 위치를 다시 검사하지 않도록 지나간 경로에는 표시.<br>
+  2. **막다른 길 도달시 가장 최근에 저장된 가능 경로로 이동.**<br>
+  3. **한번 지나간 방은 지나가지 않기 위해 방문했다는 표시를 한다.**
+<br><br>
+**미로 탐색 알고리즘**
+```c
+스택 s과 출구의 위치 x, 현재 생쥐의 위치를 초기화 
+while( 현재의 위치가 출구가 아니면 ) 
+  do  현재위치를 방문한 것으로 표기 
+      if( 현재위치의 위, 아래, 왼쪽, 오른쪽 위치가 아직 방문되지 않았고 갈수 있으면 ) 
+        then 그 위치들을 스택에 push 
+      if( is_empty(s) ) 
+         then 실패 
+         else 스택에서 하나의 위치를 꺼내어 현재 위치로 만든다; 
+성공; 
+```
+
+<br>
+
+```
+C언어로 미로 탐색 프로그램을 구현해보자.
+```
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 
-<!-- 📣 순환은 본질적으로 순환적인 문제나, 그러한 자료구조를 다루는 프로그램에 적합하다. 📣
-{: .notice--warning}
+#define MAZE_SIZE 6 // 미로의 크기는 6 X 6
+#define MAX_STACK_SIZE 100
+
+// typedef char element;
+// 이전 예제에서 사용한 chat형 element를 struct 형 element로 바꿔줘야 한다.
+typedef struct {
+    short r;
+    short c;
+} element;
+
+typedef struct {
+    int top;
+    element data[MAX_STACK_SIZE];
+}StackType;
+
+
+
+// 스택 초기화
+void init_stack(StackType *s) {
+    s->top = -1;
+}
+
+// 스택 포화 검사
+int is_full(StackType *s){
+    return s->top == MAX_STACK_SIZE -1;
+}
+// 스택 공백 검사
+
+int is_empty(StackType *s) {
+    return s->top == -1;
+}
+// push()
+void push(StackType *s, element item) {
+    if(is_full(s)){
+        fprintf(stderr, "error");
+        exit(1);
+    }
+    s->data[++(s->top)] = item;
+}
+// pop()
+element pop(StackType *s) {
+    if(is_empty(s)) {
+        fprintf(stderr, "error");
+        exit(1);
+    }
+    return s->data[(s->top)--];
+}
+// peek()
+element peek(StackType *s) {
+    if(is_empty(s)) {
+        fprintf(stderr, "error");
+        exit(1);
+    }
+    return s->data[s->top];
+}
+
+
+// 1은 벽, 0은 위치 가능한 좌표
+// e 는 시작점, x 는 출구이다.
+char maze[MAZE_SIZE][MAZE_SIZE] = {
+	{ '1', '1', '1', '1', '1', '1' },
+    { 'e', '0', '1', '0', '0', '1' },
+    { '1', '0', '0', '0', '1', '1' },
+    { '1', '0', '1', '0', '1', '1' },
+    { '1', '0', '1', '0', '0', 'x' },
+    { '1', '1', '1', '1', '1', '1' },
+};
+
+//위치를 스택에 삽입
+void push_loc(StackType *s, int r, int c) {
+    
+    if(r < 0 || c < 0) return;
+    
+    // 벽을 표현하는 1과 한번 지나간 위치인 . 이 아니면 실행
+    if(maze[r][c] != '1' && maze[r][c] != '.') {
+        element tmp;
+        //element 구조체에 매개변수로 넘어온 row 와 column 값을 넣어준다
+        tmp.r = r;
+        tmp.c = c;
+
+        // 이동 가능한 위치 값이 들어간 구조체 element를 stack에 넣어준다.
+        push(s, tmp);
+    }
+}
+
+void maze_print(char maze[MAZE_SIZE][MAZE_SIZE]) {
+    printf("\n");
+    for (int r = 0; r < MAZE_SIZE; r++) {
+        for(int c = 0; c < MAZE_SIZE; c++) {
+            printf("%c", maze[r][c]);
+        }
+        printf("\n");
+    }
+}
+
+// 현재 위치, 시작점
+element here = {1, 0}, entry = {1, 0};
+
+int main(void) {
+    int r, c;
+    StackType *s = (StackType *)malloc(sizeof(StackType));
+
+    //스택 초기화
+    init_stack(s);
+
+    //위치를 나타내는 element 구조체 초기화 (시작점 entry로 이동)
+    here = entry;
+
+    // x에 도달할때까지 반복
+    while(maze[here.r][here.c] != 'x') {
+        r = here.r;
+        c = here.c;
+
+        // 지나간 곳 . 표시
+        maze[r][c] = '.';
+
+        maze_print(maze);
+
+        // 동서남북을 push_loc 통해 탐색. (push_loc 내부에서 가능한 경로 선정하여 스택에 push함)
+        // 상, 하, 좌, 우 순으로 stack에 push.
+        push_loc(s, r-1, c);  // 위
+        push_loc(s, r+1, c);  // 아래
+        push_loc(s, r, c-1);  // 왼쪽
+        push_loc(s, r, c+1);  // 오른쪽
+
+        // x에 도착하기전에 가능한 경로가 쌓여있는 stack이 공백상태이면 실패.
+        if(is_empty(s)) {
+            printf("실패\n");
+            return 0;
+        }
+        // push_loc이 stack에 push한 가능한 경로 중 가장 최근에 입력한 (가까운) 위치를 찾아 pop()하여 이동.
+        else {
+            here = pop(s);
+        }
+    }
+    printf("성공\n");
+    return 0;
+}
+```
+
+> <img src="/assets/images/INU/rs_maze.png" alt="rs_maze_Procdess" width="60%" min-width="200px" itemprop="image"><br>`미로 탐색 프로그램의 실행 결과`
+<br><br>
+
+최대한의 설명을 코드 블럭 내의 주석으로 달아 놓았습니다.<br><br>
+혹시 이해가 안가거나 추가적인 설명이 필요한 부분, 오류 등의 피드백은 언제든지 환영합니다!<br><br>
+긴 글 읽어주셔서 감사합니다. 스택 (Stack) 포스팅을 마칩니다.<br>
+{: .notice--success}
 {: style="text-align: center;"}
+
+<br><br>
+
+[처음으로~](#){: .btn .btn--primary }
+
+
+
+<span style="color:grey">`참고: C언어로 쉽게 풀어쓴 자료구조 <개정 3판> 천인국, 공용해, 하상국 지음`</span><br><br><br>
+
+
+### Task Lists
+> 
+- [x] Data Structure : 스택 (Stack) 이란?
+- [x] 스택의 특징, 스택의 구조, 스택의 추상 데이터 타입(ADT), 스택의 연산
+- [x] 시스템 스택을 이용한 함수 호출
+- [x] 배열을 이용해 스택을 구현
+- [x] 동적 배열 스택 프로그램
+- [x] 스택의 응용 1 : 괄호 검사
+- [x] 스택의 응용 2-1 : 후위 표기 수식의 계산
+- [x] 스택의 응용 2-2 : 중위 표기식을 후위 표기식으로 변환
+- [x] 스택의 응용 3 : 미로 문제 (Maze Solving Problem)
