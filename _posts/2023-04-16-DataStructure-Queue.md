@@ -224,26 +224,166 @@ front와 rear의 값이 배열의 끝인(MAX_QUEUE_SIZE - 1)에 도달하게 되
   - 배열의 모든 칸을 사용하게 되면 포화 및 공백 상태일때 모두 front와 rear의 값이 같아져 구분 할 수 없게 된다.
 <br><br>
 - 후에 요소들의 개수를 저장하고 있는 count 변수를 사용하게 되면 비워두지 않아도 된다.<br><br>
-<img src="/assets/images/INU/circularqfullemp.png" alt="circularqfullemp_Procdess" width="100%" min-width="200px" itemprop="image">`원형 큐 (Circular queue) 의 상태 검사`
+- 원형 큐의 공백 상태 : front == rear
+- 원형 큐의 포화 상태 : front == (rear + 1) % MAX_QUEUE_SIZE
+<img src="/assets/images/INU/circularqfullemp.png" alt="circularqfullemp_Procdess" width="100%" min-width="200px" itemprop="image">`원형 큐 (Circular queue) 의 상태 검사`<br><br>
 {: .notice--danger}
 {: style="text-align: left;"}
 
 ```c
-// 공백 상태
-is_empty() {
-  front == rear;
+// 공백 상태 검출 함수
+void is_empty(QueueType *q) {
+  return (q->front == q->rear;)
 }
 
-// 포화 상태
-is_full() {
-  if (front == rear + 1) // front 가 rear 보다 한 칸 앞에 있으면 포화.
+// 포화 상태 검출 함수
+int is_full(QueueType *q) {
+  // front 가 rear 보다 한 칸 앞에 있으면 포화.
+  return (q->front == (q->rear + 1) % MAX_QUEUE_SIZE)
 }
 ```
 
+## 원형 큐의 삽입, 삭제 알고리즘
 
+```
+원형 큐의 삽입, 삭제 알고리즘
+```
 
+> - 원형 큐에서의 삽입, 삭제 알고리즘에서 중요한 점은<br>
+**<span style="color:blue">`삽입이나 삭제를 하기전에 front 와 rear 를 원형으로 회전시켜야 한다는 것이다.`</span>**
+- 원형 회전은 나머지 연산자 %를 이용하여 쉽게 구현 가능하다.
+```
+front <- (front + 1) % MAX_QUEUE_SIZE;
+rear <- (rear + 1) % MAX_QUEUE_SIZE;
+```
+- 위의 식에 의하여 front와 rear 값은 (MAX_QUEUE_SIZE - 1)에서 하나가 증가되면 0이 된다.
+- 즉, MAX_QUEUE_SIZE 가 5이면 front 와 rear 값은 0,1,2,3,4,0 과 같이 변화한다.
 
+```c
+// 원형 큐에서의 삽입, 삭제 알고리즘
+enqueue(Q, x):
+  rear<-(rear + 1) % MAX_QUEUE_SIZE;
+  Q[rear] <- x;
 
+dequeue(Q):
+  front<-(front + 1) % MAX_QUEUE_SIZE;
+  return Q[front];
+```
+
+## 원형 큐의 구현
+
+```
+원형 큐를 C언어로 구현해보자.
+```
+
+```c
+#include<stdio.h>
+#include <stdlib.h>
+
+#define MAX_QUEUE_SIZE 5
+
+typedef int element;
+
+typedef struct {
+    int front;
+    int rear;
+    element data[MAX_QUEUE_SIZE];
+}QueueType;
+
+// 오류 함수
+void error (char *message) {
+    fprintf(stderr, "%s\n", message);
+    exit(1);
+}
+
+// 큐 초기화
+void init_queue(QueueType *q) {
+    q->front = q->rear = 0;
+}
+
+// 공백 검출
+int is_empty(QueueType *q) {
+    return q->front == q->rear;
+}
+
+// 포화 검출
+int is_full(QueueType *q) {
+    return q->front == (q->rear + 1) % MAX_QUEUE_SIZE;
+}
+
+// 원형큐 출력 함수
+void queue_print(QueueType *q)
+{
+	printf("QUEUE(front=%d rear=%d) = ", q->front, q->rear);
+	if (!is_empty(q)) {
+			int i = q->front;
+			do {
+				i = (i + 1) % (MAX_QUEUE_SIZE);
+				printf("%d | ", q->data[i]);
+				if (i == q->rear)
+					break;
+			} while (i != q->front);
+		}
+	printf("\n");
+}
+
+void enqueue(QueueType *q, element item) {
+    if(is_full(q)){
+        error("큐가 이미 포화 상태입니다.");
+    }
+    else {
+        q-> rear = (q->rear + 1) % MAX_QUEUE_SIZE;
+        q->data[q->rear] = item;
+    }
+}
+
+element dequeue(QueueType *q) {
+    if(is_empty(q)) {
+        error("큐가 이미 공백 상태입니다.");
+        return 0;
+    }
+    else {
+        q->front = (q->front + 1) % MAX_QUEUE_SIZE;
+        return q->data[q->front];
+    }
+}
+
+element peek(QueueType *q) {
+    if(is_empty(q)) {
+        error("큐가 이미 공백 상태입니다.");
+    }
+    return q->data[(q->front + 1) % MAX_QUEUE_SIZE];
+}
+
+int main(void) {
+    QueueType *q = (QueueType *)malloc(sizeof(QueueType));
+    int element;
+
+    init_queue(q);
+    printf("----데이터 추가 단계----\n");
+    while (!is_full(q)) {
+        printf("정수를 입력하시오: ");
+        scanf("%d", &element);
+        enqueue(q, element);
+        queue_print(q);
+    }
+    printf("-----큐는 포화 상태입니다.-----\n\n");
+
+    printf("-----데이터 삭제 단계-----\n");
+    while (!is_empty(q)) {
+        element = dequeue(q);
+        printf("꺼내진 정수 : %d \n", element);
+        queue_print(q);
+    }
+    printf("----큐는 공백 상태입니다.----\n");
+}
+```
+
+```
+실행 결과
+```
+
+<img src="/assets/images/INU/rscirq.png" alt="rscirq_Procdess" width="100%" min-width="200px" itemprop="image">`원형 큐 (Circular queue) 의 실행 결과`<br><br>
 
 
 <br><br>
