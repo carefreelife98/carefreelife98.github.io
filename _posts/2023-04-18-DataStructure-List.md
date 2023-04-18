@@ -32,7 +32,7 @@ Data Structure : 리스트의 소개
 {: .notice--primary}
 {: style="text-align: center;"}
 <br>
-<img src="/assets/images/INU/listdef.png" alt="listdef_Procdess" width="100%" min-width="200px" itemprop="image">`기호로 표현된 리스트`<br>
+<img src="/assets/images/INU/listdef.png" alt="listdef_Procdess" width="100%" min-width="200px" itemprop="image">`수식으로 표현된 리스트`<br>
 - 지금까지 소개한 리스트로는 어떤 연산을 할 수 있을까?
   - 삽입연산(insert): 리스트에 새로운 항목을 추가한다.
   - 삭제연산(delete): 리스트에서 항목을 삭제한다.
@@ -58,7 +58,7 @@ Data Structure : 리스트의 소개
 - **<span style="color:red">배열</span>**을 이용할 시 구현 과정이 매우 간단해지지만, 크기가 고정(static)된다.<br><br>
 - 포인터(~~으윽..~~)를 이용하여 **<span style="color:blue">연결리스트</span>**를 만들어 구현하는 방법은 상대적으로 더 복잡하지만,<br>
 malloc 과 포인터의 조합으로 **동적으로 크기를 조정**할 수 있을 뿐 아니라<br>
-***<span style="color:green">`책장처럼 원하는 위치에서 자료를 삽입, 삭제, 탐색 할 수 있다.`</span>***<br><br>
+***<span style="color:green">"책장처럼 원하는 위치에서 자료를 삽입, 삭제, 탐색 할 수 있다."</span>***<br><br>
 <img src="/assets/images/INU/ARRvsList.png" alt="ARRvsList_Procdess" width="100%" min-width="200px" itemprop="image">`배열과 리스트의 모습.` `사진출처:`[open4tech](https://open4tech.com/array-vs-linked-list-vs-hash-table/)<br><br>
 
 🔥배열을 이용한 ArrayList는 일반 배열과 크게 다를 것이 없으니 패스하도록 하겠다.🔥
@@ -72,7 +72,8 @@ malloc 과 포인터의 조합으로 **동적으로 크기를 조정**할 수 �
 
 > <img src="/assets/images/INU/linkedlist.png" alt="linkedlist_Procdess" width="100%" min-width="200px" itemprop="image">`Linked-List의 모습` `사진출처:`[isaaccomputerscience](https://isaaccomputerscience.org/concepts/dsa_datastruct_linked_list)<br><br>
 - 추상적 자료형인 `리스트를 구현한 자료구조`.<br>
-- Linked List라는 말 그대로 어떤 데이터 덩어리(이하 노드Node)를 저장할 때 그 `다음 순서의 자료가 있는 위치를 데이터에 포함`시키는 방식으로 자료를 저장한다.<br>
+- Linked List라는 말 그대로 어떤 데이터 덩어리(이하 노드Node)를 저장할 때 <br>
+<span style="color:green">`다음 순서의 자료가 있는 위치를 데이터에 포함`</span>시키는 방식으로 자료를 저장한다.<br>
 ```
 예를 들어 한 반에 있는 학생들의 자료를 저장한다면, 학생 하나하나의 신상명세 자료를 노드로 만들고,
 1번 학생의 신상명세 자료에 2번 학생 신상명세가 어디있는지 표시를 해 놓는 방식이다. 
@@ -84,7 +85,9 @@ malloc 과 포인터의 조합으로 **동적으로 크기를 조정**할 수 �
 C 언어를 활용하여 연결리스트를 생성하고, 알고리즘에 따라 제거해보자.
 ```
 
-> 군 제대 복학 후 4년만에 자료구조 전공 강의에서 마주친 C언어.. 있지도 않은 기억을 되짚어가며 구글링, TA님, 전공 책 등의 도움으로 간신히 구현에 성공했다.. ~~중간에 꺾일 뻔 했다 진심으로...;;~~ <br>
+> 군 제대 복학 후 4년만에 자료구조 전공 강의에서 마주친 C언어..<br>
+있지도 않은 기억을 되짚어가며 구글링, TA님, 전공 책 등의 도움으로 간신히 구현에 성공했다..
+<br>~~중간에 꺾일 뻔 했다 진심으로...;;~~ <br>
 ***<span style="color:blue">`지금부터 그 극악무도한 과정을 함께 살펴보자`</span>***
 
 
