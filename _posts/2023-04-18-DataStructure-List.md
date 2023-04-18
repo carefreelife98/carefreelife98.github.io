@@ -1,18 +1,20 @@
 ---
-title: "Data Structure : (6) List"
+title: "Data Structure : (7) 리스트 (List)"
 categories:
   - INU-DataStructure
+  - C
 tags:
   - Data Structure
   - List
-  - ADT(Abstract-Data-type)
-  - ArrayList
+  - Array List
+  - Linked List
+  - C/C++
 toc: true
 toc_sticky: true
 toc_label: "Carefree to See"
 ---
 ---
-# Data Structure: List
+# Data Structure: List 란?
 
 ```
 Data Structure : 리스트의 소개
