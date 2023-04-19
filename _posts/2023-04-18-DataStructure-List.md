@@ -361,7 +361,7 @@ C 언어를 활용하여 연결리스트를 생성하고, 알고리즘에 따라
 ***<span style="color:blue">`지금부터 그 극악무도한 과정을 함께 살펴보자`</span>***
 
 
-곧 공개 될 예정입니다~!
+2023.04.21 공개!
 {: .notice--info}
 {: style="text-align: center;"}
 
