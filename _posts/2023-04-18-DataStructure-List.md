@@ -388,13 +388,136 @@ delete_same_nodes 의 구현
 {: .notice--info}
 {: style="text-align: center;"}
 
+<br><br>
+
+```
+여기서부터 코드를 토글리스트(접기 / 펼치기)로 구현 해두었습니다.
+각 순서를 보고 자신의 힘으로 작성해보신 이후에 펼쳐 보시면 좋을 것 같습니다!!
+아래 목차별로 클릭하시면 코드가 나옵니다.
+```
+
+<details>
+<summary>1. List 와 Node 형식 정의 (클릭)</summary>
+<div markdown="1">
+
+<br>
+
+```c
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
+
+typedef int element; //node에 담길 데이터 타입의 변수 정의
+
+// 리스트의 node를 구조체 형식으로 정의. 
+// 각 node는 int형 타입으로 정의 된 element 타입의 data와
+// 다음 노드의 주소를 가지고 있는 link 변수를 가지고 있다.
+// (ListNode 구조체의 link 변수는 다음 '노드'를 가리키므로 
+// 자신과 같은 타입인 ListNode 구조체 타입을 가지고 있다.)
+typedef struct {
+    element data;
+    struct ListNode* link;
+} ListNode;
+
+// List의 타입을 정의.
+// ListType 이라는 구조체에 List의 정보를 담는다.
+// List의 크기를 나타내는 int형 변수 size와
+// List에 구현될 처음과 끝 노드를 가리키는 ListNode* head, ListNode* tail 변수를 가진다.
+typedef struct {
+    int size;
+    ListNode* head;
+    ListNode* tail;
+} ListType;
+```
+
+</div>
+</details>
+
+<details>
+<summary>2. 단순 연결리스트의 ADT</summary>
+<div markdown="1">       
+
+```c
+//print_list
+
+//error
+char error(char *message){
+    fprintf(stderr, "%s\n", message);
+    exit(1);
+}
+
+// 헤더 노드 생성
+ListType* list_create() {
+    ListType *L = (ListType *)malloc(sizeof(ListType));
+    if(L == NULL) {
+        error("헤더 노드 메모리 할당 오류");
+    }
+    L->head = L->tail = NULL;
+    L->size = 0;
+    return L;
+}
+
+// 생성된 노드를 탐색하여 같은 data값을 가진 노드를 삭제한다.
+int delete_same(ListNode *N) {
+
+}
+
+// 노드 생성 및 리스트의 뒤로 추가
+void insert_last(ListType *L, int data){
+
+    // 동적 할당된 노드 생성
+    ListNode *N = (ListNode *)malloc(sizeof(ListNode));
+    
+    if(N == NULL) {
+        error("메모리 할당 에러");
+    }
+    // 파라미터로 받은 난수 n을 신규 생성된 노드의 data 필드에 넣어준다.
+    N->data = data;
+
+    // 가장 마지막에 삽입되는 노드는 다음 노드가 없기 때문에 link 필드가 null 이다.
+    N->link = NULL;
+
+    // 만약 헤더 노드의 tail이 NULL(아무것도 가리키고 있지 않음)이라면 
+    // 가장 처음 추가된 노드이기 때문에 해당 노드는 리스트에서 처음이자 끝 노드가 된다.
+    // 그러므로, 헤더노드 L의 head, tail 필드 둘 다 노드 N을 가리키고 있어야 한다.
+    if(L->tail == NULL) {
+        L->head = L->tail = N;
+    }
+
+    // 헤더 노드가 가리키고 있는 것이 있다면, 그 순간부터는 노드가 두 개 이상이므로
+    // 헤더 노드의 head 필드와 tail 필드가 같지 않다.
+    // 즉 마지막 노드를 가리키고 있는 tail의 link 필드가 새로 생성된 노드 N을 가리키도록 한다.
+    // 이후 변경된 tail 필드를 갱신 해준다. (L->tail = N)
+    else {
+        L->tail->link = N;
+        L->tail = N
+    }
+    // 노드가 하나 생성되었으므로 리스트의 size++
+    L->size++;
+}
+
+```
+
+</div>
+</details>
+
+
+
+
+
+
+
+
+
+
+
 
 
 <details>
 <summary>여기를 눌러주세요</summary>
 <div markdown="1">       
 
-😎숨겨진 내용😎
+내일 이어서 하겠습니다..
 
 </div>
 </details>
