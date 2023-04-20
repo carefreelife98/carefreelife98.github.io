@@ -164,7 +164,7 @@ void insert_last(ArrayListType *L, element item) {
 ```
 
 > - 여기까지는 스택, 큐 ADT와 큰 차이가 없을 것이다.
-- 이제 List의 가장 큰 특징인 자료구조 중간에서의 삽입과 삭제에 대해 알아보자.
+- 이제 List의 가장 큰 특징인 **<span style="color:blue">자료구조 중간에서의 삽입과 삭제</span>**를 알아보자.
 - ArrayList에서 pos위치에 데이터를 추가하려면 어떻게 해야 할까?
   - pos번째부터 마지막 항목까지 한 칸씩 오른쪽으로 이동하여 빈자리를 만든다.
   - 새로운 항목을 pos 위치에 저장한다.
@@ -342,7 +342,7 @@ int main(void)
 
 > <img src="/assets/images/INU/linkedlist.png" alt="linkedlist_Procdess" width="100%" min-width="200px" itemprop="image">`Linked-List의 모습` `사진출처:`[isaaccomputerscience](https://isaaccomputerscience.org/concepts/dsa_datastruct_linked_list)<br><br>
 - 추상적 자료형인 `리스트를 구현한 자료구조`.<br>
-- Linked List라는 말 그대로 어떤 데이터 덩어리(이하 노드Node)를 저장할 때 <br>
+- Linked List라는 말 그대로 어떤 데이터 구조체(= 노드 Node)를 저장할 때 <br>
 <span style="color:green">`다음 순서의 자료가 있는 위치를 데이터에 포함`</span>시키는 방식으로 자료를 저장한다.<br>
 ```
 예를 들어 한 반에 있는 학생들의 자료를 저장한다면, 학생 하나하나의 신상명세 자료를 노드로 만들고,
@@ -350,7 +350,7 @@ int main(void)
 쉽게 생각하면 자료를 비엔나 소시지마냥 줄줄이 엮어놓은 것이다.
 ```
 
-## 연결리스트의 구현 with C
+## 연결리스트의 구현 with C Delete_same_nodes
 ```
 C 언어를 활용하여 연결리스트를 생성하고, 알고리즘에 따라 제거해보자.
 ```
@@ -360,12 +360,44 @@ C 언어를 활용하여 연결리스트를 생성하고, 알고리즘에 따라
 <br>~~중간에 꺾일 뻔 했다 진심으로...;;~~ <br>
 ***<span style="color:blue">`지금부터 그 극악무도한 과정을 함께 살펴보자`</span>***
 
+( 아는 것이 없어 처음엔 수업듣기도 벅차고 어려웠으나 1주 정도 오기로 구현해내고 난 후에 <br>
+자료구조 수업듣는데에 많은 도움이 된 것 뿐만 아니라 큰 자극이 되었던 과제이다.<br>
+막상 구현하고 나니 그렇게 많은 시간을 쏟을 문제가 아니었던것 같다.<br>
+하지만 이 또한 내 자신이 그만큼 성장을 했고 보이는 것이 많아졌기 때문이라는 확신이 든다.<br>
+본인이 자료구조 수업을 처음 접하거나 C언어, 특히 포인터를 잘 모른다면<br>
+개인적으로 꼭 자신의 힘으로 혼자 구현해보길 추천한다. 😊)
+{: .notice--success}
+{: style="text-align: center;"}
 
-2023.04.21 공개!
+<br><br>
+
+```
+delete_same_nodes 의 구현
+```
+
+> <h1>🔥 <span style="color:red">문제</span> 🔥</h1><br>
+```
+단순 연결 리스트에 0~99 사이의 임의의 정수 한 개를 가진 노드를 생성하여 
+리스트의 끝에 집어넣는 일을 100번 반복해보자.
+이렇게 생성된 단순 연결리스트를 처음부터 탐색하여
+만약 숫자가 중복된다면 해당 노드를 삭제한다.
+예를 들어 11 -> 7 -> 2 -> 11 -> 9 ... 라면
+11이 중복되므로 11 -> 7 -> 2 -> 9... 가 된다.
+이렇게 생성된 단순 연결 리스트의 숫자들을 처음부터 끝까지 출력해보시오.
+```
 {: .notice--info}
 {: style="text-align: center;"}
 
 
+
+<details>
+<summary>여기를 눌러주세요</summary>
+<div markdown="1">       
+
+😎숨겨진 내용😎
+
+</div>
+</details>
 
 
 
