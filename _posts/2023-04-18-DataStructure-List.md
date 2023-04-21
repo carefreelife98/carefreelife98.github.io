@@ -1,5 +1,5 @@
 ---
-title: "Data Structure : (7-1) 리스트 (List)"
+title: "Data Structure : (7-1) 배열 리스트 (List)"
 categories:
   - INU-DataStructure
   - C
@@ -14,7 +14,7 @@ toc_sticky: true
 toc_label: "Carefree to See"
 ---
 ---
-# Data Structure: List 란?
+# Data Structure : List 란?
 
 ```
 Data Structure : 리스트의 소개
@@ -341,17 +341,29 @@ int main(void)
 
 
 
+<br><br>
+
+최대한의 설명을 코드 블럭 내의 주석으로 달아 놓았습니다.<br><br>
+혹시 이해가 안가거나 추가적인 설명이 필요한 부분, 오류 등의 피드백은 언제든지 환영합니다!<br><br>
+긴 글 읽어주셔서 감사합니다. 스택 (Stack) 포스팅을 마칩니다.<br>
+{: .notice--success}
+{: style="text-align: center;"}
+
+<br><br>
+
 [처음으로~](#){: .btn .btn--primary }
 
 
 
-`참고: 나무위키` [Data_Structure](https://namu.wiki/w/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0)<br>
 <span style="color:grey">`참고: C언어로 쉽게 풀어쓴 자료구조 <개정 3판> 천인국, 공용해, 하상국 지음`</span><br><br><br>
 
 
 ### Task Lists
 > 
-`[1] 하드웨어의 구조는 2차원 이지만, CPU가 인지하는 것에 있어 논리적 메모리 공간은 1차원임.`
-- [x] 자료구조(Data Structure)란?
-- [x] 자료형(Data Type)이란?
-- [x] 추상적자료형(Abstract Data Type)이란?
+- [x] Data Structure : List 란?
+- [x] 리스트 ADT(Abstract Data Type) - 추상 데이터 타입
+- [x] 배열로 연결리스트를 구현해보자.
+- [x] 기초 연산 with ArrayList
+- [x] 배열 리스트의 항목 삽입 연산
+- [x] 배열 리스트의 항목 삭제 연산
+- [x] 배열 리스트 테스트 프로그램
