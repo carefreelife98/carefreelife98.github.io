@@ -40,7 +40,6 @@ Data Structure : 알고리즘의 성능 분석
 ```
 >
 1. <span style="color:red">`급격한 과학기술의 발전 속에서 그것에 순전히 의지만 하는 행위는 "안주" 라고 생각한다.`</span><br>
-~~그 "안주" 아닙니다..~~<br>
 그릇이 커진다면 그 안에 담을 수 있는 물도 더 많아진다는 것.<br>Resources가 풍부해질수록,<span style="color:green">`우리는 분명히 더 좋은 프로그램을 설계 할 수 있기 때문.`</span><br><br>
 2. <span style="color:red">`개발자들의 결과물은 결국 소비자들에게 priority 가 주어지기 때문이다.`</span><br><br>
 아무리 미세한 데이터 처리 속도의 차이더라도 소비자들에게는 선택권이 많다.<br><br>
