@@ -143,7 +143,7 @@ int fib(int n)
 }    // 시간복잡도: 한 수가 한번 호출되면 다시 두 번 호출되므로, 
      // O(2^{n})으로 나타낼 수 있다.
 ```
-<img src="/assets/images/INU/recfib.png" alt="recfib_Procdess" width="70%" min-width="200px" itemprop="image"><br>`피보나치 수열의 결과`<br>`사진출처:`[stackoverflow](https://stackoverflow.com/questions/49352049/how-do-i-trace-a-fibonacci-recursive-function-in-javascript)<br>
+<img src="/assets/images/INU/recfib.jpeg" alt="recfib_Procdess" width="70%" min-width="200px" itemprop="image"><br>`피보나치 수열의 결과`<br>`사진출처:`[stackoverflow](https://stackoverflow.com/questions/49352049/how-do-i-trace-a-fibonacci-recursive-function-in-javascript)<br>
 <br>
 - 그러나 위 결과를 보아, 피보나치 수열에 순환을 사용했을 경우 매우 비효율적이다.
 - 같은 항이 중복하여 계산되고 있으며, 이 현상은 n이 커질수록 더욱 심각해진다.
