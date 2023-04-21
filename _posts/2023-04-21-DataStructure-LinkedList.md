@@ -261,13 +261,198 @@ ListNode* delete(ListNode *head, ListNode *pre){
 ```c
 void print_list(ListNode *head) {
   pritf("\n Linked List: \n");
-  for(;head; head = head->link) {
-    printf("%d->", head->data);
+  for(ListNode *p = head; p != NULL; p = p->link) {
+    printf("%d->", p->data);
   }
   printf("\n");
 }
 ```
 
+## 전체 테스트 프로그램 - Singly Linked List
+
+```
+단순 연결 리스트를 활용한 전체 테스트 프로그램을 작성해보자.
+```
+
+```c
+#include<stdio.h>
+#include<stdlib.h>
+
+typedef int element;
+
+typedef struct ListNode{
+    element data;
+    struct ListNode *link;
+}ListNode;
+
+ListNode* insert_first(ListNode *head, element data) {
+    ListNode *p = (ListNode *)malloc(sizeof(ListNode));
+    p->data = data;
+    p->link = head; // 헤드 포인터의 값 복사
+    head = p;
+    return head;
+}
+
+ListNode* insert(ListNode *head, ListNode *pre, element data) {
+    ListNode *p = (ListNode *)malloc(sizeof(ListNode));
+    p->data = data;
+    p->link = pre->link;
+    pre->link = p;
+    return head;
+}
+
+ListNode* delete_first(ListNode *head) {
+    ListNode *removed;
+    removed = head;
+    head = removed->link;
+    free(removed);
+    return head;
+}
+
+ListNode* delete(ListNode *head, ListNode *pre) {
+    ListNode *removed = pre->link;
+    pre->link = removed->link;
+    free(removed);
+    return head;
+}
+
+void print_list(ListNode *head){
+    
+    for(ListNode *p = head; p != NULL; p = p->link) {
+        printf("%d->", p->data);
+    }
+    printf("NULL \n");
+}
+
+int main(void) {
+    ListNode *head = NULL;
+
+    for(int i = 0; i < 5; i++) {
+        head = insert_first(head, i);
+        print_list(head);
+    }
+    for(int i = 0; i < 5; i++) {
+        head = delete_first(head);
+        print_list(head);
+    }
+    return 0;
+}
+```
+
+> <img src="/assets/images/INU/slltestrs.png" alt="slltestrs_Procdess" width="100%" min-width="200px" itemprop="image"><br>`Singly Linked List 테스트 결과`<br>
+
+## 원형 연결 리스트 (Circular Linked List)
+
+```
+원형 연결 리스트를 알아보자.
+```
+
+>
+- 원형 연결 리스트란 `마지막 노드가 첫번째 노드를 가리키는 리스트`이다.
+  - 마지막 노드의 링크가 NULL이 아닌, 첫번째 노드의 주소가 되는 리스트 이다.
+- 원형 연결 리스트의 장점
+  - `하나의 노드에서 다른 모든 노드로의 접근이 가능`해진다.
+  - 마지막 노드에서 첫번째 노드로 접근이 가능해짐에 다음 노드로 이동하다 보면<br>
+  결국 자기 자신에게로 돌아올 수 있으며 리스트 내의 모든 노드에 접근이 가능해진다.
+  - 원형 연결 리스트에서는 `헤드 포인터가 마지막 노드를 가리키도록 구성`하면<br>
+  노드의 삽입 및 삭제가 단순 연결 리스트보다 용이해진다.<그림 2 참조>
+- 원형 연결 리스트에서 삽입 및 삭제 연산을 할 때에는 항상 `선행 노드를 가리키는 포인터를 필요로 한다.`<br>
+<img src="/assets/images/INU/Circularlist.png" alt="Circularlist_Procdess" width="80%" min-width="200px" itemprop="image"><br>`원형 연결 리스트의 모습 - Circular Linked List`<br><br>
+<img src="/assets/images/INU/circularlist2.png" alt="circularlist2_Procdess" width="80%" min-width="200px" itemprop="image"><br>`<그림 2> 원형 연결 리스트의 용이성 - Circular Linked List`<br>
+- 단순 연결 리스트에서 리스트의 끝에 노드를 추가하려면 head부터 마지막 노드까지 link를 타고 이동하여 추가해야 하지만 원형 리스트에서는 헤드 포인터가 마지막 노드를 가리키도록 구성한다면 리스트의 처음과 끝에서 효율적으로 노드 연산 실행을 할 수 있다.
+  - 헤드 포인터가 마지막 노드를 가리키고 있고, head->link가 첫 노드를 가리키고 있으므로 효율적인 삽입 및 삭제 연산이 가능해진다.
+
+```
+원형 연결 리스트의 정의
+```
+
+```c
+typedef int element;
+
+typedef struct ListNode {
+  element data;
+  struct ListNode *link;
+} ListNode;
+
+// 원형 연결 리스트도 원칙적으로 헤드 포인터만 있으면 된다.
+ListNode *head;
+```
+
+```
+원형 연결 리스트의 처음에 삽입.
+```
+
+>
+  - 새로운 노드의 link가 첫 노드를 가리키게 한다.
+  - 마지막 노드의 link가 첫 노드를 가리키게 한다.
+  - **헤드 포인터가 마지막 노드를 가리킨다는 것만 기억하면 크게 어렵지 않다.**
+<img src="/assets/images/INU/insertcircular.png" alt="insertcircular_Procdess" width="100%" min-width="200px" itemprop="image"><br>`<그림 2> 원형 연결 리스트의 처음에 노드 삽입 과정`<br>
+
+```c
+// 원형 리스트의 처음에 삽입하는 함수
+ListNode* insert_first(ListNode *head, element data) {
+
+  ListNode *node = (ListNode *)malloc(sizeof(ListNode));
+  node->data = data;
+  // 만약 리스트에 노드가 하나도 없을 시,
+  if(head == NULL) {
+    head = node; // 신규 노드가 마지막 노드이자,
+    node->link = head; // 마지막 노드의 link인 첫번째 노드가 된다.
+  }
+  // 리스트에 노드가 존재 한다면
+  else {
+    node->link = head->link; //기존 헤드 포인터의 link가 가리키던 첫번째 노드를 생성된 신규 노드의 link가 가리키도록 한다.
+    head->link = node; // 헤드 포인터의 link가 신규 생성된 첫번째 노드인 node를 가리키도록 한다.
+  }
+  return head; // 변경된 헤드 포인터를 반환.
+}
+```
+
+```
+원형 리스트의 끝에 삽입하는 함수
+```
+
+```c
+// 원형 리스트의 끝에 삽입하는 함수
+ListNode* insert_last(ListNode *head, element data) {
+  
+  ListNode *node = (ListNode *)malloc(sizeof(ListNode));
+  node->data = data;
+  if(head == NULL) {
+    head = node;
+    node->link = head;
+  }
+  else {
+    // 기존 헤드 포인터가 가리키던 마지막 노드의 link는 첫번째 노드의 주소.
+    // 따라서 head->link를 신규 생성된 node->link에 넣어
+    // node가 첫번째 노드를 가리키도록 해준다.
+    node->link = head->link;
+
+    // 이제 마지막 노드가 될 node(의 주소)를 기존 마지막 노드의 링크(head->link)에 연결.
+    head->link = node;
+
+    //헤드 포인터는 마지막 노드가 된 node를 가리키도록 갱신.
+    head = node;
+  }
+  return head; // 변경된 헤드 포인터를 반환.
+}
+```
+
+## 원형 연결 리스트 테스트 프로그램
+
+```
+원형 연결 리스트 테스트 프로그램을 작성해보자.
+```
+
+```c
+// 원형 연결리스트는 마지막 노드의 link가 NULL이 아니기 때문에 마지막 노드에 도달했는지
+// 검사하려면 헤드 포인터와 비교해야 한다.
+// 또한 원형 연결리스트는 while문이 아닌 do while 문을 사용해야 한다.
+
+#include <stdio.h>
+
+
+```
 
 <br><br>
 
@@ -557,12 +742,12 @@ int main() {
 
 ### Task Lists
 > 
-- [x] Data Structure : 스택 (Stack) 이란?
-- [x] 스택의 특징, 스택의 구조, 스택의 추상 데이터 타입(ADT), 스택의 연산
-- [x] 시스템 스택을 이용한 함수 호출
-- [x] 배열을 이용해 스택을 구현
-- [x] 동적 배열 스택 프로그램
-- [x] 스택의 응용 1 : 괄호 검사
-- [x] 스택의 응용 2-1 : 후위 표기 수식의 계산
-- [x] 스택의 응용 2-2 : 중위 표기식을 후위 표기식으로 변환
-- [x] 스택의 응용 3 : 미로 문제 (Maze Solving Problem)
+- [x] Data Structure : 연결 리스트 (Linked List) 란?
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x]
+- [x] 
+- [x] 
+- [x] 
