@@ -390,7 +390,7 @@ ListNode *head;
   - 새로운 노드의 link가 첫 노드를 가리키게 한다.
   - 마지막 노드의 link가 첫 노드를 가리키게 한다.
   - **헤드 포인터가 마지막 노드를 가리킨다는 것만 기억하면 크게 어렵지 않다.**
-<img src="/assets/images/INU/insertcircular.png" alt="insertcircular_Procdess" width="100%" min-width="200px" itemprop="image"><br>`<그림 2> 원형 연결 리스트의 처음에 노드 삽입 과정`<br>
+<img src="/assets/images/INU/insertcircular.png" alt="insertcircular_Procdess" width="100%" min-width="200px" itemprop="image"><br>`원형 연결 리스트의 처음에 노드 삽입 과정`<br>
 
 ```c
 // 원형 리스트의 처음에 삽입하는 함수
@@ -532,17 +532,73 @@ int main(void) {
 }
 ```
 
-> <img src="/assets/images/INU/circularlisttest.png" alt="circularlisttest_Procdess" width="80%" min-width="200px" itemprop="image"><br>`<그림 2> 원형 연결 리스트 테스트 프로그램 실행 결과`<br>
+> <img src="/assets/images/INU/circularlisttest.png" alt="circularlisttest_Procdess" width="80%" min-width="200px" itemprop="image"><br>`형 연결 리스트 테스트 프로그램 실행 결과`<br>
 
 ## 이중 연결 리스트 (Doubly Linked List)
 
 ```
+이중 연결 리스트를 알아보자.
 ```
 
+> <img src="/assets/images/INU/doublylinked.png" alt="doublylinked_Procdess" width="100%" min-width="200px" itemprop="image"><br>`이중 연결 리스트의 구조`<br>
+- 단순 연결 리스트와 원형 리스트는 한 노드의 후속 노드를 찾기는 쉽지만, 그에 비해 선행 노드를 찾기는 쉽지 않다. 이에 이중 연결 리스트가 만들어 졌다.
 
+- 이중 연결 리스트:
+  - 하나의 노드가 선행 노드와 후속 노드에 대한 두 개의 링크를 가지는 리스트.
+  - 링크가 양방향으로 지원되어 양방향의 검색이 가능해진다.
+  - 헤드 포인터와는 다른 개념인 헤드 노드가 존재한다. (헤드 포인터도 가진다.)
 
+    - 헤드 노드:
+      - 데이터를 가지지 않고 삽입 및 삭제 코드를 간단하게 할 목적으로 만들어진 노드.
+      - 리스트가 공백 상태일때 리스트에는 헤더 노드만 존재한다.
+    - 헤드 포인터:
+      - 리스트의 첫번째 노드를 가리키는 포인터.
 
+## 이중 연결 리스트의 구현
 
+```
+이중 연결 리스트를 구현해보자.
+```
+
+```
+노드의 구조
+```
+
+>
+- 이중 연결 리스트를 구현하기 위해 노드의 구조를 먼저 정의해보자.
+- 이중 연결 리스트에서의 노드는 3가지의 필드를 가진다.
+  - 왼쪽 링크 필드(llink), 데이터 필드(data), 오른쪽 링크 필드(rlink)
+  - 링크 필드는 포인터로 이루어진다.
+
+```c
+// 이중 연결 노드 타입
+typedef int element;
+
+typedef struct DListNode {
+  element data;
+  struct DListNode *llink;
+  struct DListNode *rlink;
+} DListNode;
+```
+
+> 이중 연결 리스트에 대하여 항상 다음이 성립한다.
+```c
+p = p->llink->rlink = p->rlink->llink
+```
+이는 이중 연결 리스트에서 앞뒤로 똑같이 이동 할 수 있음을 나타낸다.
+공백 리스트에서도 헤드 노드가 존재하기 때문에 성립한다.
+{: .notice--info}
+{: style="text-align: center;"}
+
+## 이중 연결 리스트의 삽입 및 삭제 연산
+
+```
+이중 연결 리스트의 삽입 및 삭제 연산을 알아보자.
+```
+
+> **삽입 연산**
+<img src="/assets/images/INU/doublylinkedinsert.png" alt="doublylinkedinsert_Procdess" width="100%" min-width="200px" itemprop="image"><br>`이중 연결 리스트의 삽입 연산 구현 순서`<br>
+- 
 
 
 
