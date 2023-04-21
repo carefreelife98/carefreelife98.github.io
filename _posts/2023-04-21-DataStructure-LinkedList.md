@@ -551,8 +551,20 @@ int main(void) {
     - 헤드 노드:
       - 데이터를 가지지 않고 삽입 및 삭제 코드를 간단하게 할 목적으로 만들어진 노드.
       - 리스트가 공백 상태일때 리스트에는 헤더 노드만 존재한다.
+      - malloc을 통해 구조체 변수로 생성한다.
     - 헤드 포인터:
       - 리스트의 첫번째 노드를 가리키는 포인터.
+      - 생성시 malloc 등으로 동적 메모리 할당을 하지 않는 포인터 변수이다.
+
+이중 연결 리스트에서는 보통 헤드 노드가 존재하므로, 단순 연결 리스트처럼 헤드 포인터가 필요 없다.<br>
+즉 헤드 노드만 알고 있으면 어떤 노드로든 접근할 수 있다.<br>
+헤드 노드는 보통 main 함수안에 head라는 이름으로 생성되어 있다.<br>
+이중 연결 리스트는 사용하기 전에 반드시 초기화 해야 한다.<br>
+-> 헤더 노드의 링크 필드들이 자기 자신을 가리키고 있도록 초기화.<br>
+{: .notice--info}
+{: style="text-align: center;"}
+
+<br><br>
 
 ## 이중 연결 리스트의 구현
 
@@ -590,6 +602,8 @@ p = p->llink->rlink = p->rlink->llink
 {: .notice--info}
 {: style="text-align: center;"}
 
+<br><br>
+
 ## 이중 연결 리스트의 삽입 및 삭제 연산
 
 ```
@@ -598,7 +612,45 @@ p = p->llink->rlink = p->rlink->llink
 
 > **삽입 연산**
 <img src="/assets/images/INU/doublylinkedinsert.png" alt="doublylinkedinsert_Procdess" width="100%" min-width="200px" itemprop="image"><br>`이중 연결 리스트의 삽입 연산 구현 순서`<br>
-- 
+- 위 그림의 순서대로 각 노드 링크 필드의 값을 바꾸어 주어야 한다.
+  - 새로 만들어진 노드의 링크를 먼저 수정하는 이유는 아직 아무 정보도 가지고 있지 않아 안전하기 때문이다.
+
+```c
+// 이중 연결 리스트의 삽입 함수
+// head 포인터를 사용하지 않기 때문에 반환도 하지 않으므로 void
+// before 노드의 오른쪽에 삽입한다.
+void dinsert(DListNode *before, element data) {
+  DListNode *newnode = (DListNode *)malloc(sizeof(DListNode));
+  newnode->data = data;
+  // 새로 생성된 노드부터 연결 해준다.
+  newnode->llink = before;
+  newnode->rlink = before->rlink;
+  // 기존 노드를 새로 생성된 노드에 연결할 때에는 생성된 노드가 없다 생각하고
+  // (before->rlink == new node 오른쪽에 있을 노드)->llink = newnode
+  before->rlink->llink = newnode;
+  before->rlink = newnode;
+}
+```
+
+```c
+// 이중 연결 리스트의 삭제 함수.
+// 반환 하지 않으므로 void
+// 노드 removed를 삭제한다.
+void ddelete(DListNode *head, DListNode *removed) {
+  if (removed == head) return;
+  removed->llink->rlink = removed->rlink;
+  removed->rlink->llink = removed->llink;
+  free(removed);
+}
+```
+
+<br><br>
+
+## 이중 연결 리스트 - 프로그램 작성
+
+```
+이중 연결 리스트를 사용한 프로그램을 작성해보자.
+```
 
 
 
