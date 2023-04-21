@@ -361,6 +361,8 @@ int main(void) {
 <img src="/assets/images/INU/circularlist2.png" alt="circularlist2_Procdess" width="80%" min-width="200px" itemprop="image"><br>`<그림 2> 원형 연결 리스트의 용이성 - Circular Linked List`<br>
 - 단순 연결 리스트에서 리스트의 끝에 노드를 추가하려면 head부터 마지막 노드까지 link를 타고 이동하여 추가해야 하지만 원형 리스트에서는 헤드 포인터가 마지막 노드를 가리키도록 구성한다면 리스트의 처음과 끝에서 효율적으로 노드 연산 실행을 할 수 있다.
   - 헤드 포인터가 마지막 노드를 가리키고 있고, head->link가 첫 노드를 가리키고 있으므로 효율적인 삽입 및 삭제 연산이 가능해진다.
+  
+<br><br>
 
 ```
 원형 연결 리스트의 정의
@@ -377,6 +379,8 @@ typedef struct ListNode {
 // 원형 연결 리스트도 원칙적으로 헤드 포인터만 있으면 된다.
 ListNode *head;
 ```
+
+<br><br>
 
 ```
 원형 연결 리스트의 처음에 삽입.
@@ -408,6 +412,8 @@ ListNode* insert_first(ListNode *head, element data) {
 }
 ```
 
+<br><br>
+
 ```
 원형 리스트의 끝에 삽입하는 함수
 ```
@@ -438,6 +444,8 @@ ListNode* insert_last(ListNode *head, element data) {
 }
 ```
 
+<br><br>
+
 ## 원형 연결 리스트 테스트 프로그램
 
 ```
@@ -449,10 +457,108 @@ ListNode* insert_last(ListNode *head, element data) {
 // 검사하려면 헤드 포인터와 비교해야 한다.
 // 또한 원형 연결리스트는 while문이 아닌 do while 문을 사용해야 한다.
 
-#include <stdio.h>
+#include<stdio.h>
+#include<stdlib.h>
 
+typedef int element;
+
+typedef struct ListNode{
+    element data;
+    struct ListNode *link;
+}ListNode;
+
+//insert first
+ListNode* insert_first(ListNode* head, element data) {
+    
+    ListNode *node = (ListNode *)malloc(sizeof(ListNode));
+    node->data = data;
+
+    if(head == NULL) {
+        head = node;
+        node->link = head;
+    }
+    else{
+        node->link = head->link;
+        head->link = node;
+    }
+    return head;
+}
+
+//insert last
+ListNode* insert_last(ListNode *head, element data) {
+    
+    ListNode *node = (ListNode *)malloc(sizeof(ListNode));
+    node->data = data;
+    
+    if(head == NULL) {
+        head = node;
+        node->link = head;
+    }
+    else{
+        node->link = head->link;
+        head->link = node;
+        head = node;
+    }
+    return head;
+}
+
+//print list
+void print_list(ListNode *head) {
+    ListNode *p;
+    if(head == NULL) return;
+
+    p = head->link;
+    do
+    {
+        printf("%d->", p->data);
+        p = p->link;
+    } while (p != head);
+    printf("%d", p->data); // 마지막 노드(head)의 출력
+    
+}
+
+int main(void) {
+    ListNode *head = NULL;
+
+    //insert_last / first가 반환한 헤드포인터를 head에 대입.
+    head = insert_last(head, 20);
+	head = insert_last(head, 30);
+	head = insert_last(head, 40);
+	head = insert_first(head, 10);
+	
+    print_list(head);
+
+	return 0;
+}
+```
+
+> <img src="/assets/images/INU/circularlisttest.png" alt="circularlisttest_Procdess" width="80%" min-width="200px" itemprop="image"><br>`<그림 2> 원형 연결 리스트 테스트 프로그램 실행 결과`<br>
+
+## 이중 연결 리스트 (Doubly Linked List)
 
 ```
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <br><br>
 
@@ -471,7 +577,7 @@ C 언어를 활용하여 연결리스트를 생성하고, 알고리즘에 따라
 막상 구현하고 나니 그렇게 많은 시간을 쏟을 문제가 아니었던것 같다.<br>
 하지만 이 또한 내 자신이 그만큼 성장을 했고 보이는 것이 많아졌기 때문이라는 확신이 든다.<br>
 본인이 자료구조 수업을 처음 접하거나 C언어, 특히 포인터를 잘 모른다면<br>
-개인적으로 꼭 자신의 힘으로 혼자 구현해보길 추천한다. 😊)
+개인적으로 꼭 한번 자신의 힘으로 구현해보길 추천한다. 😊)
 {: .notice--success}
 {: style="text-align: center;"}
 
