@@ -518,16 +518,15 @@ void print_list(ListNode *head) {
 }
 
 int main(void) {
-    ListNode *head = NULL;
+  ListNode *head = NULL;
 
-    //insert_last / first가 반환한 헤드포인터를 head에 대입.
-    head = insert_last(head, 20);
+  //insert_last / first가 반환한 헤드포인터를 head에 대입.
+  head = insert_last(head, 20);
 	head = insert_last(head, 30);
 	head = insert_last(head, 40);
 	head = insert_first(head, 10);
 	
-    print_list(head);
-
+  print_list(head);
 	return 0;
 }
 ```
@@ -709,18 +708,19 @@ int main(void) {
 		// 헤드 노드의 오른쪽에 삽입
 		dinsert(head, i);
 		print_dlist(head);
-	}
-	printf("\n삭제 단계\n");
-	for (int i = 0; i < 5; i++) {
+	  }
+	  printf("\n삭제 단계\n");
+	  for (int i = 0; i < 5; i++) {
 		print_dlist(head);
 		ddelete(head, head->rlink);
-	}
-	free(head);
-	return 0;
+	  }
+	  free(head);
+	  return 0;
 }
 ```
 
 <img src="/assets/images/INU/dlisttest.png" alt="dlisttest_Procdess" width="100%" min-width="200px" itemprop="image"><br>`이중 연결 리스트의 테스트 프로그램 실행 결과`<br>
+
 
 
 
