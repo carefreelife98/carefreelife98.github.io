@@ -646,25 +646,81 @@ void ddelete(DListNode *head, DListNode *removed) {
 
 <br><br>
 
-## 이중 연결 리스트 - 프로그램 작성
+## 이중 연결 리스트 - 테스트 프로그램
 
 ```
-이중 연결 리스트를 사용한 프로그램을 작성해보자.
+이중 연결 리스트의 테스트 프로그램을 작성해보자.
 ```
 
+```c
+#include<stdio.h>
+#include<stdlib.h>
 
+typedef int element;
 
+typedef struct DListNode {
+    element data;
+    struct DListNode *rlink;
+    struct DListNode *llink;
+} DListNode;
 
+void init(DListNode *phead) {
+    phead->rlink = phead;
+    phead->llink = phead;
+}
 
+//print_list
+void print_dlist(DListNode *phead) {
 
+    for(DListNode *p = phead->rlink; p != phead; p = p->rlink) {
+        printf(" <-| |%d| |-> ", p->data);
+    }
+    printf("\n");
+}
 
+// dinsert
+void dinsert(DListNode *before, element data) {
+    DListNode *newnode = (DListNode *)malloc(sizeof(DListNode));
+    newnode->data = data;
 
+    newnode->llink = before;
+    newnode->rlink = before->rlink;
 
+    before->rlink->llink = newnode;
+    before->rlink = newnode;
+}
 
+// ddelete
+void ddelete(DListNode *head, DListNode *removed) {
+    if(removed == head) return;
+    removed->llink->rlink = removed->rlink;
+    removed->rlink->llink = removed->llink;
+    free(removed);
+}
 
+//main
+int main(void) {
+    DListNode *head = (DListNode *)malloc(sizeof(DListNode));
+    
+    init(head);
+    
+    printf("추가 단계: \n");
+    for (int i = 0; i < 5; i++) {
+		// 헤드 노드의 오른쪽에 삽입
+		dinsert(head, i);
+		print_dlist(head);
+	}
+	printf("\n삭제 단계\n");
+	for (int i = 0; i < 5; i++) {
+		print_dlist(head);
+		ddelete(head, head->rlink);
+	}
+	free(head);
+	return 0;
+}
+```
 
-
-
+<img src="/assets/images/INU/dlisttest.png" alt="dlisttest_Procdess" width="100%" min-width="200px" itemprop="image"><br>`이중 연결 리스트의 테스트 프로그램 실행 결과`<br>
 
 
 
