@@ -218,7 +218,7 @@ ListNode* insert(ListNode *head, ListNode *pre, element data) {
 <br><br>
 
 **삭제 연산 delete_first()**
->
+> <img src="/assets/images/INU/deletefirst.png" alt="deletefirst_Procdess" width="100%" min-width="200px" itemprop="image"><br>`delete_first()`<br>
 - 첫번째 노드를 삭제하는 함수 delete_first()는 다음과 같은 원형을 가진다.
   - 헤드 포인터의 값을 removed에 복사한다.
   - 헤드 포인터의 값을 head->link로 변경한다.
@@ -237,7 +237,7 @@ ListNode* delete_first(ListNode *head) {
 ```
 
 **삭제 연산 delete()**
->
+> <img src="/assets/images/INU/delete.png" alt="delete_Procdess" width="100%" min-width="200px" itemprop="image"><br>`delete()`<br>
 - 리스트 중간에 위치한 노드를 삭제할 수 있는 함수이다.
   - 삭제할 노드를 찾는다.
   - 노드 pre의 링크 필드가 삭제할 노드의 link를 가리키게 한다.
@@ -254,6 +254,19 @@ ListNode* delete(ListNode *head, ListNode *pre){
 }
 ```
 
+**리스트 출력 함수 print_list()**
+- 노드의 link 값이 NULL이 아니면 계속 link값을 따라가며 노드를 방문한다.
+- 어떤 노드의 link값이 NULL이면 마지막 노드에 도달한 것이므로 반복을 중단한다.
+
+```c
+void print_list(ListNode *head) {
+  pritf("\n Linked List: \n");
+  for(;head; head = head->link) {
+    printf("%d->", head->data);
+  }
+  printf("\n");
+}
+```
 
 
 <br><br>
