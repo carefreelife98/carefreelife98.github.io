@@ -349,6 +349,15 @@ int main(void)
 1번 학생의 신상명세 자료에 2번 학생 신상명세가 어디있는지 표시를 해 놓는 방식이다. 
 쉽게 생각하면 자료를 비엔나 소시지마냥 줄줄이 엮어놓은 것이다.
 ```
+- 연결된 표현 - Linked Representation
+    - 리스트의 항목들을 노드(node)라고 하는 곳에 분산하여 저장한다.
+    - 노드(node)는 데이터 필드와 링크 필드로 구성된다.
+        - 데이터 필드 : 리스트의 원소(데이터) 값을 저장하는 곳.
+        - 링크 필드 : 다른 노드의 주소값을 저장하는 장소. (포인터로 구현)
+
+
+
+<br><br>
 
 ## 연결리스트의 구현 with C Delete_same_nodes
 ```
@@ -397,7 +406,7 @@ delete_same_nodes 의 구현
 ```
 
 <details>
-<summary>1. List 와 Node 형식 정의 (클릭)</summary>
+<summary><h1><span style="color:blue">1. List 와 Node 형식 정의 (클릭)</span></h1></summary>
 <div markdown="1">
 
 <br>
@@ -434,20 +443,31 @@ typedef struct {
 </details>
 
 <details>
-<summary>2. 단순 연결리스트의 ADT</summary>
+<summary><h1><span style="color:blue">2. 단순 연결리스트의 ADT (클릭)</span></h1></summary>
 <div markdown="1">       
 
 ```c
-//print_list
+// header 노드를 사용하여 head 부터 tail까지의 data 값을 출력.
+void print(ListType* plist)
+{
+	ListNode* p = plist->head;
 
-//error
-char error(char *message){
+	printf("Structure of Related List: ");
+	for (; p; p = p->link) {
+		printf("%d->", p->data);
+	}
+	printf("\n");
+}
+
+// 오류함수
+void error(char *message){
     fprintf(stderr, "%s\n", message);
     exit(1);
 }
 
 // 헤더 노드 생성
-ListType* list_create() {
+ListType* create() {
+
     ListType *L = (ListType *)malloc(sizeof(ListType));
     if(L == NULL) {
         error("헤더 노드 메모리 할당 오류");
@@ -458,9 +478,59 @@ ListType* list_create() {
 }
 
 // 생성된 노드를 탐색하여 같은 data값을 가진 노드를 삭제한다.
-int delete_same(ListNode *N) {
+int deleteSame(ListType *L, ListNode *n){
+    // 임시 노드 세 개 생성.
+    // x : 첫번째 루프에서 기준 노드로 잡고 x와 같은 데이터 값을 가진 노드를 찾는다.
+    // y : 두번째 루프에서 기준 노드인 x와 같은 중복 노드가 있는지 x 이후의 노드 전체를 탐색한다.
+    // temp : 중복 노드 y 발견 시, 노드 y 삭제 전 반환할 y의 data와 할당된 메모리를 위해 y의 주소를 가리키고 있는다.
+    ListNode *x, *y, *temp;
+    int sum = 0;
 
+    // 파라미터로 받은 노드 n를 임시노드 x에 복사.
+    x = n;
+
+    // 첫번째 루프. 파라미터로 받은 노드가 없거나 
+    // 해당 노드가 마지막 노드가 아닐때까지 루프.
+    // 이 노드 x와 같은 값을 가진 노드를 리스트의 처음부터 끝까지 탐색하여 찾는다.
+    while(x != NULL && x->link != NULL){
+
+        // 두번째 임시노드 y도 파라미터로 들어온 노드를 가리킨다.
+        // y 포인터를 이용해 x노드와 같은 값을 가진 노드를 다음 루프에서 탐색한다.
+        y = x;
+
+        // 노드 x부터 마지막 노드까지 턴마다 다음노드를 가리킨다.
+        while(y->link != NULL){
+
+            //처음 x가 가리키고 있는 노드와 다음 노드의 data 값이 같은지를 y를 다음 노드 역할을 수행시켜 비교.
+            //만약 현재 노드와 다음노드의 data가 같다면,
+            if(x->data == y->link->data){
+
+                //세번째 임시 노드인 temp에 중복 노드인 y의 주소를 가리키도록 해놓는다.
+                // 후에 노드 y가 삭제되면 반환할 y의 데이터와 할당된 메모리를 찾지 못하기 때문에 임시 저장용도. 
+                temp = y->link;
+
+                // 이후, 중복노드 y의 다음 노드 와의 연결(y->link)을 끊고 
+                // 다다음노드와 연결한다.(y->link->link)
+                y->link = y->link->link;
+                printf("중복 노드 제거: %d \n", temp->data);
+                sum += 1; // 중복노드의 총 개수 파악용
+
+                L->size--; // 리스트 사이즈 -1 갱신
+
+                // 그 후, 연결이 끊어진 중복노드 y에게 할당된 메모리 반환을 위해
+                // y의 주소를 임시 저장해둔 temp를 사용하여 y의 메모리 반환을 해준다.
+                free(temp);
+            }
+            //만약 중복노드가 아니라면, y는 그 다음 노드로 연결되어 중복 노드인지 확인할 준비를 한다.
+            else{
+                y = y->link;
+            }
+        }
+        //한 노드 x의 중복 검사가 tail까지 완료되면 x를 다음 노드로 연결해 다음 비교 준비를 한다.
+        x = x->link;
+    }return sum; // 중복 노드의 총 개수를 반환한다.
 }
+
 
 // 노드 생성 및 리스트의 뒤로 추가
 void insert_last(ListType *L, int data){
@@ -495,32 +565,55 @@ void insert_last(ListType *L, int data){
     // 노드가 하나 생성되었으므로 리스트의 size++
     L->size++;
 }
-
 ```
 
 </div>
 </details>
 
 
-
-
-
-
-
-
-
-
-
-
-
 <details>
-<summary>여기를 눌러주세요</summary>
+<summary><h1><span style="color:blue">3. main 함수 (클릭)</span></h1></summary>
 <div markdown="1">       
 
-내일 이어서 하겠습니다..
+```c
+int main() {
+    //헤더노드 선언
+    ListType *listHeader;
+
+    //헤더노드 생성
+    listHeader = create();
+
+    //난수 초기화
+    srand(time(NULL));
+
+    //insert_last 함수를 100번 시행하여 100개의 (random data 값을 가진) 노드가 있는 연결리스트 구현.
+    for(int i = 0; i<100; i++){
+        insert_last(listHeader, rand() % 100);
+    }
+
+    // 구현된 연결리스트 확인용
+    print(listHeader);
+    printf("\n 리스트 사이즈: %d \n", listHeader->size);
+
+    // 아래에 중복이 제거된 연결리스트 출력
+    printf("\n----------- delete duplicate node  -----------\n");
+
+    //중복 제거 함수 실행
+    printf("\n 중복 노드의 총 개수는 : %d 개 입니다. \n", deleteSame(listHeader, listHeader->head));
+
+    //최종 연결리스트 확인용
+    printf("\n 현재 리스트 사이즈: %d \n", listHeader->size);
+    print(listHeader);
+    //종료
+    return 0;
+}
+```
 
 </div>
 </details>
+
+> <img src="/assets/images/INU/deletesamenodes.png" alt="deletesamenodes_Procdess" width="100%" min-width="200px" itemprop="image"><br>`DeleteSameNodes 실행 결과` <br><br>
+
 
 
 
