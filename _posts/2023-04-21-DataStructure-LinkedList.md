@@ -76,11 +76,183 @@ toc_label: "Carefree to See"
 
 ## 단순 연결리스트
 
+>
+- 단순 연결 리스트에서는 노드들이 하나의 링크 필드를 가진다.
+- 모든 노드들은 각 노드의 link 필드를 통해 연결되어 있다.
+- 가장 마지막 노드는 다음 노드가 없기 때문에 link필드 값이 NULL이다.
+<img src="/assets/images/INU/singlylinked.png" alt="singlylinked_Procdess" width="100%" min-width="200px" itemprop="image"><br>`단순 연결 리스트의 모습`<br><br>
 
+## 단순 연결 리스트 구현 - C
 
+>
+- 노드를 어떻게 정의할 것인가? - 자기 참조 구조체를 사용한다.
+- 노드는 어떻게 생성할 것인가? - malloc을 활용하여 필요 시 동적으로 생성한다.
+- 노드는 어떻게 삭제할 것인가? - free()를 사용하여 노드에 할당된 메모리를 반환한다.
 
+**노드의 정의**
+노드는 자기참조 구조체를 이용하여 정의한다.<br>
+자기 참조 구조체란, 자기 자신을 참조하는 포인터를 포함하는 구조체이다.<br>
+구조체 내부에는 우리가 리스트에 저장할 데이터가 담길 data 필드와<br>
+다음 노드를 가리키는 포인터가 저장되어 있는 link 필드로 이루어져 있다.
+  - data 필드는 element 타입의 데이터를 저장하고 있다.
+  - link 필드는 ListNode 타입을 가리키는 포인터로 정의되며, 다음 노드의 주소를 가진다.
 
+```c
+typedef int element;
 
+// 노드 타입을 구조체로 정의.
+typedef struct {
+  element data;
+  struct ListNode *link;
+} ListNode;
+```
+
+위의 코드는 노드의 정의일 뿐이다. 아직 노드가 생성된 것이 아님에 주의하자.
+노드를 생성하려면 ListNode 변수를 생성해야 한다.
+{: .notice--danger}
+{: style="text-align: center;"}
+
+**공백 리스트의 생성**
+
+> 앞전에 말했듯이 단순 연결 리스트는 헤드 포인터를 생성 후 이를 사용해 리스트의 첫번째 노드만 알면 모든 노드를 찾을 수 있다.<br>
+다음과 같이 노드를 가리키는 포인터 head를 정의한 순간 하나의 연결리스트가 만들어졌다고 볼 수 있다.<br>
+현재는 노드가 없으므로 head의 값은 NULL이 된다.
+- 이렇게 생성된 포인터 head가 헤드 포인터가 된다.
+
+```c
+ListNode *head = NULL; // 이제 연결리스트가 생성이 되었다.
+
+// 어떠한 리스트가 공백인지를 검사하려면 헤드포인터가 NULL인지를 검사하면 된다.
+```
+
+**노드의 생성**
+
+> 일반적으로 연결 리스트에서는 필요할 때마다 동적 메모리 할당을 이용하여 노드를 동적으로 생성한다. (malloc())
+- malloc() 함수를 이용하여 노드의 크기만큼의 동적 메모리를 할당 받는다.
+  - 이렇게 할당된 동적 메모리가 하나의 노드가 된다.
+  - 동적 메모리의 주소를 헤드 포인터인 head에 저장.
+```c
+head = (ListNode *)malloc(sizeof(ListNode));
+```
+- 노드가 생성되었으나 아직 노드 내부는 텅 빈 상태이다.
+- 이렇게 노드가 생성된 후에는 노드에 데이터를 저장하고, 링크 필드를 NULL로 설정해야 한다.
+  - 처음 생성된 노드는 처음이자 마지막 노드이기 때문에 link 필드 값이 NULL이다.
+```c
+head->data = 10;
+head->link = NULL;
+```
+- 이제 같은 방식으로 노드를 하나 더 생성해보자.
+```c
+ListNode *p;
+p =(ListNode *)malloc(sizeof(ListNode));
+p->data = 20;
+p->link = NULL;
+```
+- 연결리스트는 여러 개의 노드가 서로 연결되어 있다.
+- 생성된 두개의 노드를 서로 연결해보자.
+  - 처음 생성된 노드 head의 link에 다음 노드인 p의 주소를 저장해주면 된다.
+  - 이렇게 되면 head 노드가 p노드를 가리키게 된다.
+```c
+head->link = p;
+```
+- 이제 리스트는 아래처럼 연결이 될 것이다.
+  - 이 과정을 반복하면 원하는 크기의 리스트를 생성할 수 있다.
+<img src="/assets/images/INU/linkedcreate.png" alt="linkedcreate_Procdess" width="50%" min-width="200px" itemprop="image"><img src="/assets/images/INU/listlinking.png" alt="listlinking_Procdess" width="50%" min-width="200px" itemprop="image"><br>`생성된 노드 간의 연결`<br><br>
+
+## 단순 연결 리스트의 연산 구현
+
+```
+원리를 알았으니 이제 함수를 구현하여 추상적으로 설계해보자.
+```
+
+```c
+insert_first(): 리스트의 시작 부분에 항목을 삽입하는 함수
+insert(): 리스트의 중간 부분에 항목을 삽입하는 함수
+delete_first(): 리스트의 첫 번째 항목을 삭제하는 함수
+delete(): 리스트의 중간 항목을 삭제하는 함수 
+print_list(): 리스트를 방문하여 모든 항목을 출력하는 함수
+```
+
+```c
+// 단순 연결 리스트의 정의
+ListNode *head; // 단순 연결 리스트는 원칙적으로 헤드 포인터만 있으면 된다.
+```
+
+<br><br>
+
+**삽입 연산 insert_first()**
+> <img src="/assets/images/INU/sgllistinsertf.png" alt="sgllistinsertf_Procdess" width="80%" min-width="200px" itemprop="image">
+- 리스트의 첫 부분에 새로운 노드를 추가하는 함수
+  - 여기서 매 순간마다 생성되는 노드는 해당 리스트의 매 순간 첫 노드가 될 것이다.
+  - 따라서 매개변수로 헤드포인터를 넘겨 헤드 포인터가 생성될 노드를 가리키도록 해야 한다.
+  - 원하는 데이터 값도 매개변수로 받아 노드의 data 필드에 저장해주자.
+
+```c
+ListNode* insert_first(ListNode *head, element data){
+    ListNode *p = (ListNode *)malloc(sizeof(ListNode)); // 신규 노드 생성
+    p->data = data; // 생성된 노드에 파라미터로 넘어온 데이터 삽입
+    p->link = head; // 생성된 노드에 헤드 포인터 head가 가리키고 있던 기존 첫 노드의 주소를 알려준다.
+    head = p; // 헤드 포인터가 새로 생성된 노드 p를 가리키도록 한다.
+    return head;  // 변경된 헤드 포인터 head를 반환한다.
+}
+```
+
+<br><br>
+
+**삽입 연산 insert()**
+> <img src="/assets/images/INU/sgllistinsert.png" alt="sgllistinsert_Procdess" width="80%" min-width="200px" itemprop="image">
+- insert()는 가장 일반적인 경우로서, 연결리스트의 중간에 새로운 노드를 삽입하는 연산이다.
+  - 반드시 삽입되는 위치의 선행 노드를 알아야 삽입이 가능하다.
+  - 선행 노드를 pre가 가리키고 있다고 가정 후 구현해보자.
+
+```c
+ListNode* insert(ListNode *head, ListNode *pre, element data) {
+    ListNode *n = (ListNode *)malloc(sizeof(ListNode));
+    n->data = data;
+    n->link = pre->link;
+    pre->link = n;
+    return head;
+}
+```
+
+<br><br>
+
+**삭제 연산 delete_first()**
+>
+- 첫번째 노드를 삭제하는 함수 delete_first()는 다음과 같은 원형을 가진다.
+  - 헤드 포인터의 값을 removed에 복사한다.
+  - 헤드 포인터의 값을 head->link로 변경한다.
+  - removed가 가리키던 동적 메모리를 반환한다.
+  - 변경된 헤드 포인터를 반환한다.
+
+```c
+ListNode* delete_first(ListNode *head) {
+  ListNode *removed; // 삭제할 노드의 주소를 임시 복사해놓을 removed 생성.
+  if(head == NULL) return NULL; //헤드 포인터가 가리키는 것이 없으면 오류.
+  removed = head; // 헤드 포인터가 가리키고 있던 기존 첫번째 노드(삭제대상)를 removed에 복사.
+  head = removed->link // 기존 헤드 포인터가 가리키고 있던 첫번째 노드의 다음노드를 가리키도록 설정.
+  free(removed); // 삭제 대상인 첫번째 노드에게 할당된 메모리를 반환.
+  return head;  // head 포인터가 가리키고 있던 노드가 갱신 되었으므로 반환하여 갱신.
+}
+```
+
+**삭제 연산 delete()**
+>
+- 리스트 중간에 위치한 노드를 삭제할 수 있는 함수이다.
+  - 삭제할 노드를 찾는다.
+  - 노드 pre의 링크 필드가 삭제할 노드의 link를 가리키게 한다.
+  - 삭제할 노드에게 할당된 메모리를 반환한다.
+  - 변경된 헤드 포인터를 반환한다.
+
+```c
+ListNode* delete(ListNode *head, ListNode *pre){
+  ListNode *removed;
+  removed = pre->link;
+  pre->link = removed->link;
+  free(removed);
+  return head;
+}
+```
 
 
 
