@@ -23,13 +23,14 @@ toc_label: "Carefree to See"
 > <img src="/assets/images/INU/linkedlist.png" alt="linkedlist_Procdess" width="100%" min-width="200px" itemprop="image">`Linked-List의 모습` `사진출처:`[isaaccomputerscience](https://isaaccomputerscience.org/concepts/dsa_datastruct_linked_list)<br><br>
 - 추상적 자료형인 `리스트를 구현한 자료구조`.<br>
 - Linked List라는 말 그대로 어떤 데이터 구조체(= 노드 Node)를 저장할 때 <br>
-<span style="color:green">`다음 순서의 자료가 있는 위치를 데이터에 포함`</span>시키는 방식으로 자료를 저장한다.<br>
+<span style="color:green">`다음 순서의 자료가 있는 위치를 데이터에 포함`</span>시키는 방식으로 자료를 저장한다.<br><br>
 ```
 예를 들어 한 반에 있는 학생들의 자료를 저장한다면, 학생 하나하나의 신상명세 자료를 노드로 만들고,
 1번 학생의 신상명세 자료에 2번 학생 신상명세가 어디있는지 표시를 해 놓는 방식이다. 
 쉽게 생각하면 자료를 비엔나 소시지마냥 줄줄이 엮어놓은 것이다.
 ```
-> ## **연결된 표현 - Linked Representation**
+<br><br>
+**연결된 표현 - Linked Representation**
     - 리스트의 항목들을 노드(node)라고 하는 곳에 분산하여 저장한다.
     - 분산된 노드들을 포인터로 연결하여 하나로 묶는 방법이 바로 연결리스트(Linked List)이다.
     - 노드(node)는 데이터 필드와 링크 필드로 구성된다.
@@ -45,7 +46,9 @@ toc_label: "Carefree to See"
 - 여러 개의 연결리스트를 구분하려면 첫번째 데이터(노드)만 알 수 있으면 된다.<br>
 첫번째 데이터를 따라 연결된 모든 데이터를 찾을 수 있기 때문이다.
 <img src="/assets/images/INU/linkedinsert.png" alt="linkedinsert_Procdess" width="50%" min-width="200px" itemprop="image"><img src="/assets/images/INU/linkeddelete.png" alt="linkeddelete_Procdess" width="50%" min-width="200px" itemprop="image">
-<br>`연결리스트의 삽입 및 삭제 연산의 모습` <br><br>
+<br>`연결리스트의 삽입 및 삭제 연산의 모습`
+
+<br><br>
 
 ## 연결 리스트의 구조
 >
@@ -60,7 +63,9 @@ toc_label: "Carefree to See"
 헤드 포인터?
 - 연결리스트에서는 첫번째 노드를 알아야 만이 전체 노드를 찾아갈 수 있다.
     - 따라서 연결리스트 마다 첫번째 노드를 가리키고 있는 헤드 포인터 변수가 존재한다.
-<img src="/assets/images/INU/structnode.png" alt="structnode_Procdess" width="80%" min-width="200px" itemprop="image"><br>`연결리스트 노드의 구조`<br><br>
+<img src="/assets/images/INU/structnode.png" alt="structnode_Procdess" width="80%" min-width="200px" itemprop="image"><br>`연결리스트 노드의 구조`
+
+<br><br>
 
 ## 연결 리스트의 종류
 >
@@ -75,21 +80,23 @@ toc_label: "Carefree to See"
     - rlink는 노드 기준 우측 노드의 주소를 가진다.
 
 ## 단순 연결리스트
-
 >
 - 단순 연결 리스트에서는 노드들이 하나의 링크 필드를 가진다.
 - 모든 노드들은 각 노드의 link 필드를 통해 연결되어 있다.
 - 가장 마지막 노드는 다음 노드가 없기 때문에 link필드 값이 NULL이다.
-<img src="/assets/images/INU/singlylinked.png" alt="singlylinked_Procdess" width="100%" min-width="200px" itemprop="image"><br>`단순 연결 리스트의 모습`<br><br>
+<br><br>
+<img src="/assets/images/INU/singlylinked.png" alt="singlylinked_Procdess" width="100%" min-width="200px" itemprop="image"><br>`단순 연결 리스트의 모습`
+
+<br>
 
 ## 단순 연결 리스트 구현 - C
-
 >
 - 노드를 어떻게 정의할 것인가? - 자기 참조 구조체를 사용한다.
 - 노드는 어떻게 생성할 것인가? - malloc을 활용하여 필요 시 동적으로 생성한다.
 - 노드는 어떻게 삭제할 것인가? - free()를 사용하여 노드에 할당된 메모리를 반환한다.
+<br><br>
 
-**노드의 정의**
+**노드의 정의**<br>
 노드는 자기참조 구조체를 이용하여 정의한다.<br>
 자기 참조 구조체란, 자기 자신을 참조하는 포인터를 포함하는 구조체이다.<br>
 구조체 내부에는 우리가 리스트에 저장할 데이터가 담길 data 필드와<br>
@@ -107,13 +114,13 @@ typedef struct {
 } ListNode;
 ```
 
-위의 코드는 노드의 정의일 뿐이다. 아직 노드가 생성된 것이 아님에 주의하자.
+위의 코드는 노드의 정의일 뿐이다. 아직 노드가 생성된 것이 아님에 주의하자.<br>
 노드를 생성하려면 ListNode 변수를 생성해야 한다.
 {: .notice--danger}
 {: style="text-align: center;"}
+<br><br>
 
 **공백 리스트의 생성**
-
 > 앞전에 말했듯이 단순 연결 리스트는 헤드 포인터를 생성 후 이를 사용해 리스트의 첫번째 노드만 알면 모든 노드를 찾을 수 있다.<br>
 다음과 같이 노드를 가리키는 포인터 head를 정의한 순간 하나의 연결리스트가 만들어졌다고 볼 수 있다.<br>
 현재는 노드가 없으므로 head의 값은 NULL이 된다.
@@ -125,8 +132,9 @@ ListNode *head = NULL; // 이제 연결리스트가 생성이 되었다.
 // 어떠한 리스트가 공백인지를 검사하려면 헤드포인터가 NULL인지를 검사하면 된다.
 ```
 
-**노드의 생성**
+<br><br>
 
+**노드의 생성**
 > 일반적으로 연결 리스트에서는 필요할 때마다 동적 메모리 할당을 이용하여 노드를 동적으로 생성한다. (malloc())
 - malloc() 함수를 이용하여 노드의 크기만큼의 동적 메모리를 할당 받는다.
   - 이렇게 할당된 동적 메모리가 하나의 노드가 된다.
@@ -236,6 +244,8 @@ ListNode* delete_first(ListNode *head) {
 }
 ```
 
+<br><br>
+
 **삭제 연산 delete()**
 > <img src="/assets/images/INU/delete.png" alt="delete_Procdess" width="100%" min-width="200px" itemprop="image"><br>`delete()`<br>
 - 리스트 중간에 위치한 노드를 삭제할 수 있는 함수이다.
@@ -254,6 +264,8 @@ ListNode* delete(ListNode *head, ListNode *pre){
 }
 ```
 
+<br><br>
+
 **리스트 출력 함수 print_list()**
 - 노드의 link 값이 NULL이 아니면 계속 link값을 따라가며 노드를 방문한다.
 - 어떤 노드의 link값이 NULL이면 마지막 노드에 도달한 것이므로 반복을 중단한다.
@@ -267,6 +279,8 @@ void print_list(ListNode *head) {
   printf("\n");
 }
 ```
+
+<br><br>
 
 ## 전체 테스트 프로그램 - Singly Linked List
 
@@ -340,6 +354,8 @@ int main(void) {
 ```
 
 > <img src="/assets/images/INU/slltestrs.png" alt="slltestrs_Procdess" width="100%" min-width="200px" itemprop="image"><br>`Singly Linked List 테스트 결과`<br>
+
+<br><br>
 
 ## 원형 연결 리스트 (Circular Linked List)
 
@@ -531,7 +547,9 @@ int main(void) {
 }
 ```
 
-> <img src="/assets/images/INU/circularlisttest.png" alt="circularlisttest_Procdess" width="80%" min-width="200px" itemprop="image"><br>`형 연결 리스트 테스트 프로그램 실행 결과`<br>
+> <img src="/assets/images/INU/circularlisttest.png" alt="circularlisttest_Procdess" width="80%" min-width="200px" itemprop="image"><br>`형 연결 리스트 테스트 프로그램 실행 결과`
+
+<br><br>
 
 ## 이중 연결 리스트 (Doubly Linked List)
 
@@ -540,8 +558,7 @@ int main(void) {
 ```
 
 > <img src="/assets/images/INU/doublylinked.png" alt="doublylinked_Procdess" width="100%" min-width="200px" itemprop="image"><br>`이중 연결 리스트의 구조`<br>
-- 단순 연결 리스트와 원형 리스트는 한 노드의 후속 노드를 찾기는 쉽지만, 그에 비해 선행 노드를 찾기는 쉽지 않다. 이에 이중 연결 리스트가 만들어 졌다.
-
+- 단순 연결 리스트와 원형 리스트는 한 노드의 후속 노드를 찾기는 쉽지만, 그에 비해 선행 노드를 찾기는 쉽지 않다. 이에 이중 연결 리스트가 만들어 졌다.<br><br>
 - 이중 연결 리스트:
   - 하나의 노드가 선행 노드와 후속 노드에 대한 두 개의 링크를 가지는 리스트.
   - 링크가 양방향으로 지원되어 양방향의 검색이 가능해진다.
@@ -571,11 +588,7 @@ int main(void) {
 이중 연결 리스트를 구현해보자.
 ```
 
-```
-노드의 구조
-```
-
->
+> **노드의 구조**
 - 이중 연결 리스트를 구현하기 위해 노드의 구조를 먼저 정의해보자.
 - 이중 연결 리스트에서의 노드는 3가지의 필드를 가진다.
   - 왼쪽 링크 필드(llink), 데이터 필드(data), 오른쪽 링크 필드(rlink)
@@ -596,7 +609,7 @@ typedef struct DListNode {
 ```c
 p = p->llink->rlink = p->rlink->llink
 ```
-이는 이중 연결 리스트에서 앞뒤로 똑같이 이동 할 수 있음을 나타낸다.
+이는 이중 연결 리스트에서 앞뒤로 똑같이 이동 할 수 있음을 나타낸다.<br>
 공백 리스트에서도 헤드 노드가 존재하기 때문에 성립한다.
 {: .notice--info}
 {: style="text-align: center;"}
@@ -612,7 +625,8 @@ p = p->llink->rlink = p->rlink->llink
 > **삽입 연산**
 <img src="/assets/images/INU/doublylinkedinsert.png" alt="doublylinkedinsert_Procdess" width="100%" min-width="200px" itemprop="image"><br>`이중 연결 리스트의 삽입 연산 구현 순서`<br>
 - 위 그림의 순서대로 각 노드 링크 필드의 값을 바꾸어 주어야 한다.
-  - 새로 만들어진 노드의 링크를 먼저 수정하는 이유는 아직 아무 정보도 가지고 있지 않아 안전하기 때문이다.
+  - 새로 만들어진 노드의 링크를 먼저 수정하는 이유는<br>
+  아직 아무 정보도 가지고 있지 않아 안전하기 때문이다.
 
 ```c
 // 이중 연결 리스트의 삽입 함수
@@ -997,7 +1011,7 @@ int main() {
 
 최대한의 설명을 코드 블럭 내의 주석으로 달아 놓았습니다.<br><br>
 혹시 이해가 안가거나 추가적인 설명이 필요한 부분, 오류 등의 피드백은 언제든지 환영합니다!<br><br>
-긴 글 읽어주셔서 감사합니다. 스택 (Stack) 포스팅을 마칩니다.<br>
+긴 글 읽어주셔서 감사합니다. 연결 리스트 (Linked List) 포스팅을 마칩니다.<br>
 {: .notice--success}
 {: style="text-align: center;"}
 
@@ -1013,11 +1027,13 @@ int main() {
 ### Task Lists
 > 
 - [x] Data Structure : 연결 리스트 (Linked List) 란?
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x]
-- [x] 
-- [x] 
-- [x] 
+- [x] 연결 리스트의 구조
+- [x] 연결 리스트의 종류
+- [x] 단순 연결 리스트 구현 - C
+- [x] 전체 테스트 프로그램 - Singly Linked List
+- [x] 원형 연결 리스트 (Circular Linked List)
+- [x] 원형 연결 리스트 테스트 프로그램
+- [x] 이중 연결 리스트 (Doubly Linked List)
+- [x] 이중 연결 리스트의 구현
+- [x] 이중 연결 리스트 - 테스트 프로그램
+- [x] 연결리스트의 구현 with C Delete_same_nodes
