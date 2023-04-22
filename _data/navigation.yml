@@ -6,8 +6,8 @@ main:
     url: /year-archive/
   - title: "Category"
     url: /categories/ #/collection-archive/
-  - title: "Sitemap"
-    url: /sitemap/
+  # - title: "Sitemap"
+  #   url: /sitemap/
 
 sidebar-category:
   - title: "Carefree Lists"
@@ -24,6 +24,9 @@ sidebar-category:
       - title: "Java"
         url: "/Java/"
         category: "Java"
+      - title: "Python"
+        url: "/Python/"
+        category: "Python"
       # - title: "Spring Framework"
       #   url:  "/spring/"
       - title: "Memo"
