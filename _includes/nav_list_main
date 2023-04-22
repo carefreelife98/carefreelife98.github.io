@@ -19,7 +19,7 @@
                 <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
                 {% for category in site.categories %}
                     {% if category[0] == "INU-OS" %}
-                        <li><a href="/INU-OS" class="">Operating System ({{category[1].size}})</a></li>
+                        <li><a href="/INU-OS/" class="">Operating System ({{category[1].size}})</a></li>
                     {% endif %}
                 {% endfor %}
             </ul>
@@ -30,21 +30,21 @@
                     {% endif %}
                 {% endfor %}
             </ul>
-        <span class="nav__sub-title">C/C++</span>
+        <span class="nav__sub-title">프로그래밍 언어</span>
             <ul>
                 {% for category in site.categories %}
                     {% if category[0] == "C" %}
-                        <li><a href="/C/" class="">C ({{category[1].size}})</a></li>
+                        <li><a href="/C/" class="">C/C++ ({{category[1].size}})</a></li>
                     {% endif %}
                 {% endfor %}
             </ul>
-            <!-- <ul>
+            <ul>
                 {% for category in site.categories %}
-                    {% if category[0] == "Programmers" %}
-                        <li><a href="/categories/programmers" class="">프로그래머스 ({{category[1].size}})</a></li>
+                    {% if category[0] == "Java" %}
+                        <li><a href="/Java/" class="">Java ({{category[1].size}})</a></li>
                     {% endif %}
                 {% endfor %}
-            </ul> -->
+            </ul>
         <span class="nav__sub-title">Memo</span>
             <ul>
                 {% for category in site.categories %}
