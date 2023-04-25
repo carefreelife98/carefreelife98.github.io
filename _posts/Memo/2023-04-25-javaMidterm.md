@@ -48,7 +48,7 @@ week2
 29. New ~ 를 통해 호출된 class의 instance 안에 있는 변수를 가리키는 법 —> this.변수이름(instance의)
 30. java.lang 은 기본적으로 import 되어 있음
 31. IOException, InputMismatchException 은 각각 java.io / java.util 을 import 해줘야 사용가능.
-32. <img src="/assets/images/INU/java/javaexception.png" alt="javaexception_Procdess" width="80%" min-width="200px" itemprop="image"><br>`Java Exception`
+32. <img alt="javaexception_Procdess" src="/Users/carefreelife/Desktop/gitFolder/carefreelife98.github.io/assets/images/INU/java/javaexception.png" width="80%"/><br>`Java Exception`
 33. Method Overloading : 이름이 같은 메소드 작성하는 것 / 매개 변수의 개수나 타입이 서로 다르나 이름이 동일한 메소드들.
     리턴 타입이 다르더라고 매개변수의 개수가 같다면 오버로딩 실패
 34. 자바 응용 프로그램에서 임의로 객체를 소멸 시킬 수 없다.
@@ -58,6 +58,7 @@ week2
 37. 강제 Garbage Collection 수행 : System 또는 Runtime 객체의 gc() 메소드 호출.
 38. 접근 지정자(public, private, protected, default..)
 39. enum : 상수의 집합 enum alphabet {a,b,c, ... } 에서 원소들은 (a, b, c) 이름이 될수도 있고, 값이 될 수도 있다.
+40. 배열 생성 시 배열의 크기를 지정하면 안된다.
 
 <h1>자바 시작</h1>
 
