@@ -8,9 +8,9 @@ toc: true
 toc_sticky: true
 toc_label: "Carefree to See"
 ---
+---
 <!-- Created by Chae Seungm Min - CarefreeLife
 Visit my Programming blog: https://carefreelife98.github.io --> 
----
 
 중간고사 대비 개인 포스트입니다.
 ({: .notice--success})
