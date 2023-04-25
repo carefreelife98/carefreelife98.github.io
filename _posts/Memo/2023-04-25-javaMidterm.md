@@ -48,8 +48,10 @@ week2
 29. New ~ 를 통해 호출된 class의 instance 안에 있는 변수를 가리키는 법 —> this.변수이름(instance의)
 30. java.lang 은 기본적으로 import 되어 있음
 31. IOException, InputMismatchException 은 각각 java.io / java.util 을 import 해줘야 사용가능.
-32. <img alt="javaexception_Procdess" src="/Users/carefreelife/Desktop/gitFolder/carefreelife98.github.io/assets/images/INU/java/javaexception.png" width="80%"/><br>`Java Exception`
-33. Method Overloading : 이름이 같은 메소드 작성하는 것 / 매개 변수의 개수나 타입이 서로 다르나 이름이 동일한 메소드들.
+
+<img src="/assets/images/INU/java/javaexception.png" alt="javaexception_Procdess" width="100%" min-width="200px" itemprop="image"><br>`java exception`<br><br>
+
+34. Method Overloading : 이름이 같은 메소드 작성하는 것 / 매개 변수의 개수나 타입이 서로 다르나 이름이 동일한 메소드들.
     리턴 타입이 다르더라고 매개변수의 개수가 같다면 오버로딩 실패
 34. 자바 응용 프로그램에서 임의로 객체를 소멸 시킬 수 없다.
 35. Garbage : 가르키는 레퍼런스가 하나도 없는 객체 / 누구도 사용할 수 없게 된 메모리
@@ -72,6 +74,10 @@ week2
 8. 추상 클래스 : 객체 생성 불가, 상속 받아 사용
 9. 슈퍼 클래스에서는 개념의 정의.
 10. 각 서브 클래스에서 구체적 행위를 구현.
+11. LTS(Long-Term-Support)
+12. 자바 초기 이름 : OAK
+13. JDK : Java Development Kit
+14. JRE : Java Runtime Environment
 
 
 
