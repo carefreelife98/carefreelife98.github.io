@@ -30,6 +30,21 @@
                     {% endif %}
                 {% endfor %}
             </ul>
+        <span class="nav__sub-title">Spring🍀</span>
+            <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "Spring-MVC" %}
+                        <li><a href="/Spring-MVC/" class="">Spring MVC ({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "Spring-Database" %}
+                        <li><a href="/Spring-Database/" class="">Spring Database ({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
         <span class="nav__sub-title">프로그래밍 언어</span>
             <ul>
                 {% for category in site.categories %}
