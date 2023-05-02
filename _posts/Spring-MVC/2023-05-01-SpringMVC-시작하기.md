@@ -95,6 +95,16 @@ public class CarefreeLifeMemberControllerV3 {
 {: .notice--info}
 {: style="text-align: left;"}
 
+<br><br>
+
+# @RestController
+
+- 일반적으로 스프링의 `@Controller` 애노테이션을 사용하면 반환 값으로 view의 이름을 반환한다.
+  - 이 경우 컨트롤러를 통해 반환된 뷰의 이름을 가지고 뷰 리졸버를 통해 뷰를 렌더링하여 화면에 띄워주게 된다.
+- 하지만 `@RestController`를 사용하게 되면 반환값으로 view의 이름이 아닌 String을 반환하게 된다.
+  - 이 경우 반환된 String을 HTTP Message Body에 즉각 삽입하여 HTTP response를 하게 된다.
+> <img src="/assets/images/Spring/SpringMVC/rest_controller_1.png" alt="rest_controller_1_Procdess" width="70%" min-width="200px" itemprop="image"><br>`@Restcontroller 사용하여 메시지 바디에 삽입할 String을 반환하는 모습`<br><br>
+> <img src="/assets/images/Spring/SpringMVC/rest_controller_2.png" alt="rest_controller_2_Procdess" width="70%" min-width="200px" itemprop="image"><br>`@Restcontroller에서 반환한 String이 HTTP Message Body에 그대로 삽입되어 있는 모습`<br>
 
 
 
