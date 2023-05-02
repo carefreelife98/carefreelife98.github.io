@@ -70,27 +70,30 @@ public class CarefreeLifeMemberControllerV3 {
 }
 ```
 
-- `@Controller` :
+- <span style="color:orange">`@Controller`</span> :
   - 클래스 레벨에 지정.
   - 내부에 Component 애노테이션이 포함되어 있어서 Component Scan의 대상이 된다.
   - 스프링이 실행되는 순간 Component Scan에 의해 자동으로 스프링 빈으로 등록된다.
   - 스프링 MVC에서 애노테이션 기반 컨트롤러로 인식하게 해준다.
 <br><br>
-- `@RequestMapping("URL")` :
+- <span style="color:orange">`@RequestMapping("URL")`</span> :
   - 클래스 레벨, 메서드 레벨 지정 가능.
   - 요청 정보를 매핑한다. 해당 URL이 호출되면 실행할 메소드를 지정.
   - 애노테이션을 기반으로 동작하므로 실행 메서드의 이름은 원하는 대로 지어도 된다.
 
 
->@RequestMapping
-><br><br>
+><h1><span style="color:darkorange">@RequestMapping 의 URL 통합 및 조합 기능</span></h1>
+><br>
 >- 컨트롤러의 클래스 레벨에 적용시켜 메서드 단위가 아닌 클래스 단위로 통합이 가능하다.
->- 통합 뿐 아니라 아래와 같이 중복되는 상위 URL을 하나로 묶어 클래스 레벨에 적용 후 메서드 단위로 추가적인 URL을 지정하여 조합도 가능하다.
->- 클래스 레벨 @RequestMapping("/springmvc/v2/members") : 공통된 상위 URL 지정
->-   메서드 레벨 @RequestMapping("/new-form") ➡️ /springmvc/v2/members/new-form 
->-   메서드 레벨 @RequestMapping("/save") ➡️ /springmvc/v2/members/save
->-   메서드 레벨 @RequestMapping ➡️ /springmvc/v2/members (추가적인 URL을 지정하지 않으면 클래스 레벨에 지정된 상위 URL 자체로 지정됨.)
-
+>- 통합 뿐 아니라 아래와 같이 중복되는 상위 URL을 하나로 묶어 클래스 레벨에 적용 후<br>
+>  메서드 단위로 추가적인 URL을 지정하여 조합도 가능하다.
+>- 클래스 레벨 @RequestMapping("<span style="color:green">/springmvc/v2/members</span>") : 공통된 상위 URL 지정
+>- - 메서드 레벨 @RequestMapping("<span style="color:red">/new-form</span>") ➡️ <span style="color:green">/springmvc/v2/members</span><span style="color:red">/new-form</span> 
+>- - 메서드 레벨 @RequestMapping("<span style="color:red">/save</span>") ➡️ <span style="color:green">/springmvc/v2/members</span><span style="color:red">/save</span>
+>- - 메서드 레벨 @RequestMapping ➡️ <span style="color:green">/springmvc/v2/members</span><br>
+>      (추가적인 URL을 지정하지 않으면 클래스 레벨에 지정된 상위 URL 자체로 지정됨.)
+{: .notice--info}
+{: style="text-align: left;"}
 
 
 
@@ -136,8 +139,8 @@ public class CarefreeLifeMemberControllerV3 {
 
 ### Task Lists
 > 
-- [x] 
-- [x] 
+- [x] @RequestMapping 사용법
+- [x] @RequestMapping 의 URL 통합 및 조합 기능
 - [x] 
 - [x] 
 - [x] 
