@@ -120,6 +120,8 @@ public String mappingPath(
 }
 ```
 
+<br><br>
+
 # 특정 헤더 조건 매핑 
 
 - HTTP 요청에 특정 헤더가 포함되어있는 경우 실행
@@ -138,6 +140,8 @@ public String mappingHeader() {
     return "ok";
 }
 ```
+
+<br><br>
 
 # 미디어 타입 조건 매핑
 
@@ -226,12 +230,10 @@ public String mappingProduces(){
 
 ### Task Lists
 > 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
+- [x] @RequestMapping 다중 설정
+- [x] HTTP 메서드
+- [x] HTTP 메서드 매핑 간편하게 사용하기
+- [x] PathVariable(경로 변수)?
+- [x] @PathVariable 다중 사용
+- [x] 특정 헤더 조건 매핑
+- [x] 미디어 타입 조건 매핑
