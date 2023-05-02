@@ -80,6 +80,8 @@ public class CarefreeLifeMemberControllerV3 {
   - 클래스 레벨, 메서드 레벨 지정 가능.
   - 요청 정보를 매핑한다. 해당 URL이 호출되면 실행할 메소드를 지정.
   - 애노테이션을 기반으로 동작하므로 실행 메서드의 이름은 원하는 대로 지어도 된다.
+  - 배열로 지정되어 있다. ()안의 URL은 여러개를 넣어 서로 다른 URL로 요청시 같은 뷰를 반환해줄 수 있다.
+    - ex. @RequestMapping({"/carefree/v1", "/carefree/v3"}) -> 같은 view or String 반환.
 
 
 ><h1><span style="color:darkorange">@RequestMapping 의 URL 통합 및 조합 기능</span></h1>
