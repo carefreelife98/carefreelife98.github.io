@@ -76,9 +76,7 @@ Visit my Programming blog: https://carefreelife98.github.io -->
 - 최근 HTTP API는 다음과 같이 리소스 경로에 식별자를 넣는 스타일을 선호한다.
   - /carefree/user1
   - /members/2
-
 <br><br>
-
 - @RequestMapping은 @PathVariable(경로 변수)를 사용하여 URL 경로를 템플릿화 할 수 있다.
 
 ```java
