@@ -48,7 +48,7 @@ Visit my Programming blog: https://carefreelife98.github.io -->
   - <span style="color:darkorange">@DeleteMapping
   - <span style="color:darkorange">@PatchMapping
 - 이전보다 더 직관적인 코드가 생성되므로 축약 애노테이션을 사용하는 것이 좋다.
-<br>
+<br><br>
   
     ```java
     /**
@@ -70,7 +70,7 @@ Visit my Programming blog: https://carefreelife98.github.io -->
     - <img src="/assets/images/Spring/SpringMVC/getmapping.png" alt="getmapping_Procdess" width="100%" min-width="200px" itemprop="image"><br>`@GetMapping의 내부 모습`<br>
 <br>
 - 같은 URL을 지정 하더라도 HTTP 축약 애노테이션의 종류에 따라 다른 메서드를 호출 할 수 있다.
-  - <img src="/assets/images/Spring/SpringMVC/sameurl.png" alt="sameurl_Procdess" width="100%" min-width="200px" itemprop="image"><br>`같은 URL을 통해 요청하지만 GetMapping과 PostMapping은 각각 다른 메서드를 호출한다.`<br>
+  - <img src="/assets/images/Spring/SpringMVC/sameurl.png" alt="sameurl_Procdess" width="60%" min-width="200px" itemprop="image"><br>`같은 URL을 통해 요청하지만 GetMapping과 PostMapping은 각각 다른 메서드를 호출한다.`<br>
 
 <br><br>
 
@@ -187,15 +187,71 @@ public String mappingProduces(){
 }
 ```
 
+<br><br>
 
+# HTTP Request Header 조회
 
+```java
+애노테이션 기반의 스프링 컨트롤러는 다양한 파라미터를 지원하여
+HTTP Request Header 의 많은 정보를 받아올 수 있다.
+```
 
+>**HTTP 요청 메시지의 헤더에서 파라미터로 받아 올 수 있는 요소들**
 
+- <span style="color:darkorange">HTTPServletRequest / HTTP ServletResponse</span>
+- <span style="color:darkorange">HttpMethod</span> : `Get, Post, Put, Patch, Delete` 등의 Http Method를 조회 할 수 있다.
+  - org.springframework.http.HttpMethod
+- <span style="color:darkorange">Locale</span> : Locale 정보를 조회한다 (각 나라별 언어 정보)
+- <span style="color:darkorange">@RequestHeader MultiValueMap<String, String> headerMap</span>
+  - 모든 HTTP Header를 MultiValueMap 형식으로 조회한다.
+    - <span style="color:darkorange">MultiValueMap<key, value></span> 이란?
+      - Map과 유사하나, 하나의 키에 여러 값을 받을 수 있다.
+      - HTTP header, HTTP 쿼리 파라미터와 같이 하나의 키에 여러 값을 받을 때 사용한다.
+      - keyA=value1&keyA=value2
+      - ```java
+        MultiValueMap<String, String> map = new LinkedMultiValueMap();
+        map.add("keyA", "value1");
+        map.add("keyA", "value2");
+          
+        List<String> values = map.get("keyA"); // 실행결과: [value1,value2]
+        ```
 
+<br><br>
 
+# HTTP 요청 파라미터 - Query Parameter, HTML Form 
 
+> HTTP 요청 메시지를 통해 Client 에서 Server로 데이터를 전달하는 방법을 알아보자.
 
+<h1>클라이언트에서 서버로 요청 데이터를 전달할 때는 주로 다음과 같은 세가지 방법을 사용한다.</h1>
 
+1. GET - Query Parameter
+   - /url?username=carefree&age=26
+   - message body 없이 URL의 Query Parameter 에 데이터를 포함해서 전달.
+   - 검색, 필터, 페이징 등에서 많이 사용하는 방식이다.
+2. POST - HTML Form
+   - content-type:application/x-www-form-urlencoded
+   - 메시지 바디에 QueryParameter 형식으로 전달. username=carefree&age=26
+   - 회원가입, 상품 주문 등의 작업에서 많이 사용하는 방식.
+3. HTTP message body 에 데이터를 직접 담아서 요청
+   - HTTP API 에서 주로 사용한다. (JSON, XML, TEXT)
+   - 데이터 형식을 주로 JSON 사용
+   - POST, PUT, PATCH
+
+<br><br>
+
+# 요청 파라미터 - Query Parameter, HTML Form
+
+- `HTTPServletRequest` 의 `request.getParameter()` 을 사용하여 다음 두 가지 요청 파라미터를 조회할 수 있다.
+  - Get - Query Parameter 를 통한 전송
+    - ex. http://localhost:8080/request-param?username=carefree&age=26
+  - Post - HTML Form을 통한 전송
+    - ex.
+    ```java
+    POST /request-param ...
+    content-type: application/x-www-form-urlencoded
+    
+    username=carefree&age=26
+    ```
 
 
 
