@@ -224,15 +224,15 @@ HTTP Request Header 의 많은 정보를 받아올 수 있다.
 
 <h1>클라이언트에서 서버로 요청 데이터를 전달할 때는 주로 다음과 같은 세가지 방법을 사용한다.</h1>
 
-1. GET - Query Parameter
+1. <span style="color:green">GET - Query Parameter</span>
    - /url?username=carefree&age=26
    - message body 없이 URL의 Query Parameter 에 데이터를 포함해서 전달.
    - 검색, 필터, 페이징 등에서 많이 사용하는 방식이다.
-2. POST - HTML Form
+2. <span style="color:green">POST - HTML Form</span>
    - content-type:application/x-www-form-urlencoded
    - 메시지 바디에 QueryParameter 형식으로 전달. username=carefree&age=26
    - 회원가입, 상품 주문 등의 작업에서 많이 사용하는 방식.
-3. HTTP message body 에 데이터를 직접 담아서 요청
+3. <span style="color:green">HTTP message body 에 데이터를 직접 담아서 요청</span>
    - HTTP API 에서 주로 사용한다. (JSON, XML, TEXT)
    - 데이터 형식을 주로 JSON 사용
    - POST, PUT, PATCH
