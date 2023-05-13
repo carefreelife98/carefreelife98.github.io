@@ -38,20 +38,143 @@ Visit my Programming blog: https://carefreelife98.github.io -->
 |SECOND|초|MILLISECOND|밀리 초|
 
 <details>
-<summary><span style="color:blue">Practice (1) (클릭)</span></summary>
-<div markdown="1">       
+<summary><span style="color:blue">Practice (1) 현재 날짜와 시간 출력 -  소스 코드 (클릭)</span></summary>
+<div markdown="1">
 
-<img src="/assets/images/INU/Java/.png" alt="_Procdess" width="100%" min-width="200px" itemprop="image"><br>``<br>
+```java
+import java.util.Calendar;
+
+public class _1_printDayAndTime {
+
+    public static void main(String[] args) {
+        
+        // Calender 생성
+        Calendar cal = Calendar.getInstance();
+        
+        // Month 는 default 가 0~11 로 정의 되어 있어 1월부터 12월을 표현하려면 +1을 해주어야 한다. 
+        System.out.println(cal.get(Calendar.YEAR) + "년 " + (cal.get(Calendar.MONTH) + 1) + "월 " + cal.get(Calendar.DAY_OF_MONTH) + "일 ");
+        System.out.println(cal.get(Calendar.HOUR) + "시 " + cal.get(Calendar.MINUTE) + "분 " + cal.get(Calendar.SECOND) + "초 ");
+    }
+}
+```
+
+<img src="/assets/images/INU/java/hw2/1_printDayAndTime.png" alt="1_printDayAndTime_Procdess" width="100%" min-width="200px" itemprop="image"><br>`Practice 1 실행 결과`<br>
+
 </div>
 </details>
 
+<br><br>
+
+# 2. 문자열을 날짜로 변경 - Calendar
+
+```
+- 문자열을 다음과 같이 입력
+  - “2023/05/01” 또는 “2020/5/1”, “21/05/01”
+  - 년/월/일 을 추출하고 날짜 데이터로 변경하시오.
+```
+
+> 1번에서 해본 것 처럼 Calendar 클래스를 활용하여 작성해보자.
+
+<details>
+<summary><span style="color:blue">Practice (2) 문자열을 날짜로 변경 -  소스 코드 (클릭)</span></summary>
+<div markdown="1">
+
+```java
+import java.util.Calendar;
+import java.util.Scanner;
+
+public class _2_StringToDay {
+    public static void main(String[] args) {
+
+        Scanner scan = new Scanner(System.in);
+        Calendar cal = Calendar.getInstance();
+
+        while(true) {
+            System.out.println("날짜 입력 (ex. 2023/05/10 ) : ");
+            String str = scan.next();
+
+            if (str.equals("exit")) {
+                System.out.println("exit");
+                break;
+            } else {
+                String[] split = str.split("/");
+                cal.set(Calendar.YEAR, Integer.parseInt(split[0]));
+                cal.set(Calendar.MONTH, Integer.parseInt(split[1]));
+                cal.set(Calendar.DAY_OF_MONTH, Integer.parseInt(split[2]));
+            }
+            System.out.println("[data] 년도 : " + cal.get(Calendar.YEAR));
+            System.out.println("[data] 월 : " + cal.get(Calendar.MONTH));
+            System.out.println("[data] 일 : " + cal.get(Calendar.DAY_OF_MONTH));
+        }
+    }
+}
+```
+
+<img src="/assets/images/INU/java/hw2/2_StringToDay.png" alt="2_StringToDay_Procdess" width="70%" min-width="200px" itemprop="image"><br>`Practice 2 실행 결과`<br>
+
+</div>
+</details>
+
+<br><br>
 
 
+# 문자열 회전하기
+
+```
+문자열과 정수 입력하여, 정수(양수, 음수)만큼 회전하는 문자열 출력
+0 입력 시 종료.
+```
+
+> - 출력 예시:
+<img src="/assets/images/INU/java/hw2/3_outputEX.png" alt="3_outputEX_Procdess" width="100%" min-width="200px" itemprop="image"><br>`Practice 3 출력 예시`<br>
+
+<details>
+<summary><span style="color:blue">Practice (1) Practice (1) 현재 날짜와 시간 출력 -  소스 코드 (클릭)</span></summary>
+<div markdown="1">
+
+```java
+소스코드 - 23.5.16 공개!
+```
+
+<img src="/assets/images/INU/java/hw2/3_rollstrForBlog.png" alt="3_rollstrForBlog_Procdess" width="40%" min-width="200px" itemprop="image">
+<img src="/assets/images/INU/java/hw2/3_rollstrForBlog3.png" alt="3_rollstrForBlog3_Procdess" width="50%" min-width="200px" itemprop="image">
+<img src="/assets/images/INU/java/hw2/3_rollstrForBlog2.png" alt="3_rollstrForBlog2_Procdess" width="40%" min-width="200px" itemprop="image">`   `
+<img src="/assets/images/INU/java/hw2/3_rollstrForBlog4.png" alt="3_rollstrForBlog4_Procdess" width="40%" min-width="200px" itemprop="image">
+
+<br><br><img src="/assets/images/INU/java/hw2/3_zero.png" alt="3_zero_Procdess" width="40%" min-width="200px" itemprop="image">`Practice 3 0 입력 시 종료`<br>
+
+</div>
+</details>
+
+<br><br>
 
 
+# 
+
+<details>
+<summary><span style="color:blue">Practice (1) Practice (1) 현재 날짜와 시간 출력 -  소스 코드 (클릭)</span></summary>
+<div markdown="1">
+
+<img src="/assets/images/INU/java/hw2/1_printDayAndTime.png" alt="1_printDayAndTime_Procdess" width="100%" min-width="200px" itemprop="image"><br>`Practice 1 실행 결과`<br>
+
+</div>
+</details>
+
+<br><br>
 
 
+# 
 
+<details>
+<summary><span style="color:blue">Practice (1) Practice (1) 현재 날짜와 시간 출력 -  소스 코드 (클릭)</span></summary>
+<div markdown="1">
+
+<img src="/assets/images/INU/java/hw2/1_printDayAndTime.png" alt="1_printDayAndTime_Procdess" width="100%" min-width="200px" itemprop="image"><br>`Practice 1 실행 결과`<br>
+
+</div>
+</details>
+
+<br><br>
 
 
 
@@ -91,7 +214,6 @@ Visit my Programming blog: https://carefreelife98.github.io -->
 
 [처음으로~](#){: .btn .btn--primary }
 
-`참고:`[Inflearn - 김영한님_강의](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-mvc-1/dashboard)<br><br>
 
 ### Task Lists
 
