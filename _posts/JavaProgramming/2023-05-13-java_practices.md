@@ -22,23 +22,29 @@ Visit my Programming blog: https://carefreelife98.github.io -->
     - 13시 30분 20초
 ``` 
 
-- Calendar 클래스의 특징
-  - java.util 패키지
-  - 시간과 날짜 정보를 저장하고 관리
-    - 년, 월, 일, 요일, 시간, 분, 초, 밀리초, 오전 오후 등
-    - Calendar 클래스의 get()과 set()에서 사용하는 상수
+> - **Calendar 클래스의 특징**
+>   - java.util 패키지
+>   - 시간과 날짜 정보를 저장하고 관리
+>     - 년, 월, 일, 요일, 시간, 분, 초, 밀리초, 오전 오후 등
+>     - Calendar 클래스의 get()과 set()에서 사용하는 상수
+> - 매우 간단한 예제이다. Calender 클래스를 활용하여 출력해보자.
 
 |field|mean|field|mean|
 |---|---|---|---|---|
 |YEAR|년도|DAY_OF_MONTH|한 달의 날짜|
-|MONTH|달(0~11 이므로 +1 해 줘야함)|DAY_OF_WEEK|한 주의 요일|
+|MONTH|달(0~11 이므로 +1 해줘야 함)|DAY_OF_WEEK|한 주의 요일|
 |HOUR|시간(0~11)|AM_PM|오전 / 오후 구분|
 |HOUR_OF_DAY|24시간 기준 시간|MINUTE|분|
 |SECOND|초|MILLISECOND|밀리 초|
 
-> - 매우 간단한 예제이다. Calender 클래스를 활용하여 출력해보자.
+<details>
+<summary><span style="color:blue">Practice (1) (클릭)</span></summary>
+<div markdown="1">       
 
 <img src="/assets/images/INU/Java/.png" alt="_Procdess" width="100%" min-width="200px" itemprop="image"><br>``<br>
+</div>
+</details>
+
 
 
 
@@ -66,7 +72,7 @@ Visit my Programming blog: https://carefreelife98.github.io -->
 
 
 <details>
-<summary><h1><span style="color:blue">(클릭)</span></h1></summary>
+<summary><span style="color:blue">Practice (1) (클릭)</span></summary>
 <div markdown="1">       
 
 </div>
