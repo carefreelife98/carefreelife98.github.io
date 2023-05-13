@@ -118,7 +118,7 @@ public class _2_StringToDay {
 <br><br>
 
 
-# 문자열 회전하기
+# 3. 문자열 회전하기
 
 ```
 문자열과 정수 입력하여, 정수(양수, 음수)만큼 회전하는 문자열 출력
@@ -149,7 +149,21 @@ public class _2_StringToDay {
 <br><br>
 
 
-# 
+# 4. 문자열 입력으로 계산 후 결과 출력 - Vector<E> , StringTokenizer, Scanner
+
+
+문자열 입력 예: “35+40-543-42+42-23” <br>
+    • 입력되는 문자열은 매번 변경 가능<br>
+    • 길이 제한 없음<br>
+• Vector<E>, StringTokenizer, Scanner 등 클래스 사용 <br>
+• 연산은 덧셈과 뺄셈만 가능<br>
+• 앞에 있는 연산부터 순차적으로 진행<br>
+• 35++40과 같이 입력되면 프로그램 종료<br>
+{: .notice--info}
+{: style="text-align: left;"}
+
+> - 출력 예시
+> - <img src="/assets/images/INU/java/hw2/4_inputStringCalculate.png" alt="4_inputStringCalculate_Procdess" width="60%" min-width="200px" itemprop="image"><br>`Practice 4 출력 예시 / 결과`<br>
 
 <details>
 <summary><span style="color:blue">Practice (1) Practice (1) 현재 날짜와 시간 출력 -  소스 코드 (클릭)</span></summary>
