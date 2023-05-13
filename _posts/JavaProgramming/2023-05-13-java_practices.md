@@ -1,5 +1,5 @@
 ---
-title: "Java 5 Practices"
+title: "Java 5 Practices - Calendar, "
 categories:
   - Java
 tags:
@@ -12,7 +12,7 @@ toc_label: "Carefree to See"
 Visit my Programming blog: https://carefreelife98.github.io --> 
 ---
 
-# 1. 현재 날짜와 시간 출력 - Calendar
+# 1. 현재 날짜와 시간 출력 - Calendar, Vector<E>, LinkedList<E>, StringTokenizer, Scanner
 
 ```
 - 자바 애플리케이션이 실행될 때 시스템 날짜와 시간 정보를 다음과 같이 출력
@@ -118,7 +118,7 @@ public class _2_StringToDay {
 <br><br>
 
 
-# 3. 문자열 회전하기
+# 3. 문자열 회전하기 - LinkedList<E>
 
 ```
 문자열과 정수 입력하여, 정수(양수, 음수)만큼 회전하는 문자열 출력
@@ -129,7 +129,7 @@ public class _2_StringToDay {
 <img src="/assets/images/INU/java/hw2/3_outputEX.png" alt="3_outputEX_Procdess" width="100%" min-width="200px" itemprop="image"><br>`Practice 3 출력 예시`<br>
 
 <details>
-<summary><span style="color:blue">Practice (1) Practice (1) 현재 날짜와 시간 출력 -  소스 코드 (클릭)</span></summary>
+<summary><span style="color:blue">Practice (3) 문자열 회전하기 - 소스 코드 (클릭)</span></summary>
 <div markdown="1">
 
 ```java
@@ -152,9 +152,9 @@ public class _2_StringToDay {
 # 4. 문자열 입력으로 계산 후 결과 출력 - Vector<E> , StringTokenizer, Scanner
 
 
-문자열 입력 예: “35+40-543-42+42-23” <br>
-    • 입력되는 문자열은 매번 변경 가능<br>
-    • 길이 제한 없음<br>
+><h1><span style="color: darkorange">문자열 입력 예: “35+40-543-42+42-23”</span></h1><br>
+• 입력되는 문자열은 매번 변경 가능<br>
+• 길이 제한 없음<br>
 • Vector<E>, StringTokenizer, Scanner 등 클래스 사용 <br>
 • 연산은 덧셈과 뺄셈만 가능<br>
 • 앞에 있는 연산부터 순차적으로 진행<br>
@@ -166,10 +166,12 @@ public class _2_StringToDay {
 > - <img src="/assets/images/INU/java/hw2/4_inputStringCalculate.png" alt="4_inputStringCalculate_Procdess" width="60%" min-width="200px" itemprop="image"><br>`Practice 4 출력 예시 / 결과`<br>
 
 <details>
-<summary><span style="color:blue">Practice (1) Practice (1) 현재 날짜와 시간 출력 -  소스 코드 (클릭)</span></summary>
+<summary><span style="color:blue">Practice (4) 문자열 입력으로 계산 후 결과 출력 -  소스 코드 (클릭)</span></summary>
 <div markdown="1">
 
-<img src="/assets/images/INU/java/hw2/1_printDayAndTime.png" alt="1_printDayAndTime_Procdess" width="100%" min-width="200px" itemprop="image"><br>`Practice 1 실행 결과`<br>
+```java
+소스코드 - 23.5.16 공개!
+```
 
 </div>
 </details>
@@ -177,13 +179,29 @@ public class _2_StringToDay {
 <br><br>
 
 
-# 
+# 5. 로또 번호 생성기
+
+><img src="/assets/images/INU/java/hw2/lotto.png" alt="lotto_Procdess" width="70%" min-width="200px" itemprop="image"><br><br>
+><h1><span style="color: darkorange"> 로또번호는 자연수 1~45에서 총 7개 숫자를 중복없이 생성</span></h1><br><br>
+> **작업 순서**<br>
+> • 1) 숫자 6개를 랜덤으로 추출<br>
+> • 2) 추출된 수는 오름차순 정렬<br>
+> • 3) 마지막 보너스 숫자도 랜덤 추출<br> 
+> • 4) 전체 로또번호 출력<br>
+> • Vector<E>와 같은 컬렉션 사용<br>
+{: .notice--info}
+{: style="text-align: center;"}
+
+> - 출력 예시
+> - <img src="/assets/images/INU/java/hw2/5_lotto.png" alt="5_lotto_Procdess" width="50%" min-width="200px" itemprop="image"><br>`Practice 5 출력 예시`<br>
 
 <details>
-<summary><span style="color:blue">Practice (1) Practice (1) 현재 날짜와 시간 출력 -  소스 코드 (클릭)</span></summary>
+<summary><span style="color:blue">Practice (5) 로또 번호 생성기 -  소스 코드 (클릭)</span></summary>
 <div markdown="1">
 
-<img src="/assets/images/INU/java/hw2/1_printDayAndTime.png" alt="1_printDayAndTime_Procdess" width="100%" min-width="200px" itemprop="image"><br>`Practice 1 실행 결과`<br>
+```java
+소스코드 - 23.5.16 공개!
+```
 
 </div>
 </details>
@@ -193,7 +211,8 @@ public class _2_StringToDay {
 
 
 
-<!-- > <img src="/assets/images/Spring/SpringMVC/springmvcstruct.png" alt="_Procdess" width="100%" min-width="200px" itemprop="image"><br>``<br>
+<!-- 
+> <img src="/assets/images/Spring/SpringMVC/springmvcstruct.png" alt="_Procdess" width="100%" min-width="200px" itemprop="image"><br>``<br>
 `참고:`[Inflearn - 김영한님_강의](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-mvc-1/dashboard)<br><br>
 
 
@@ -213,7 +232,8 @@ public class _2_StringToDay {
 <div markdown="1">       
 
 </div>
-</details> -->
+</details>
+-->
 
 
 <br><br>
