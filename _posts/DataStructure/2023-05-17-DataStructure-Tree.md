@@ -103,6 +103,42 @@ Visit my Programming blog: https://carefreelife98.github.io -->
   - 이진 트리에는 서브 트리간의 순서가 존재한다.
     - 왼쪽 서브트리와 오른쪽 서브트리를 구분한다.
 
+<br><br>
+
+```
+이진 트리의 성질
+```
+
+> <img src="/assets/images/INU/datastructure/btreelogic.png" alt="btreelogic_Procdess" width="100%" min-width="200px" itemprop="image"><br>`이진 트리의 성질 1` <br><br>
+
+- 노드의 개수가 n개 이면 간선(edge)의 개수는 n-1 개.
+  - 이진트리에서의 노드는 루트를 제외하면 정확하게 하나의 부모 노드를 가진다.
+  - 부모와 자식 간에는 정확하게 하나의 간선만이 존재 하므로 간선의 개수는 항상 n-1 개가 된다.
+
+> <img src="/assets/images/INU/datastructure/btreelogic2.png" alt="btreelogic2_Procdess" width="100%" min-width="200px" itemprop="image"><br>`이진 트리의 성질 2` <br><br>
+
+- **높이가 최대 h인 이진트리**의 경우, **최소 h개의 노드**를 가지며 **최대 2^h-1개의 노드**를 가진다.
+
+> <img src="/assets/images/INU/datastructure/btreelogic3.png" alt="btreelogic3_Procdess" width="100%" min-width="200px" itemprop="image"><br>`이진 트리의 성질 3` <br><br>
+
+- n개의 노드를 가지는 이진 트리의 높이
+  - 최대 n
+  - 최소 ⌈log(n+1)⌉
+
+<br><br>
+
+```
+이진 트리의 분류
+```
+
+> <img src="/assets/images/INU/datastructure/kindofbtree.png" alt="kindofbtree_Procdess" width="100%" min-width="200px" itemprop="image"><br>`이진 트리의 분류` <br><br>
+
+<h3>포화 이진 트리 (full binary tree)</h3>
+
+
+
+
+
 
 
     
