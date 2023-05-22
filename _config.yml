@@ -106,11 +106,11 @@ analytics:
 author:
   name             : "Chae Seungmin"
   avatar           : "/assets/images/author.jpg"
-  bio              : "I am a programmer    chasing carefree life."
-  location         : "Incheon, Republic of Korea"
+  bio              : "Chasing carefree life."
+  location         : "Republic of Korea"
   email            :
   links:
-    - label: "csm4903@naver.com"
+    - label: "csm4903"
       icon: "fas fa-fw fa-envelope-square"
       url: "csm4903@naver.com"
     - label: "Website"
