@@ -80,7 +80,9 @@ Visit my Programming blog: https://carefreelife98.github.io -->
 
 > 트리의 종류에는 크게 이진 트리(binary tree)와 일반 트리가 있다.
 
-<h1>이진 트리의 종류 (Binary Tree)</h1>
+<br><br>
+
+# 이진 트리의 소개 (Binary Tree)
 
 > ```java
 > -----------------------------------------------------
@@ -106,35 +108,61 @@ Visit my Programming blog: https://carefreelife98.github.io -->
 <br><br>
 
 ```
-이진 트리의 성질
+2-1. 이진 트리의 성질
 ```
 
-> <img src="/assets/images/INU/datastructure/btreelogic.png" alt="btreelogic_Procdess" width="100%" min-width="200px" itemprop="image"><br>`이진 트리의 성질 1` <br><br>
+> <img src="/assets/images/INU/datastructure/btreelogic.png" alt="btreelogic_Procdess" width="100%" min-width="200px" itemprop="image"><br>`이진 트리의 성질 1`<br>
 
 - 노드의 개수가 n개 이면 간선(edge)의 개수는 n-1 개.
+  - [why ?]
   - 이진트리에서의 노드는 루트를 제외하면 정확하게 하나의 부모 노드를 가진다.
   - 부모와 자식 간에는 정확하게 하나의 간선만이 존재 하므로 간선의 개수는 항상 n-1 개가 된다.
 
-> <img src="/assets/images/INU/datastructure/btreelogic2.png" alt="btreelogic2_Procdess" width="100%" min-width="200px" itemprop="image"><br>`이진 트리의 성질 2` <br><br>
+<br><br>
+
+> <img src="/assets/images/INU/datastructure/btreelogic2.png" alt="btreelogic2_Procdess" width="100%" min-width="200px" itemprop="image"><br>`이진 트리의 성질 2`<br>
 
 - **높이가 최대 h인 이진트리**의 경우, **최소 h개의 노드**를 가지며 **최대 2^h-1개의 노드**를 가진다.
+  - [why ?]
+  - 한 레벨에는 적어도 하나의 노드가 존재.
+  - 높이가 h인 이진트리는 적어도(최소) h개의 노드를 가진다. = 경사 이진트리
+  - 하나의 노드는 최대 2개의 자식 노드를 가질 수 있다.
+    - 따라서, **레벨 i에서의 최대 노드 개수는 2^(i-1)** 이 된다.
+    - 그러므로, 아래와 같이 전체 노드의 최대 개수를 구할 수 있는 식이 완성된다.
+      <img src="/assets/images/INU/datastructure/maxnodecal.png" alt="maxnodecal_Procdess" width="30%" min-width="200px" itemprop="image"><br>`이진 트리의 최대 노드 개수 (전체)`<br>
 
-> <img src="/assets/images/INU/datastructure/btreelogic3.png" alt="btreelogic3_Procdess" width="100%" min-width="200px" itemprop="image"><br>`이진 트리의 성질 3` <br><br>
+<br><br>
+
+> <img src="/assets/images/INU/datastructure/btreelogic3.png" alt="btreelogic3_Procdess" width="100%" min-width="200px" itemprop="image"><br>`이진 트리의 성질 3` <br>
 
 - n개의 노드를 가지는 이진 트리의 높이
+  [why ?]
   - 최대 n
+    - 레벨 당 최소 하나의 노드가 존재 해야 하므로 n개의 노드 존재 시 가능한 최대 높이는 n이다.
   - 최소 ⌈log(n+1)⌉
+    - 높이 h의 이진 트리가 가질 수 있는 노드의 최대값은 2^h - 1
+    - n <= 2^h - 1 의 부등식이 성립 할 수 있다.
+    - 양 변에 log를 취하여 정리 : h >= log(n+1)
+    - h는 정수이어야 하므로 h >= ⌈log(n+1)⌉ 와 같이 올림 연산을 취해준다.
 
 <br><br>
 
 ```
-이진 트리의 분류
+2-2. 이진 트리의 분류
 ```
 
-> <img src="/assets/images/INU/datastructure/kindofbtree.png" alt="kindofbtree_Procdess" width="100%" min-width="200px" itemprop="image"><br>`이진 트리의 분류` <br><br>
+> <img src="/assets/images/INU/datastructure/kindofbtree.png" alt="kindofbtree_Procdess" width="100%" min-width="200px" itemprop="image"><br>`이진 트리의 분류` <br>
 
-<h3>포화 이진 트리 (full binary tree)</h3>
+<h3>1. 포화 이진 트리 (full binary tree)</h3>
 
+> <img src="/assets/images/INU/datastructure/maxbtree.png" alt="maxbtree_Procdess" width="100%" min-width="200px" itemprop="image"><br>`이진 트리의 분류` <br>
+
+- 말 그대로 이진 트리의 각 레벨 마다의 최대 노드 만큼 꽉 채워져 있는 이진트리이다.
+  - 높이가 k인 포화 이진트리는 정확히 2^k - 1 개의 노드를 가진다.
+  - 일반적으로 포화이진트리의 노드 개수는 아래와 같이 계산된다.
+    - <img src="/assets/images/INU/datastructure/maxbtreecal.png" alt="maxbtreecal_Procdess" width="70%" min-width="200px" itemprop="image"><br>`포화 이진 트리에서의`<br>`전체 노드 개수 = 2^(1-1) + 2^(2-1) + 2^(3-1) + 2^(4-1) = 2^4 - 1 = 15` <br>
+  - 포화 이진 트리는 위 사진과 같이 번호를 붙일 수 있으며, 레벨 단위로 왼쪽에서 오른쪽으로 부여한다.
+    - 포화 이진 트리에서의 번호는 항상 일정하다. - 루트 노드의 오른쪽 자식 번호는 항상 '3'이다.  
 
 
 
