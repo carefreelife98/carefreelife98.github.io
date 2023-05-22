@@ -13,10 +13,17 @@ toc_label: "Carefree to See"
 <!-- Created by Chae Seungm Min - CarefreeLife
 Visit my Programming blog: https://carefreelife98.github.io --> 
 
-```java
-
-coming soon
 ```
+1. 트리의 개념
+```
+
+# 트리의 개념
+
+<img src="/assets/images/INU/datastructure/tree-in-data-structure.png" alt="tree-in-data-structure_Procdess" width="80%" min-width="200px" itemprop="image"><br>`자료 구조의 트리(Tree)`[이미지 출처](https://www.scaler.com/topics/data-structures/tree-data-structure/) <br><br>
+
+> 이전에 배운 선형 자료 구조와 달리 데이터 간의 계층이 존재한다면 우리는 트리(Tree)라는 자료구조를 사용해야 한다.
+>  - 선형 자료 구조 (linear data structure): 리스트, 스택, 큐 등
+>  - 계층적인 자료구조(hierarchical structure)의 예 - 가계도, 컴퓨터의 디렉토리 구조 등
 
 
 
@@ -31,7 +38,7 @@ coming soon
 
 
     
-<!-- > <img src="/assets/images/Spring/SpringMVC/springmvcstruct.png" alt="_Procdess" width="100%" min-width="200px" itemprop="image"><br>``<br>
+<!-- > <img src="/assets/images/INU/datastructure/.png" alt="_Procdess" width="100%" min-width="200px" itemprop="image"><br>`DeleteSameNodes 실행 결과` <br><br>
 `참고:`[Inflearn - 김영한님_강의](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-mvc-1/dashboard)<br><br>
 
 
@@ -66,7 +73,8 @@ coming soon
 
 [처음으로~](#){: .btn .btn--primary }
 
-`참고:`[Inflearn - 김영한님_강의](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-mvc-1/dashboard)<br><br>
+<span style="color:grey">`참고: C언어로 쉽게 풀어쓴 자료구조 <개정 3판> 천인국, 공용해, 하상국 지음`</span><br><br><br>
+
 
 ### Task Lists
 > 
