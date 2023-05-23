@@ -197,6 +197,7 @@ Visit my Programming blog: https://carefreelife98.github.io -->
 > <img src="/assets/images/INU/datastructure/btreewitharr.png" alt="btreewitharr_Procdess" width="100%" min-width="200px" itemprop="image"><br>`이진 트리의 배열 표현법` <br>
 > - 그림 a를 보면, 트리의 각 노드에 번호가 먼저 부여되고, 해당 번호를 index로 하여 배열에 순차적으로 저장된다.
 >   - 포화이진트리 및 완전이진트리의 경우에는 노드가 번호 순으로 전부 존재하므로 배열의 중간에 빈 공간이 생기지 않는다.
+>     - 간선의 밀도(density)가 높다면 배열 표현법을 사용하자.
 >   - 극단적인 예로 경사이진트리와 같은 일반 이진트리의 경우에는 각 레벨마다 빈 노드가 존재하므로 배열 표현법을 사용시 많은 메모리의 누수가 발생한다.
 
 >**배열 표현법에서는 인덱스만 알면 노드의 부모나 자식을 쉽게 알 수 있으며 다음과 같은 공식이 존재한다.**<br><br>
@@ -361,6 +362,13 @@ int main(void) {
 ```
 문제의 구조는 같으나 크기만 점차 작아지는 경우는 이전에 배웠던 "순환(recursion)"을 사용할 수 있다
 이와 같은 이유로 이진 트리의 순회는 순환 알고리즘을 적용하여 구현할 수 있다.
+순환 호출을 사용하게 되면 스택을 사용하게 되는 것이다. (코드상에는 존재하지 않는다.)
+
+추가적으로 수식에서 각 순회 방법을 사용하면 이전에 배운 표기법을 아래와 같이 도출 할 수 있다.
+
+전위 순회 - 전위표기법
+후위 순회 - 후위표기법
+중위 순회 - 중위 표기법
 ```
 
 <br><br>      
@@ -424,8 +432,221 @@ int main(void) {
 ><img src="/assets/images/INU/datastructure/postorder.png" alt="postorder_Procdess" width="100%" min-width="200px" itemprop="image"><br><br>`이진 트리의 후위 순회` <br>
 
 - 후위 순회도 전위, 중위 순회와 같은 방식의 알고리즘이나, 순서만 다르다.
+- 아래에서부터 거슬러 올라가며 데이터를 쌓아 최종 데이터를 도출하는 방식에 유용하다.
+  - 아래에서부터 데이터를 저장한 후 해당 노드를 지워가는 방식으로 구현.
 
 ><img src="/assets/images/INU/datastructure/postorderusage.png" alt="postorderusage_Procdess" width="100%" min-width="200px" itemprop="image"><br><br>`후위 순회는 디렉터리의 용량 계산과 같은 알고리즘에 유용하게 사용된다.` <br>
+
+<br><br>
+
+# 전위, 중위, 후위 순회 구현
+
+><h1>알고리즘</h1>
+>함수의 매개변수는 루트를 가리키는 포인터<br>
+>좌, 우 서브트리 방문 함수 = 전체트리 방문 함수를 재호출 (다른점 : 매개변수 - 서브 트리의 루트노드를 매개변수로)
+{: .notice--info}
+{: style="text-align: center;"}
+
+```c
+#include<stdio.h>
+#include<stdlib.h>
+#include<memory.h>
+
+typedef struct TreeNode {
+    int data;
+    struct TreeNode* left;
+    struct TreeNode* right;
+} TreeNode;
+
+// 전위 순회
+void preorder(TreeNode* root) {
+    if (root != NULL){
+        printf("[%d]", root->data); // 노드 방문 및 작업 수행
+        preorder(root->left); // 왼쪽 서브트리 순회
+        preorder(root->right); //오른쪽 서브트리 순회
+    }
+}
+
+
+// 중위 순회
+void inorder(TreeNode* root){
+    if(root != NULL){
+        inorder(root->left); // 왼쪽 서브트리 순회
+        printf("[%d]", root->data); // 노드 방문 및 작업 수행
+        inorder(root->right); //오른쪽 서브트리 순회
+    }
+}
+
+// 후위 순회
+void postorder(TreeNode* root) {
+    if(root != NULL){
+        postorder(root->left); // 왼쪽 서브트리 순회
+        postorder(root->right); //오른쪽 서브트리 순회
+        printf("[%d]", root->data); // 노드 방문 및 작업 수행
+    }
+}
+
+//		 15
+//	 4		 20
+// 	1	   16  25
+TreeNode n1={1, NULL, NULL};
+TreeNode n2={4, &n1, NULL};
+TreeNode n3={16, NULL, NULL};
+TreeNode n4={25, NULL, NULL};
+TreeNode n5={20, &n3, &n4};
+TreeNode n6={15, &n2, &n5};
+TreeNode *root= &n6;
+
+int main(void) {
+	printf("중위 순회=");
+	inorder(root);
+	printf("\n");
+
+	printf("전위 순회=");
+	preorder(root);
+	printf("\n");
+
+	printf("후위 순회=");
+	postorder(root);
+	printf("\n");
+	return 0;
+}
+```
+
+<img src="/assets/images/INU/datastructure/prepostinorder.png" alt="prepostinorder_Procdess" width="70%" min-width="200px" itemprop="image"><br>`실행 결과` <br><br>
+
+<br><br>
+
+# 레벨 순회 (level order)
+
+```
+레벨 순회는 각 노드를 레벨 순으로 검사하는 순회 방법이다. 
+```
+
+- 루트 노드의 레벨은 1이고 하위 레벨로 내려갈수록 레벨은 증가한다.
+- 동일한 레벨의 경우에는 좌 -> 우 순으로 방문한다.
+- 지금까지의 순회법이 스택(순환 호출)을 사용했던 것에 비해 레벨 순회는 큐(Queue)를 사용한다.
+  - 큐에 더 이상 노드가 남아있지 않을 때까지 위와 같은 과정을 반복.
+
+><img src="/assets/images/INU/datastructure/leveltraversal.png" alt="leveltraversal_Procdess" width="100%" min-width="200px" itemprop="image"><br>`큐(queue)를 사용하는 레벨 순회의 모습`<br>
+
+- 레벨 순회 코드는 큐에 노드가 하나라도 있으면 계속 반복하는 코드로 이루어짐.
+- 한번의 반복 : 큐에 있는 노드를 꺼내 방문(dequeue) 후 해당 노드의 자식 노드를 큐에 삽입(enqueue)
+
+```c
+#include<stdio.h>
+#include<stdlib.h>
+#include<memory.h>
+
+// ================ 원형큐 코드 시작 =================
+#define MAX_QUEUE_SIZE 100
+
+typedef struct TreeNode {
+    int data;
+    struct TreeNode* left;
+    struct TreeNode* right;
+} TreeNode;
+
+typedef TreeNode * element;
+
+typedef struct { // 큐 타입
+	element data[MAX_QUEUE_SIZE];
+	int front, rear;
+} QueueType;
+
+// 오류 함수
+void error(char *message)
+{
+	fprintf(stderr, "%s\n", message);
+	exit(1);
+}
+// 공백 상태 검출 함수
+void init_queue(QueueType *q)
+{
+	q->front = q->rear = 0;
+}
+
+// 공백 상태 검출 함수
+int is_empty(QueueType *q)
+{
+	return (q->front == q->rear);
+}
+
+// 포화 상태 검출 함수
+int is_full(QueueType *q)
+{
+	return ((q->rear + 1) % MAX_QUEUE_SIZE == q->front);
+}
+
+// 삽입 함수
+void enqueue(QueueType *q, element item)
+{
+	if (is_full(q))
+		error("큐가 포화상태입니다");
+	q->rear = (q->rear + 1) % MAX_QUEUE_SIZE;
+	q->data[q->rear] = item;
+}
+
+// 삭제 함수
+element dequeue(QueueType *q)
+{
+	if (is_empty(q))
+		error("큐가 공백상태입니다");
+	q->front = (q->front + 1) % MAX_QUEUE_SIZE;
+	return q->data[q->front];
+}
+
+// 레벨 순회
+void level_order(TreeNode* ptr)
+{
+	QueueType q;
+
+	init_queue(&q);	 // 큐 초기화
+
+	if (ptr == NULL) return;
+	enqueue(&q, ptr);
+	while (!is_empty(&q)) {
+		ptr = dequeue(&q);
+		printf(" [%d] ", ptr->data);
+		if (ptr->left)
+			enqueue(&q, ptr->left);
+		if (ptr->right)
+			enqueue(&q, ptr->right);
+	}
+}
+//		 15
+//	 4		 20
+// 	1	   16  25
+TreeNode n1={1, NULL, NULL};
+TreeNode n2={4, &n1, NULL};
+TreeNode n3={16, NULL, NULL};
+TreeNode n4={25, NULL, NULL};
+TreeNode n5={20, &n3, &n4};
+TreeNode n6={15, &n2, &n5};
+TreeNode *root= &n6;
+
+int main(void) {
+	// printf("중위 순회=");
+	// inorder(root);
+	// printf("\n");
+
+	// printf("전위 순회=");
+	// preorder(root);
+	// printf("\n");
+
+	// printf("후위 순회=");
+	// postorder(root);
+	// printf("\n");
+
+    // 큐를 사용하는 레벨 순회 추가
+	printf("레벨 순회=");
+	level_order(root);
+	printf("\n");
+	return 0;
+}
+```
+
+><img src="/assets/images/INU/datastructure/leveltraversaltest.png" alt="leveltraversaltest_Procdess" width="100%" min-width="200px" itemprop="image"><br>`레벨 순회 실행 결과`<br>
 
 
 
@@ -441,17 +662,11 @@ int main(void) {
 <!-- > <img src="/assets/images/INU/datastructure/.png" alt="_Procdess" width="100%" min-width="200px" itemprop="image"><br>`DeleteSameNodes 실행 결과` <br><br>
 `참고:`[Inflearn - 김영한님_강의](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-mvc-1/dashboard)<br><br>
 
-
 `사진출처:`[]()
 <span style="color:green">``</span>
 
-```
-
-```
-> 
 {: .notice--danger}
 {: style="text-align: center;"}
-
 
 <details>
 <summary><span style="color:blue">(클릭)</span></summary>
