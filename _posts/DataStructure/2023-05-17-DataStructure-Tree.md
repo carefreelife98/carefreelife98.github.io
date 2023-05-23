@@ -198,28 +198,219 @@ Visit my Programming blog: https://carefreelife98.github.io -->
 > - 그림 a를 보면, 트리의 각 노드에 번호가 먼저 부여되고, 해당 번호를 index로 하여 배열에 순차적으로 저장된다.
 >   - 포화이진트리 및 완전이진트리의 경우에는 노드가 번호 순으로 전부 존재하므로 배열의 중간에 빈 공간이 생기지 않는다.
 >   - 극단적인 예로 경사이진트리와 같은 일반 이진트리의 경우에는 각 레벨마다 빈 노드가 존재하므로 배열 표현법을 사용시 많은 메모리의 누수가 발생한다.
->
+
+>**배열 표현법에서는 인덱스만 알면 노드의 부모나 자식을 쉽게 알 수 있으며 다음과 같은 공식이 존재한다.**<br><br>
+>노드 i의 부모노드 인덱스 = i/2<br>
+>노드 i의 왼쪽 자식 노드 인덱스 = 2 * i<br>
+>노드 i의 부모노드 인덱스 = 2 * i + 1<br>
+{: .notice--info}
+{: style="text-align: center;"}
+
 >인덱스 0을 사용하지 않는 편이 계산을 간단하게 만들기 때문에 index[0]은 사용하지 않는다.
->{: .notice--danger}
->{: style="text-align: center;"}
+{: .notice--danger}
+{: style="text-align: center;"}
 
+<br><br>
 
+<h3>링크 표현법</h3>
 
+- 트리에서의 노드가 구조체로 표현되고, 각 노드가 포인터를 가지고 있다.
+- 해당 포인터를 이용하여 노드와 노드를 연결하는 방법이다.
 
+> <img src="/assets/images/INU/datastructure/btreewithlink.png" alt="btreewithlink_Procdess" width="100%" min-width="200px" itemprop="image"><br>`이진 트리 - 링크 표현법` <br>
 
+- 각 노드의 모습을 보면, 노드마다 3개의 필드를 가지는 것을 볼 수 있다.
+  - 데이터 필드 : 데이터를 저장
+  - 왼쪽 포인터 필드 : 왼쪽 자식 노드를 가리키는 포인터 필드
+  - 오른쪽 포인터 필드 : 오른쪽 자식 노드를 가리키는 포인터 필드
+    - 좌우의 포인터 필드를 사용하여 부모 노드와 자식 노드를 연결한다.
 
+> 노드를 C언어의 구조체와 포인터를 사용하여 정의해보자.
 
+```c
+// 노드의 정의
+// 구조체를 사용하여 노드의 구조를 정의
+// 포인터를 사용하여 링크의 정의
+// TreeNode 는 트리 노드에 대한 타입을 새로 정의 한 것.
+typedef struct TreeNode {
+        int data;
+        struct TreeNode* left;
+        struct TreeNode* right;
+} TreeNode;
+```
 
+링크로 표현된 트리는 루트노드(최상단 노드)를 가리키는 포인터만 있으면 트리 내부의 모든 노드들에 접근할 수 있다.
+{: .notice--info}
+{: style="text-align: center;"}
 
+<br><br>
 
+**C언어와 링크 표현법을 사용하여 간단하게 이진트리를 구성해보자.**
 
+```c
+#include<stdio.h>
+#include<stdlib.h>
+#include<memory.h>
 
+typedef struct TreeNode {
+    int data;
+    struct TreeNode* left;
+    struct TreeNode* right;
+} TreeNode;
 
-
-
-
-
+int main(void) {
     
+    // 노드 세개 생성
+    TreeNode *n1; 
+    TreeNode *n2;
+    TreeNode *n3;
+    
+    n1 = (TreeNode*)malloc(sizeof(TreeNode));
+    n2 = (TreeNode*)malloc(sizeof(TreeNode));
+    n3 = (TreeNode*)malloc(sizeof(TreeNode));
+
+    // 첫번째 노드 n1을 설정
+    n1->data = 10;
+    n1->left = n2;
+    n1->right = n3;
+
+    // 두번째 노드 n2을 설정
+    n2->data = 10;
+    n2->left = NULL; // 자식노드가 없다 == leaf 노드
+    n2->right = NULL;
+
+    // 세번째 노드 n3을 설정
+    n3->data = 30;
+    n3->left = NULL; // 자식노드가 없다 == leaf 노드
+    n3->right = NULL;
+
+    drawBinarySearchTree(n1, 0);
+
+    // 동적 할당 메모리 반환
+    free(n1);
+    free(n2);
+    free(n3);
+    
+    return 0;
+}
+```
+
+><img src="/assets/images/INU/datastructure/basicBtree.png" alt="basicBtree_Procdess" width="70%" min-width="200px" itemprop="image"><br>`실행 결과` <br>
+> - 왼쪽 부터 최상단 루트 노드이다.
+>   - 노드 n1 = 10
+>   - 노드 n2 = 20
+>   - 노드 n3 = 30 <br><br>
+> 위와 같이 트리가 잘 구성된 것을 볼 수 있다.<br><br>
+> - **아래는 이진 탐색 트리를 시각화 시켜주는 함수이다**.
+>
+>```c
+>// 이진 탐색 트리를 그리는 함수
+>void drawBinarySearchTree(TreeNode* root, int space) {
+>    if (root == NULL) {
+>        return;
+>    }
+>
+>    space += 5;
+>
+>    drawBinarySearchTree(root->right, space);
+>
+>    printf("\n");
+>    for (int i = 5; i < space; i++) {
+>        printf(" ");
+>    }
+>    printf("%d\n", root->data);
+>
+>    drawBinarySearchTree(root->left, space);
+>}
+>```
+
+<br><br>
+
+# 이진 트리의 순회
+
+```
+이진트리의 순회(traversal) 란?
+
+이진트리에 속하는 모든 노드를 한 번씩 방문하여 노드가 가지고 있는 데이터를 목적에 맞게 처리하는 것을 의미.
+이전의 선형 자료구조는 데이터를 순회하는 방법이 하나 뿐이었으나 트리는 여러 순서로 각 노드가 가지고 있는 데이터에 접근 가능하다.
+```
+
+<br><br>
+
+# 이진 트리의 순회 방법 3가지
+
+><h1>전위, 중위, 후위 순회</h1>
+>이진 트리를 순회하는 표준 방법에는 전위, 중위, 후위 세 가지 방법이 있다.<br>
+>세가지 방법은 루트 노드와 좌, 우 자식 노드중 <strong><span style="color:palevioletred"><u>어떤 노드를 먼저 방문하는 지</u></span></strong>에 따라 구분 된 것이다.<br><br>
+>루트 방문을 V, 왼쪽 서브 트리 방문을 L, 오른쪽 서브 트리 방문을 R 이라 하자. (일반적으로 왼쪽 서브트리 -> 오른쪽 서브트리 순으로 방문한다)<br><br>
+><strong><span style="color:palevioletred"><u>전위 순회(preorder traversal) - VLR</u></span></strong> : <span style="color:darkorange">루트(V)</span> -> 왼쪽 서브 트리(L) -> 오른쪽 서브 트리(R)<br><br>
+><strong><span style="color:palevioletred"><u>중위 순회(inorder traversal) - LVR</u></span></strong> : 왼쪽 서브 트리(L) -> <span style="color:darkorange">루트(V)</span> -> 오른쪽 서브 트리(R)<br><br>
+><strong><span style="color:palevioletred"><u>후위 순회(postorder traversal) - LRV</u></span></strong> : 왼쪽 서브 트리(L) -> 오른쪽 서브 트리(R) -> <span style="color:darkorange">루트(V)</span><br><br>
+{: .notice--info}
+{: style="text-align: center;"}
+
+><img src="/assets/images/INU/datastructure/Btreetraversal.png" alt="Btreetraversal_Procdess" width="100%" min-width="200px" itemprop="image"><br>`이진 트리의 순회 방법`<br>
+
+- 이진트리에서 루트의 좌, 우 서브 트리도 마찬가지로 이진트리로 구성되어 있는 것을 알 것이다.
+- 따라서 각 서브 트리 방문시에도 같은 순회 방법을 계속해서 적용 해나가며 방문한다.
+  - 이진 트리를 보면 전체 트리와 각 서브트리들의 모양이 같다(공집합을 가진 노드까지 생각하자).
+  - 따라서 전체 트리 순회에 사용한 알고리즘은 서브트리에서도 그대로 사용할 수 있는 것이다.
+  - 대신 작업(문제)의 크기가 점점 작아진다.
+    - 어디서 많이 본 구조이지 않은가?
+
+```
+문제의 구조는 같으나 크기만 점차 작아지는 경우는 이전에 배웠던 "순환(recursion)"을 사용할 수 있다
+이와 같은 이유로 이진 트리의 순회는 순환 알고리즘을 적용하여 구현할 수 있다.
+```
+
+<br><br>      
+
+# 1. 전위 순회 (preorder)
+
+```
+전위 순회는 루트를 먼저 방문한 후 왼쪽 서브트리, 오른쪽 서브트리 순으로 방문한다.
+
+1. 루트 노드를 방문한다.
+2. 왼쪽 서브트리를 방문한다.
+3. 오른쪽 서브트리를 방문한다.
+```
+
+><img src="/assets/images/INU/datastructure/preorder.png" alt="preorder_Procdess" width="100%" min-width="200px" itemprop="image"><br>`이진 트리의 전위 순회` <br>
+
+- 전위 순회에서 루트 노드를 방문했다고 가정해보자.
+  - 다음 차례는 왼쪽 서브트리인데, 왼쪽 서브트리의 어떤 노드를 먼저 방문해야 할까?
+  - 정답은 왼쪽 서브트리의 왼쪽 서브트리를 다시 방문해야 한다.
+  - 앞서 말한 것처럼, 모든 트리는 같은 구조를 가지고 있기 때문에 왼쪽 서브트리에서도 마찬가지로 LVR 을 적용, 왼쪽 서브트리부터 방문한다.
+    - 만약 NULL(트리의 끝)을 만나게 되면, 이후 순서인 오른쪽 서브트리를 방문하고, LVR을 종료하며 이전 레벨로 돌아간다.
+      - 왼쪽 서브트리 각 노드마다의 전체 LVR이 종료 되었으니 가장 처음 실행되었으나 끝나지 않은 처음의 LVR 중 R을 오른쪽 서브트리를 방문하여 실행한다.
+      - 왼쪽 서브트리처럼 오른쪽 서브트리의 각 노드마다의 LVR이 끝나게 되면 전위 순회가 종료 된다. 
+
+><h1>즉, 모든 서브트리에 대하여 같은 알고리즘을 반복하는 것이다.</h1>
+{: .notice--success}
+{: style="text-align: center;"}
+
+<br><br>
+
+# 중위 순회 (inorder)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!-- > <img src="/assets/images/INU/datastructure/.png" alt="_Procdess" width="100%" min-width="200px" itemprop="image"><br>`DeleteSameNodes 실행 결과` <br><br>
 `참고:`[Inflearn - 김영한님_강의](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-mvc-1/dashboard)<br><br>
 
