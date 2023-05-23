@@ -648,7 +648,16 @@ int main(void) {
 
 ><img src="/assets/images/INU/datastructure/leveltraversaltest.png" alt="leveltraversaltest_Procdess" width="100%" min-width="200px" itemprop="image"><br>`레벨 순회 실행 결과`<br>
 
+<br><br>
 
+# 수식 트리
+
+```c
+이진 트리는 수식 트리(expression tree)를 처리하는데 사용될 수 있다.
+피연산자들은 단말 노드(leaf node)가 되고, 연산자들은 비단말 노드가 된다.
+```
+
+><img src="/assets/images/INU/datastructure/expressiontree.png" alt="expressiontree_Procdess" width="100%" min-width="200px" itemprop="image"><br>`이진 트리를 활용한 수식 트리`<br>
 
 
 
