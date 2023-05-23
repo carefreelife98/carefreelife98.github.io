@@ -210,11 +210,11 @@ Visit my Programming blog: https://carefreelife98.github.io -->
 
 ### Task Lists
 > 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
+- [x] 트리의 개념 (Tree)
+- [x] 트리의 용어
+- [x] 트리의 종류
+- [x] 이진 트리의 성질
+- [x] 이진 트리의 분류
 - [x] 
 - [x] 
 - [x] 
