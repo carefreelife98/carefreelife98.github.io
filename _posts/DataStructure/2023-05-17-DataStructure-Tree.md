@@ -389,16 +389,43 @@ int main(void) {
 {: .notice--success}
 {: style="text-align: center;"}
 
+><img src="/assets/images/INU/datastructure/preorderusage.png" alt="preorderusage_Procdess" width="100%" min-width="200px" itemprop="image"><br><br>`전위 순회는 구조화된 문서와 같은 자료를 관리하는 것에 유용하게 사용된다.` <br>
+
 <br><br>
 
 # 중위 순회 (inorder)
 
+```
+중위 순회는 왼쪽 서브트리를 먼저 방문한 후 루트 노드, 오른쪽 서브트리 순으로 방문한다.
 
+1. 왼쪽 서브트리를 방문한다.
+2. 루트 노드를 방문한다.
+3. 오른쪽 서브트리를 방문한다.
+```
 
+><img src="/assets/images/INU/datastructure/inorder.png" alt="inorder_Procdess" width="100%" min-width="200px" itemprop="image"><br><br>`이진 트리의 중위 순회` <br>
 
+- 중위 순회도 전위 순회와 같은 방식의 알고리즘이나, 순서만 다르다.
 
+><img src="/assets/images/INU/datastructure/inorderusage.png" alt="inorderusage_Procdess" width="100%" min-width="200px" itemprop="image"><br><br>`중위 순회는 수식과 같은 자료를 관리하는 것에 유용하게 사용된다.` <br>
 
+<br><br>
 
+# 후위 순회 (postorder)
+
+```
+후위 순회는 왼쪽 서브트리를 먼저 방문한 후 오른쪽 서브트리, 루트 노드 순으로 방문한다.
+
+1. 왼쪽 서브트리를 방문한다.
+2. 오른쪽 서브트리를 방문한다.
+3. 루트 노드를 방문한다.
+```
+
+><img src="/assets/images/INU/datastructure/postorder.png" alt="postorder_Procdess" width="100%" min-width="200px" itemprop="image"><br><br>`이진 트리의 후위 순회` <br>
+
+- 후위 순회도 전위, 중위 순회와 같은 방식의 알고리즘이나, 순서만 다르다.
+
+><img src="/assets/images/INU/datastructure/postorderusage.png" alt="postorderusage_Procdess" width="100%" min-width="200px" itemprop="image"><br><br>`후위 순회는 디렉터리의 용량 계산과 같은 알고리즘에 유용하게 사용된다.` <br>
 
 
 
