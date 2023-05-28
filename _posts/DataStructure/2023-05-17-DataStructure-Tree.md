@@ -648,11 +648,11 @@ int main(void) {
 ><img src="/assets/images/INU/datastructure/leveltraversaltest.png" alt="leveltraversaltest_Procdess" width="100%" min-width="200px" itemprop="image"><br>`레벨 순회 실행 결과`<br>
 
 ><h1>그래서 어떤 순회를 사용해야 하는 건가요?</h1>
->순서에 상관없이 모든 노드를 방문하기만 하면 되는 알고리즘에서는 3가지 순회 중 구현하기 편한 것을 사용하면 된다.<br>
->만약 노드를 방문하여 작업하는 것에 순서가 필요하다면,<br>
->(1.) 자식노드를 처리한 후에 부모노드를 처리 -> 후위 순회 (디렉토리의 용량 계산 - 하위 디렉토리의 용량부터 계산하며 올라와 전체 용량을 계산)<br>
->(2.) 부모노드를 처리한 후에 자식노드를 처리 -> 전위 순회 (구조화 된 문서의 출력 - 제목 -> 목차 -> 챕터 -> 내용)<br>
->(3.) 자식노드의 처리 중간에 부모노드의 처리가 필요한 경우 -> 중위 순회 (수식 트리)<br>
+>순서에 상관없이 모든 노드를 방문하기만 하면 되는 알고리즘에서는 3가지 순회 중 구현하기 편한 것을 사용하면 된다.<br><br>
+>만약 노드를 방문하여 작업하는 것에 **<span style="color:red">순서가 필요</span>**하다면,<br><br>
+>(1.) **<span style="color:royalblue">자식노드를 처리한 후에 부모노드를 처리 -> 후위 순회</span>**<br>(디렉토리의 용량 계산 - 하위 디렉토리의 용량부터 계산하며 올라와 전체 용량을 계산)<br><br>
+>(2.) **<span style="color:royalblue">부모노드를 처리한 후에 자식노드를 처리 -> 전위 순회</span>**<br>(구조화 된 문서의 출력 - 제목 -> 목차 -> 챕터 -> 내용)<br><br>
+>(3.) **<span style="color:royalblue">자식노드의 처리 중간에 부모노드의 처리가 필요한 경우 -> 중위 순회</span>**<br>(수식 트리 - 두 피연산자 사이에 연산자 필요)<br><br>
 {: .notice--success}
 {: style="text-align: center;"}
 
@@ -660,13 +660,29 @@ int main(void) {
 
 # 수식 트리
 
-```c
+```
 이진 트리는 수식 트리(expression tree)를 처리하는데 사용될 수 있다.
 피연산자들은 단말 노드(leaf node)가 되고, 연산자들은 비단말 노드가 된다.
 ```
 
-><img src="/assets/images/INU/datastructure/expressiontree.png" alt="expressiontree_Procdess" width="100%" min-width="200px" itemprop="image"><br>`이진 트리를 활용한 수식 트리`<br>
+><img src="/assets/images/INU/datastructure/expressiontree.png" alt="expressiontree_Procdess" width="100%" min-width="200px" itemprop="image"><br>`이진 트리를 활용한 수식 트리 - a + b 를 수식 트리로 표현한 것`<br><br>
+> 위와 같은 수식 트리를 앞에서 배운 전위, 중위, 후위 순회를 사용하여 읽게 되면<br>
+> 각각 전위, 중위, 후위 표기 수식이 된다.<br><br>
+><img src="/assets/images/INU/datastructure/btreenumcal.png" alt="btreenumcal_Procdess" width="100%" min-width="200px" itemprop="image"><br>`어떤 순회 방법을 사용하냐에 따라 이진 수식 트리의 표기법을 바꿀 수 있다.`<br>
 
+- 수식 트리의 루트 노드는 연산자이고, 그 자식 노드들은 피연산자인 단말 노드부터 연산자인 해당 부모 노드와 만나 연산이 실행된다.<br>
+- 따라서, 연산자들의 피연산자인 양쪽의 자식 노드들을 먼저 꺼내 부모 노드의 연산자로 연산한다.
+  - 이는 자식노드를 먼저 방문한 후 부모노드를 방문하는 후위 순회를 사용해야 하는 것이다.
+
+>```
+>- 프로그램의 구조 -
+>
+>1. 후위 순회를 사용.
+>2. 서브 트리의 값을 순환 호출로 계산.
+>3. 비단말 노드를 방문할 때 양쪽 서브 트리의 값을 노드에 저장된 연산자를 이용하여 계산한다.
+>```
+>
+><img src="/assets/images/INU/datastructure/btreecalsequence.png" alt="btreecalsequence_Procdess" width="70%" min-width="200px" itemprop="image"><br>`수식 트리의 계산 순서`<br>
 
 
 
