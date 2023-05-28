@@ -526,12 +526,12 @@ int main(void) {
 - 루트 노드의 레벨은 1이고 하위 레벨로 내려갈수록 레벨은 증가한다.
 - 동일한 레벨의 경우에는 좌 -> 우 순으로 방문한다.
 - 지금까지의 순회법이 스택(순환 호출)을 사용했던 것에 비해 레벨 순회는 큐(Queue)를 사용한다.
-  - 큐에 더 이상 노드가 남아있지 않을 때까지 위와 같은 과정을 반복.
 
 ><img src="/assets/images/INU/datastructure/leveltraversal.png" alt="leveltraversal_Procdess" width="100%" min-width="200px" itemprop="image"><br>`큐(queue)를 사용하는 레벨 순회의 모습`<br>
 
 - 레벨 순회 코드는 큐에 노드가 하나라도 있으면 계속 반복하는 코드로 이루어짐.
-- 한번의 반복 : 큐에 있는 노드를 꺼내 방문(dequeue) 후 해당 노드의 자식 노드를 큐에 삽입(enqueue)
+- 한번의 반복 : 큐에 있는 노드를 꺼내(dequeue) 방문(작업) 후 해당 노드의 자식 노드를 큐에 삽입(enqueue)
+  - 큐에 더 이상 노드가 남아있지 않을 때까지 위와 같은 과정을 반복.
 
 ```c
 #include<stdio.h>
@@ -555,32 +555,27 @@ typedef struct { // 큐 타입
 } QueueType;
 
 // 오류 함수
-void error(char *message)
-{
+void error(char *message){
 	fprintf(stderr, "%s\n", message);
 	exit(1);
 }
 // 공백 상태 검출 함수
-void init_queue(QueueType *q)
-{
+void init_queue(QueueType *q){
 	q->front = q->rear = 0;
 }
 
 // 공백 상태 검출 함수
-int is_empty(QueueType *q)
-{
+int is_empty(QueueType *q){
 	return (q->front == q->rear);
 }
 
 // 포화 상태 검출 함수
-int is_full(QueueType *q)
-{
+int is_full(QueueType *q){
 	return ((q->rear + 1) % MAX_QUEUE_SIZE == q->front);
 }
 
 // 삽입 함수
-void enqueue(QueueType *q, element item)
-{
+void enqueue(QueueType *q, element item){
 	if (is_full(q))
 		error("큐가 포화상태입니다");
 	q->rear = (q->rear + 1) % MAX_QUEUE_SIZE;
@@ -588,8 +583,7 @@ void enqueue(QueueType *q, element item)
 }
 
 // 삭제 함수
-element dequeue(QueueType *q)
-{
+element dequeue(QueueType *q){
 	if (is_empty(q))
 		error("큐가 공백상태입니다");
 	q->front = (q->front + 1) % MAX_QUEUE_SIZE;
@@ -597,20 +591,25 @@ element dequeue(QueueType *q)
 }
 
 // 레벨 순회
-void level_order(TreeNode* ptr)
-{
+void level_order(TreeNode* ptr){
 	QueueType q;
 
 	init_queue(&q);	 // 큐 초기화
 
 	if (ptr == NULL) return;
+	
+	// 노드 삽입
 	enqueue(&q, ptr);
+	
+	// 큐에 노드가 한 개도 없을 때까지 실행.
 	while (!is_empty(&q)) {
-		ptr = dequeue(&q);
-		printf(" [%d] ", ptr->data);
-		if (ptr->left)
+		ptr = dequeue(&q); // 큐에서 노드를 하나 꺼낸다.		
+		
+		printf(" [%d] ", ptr->data); // 해당 logic의 작업을 한다.
+        
+		if (ptr->left) // 해당 노드의 왼쪽 자식이 있으면 삽입.
 			enqueue(&q, ptr->left);
-		if (ptr->right)
+		if (ptr->right) // 해당 노드의 오른쪽 자식이 있으면 삽입.
 			enqueue(&q, ptr->right);
 	}
 }
@@ -647,6 +646,15 @@ int main(void) {
 ```
 
 ><img src="/assets/images/INU/datastructure/leveltraversaltest.png" alt="leveltraversaltest_Procdess" width="100%" min-width="200px" itemprop="image"><br>`레벨 순회 실행 결과`<br>
+
+><h1>그래서 어떤 순회를 사용해야 하는 건가요?</h1>
+>순서에 상관없이 모든 노드를 방문하기만 하면 되는 알고리즘에서는 3가지 순회 중 구현하기 편한 것을 사용하면 된다.<br>
+>만약 노드를 방문하여 작업하는 것에 순서가 필요하다면,<br>
+>(1.) 자식노드를 처리한 후에 부모노드를 처리 -> 후위 순회 (디렉토리의 용량 계산 - 하위 디렉토리의 용량부터 계산하며 올라와 전체 용량을 계산)<br>
+>(2.) 부모노드를 처리한 후에 자식노드를 처리 -> 전위 순회 (구조화 된 문서의 출력 - 제목 -> 목차 -> 챕터 -> 내용)<br>
+>(3.) 자식노드의 처리 중간에 부모노드의 처리가 필요한 경우 -> 중위 순회 (수식 트리)<br>
+{: .notice--success}
+{: style="text-align: center;"}
 
 <br><br>
 
