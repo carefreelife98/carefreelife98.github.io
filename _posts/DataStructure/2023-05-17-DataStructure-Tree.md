@@ -679,7 +679,7 @@ int main(void) {
 >
 >1. 후위 순회를 사용.
 >2. 서브 트리의 값을 순환 호출로 계산.
->3. 비단말 노드를 방문할 때 양쪽 서브 트리의 값을 노드에 저장된 연산자를 이용하여 계산한다.
+>3. 비단말 노드를 방문할 때 양쪽 서브 트리의 값을 노드에 저장된 연산자를 이용하여 계산.
 >```
 >
 ><img src="/assets/images/INU/datastructure/btreecalsequence.png" alt="btreecalsequence_Procdess" width="70%" min-width="200px" itemprop="image"><br>`수식 트리의 계산 순서`<br>
