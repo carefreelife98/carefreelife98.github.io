@@ -751,8 +751,47 @@ int main(void){
 
 # 트리의 응용 (2) : 디렉토리 용량 계산 - 후위 순회
 
-
-
+><img src="/assets/images/INU/datastructure/directoryCalEX.png" alt="directoryCalEX_Procdess" width="100%" min-width="200px" itemprop="image"><br>`이진 트리의 후위 순회를 이용하여 디렉토리 용량 계산하기`<br>
+>- 트리의 응용 : 디렉토리 용량 계산
+>  - 이진 트리를 사용하기 때문에 하나의 디렉토리 안에 2개를 초과하는 디렉토리가 존재하면 안된다.
+>  - 상위 디렉토리의 용량은 하위 디렉토리 용량의 합을 통해 구할 수 있다.
+>  - 후위 순회를 사용하여 하위 디렉토리를 먼저 방문한 후 루트 노드의 용량을 계산하자.
+>  - 순환 호출되는 함수가 용량을 반환하도록 구현
+>
+>```java
+>#include<stdio.h>
+>#include<stdlib.h>
+>
+>typedef struct TreeNode {
+>int data;
+>struct TreeNode *left;
+>struct TreeNode *right;
+>}TreeNode;
+>
+>int cal_dir_size(TreeNode* root){
+>int left_size, right_size = 0;
+>if(root == NULL){
+>return 0;
+>}
+>left_size = cal_dir_size(root->left); // 왼쪽 자식 값 반환 (L)
+>right_size = cal_dir_size(root->right); // 오른쪽 자식 값 반환 (R)
+>
+>    return root->data + left_size + right_size; // L + R + V 용량 반환
+>}
+>
+>int main (void){
+>TreeNode n4 = { 700, NULL, NULL };
+>TreeNode n5 = { 300, NULL, NULL };
+>TreeNode n3 = { 130, &n4, &n5 };
+>TreeNode n2 = { 20, NULL, NULL };
+>TreeNode n1 = { 0, &n2, &n3 };
+>
+>	printf("디렉토리의 크기=%d\n", cal_dir_size(&n1));
+>   return 0;
+>}
+>```
+>
+><img src="/assets/images/INU/datastructure/BTreeForDirc.png" alt="BTreeForDirc_Procdess" width="100%" min-width="200px" itemprop="image"><br>`디렉토리 용량 계산 결과`<br>
 
 <!-- > <img src="/assets/images/INU/datastructure/.png" alt="_Procdess" width="100%" min-width="200px" itemprop="image"><br>`DeleteSameNodes 실행 결과` <br><br>
 `참고:`[Inflearn - 김영한님_강의](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-mvc-1/dashboard)<br><br>
