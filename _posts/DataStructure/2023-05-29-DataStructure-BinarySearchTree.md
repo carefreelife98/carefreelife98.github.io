@@ -172,11 +172,73 @@ Why? 1. 이진 탐색 트리에서는 "같은 키 값을 갖는 노드" 가 없�
 >**Case 3: 삭제하려는 노드가 두 개의 서브 트리 모두 가지고 있는 경우**
 >
 ><img src="/assets/images/INU/datastructure/BSTreeDeleteBothSubtree.png" alt="BSTreeDeleteBothSubtree_Procdess" width="100%" min-width="200px" itemprop="image"><br>`이진 탐색 트리에서의 삭제 연산 - 두 개의 서브트리 모두 가지고 있는 경우`<br>
->- 관건은 "두 개의 서브트리 중 어떤 노드를 삭제 노드 위치로 가져올 것인가" 이다.<br><br>
->**단말노드의 삭제 과정**
->1. 해당 단말 노드의 부모를 찾는다.
->2. 단말노드와 연결된 부모노드의 링크 필드를 NULL로 설정하여 연결을 끊는다.
->3. 단말 노드에게 할당된 메모리를 반환한다. (노드 동적 생성시)
+>- 관건은 "두 개의 서브트리 중 어떤 노드를 삭제 노드 위치로 가져올 것인가" 이다.<br>
+>- 삭제되는 노드와 가장 값이 근접한 노드를 가져와야 한다.<br><br>
+>  <img src="/assets/images/INU/datastructure/BSTreeDeleteMostNear.png" alt="BSTreeDeleteMostNear_Procdess" width="70%" min-width="200px" itemprop="image"><br>`삭제될 노드와 가장 비슷한 값을 가진 노드 - 후계자 노드`<br>
+>   - 왼쪽 서브트리의 가장 오른쪽 노드<br>
+>   - 오른쪽 서브트리의 가장 왼쪽 노드<br>
+>   - 예) 오른쪽 서브트리의 가장 작은 값을 가진 가장 왼쪽의 노드 찾는 법:
+>     - 오른쪽 서브트리의 왼쪽 링크를 타고 NULL을 만날 때까지 이동.
+>   - 두 노드 중 어떤 것을 선택하더라도 상관없으나,<br>
+>     여유가 된다면 두 노드 중 기존 노드와 더 근접한 노드를 선택하면 좋다.<br>
+>     - 이진 탐색 트리를 중위 순회 하였을 때 두 노드는 선행노드와 후속 노드에 해당한다.<br><br>
+>- **두 서브 트리를 가진 노드의 삭제 과정**
+>1. 왼쪽 서브트리의 가장 오른쪽 노드 or 오른쪽 서브트리의 가장 왼쪽 노드를 탐색.
+>2. 탐색을 통해 찾은 삭제될 노드와 가장 근접한 값을 가진 두 노드중 하나를 노드 삭제 위치에 올린다. 
+>3. 이진 탐색 트리의 삭제 함수도 루트 포인터를 변경시키므로 루트 포인터를 마지막에 반환하여야 한다.
+>
+>```java
+>// 이진 탐색 트리에서의 삭제 함수
+>TreeNode* delete_node(TreeNode* root, int key){
+>   // 삭제할 노드를 찾지 못하면 NULL 반환
+>   if(root == NULL) {
+>       return NULL;
+>   }
+>   // 왼쪽 서브트리 탐색
+>   if(key < root->key){
+>       delete_node(root->left, key);    
+>   }
+>   // 오른쪽 서브트리 탐색
+>   else if (key > root->key){
+>       delete_node(root->right, key);
+>   }
+>   // 삭제 대상 노드를 찾은 경우
+>   else {
+>       // case 1: 단말 노드인경우, case 2: 오른쪽 서브 트리만 있는 경우
+>       if(root->left == NULL){
+>           TreeNode* temp == root->right // 삭제되어 반환할 노드 임시 저장
+>           free(root); // 삭제 대상 노드 메모리 반환
+>           return temp; 
+>       }
+>       else if(root->right == NULL){
+>           TreeNode* temp == root->left;
+>           free(root);
+>           return temp;
+>       }
+>       // case 3: 삭제 대상 노드가 두 개의 서브트리를 가지고 있을 때.
+>       else{
+>           // min_value_node() 함수를 통해 가장 작은 key값을 가진 노드를 찾는다.
+>           // 여기서는 삭제 노드의 오른쪽 서브 트리에서 가장 작은 값의 노드를 찾는다.
+>           TreeNode* temp = min_value_node(root->right);
+>           
+>           root->key = temp->key; // 후계 노드를 복사.
+>
+>           root->right = delete_node(root->right, temp->key) // 후계 노드를 삭제
+>       }
+>   }
+>   return root; // 변경된 루트 포인터를 반환
+>}
+>
+>// min_value_node(TreeNode* node) 함수는 주어진 이진 탐색 트리에서 최소 키값(가장 왼쪽 노드)을 가지는 노드를 찾아서 반환한다.
+>TreeNode* min_value_node(TreeNode* node){
+>   TreeNode* current = node;
+>   // 가장 왼쪽 노드를 찾아 내려감.
+>   while(current->left != NULL){
+>       current = current->left;
+>   }
+>   return current;
+>}
+>```
 
 
 
