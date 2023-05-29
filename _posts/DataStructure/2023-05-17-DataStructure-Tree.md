@@ -52,7 +52,8 @@ Visit my Programming blog: https://carefreelife98.github.io -->
 >     - 루트 노드 : A
 >     - A의 서브 트리 : {B, E, F, G}, {C, H}, {D, I, J} 와 같은 3개의 집합.
 >     - B의 서브 트리 : {E}, {F}, {G}
->       - 위 처럼 루트 노드와 서브 트리는 자식 노드가 존재 하는 한 하위로 내려가며 계속 분류된다.
+>       - 위 처럼 루트 노드와 서브 트리는 자식 노드가 존재 하는 한
+>         하위로 내려가며 계속 분류된다.
 >   - **간선 (Edge)** : 루트와 서브 트리를 잇는 선.
 >     - 노드들 간에는 부모 관계, 형제 관계, 조상 관계가 존재.
 >       - A는 B의 부모 노드(Parent node)가 된다.
@@ -793,6 +794,131 @@ int main(void){
 >
 ><img src="/assets/images/INU/datastructure/BTreeForDirc.png" alt="BTreeForDirc_Procdess" width="100%" min-width="200px" itemprop="image"><br>`디렉토리 용량 계산 결과`<br>
 
+<br><br>
+
+# 트리의 응용 (3) : 이진 트리의 추가 연산
+
+**1. 노드의 개수 구하기**
+
+><img src="/assets/images/INU/datastructure/BTree_find_node.png" alt="BTree_find_node_Procdess" width="70%" min-width="200px" itemprop="image"><br>`노드의 개수 구하기`<br>
+
+- 탐색 트리 안의 노드의 개수를 세어 표시한다.
+- 각각의 서브트리에 대하여 순환 호출 후, 반환 되는 값에 1을 더하여 반환.
+- ```java
+  int get_node_count(TreeNode* node){
+    int count = 0;
+    if(node != NULL){
+        count = 1 + get_node_count(node->left) + get_node_count(node->right);
+    }
+    return count;
+  }
+  ```
+  
+<br><br>
+
+**2. 단말 노드의 개수 구하기**
+
+- 왼쪽 자식과 오른쪽 자식이 동시에 0(NULL)이 되면 단말 노드이므로 1 반환.
+- 그 외는 비단말 노드이므로 각각의 서브트리에 대하여 순환호출, 반환되는 값을 서로 더한다.
+- ```java
+  int get_leaf_count(TreeNode* node){
+    int count = 0;
+    if(node!=NULL){
+        if(node->left == NULL && node->right == NULL){
+            return 1;
+        }
+        else{
+            count = get_leaf_count(node->left) + get_leaf_count(node->right);
+        }
+    }
+    return count;
+  }
+  ```
+
+<br><br>
+
+**3. 높이 구하기**
+
+><img src="/assets/images/INU/datastructure/Btree_find_subtree_max_height.png" alt="Btree_find_subtree_max_height_Procdess" width="70%" min-width="200px" itemprop="image"><br>`전체 트리의 높이 구하기(이진 트리)`<br>
+
+- 각 서브트리에 대한 순환 호출이 끝나면 각각의 서브트리에 대한 높이가 반환되어 온다.
+- 전체 트리의 높이는 각 서브트리의 높이 합으로 구할 수 없다.
+  - 서브트리의 높이의 최대 값을 찾아야 한다.
+- ```java
+  int get_height(TreeNode* node){
+    int height = 0;
+  
+    if(node != NULL){
+        height = 1 + max(get_height(node->left), get_height(node->right));
+    }
+  }
+  ```
+
+<br><br>
+
+# 스레드 이진 트리 (Threaded Binary Tree)
+
+- 이진트리의 NULL 링크를 이용하여 순환호출 없이도 트리의 노드들을 순회
+  - 중위 순회시 후속 노드인 중위 후속자(inorder successor)나 선행 노드인 중위 선행자(inorder predecessor)를 NULL 링크에 저장시켜 놓은 트리가 스레드 이진 트리이다.
+  - 스레드를 이용하여 노드들을 순회 순서대로 연결시켜 놓은 트리.
+  - <img src="/assets/images/INU/datastructure/ThreadBTree.png" alt="ThreadBTree_Procdess" width="70%" min-width="200px" itemprop="image"><br>`스레드 이진트리의 모습`<br>
+  - 스레드 트리는 순회를 빠르게 하는 장점이 있으나, 스레드를 설정하기 위하여 삽입 / 삭제 함수가 더 많은 일을 해야 한다.
+- 단말 노드와 비단말 노드의 구별을 위해 구조체에 is_thread 필드가 필요하다.
+  - 만약 위와 같이 NULL 링크가 스레드에 저장되면
+    링크에 저장된 것이 (자식을 가리키는 포인터 or NULL을 대신한 스레드) 중 어떤 것이 저장되어 있는 것인지를 구별할 태그 필드가 필요.
+  - 따라서, 다음과 같이 노드의 구조를 변경
+    - ```java
+      typedef struct TreeNode {
+        int data;
+        struct TreeNode* left;
+        struct Treenode* right;
+        int is_thread; // 만약 오른쪽 link가 스레드(중위 후속자) 이면 TRUE 오른쪽 자식이면 FALSE
+      }
+      ```
+
+- 노드의 중의 후속자를 반환하는 함수 find_successor 를 작성.
+
+```java
+// find_successor(TreeNode* node)
+
+// node의 is_thread 가 TRUE 이면, 바로 오른쪽 자식이 중위 후속자이므로 오른쪽 자식을 반환.
+// 만약 오른쪽 자식이 NULL이면 더 이상 후속자가 없다는 것이므로 NULL 반환.
+
+// node의 is_thread가 FALSE이면 서브 트리의 가장 왼쪽 노드로 가야한다.
+//  -> 왼쪽 자식이 NULL 이 될 때까지 왼쪽 링크를 타고 이동한다.
+
+TreeNode* find_succesor(TreeNode* node){
+    // nodeR 은 node의 오른쪽 포인터
+    TreeNode* nodeR = node->right;
+    // 만약 오른쪽 포인터가 NULL 이거나 node가 스레드이면 즉각 오른쪽 포인터를 반환
+    // node == 스레드: 오른쪽 자식이 중위 후속자이므로 반환
+    // node->right == NULL: 더 이상 후속자가 없다는 뜻이므로 NULL 반환     
+    if(nodeR == NULL || node->is_thread == TRUE){
+        return nodeR;    
+    }    
+    // 만약 nodeR이 위의 if문에서 걸리지 않은 오른쪽 자식이면 다시 가장 왼쪽 노드로 이동.
+    while(nodeR->left != NULL) nodeR = nodeR->left;
+    
+    return nodeR;
+}
+
+// 스레드 버전 중위 순회 함수
+// 중위 순회는 트리의 가장 왼쪽 노드부터 시작. -> 왼쪽 자식이 NULL이 될 때까지 왼쪽으로 이동.
+// 이후 데이터를 출력하고, 중위 후속자를 찾는 함수를 호출하여 후속자가 NULL이 아니면 계속 루프를 반복.
+
+void thread_inorder(TreeNode* root){
+    TreeNode* node;
+    node = root;
+    
+    while(node->left) node = node->left // 가장 왼쪽 노드로 이동
+    do{
+        printf("%c ", node->data); // 데이터 출력
+        node = find_succesor(node) // 후속자 함수 호출
+    }while(node) // NULL이 아니면 게속 loop.
+}
+```
+
+
 <!-- > <img src="/assets/images/INU/datastructure/.png" alt="_Procdess" width="100%" min-width="200px" itemprop="image"><br>`DeleteSameNodes 실행 결과` <br><br>
 `참고:`[Inflearn - 김영한님_강의](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-mvc-1/dashboard)<br><br>
 
@@ -837,8 +963,7 @@ int main(void){
 - [x] 이진 트리의 순회 방법 3가지 : 전위, 중위, 후위
 - [x] 전위, 중위, 후위 순회 구현
 - [x] 레벨 순회 (level order)
-- [x] 수식 트리
-- [x] 
-- [x] 
-- [x] 
-- [x] 
+- [x] 트리의 응용(1) : 수식 트리
+- [x] 트리의 응용 (2) : 디렉토리 용량 계산 - 후위 순회
+- [x] 트리의 응용 (3) : 이진 트리의 추가 연산
+- [x] 스레드 이진 트리 (Threaded Binary Tree)
