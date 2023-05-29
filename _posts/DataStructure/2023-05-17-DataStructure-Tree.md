@@ -652,13 +652,13 @@ int main(void) {
 >만약 노드를 방문하여 작업하는 것에 **<span style="color:red">순서가 필요</span>**하다면,<br><br>
 >(1.) **<span style="color:royalblue">자식노드를 처리한 후에 부모노드를 처리 -> 후위 순회</span>**<br>(디렉토리의 용량 계산 - 하위 디렉토리의 용량부터 계산하며 올라와 전체 용량을 계산)<br><br>
 >(2.) **<span style="color:royalblue">부모노드를 처리한 후에 자식노드를 처리 -> 전위 순회</span>**<br>(구조화 된 문서의 출력 - 제목 -> 목차 -> 챕터 -> 내용)<br><br>
->(3.) **<span style="color:royalblue">자식노드의 처리 중간에 부모노드의 처리가 필요한 경우 -> 중위 순회</span>**<br>(수식 트리 - 두 피연산자 사이에 연산자 필요)<br><br>
+>(3.) **<span style="color:royalblue">자식노드의 처리 중간에 부모노드의 처리가 필요한 경우 -> 중위 순회</span>**<br>(수식 트리 - 두 피연산자 사이에 연산자 필요 전위, 중위, 후위 모두 가능)<br><br>
 {: .notice--success}
 {: style="text-align: center;"}
 
 <br><br>
 
-# 수식 트리
+# 트리의 응용(1) : 수식 트리
 
 ```
 이진 트리는 수식 트리(expression tree)를 처리하는데 사용될 수 있다.
@@ -671,7 +671,7 @@ int main(void) {
 ><img src="/assets/images/INU/datastructure/btreenumcal.png" alt="btreenumcal_Procdess" width="100%" min-width="200px" itemprop="image"><br>`어떤 순회 방법을 사용하냐에 따라 이진 수식 트리의 표기법을 바꿀 수 있다.`<br>
 
 - 수식 트리의 루트 노드는 연산자이고, 그 자식 노드들은 피연산자인 단말 노드부터 연산자인 해당 부모 노드와 만나 연산이 실행된다.<br>
-- 따라서, 연산자들의 피연산자인 양쪽의 자식 노드들을 먼저 꺼내 부모 노드의 연산자로 연산한다.
+- 따라서, 연산자들의 피연산자인 양쪽의 자식 노드들을 먼저 꺼내 부모 노드의 연산자로 연산.
   - 이는 자식노드를 먼저 방문한 후 부모노드를 방문하는 후위 순회를 사용해야 하는 것이다.
 
 >```
@@ -684,10 +684,72 @@ int main(void) {
 >
 ><img src="/assets/images/INU/datastructure/btreecalsequence.png" alt="btreecalsequence_Procdess" width="70%" min-width="200px" itemprop="image"><br>`수식 트리의 계산 순서`<br>
 
+<br><br>
 
+```
+수식트리의 계산 알고리즘을 C 코드와 함께 살펴보자.
+```
 
+```c
+#include<stdio.h>
+#include<stdlib.h>
 
+typedef struct TreeNode {
+    int data;
+    struct TreeNode* left;
+    struct TreeNode* right;
+}TreeNode;
 
+//      +
+//  *       +
+//1   4   16   25
+TreeNode n1={1, NULL, NULL};
+TreeNode n2={4, NULL, NULL};
+TreeNode n3={'*', &n1, &n2};
+TreeNode n4={16, NULL, NULL};
+TreeNode n5={25, NULL, NULL};
+TreeNode n6={'+', &n4, &n5};
+TreeNode n7={'+', &n3, &n6};
+TreeNode *root= &n7;
+
+// 수식 계산 함수
+int evaluate(TreeNode *root){
+    if(root == NULL){
+        return 0;
+    }
+    // 자식 노드가 없는 말단 노드(== 피연산자)이면 방문.(숫자 데이터 꺼냄)
+    if(root->left == NULL && root->right == NULL){
+        return root->data;
+    }
+    // 말단 노드가 아닌 부모노드(== 연산자) 이면 말단노드(== 피연산자)가 나올 때까지 후위 순회.
+    else{
+        int op1 = evaluate(root->left); // evaluate 함수의 recursion. (L)
+        int op2 = evaluate(root->right);// evaluate 함수의 recursion. (R)
+        printf("%d %c %d 연산 실행.\n", op1, root->data, op2);
+        switch(root->data){ // L -> R 이 끝난 후 루트 노드(V)에 방문하여 연산 작업 실행. : 후위 순회
+            case '+':
+                return op1 + op2;
+            case '-':
+                return op1 - op2;
+            case '*':
+                return op1 * op2;
+            case '/':
+                return op1 / op2;   
+        }
+    }
+    return 0;
+}
+
+int main(void){
+    printf("수식의 값은 [%d] 입니다.\n", evaluate(root));
+    return 0;
+}
+```
+><img src="/assets/images/INU/datastructure/Evaluate_Btree.png" alt="Evaluate_Btree_Procdess" width="70%" min-width="200px" itemprop="image"><br>`수식 트리 계산 프로그램 실행 결과`<br>
+
+<br><br>
+
+# 트리의 응용 (2) : 디렉토리 용량 계산 - 후위 순회
 
 
 
@@ -731,6 +793,12 @@ int main(void) {
 - [x] 트리의 종류
 - [x] 이진 트리의 성질
 - [x] 이진 트리의 분류
+- [x] 이진 트리의 표현 : 배열 / 링크
+- [x] 이진 트리의 순회
+- [x] 이진 트리의 순회 방법 3가지 : 전위, 중위, 후위
+- [x] 전위, 중위, 후위 순회 구현
+- [x] 레벨 순회 (level order)
+- [x] 수식 트리
 - [x] 
 - [x] 
 - [x] 
