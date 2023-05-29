@@ -1,5 +1,5 @@
 ---
-title: "DataStructure - Tree(자료구조 - 트리란?)"
+title: "Data Structure - Tree(자료구조 - 트리란?)"
 categories:
   - INU-DataStructure
   - C
