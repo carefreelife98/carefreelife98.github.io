@@ -386,8 +386,19 @@ int main(void) {
 >
 > -> 이진 탐색 트리를 중위 순회 하면 정렬된 데이터를 얻을 수 있다.<br>
 
+<br><br>
 
+# 이진 탐색 트리의 성능 분석
 
+><img src="/assets/images/INU/datastructure/BSTree_eval.png" alt="BSTree_eval_Procdess" width="100%" min-width="200px" itemprop="image"><br>`균형 이진 탐색 트리인 경우 최선의 시간 복잡도를 가진다.`<br><br>
+
+>- 이진 탐색 트리에서의 탐색삽입, 삭제 연산의 시간 복잡도는 트리의 높이에 비례한다.
+>  - 트리의 높이가 h이면, O(h) 가 된다.
+>  - n개의 노드를 가지는 이진 탐색 트리의 경우, 일반적인 이진 트리의 높이는 ⌈log_2 n⌉.
+>  - 따라서, 이진 탐색 트리 연산의 시간 복잡도의 최선은 O(log_2 n)이다.
+>  <img src="/assets/images/INU/datastructure/BSTree_eval_worst.png" alt="BSTree_eval_worst_Procdess" width="70%" min-width="200px" itemprop="image"><br>`기본적인 이진 탐색 트리 실행 결과`<br><br>
+>    - 최악의 경우(경사트리), O(n) 까지 가능.
+>    - 순차 탐색과 시간 복잡도가 같다.
 
 
 
