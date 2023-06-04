@@ -456,9 +456,27 @@ void dfs_list(GraphType* g, int v){
 >   - 그래프가 인접 행렬로 표현 되었을 때 시간 복잡도 : O(n^2)
 > - 희소 그래프인 경우, 인접 리스트가 인접 행렬보다 유리.
 
+<br><br>
 
+# 너비 우선 탐색
 
+```
+너비 우선 탐색(Breath First Search : BFS)
 
+시작 정점으로부터 가까운 정점을 먼저 방문하고 멀리 떨어져 있는 정점을 나중에 방문하는 순회 방법.  
+```
+
+> <img src="/assets/images/INU/datastructure/BFS.png" alt="BFS_Procdess" width="100%" min-width="200px" itemprop="image"><br>`너비 우선 탐색 (Breath First Search : BFS)`<br>
+> - 시작 정점 A를 방문한다.
+> - 정점 A의 인접 정점인 {B, S}를 차례대로 방문한다.
+> - 정점 {B, S}의 인접 정점인 {C, G}를 방문한다.
+>   - 너비 우선 탐색에서는 인접 정점을 차례대로 저장 후 꺼낼 수 있는 큐(Queue)가 필요하다.
+>   - 큐에 저장된 정점을 꺼내 방문 후
+>   - 해당 정점의 인접 정점을 차례대로 큐에 넣는다.
+>   - 위 과정을 큐가 소진 될 때까지 반복한다.
+>
+> <img src="/assets/images/INU/datastructure/BFS_Al.png" alt="BFS_Al_Procdess" width="100%" min-width="200px" itemprop="image"><br>`너비 우선 탐색 알고리즘`<br>
+> <img src="/assets/images/INU/datastructure/BFS_Al2.png" alt="BFS_Al2_Procdess" width="100%" min-width="200px" itemprop="image"><br>`너비 우선 탐색 알고리즘`<br>
 
 
 
