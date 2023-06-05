@@ -106,7 +106,10 @@ kruskal(G)
 > - H는 C와 합쳐졌기 때문에 C의 인덱스인 2가 H의 자리에 저장된다.
 
 ```c
-// union - find 알고리즘 (pseudo code)
+union - find 알고리즘 (pseudo code)
+```
+
+```c
 UNION(a, b):
     root1 = FIND(a); // 노드 a의 루트를 찾는다.
     root2 = FIND(b); // 노드 b의 루트를 찾는다.
@@ -121,6 +124,8 @@ FIND(curr): // curr의 루트를 찾는다.
     while(parent[curr] != -1) curr = parent[curr]; // 초기화 값이 나올 때까지 부모 노드를 찾아 이동.
     return curr;
 ```
+
+<br><br>
 
 ```
 전체 Kruskal 알고리즘을 C코드로 구현 해보자.
@@ -251,7 +256,197 @@ int main(void)
 
 ```
 
-> <img src="/assets/images/INU/datastructure/Kruskal_rs.png" alt="Kruskal_rs_Procdess" width="60%" min-width="200px" itemprop="image"><br>`Kruskal 알고리즘 실행 결과`<br>
+> <img src="/assets/images/INU/datastructure/Kruskal_rs.png" alt="Kruskal_rs_Procdess" width="50%" min-width="200px" itemprop="image">
+> <img src="/assets/images/INU/datastructure/kruskal_rs2.png" alt="kruskal_rs2_Procdess" width="30%" min-width="200px" itemprop="image"><br>`Kruskal 알고리즘 실행 결과`<br>
+> 
+> - **Kruskal 알고리즘의 시간 복잡도 분석**
+>   - union-find 알고리즘을 이용하면 kruskal의 알고리즘의 시간 복잡도는 간선들을 정렬하는 시간에 좌우됨.
+>   - 효율적인 정렬 알고리즘을 사용한다면 kruskal 알고리즘의 시간복잡도는<br> **e * log_2 e** 이다.
+
+<br><br>
+
+# Prim 의 MST 알고리즘
+
+> <img src="/assets/images/INU/datastructure/Prim.png" alt="Prim_Procdess" width="50%" min-width="200px" itemprop="image">
+> <img src="/assets/images/INU/datastructure/Prim2.png" alt="Prim2_Procdess" width="45%" min-width="200px" itemprop="image"><br>`Prim's MST Algorithm`<br>
+> **시작 정점에서부터 출발하여 신장 트리 집합을 단계적으로 확장해나가는 방법**
+> - 시작 정점을 신장 트리 집합에 추가하여 시작한다.
+> - 앞 단계에서 만들어진 신장 트리 집합에 인접 정점 중 최저 가중치의 간선으로 연결된 정점을 선택 및 추가하여 트리를 확장.
+> - 트리가 n - 1개의 간선을 가질 때까지 반복.
+> 
+> <img src="/assets/images/INU/datastructure/Prim_proc.png" alt="Prim_proc_Procdess" width="100%" min-width="200px" itemprop="image"><br>`Prim 알고리즘의 동작 과정`<br>
+> 
+> 1. 정점 a에서 출발. - 신장 트리 집합 : {a}
+> 2. a의 인접 정점 중 최저 가중치 간선을 선택 (a, f) - 신장 트리 집합 : {a, f}
+> 3. 신장 트리 집합에 인접한 정점은 b, e 해당 간선의 가중치에 따라 (f, e)간선 선택. - 신장 트리 집합 : {a, f, e}
+> 4. 위 과정을 신장 트리 집합의 정점 개수가 n - 1 개가 될 때까지 반복.
+
+```
+Prim의 MST 알고리즘 (pseudo code)
+```
+
+```c
+// Prim의 MST 알고리즘
+// 입력: 네트워크 G=(V, E), S는 시작 정점
+// 출력: V_T, MST를 이루는 정점들의 집합
+
+// distance[] 는 현재까지 알려진, 신장 트리 정점 집합에서 각 정점까지의 거리를 가지고 있다.
+//  - 처음에는 시작 노드만 값이 0 이고 다른 노드는 전부 무한대의 값을 가진다. (아직 알려지지 않았으므로)
+
+Prim(G, s):
+    for each u ⍷ V do
+        distance[u] ← ⚭ // 각 정점과의 거리 초기화.
+    distance[s] = 0; // 시작 노드와의 거리는 0
+    우선 순위 큐 Q에 모든 정점을 삽입 (우선 순위는 dist[])
+    for i ← 0 to n - 1 do
+        u ← delete_min(Q)
+        화면에 u를 출력
+        for each v ⍷ (u의 인접 정점)
+            if(v ⍷ Q and weight[u][v] < dist[v])
+                then dist[v] ← weight[u][v] 
+```
+
+> - 정점들이 트리 집합에 추가되면서 distance 값은 변경된다.
+> 1. 우선 순위 큐에 모든 정점을 삽입한다. 이때의 우선 순위는 distance 배열 값이 된다.
+> 2. while 루프로 우선 큐에서 가장 작은 distance 값을 가진 정점을 꺼낸다.
+> 3. 바로 이 정점이 트리 집합에 추가된다.
+> 4. 트리 집합에 새로운 정점인 u 가 추가 되었으므로 u에 인접한 정점v 들의 distance 값을 갱신해준다.
+>   - 기존의 distance[v] 값보다 간선(u, v)의 가중치 값이 적으면 간선 (u, v)의 가중치 값으로 distance를 변경시킨다.
+> 5. Q에 있는 모든 정점들이 소진 될 때까지 위의 과정을 반복한다. (is_empty)
+>   - 한번 선택된 정점은 Q에서 dequeue 되는 것이므로 삭제된다.
+>   - 트리 집합에 인접하지 않은 정점들의 dist 값은 무한대이므로 선택되지 않는다.
+>     -  만약 선택된 정점의 값이 무한대이면 오류인 것.
+
+
+<br><br>
+
+```c
+전체 Prim 알고리즘을 C코드로 구현 해보자.
+```
+
+```c
+// Prim 알고리즘
+#include<stdio.h>
+#include<stdlib.h>
+
+#define TRUE 1
+#define FALSE 0
+#define MAX_VERTICES 100
+#define INF 1000L
+
+typedef struct GraphType {
+    int n; // 정점의 개수
+    int weight[MAX_VERTICES][MAX_VERTICES];
+}GraphType;
+
+int selected[MAX_VERTICES];
+int distance[MAX_VERTICES];
+
+// 최소 dist[v] 값을 갖는 정점을 반환
+int get_min_vertex(int n){
+    int v, i;
+    for (i = 0; i < n; i++){
+        // 아직 선택 되지 않은 정점을 찾아 해당 정점의 값을 v에 복사.
+        if(!selected[i]){
+            v = i;
+            break;
+        }
+    }
+    for(i = 0; i < n; i++){
+        
+        // 아직 선택 되지 않은 정점 중 distance가 가장 작은 값을 가진 정점을 v에 복사.
+        if(!selected[i] && (distance[i] < distance[v]))
+            v = i;
+    }
+    // 가장 작은 값을 가진 distance의 정점을 반환.
+    return (v);
+}
+
+void prim(GraphType *g, int s){
+    int i, u, v;
+    // distance[] 초기화
+    for(u = 0; u < g->n; u++){
+        distance[u] = INF;
+    }
+    distance[s] = 0;    // 시작 정점의 거리 == 0;
+    for(i = 0; i < g->n; i++){
+        u = get_min_vertex(g->n);
+        selected[u] = TRUE;
+        if(distance[u] == INF) return;
+        printf("정점 %d 추가\n", u);
+        for(v = 0; v < g->n; v++){
+            if(g->weight[u][v] != INF){
+                if(!selected[v] && g->weight[u][v] < distance[v]){
+                    distance[v] = g->weight[u][v];
+                }
+            }
+        }
+    }
+}
+
+int main(void)
+{
+	GraphType g = { 7, 
+	{{ 0, 29, INF, INF, INF, 10, INF },
+	{ 29,  0, 16, INF, INF, INF, 15 },
+	{ INF, 16, 0, 12, INF, INF, INF },
+	{ INF, INF, 12, 0, 22, INF, 18 },
+	{ INF, INF, INF, 22, 0, 27, 25 },
+	{ 10, INF, INF, INF, 27, 0, INF },
+	{ INF, 15, INF, 18, 25, INF, 0 }}
+	};
+	prim(&g, 0);
+	return 0;
+}
+```
+
+> <img src="/assets/images/INU/datastructure/Prim_rs.png" alt="Prim_rs_Procdess" width="60%" min-width="200px" itemprop="image"><br>`Prim 알고리즘 실행 결과`<br>
+>
+> **Prim 알고리즘의 분석**
+> - 주 반복문이 정점의 수 n 만큼 반복, 내부 반복문이 n번 반복하므로
+>   - Prim 알고리즘은 O(n^2)의 복잡도를 가진다.
+
+
+
+
+
+
+
+
+
+<br><br>
+
+# Kruskal VS Prim 
+
+> **Kruskal**
+> - 간선을 기반으로 하는 알고리즘.
+> - 이전 단계에서 만들어진 신장 트리와 상관 없이 사이클이 없는 조건 하에 무조건 최저 간선만을 선택.
+> - 희소 그래프에 유리
+>   - O(e * log_2 e)
+> 
+> **Prim**
+> - 정점을 기반으로 하는 알고리즘.
+> - 이전 단계에서 만들어진 신장 트리를 확장해 나가는 방식.
+> - 밀집 그래프에 유리
+>   - O(n^2)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
