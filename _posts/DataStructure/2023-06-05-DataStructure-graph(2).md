@@ -324,6 +324,8 @@ Prim(G, s):
 전체 Prim 알고리즘을 C코드로 구현 해보자.
 ```
 
+
+
 ```c
 // Prim 알고리즘
 #include<stdio.h>
@@ -384,21 +386,22 @@ void prim(GraphType *g, int s){
     }
 }
 
-int main(void)
-{
+int main(void) {
 	GraphType g = { 7, 
-	{{ 0, 29, INF, INF, INF, 10, INF },
+	{ { 0, 29, INF, INF, INF, 10, INF },
 	{ 29,  0, 16, INF, INF, INF, 15 },
 	{ INF, 16, 0, 12, INF, INF, INF },
 	{ INF, INF, 12, 0, 22, INF, 18 },
 	{ INF, INF, INF, 22, 0, 27, 25 },
 	{ 10, INF, INF, INF, 27, 0, INF },
-	{ INF, 15, INF, 18, 25, INF, 0 }}
+	{ INF, 15, INF, 18, 25, INF, 0 } }
 	};
 	prim(&g, 0);
 	return 0;
 }
 ```
+
+
 
 > <img src="/assets/images/INU/datastructure/Prim_rs.png" alt="Prim_rs_Procdess" width="60%" min-width="200px" itemprop="image"><br>`Prim 알고리즘 실행 결과`<br>
 >
