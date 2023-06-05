@@ -1,5 +1,5 @@
 ---
-title: "Data Structure - 그래프 (Graph) 란?"
+title: "Data Structure - 그래프 (Graph) 란? (1)"
 categories:
   - INU-DataStructure
   - C
@@ -722,7 +722,11 @@ int main(void)
 }
 ```
 
-
+> **너비 우선 탐색의 분석**
+> - 너비 우선 탐색의 시간 복잡도: 
+>   - 인접 리스트 : 전체 수행 시간은 O(n + e)
+>   - 인접 행렬 : 전체 수행 시간은 O(n^2)
+> - 너비 우선 탐색도 깊이 우선 탐색과 같이 희소 그래프인 경우 인접 리스트를 사용하는 것이 효율적.
 
 
 
