@@ -43,7 +43,8 @@ depth_first_search(v):
 > <img src="/assets/images/INU/datastructure/MST.png" alt="MST_Procdess" width="100%" min-width="200px" itemprop="image"><br>`최소 신장 트리의 모습`<br>
 > - 네트워크에 있는 모든 정점들을 가장 적은 수의 간선과 비용으로 연결.
 > - MST의 응용
->   - 도로 건설, 전기 회로, 통신, 배관
+>   - 도로 건설, 전기 회로, 통신, 배관<br>
+>
 > <img src="/assets/images/INU/datastructure/MST_EX.png" alt="MST_EX_Procdess" width="100%" min-width="200px" itemprop="image"><br>`최소 신장 트리의 예`<br>
 
 <br><br>
@@ -56,6 +57,7 @@ depth_first_search(v):
 >   - 각 단계에서의 최선책을 선택하는 과정을 반복하여 최종적인 해답에 도달.
 >   - 탐욕적인 방법은 항상 최적의 해답을 주는지 검증 필요.
 >   - Kruskal MST Algorithm은 최적의 해답임이 증명되어 있다.<br>
+
 ```c
 // Kruskal의 MST 알고리즘 (pseudo code)
 
@@ -74,16 +76,186 @@ kruskal(G)
 
 > - Kruskal 알고리즘
 > - MST가 최소 비용의 간선(n-1)으로 구성됨과 동시에 사이클을 포함하하지 않는다는 조건에 근거
->   - 각 단계에서 사이클을 이루지 않는 최소 비용 간선을 선택.
+>   - 각 단계에서 사이클을 이루지 않는 최소 비용 간선을 선택.<br>
+>
 > 1. 그래프의 간선들을 가중치의 오름차순으로 정렬.
 > 2. 정렬된 간선의 리스트에서 사이클을 형성하지 않는 간선을 탐색.
 > 3. 만약 해당 간선이 사이클을 형성한다면 PASS 한다.
 >    - 해당 간선이 이미 다른 경로에 의해 연결되어 있는 정점들을 연결할 때 사이클이 형성된다.
 > 4. 현재까지의 MST의 집합에 해당 간선을 추가.
 > 5. 위 과정을 간선의 개수가 정점의 개수보다 하나 작을 때까지 반복한다. (간선의 개수 : n-1)
+>
+> <img src="/assets/images/INU/datastructure/Kruskal.png" alt="Kruskal_Procdess" width="49%" min-width="200px" itemprop="image">
+> <img src="/assets/images/INU/datastructure/Kruskal2.png" alt="Kruskal2_Procdess" width="50%" min-width="200px" itemprop="image"><br>`Kruskal Algorithm 의 과정`<br>
+
+<br><br>
+
+# (Kruskal) union - find 연산
+
+> - union(x, y) 연산은 원소 x와 y가 속해 있는 집합을 입력으로 받아 2개 집합의 합집합을 반환.
+> - find(x, y) 연산은 원소 x가 속해있는 집합을 반환한다.
+>
+> <img src="/assets/images/INU/datastructure/union_find.png" alt="union_find_Procdess" width="100%" min-width="200px" itemprop="image"><br>`union-find : 그림(a) a와 b가 같은 집합에 속함 / 그림(b) a와 b가 다른 집합에 속함`<br>
+> 
+> <img src="/assets/images/INU/datastructure/u-f1.png" alt="u-f1_Procdess" width="100%" min-width="200px" itemprop="image"><br>`초기 모습. 처음엔 모든 노드들이 분리되어 있고 parent 배열은 -1 로 초기화 되어 있다.`<br>
+> 
+> <img src="/assets/images/INU/datastructure/u-f2.png" alt="u-f2_Procdess" width="100%" min-width="200px" itemprop="image"><br>`union(A, B) 실행 후 모습.`<br>
+> - B는 A와 합쳐졌기 때문에 A의 인덱스인 0이 B의 자리에 저장된다.
+>
+> <img src="/assets/images/INU/datastructure/u-f3.png" alt="u-f3_Procdess" width="100%" min-width="200px" itemprop="image"><br>`union(C, H) 실행 후 모습.`<br>
+> - H는 C와 합쳐졌기 때문에 C의 인덱스인 2가 H의 자리에 저장된다.
+
+```c
+// union - find 알고리즘 (pseudo code)
+UNION(a, b):
+    root1 = FIND(a); // 노드 a의 루트를 찾는다.
+    root2 = FIND(b); // 노드 b의 루트를 찾는다.
+    if root1 != root2 // 두 노드의 루트 노드가 같지 않으면 합한다.
+        parent[root1] = root2;
+        
+FIND(curr): // curr의 루트를 찾는다.
+    // parent 배열에는 각 노드들의 루트 노드가 저장되어 있다.
+    // 만약 -1(초기화 값)인 경우에는 부모 노드가 없는 것이므로 curr을 반환한다.
+    if(parent[curr] == -1) 
+        return curr;
+    while(parent[curr] != -1) curr = parent[curr]; // 초기화 값이 나올 때까지 부모 노드를 찾아 이동.
+    return curr;
+```
+
+```
+전체 Kruskal 알고리즘을 C코드로 구현 해보자.
+```
+
+```c
+#include<stdio.h>
+#include<stdlib.h>
+
+#define TRUE 1
+#define FALSE 0
+
+#define MAX_VERTICES 7
+#define INF 1000
+
+int parent[MAX_VERTICES]; // 부모 노드
+
+// 부모 노드 초기화
+void set_init(int n){
+    for(int i = 0; i < n; i++){
+        parent[i] = -1;
+    }
+}
+
+// curr가 속하는 집합을 반환
+int set_find(int curr){
+    // parent 배열에는 각 노드들의 루트 노드가 저장되어 있다.
+    // 만약 -1(초기화 값)인 경우에는 부모 노드가 없는 것이므로 curr을 반환한다.
+    if(parent[curr] == -1){
+        return curr;
+    }
+    while(parent[curr] != -1){
+        curr = parent[curr]; // 초기화 값이 나올 때까지 부모 노드를 찾아 이동.
+    }
+    return curr;
+}
+
+// 두 개의 원소가 속한 집합을 합친다.
+void set_union(int a, int b){
+    int root1 = set_find(a);
+    int root2 = set_find(b);
+
+    if(root1 != root2){
+        parent[root1] = root2;
+    }
+}
+
+// 간선을 나타내는 구조체
+struct Edge{
+    int start, end, weight;
+};
+
+typedef struct GraphType {
+    int n; // 정점의 개수
+    struct Edge edges[2 * MAX_VERTICES];
+} GraphType;
+
+// 그래프 초기화
+void init_graph(GraphType *g){
+    g->n = 0;
+    for(int i = 0; i < 2 * MAX_VERTICES; i++){
+        g->edges[i].start = 0;
+        g->edges[i].end = 0;
+        g->edges[i].weight = INF; // 초기화 시 모든 간선의 가중치는 무한대.
+    }
+}
+
+// 간선 삽입 연산
+void insert_edge(GraphType *g, int start, int end, int weight){
+    g->edges[g->n].start = start;
+    g->edges[g->n].end = end;
+    g->edges[g->n].weight = weight;
+    g->n++;
+}
+
+// qsort()에 사용되는 함수
+int compare(const void* a, const void* b){
+    struct Edge* x = (struct Edge*)a;
+    struct Edge* y = (struct Edge*)b;
+    return (x->weight - y->weight);
+}
+
+// kruskal의 최소 비용 신장 트리 프로그램
+void kruskal(GraphType *g){
+    int edge_accepted = 0;
+    int uset, vset; // 정점 u와 정점 v의 집합 번호
+    struct Edge e;
+
+    set_init(g->n);
+    qsort(g->edges, g->n, sizeof(struct Edge), compare);
+
+    printf("크루스칼 최소 신장 트리 알고리즘\n");
+    int i = 0;
+    while(edge_accepted < MAX_VERTICES - 1){  // 결과 간선의 수 < (n-1)
+        e = g->edges[i];
+        uset = set_find(e.start); // 정점 u의 집합 번호
+        vset = set_find(e.end); // 정점 v의 집합 번호
+
+        if (uset != vset){  // 서로 속한 집합이 다르면
+            printf("간선 (%d, %d) %d 선택 \n", e.start, e.end, e.weight);
+            edge_accepted++;
+            set_union(uset, vset); // 두 집합을 합친다.
+        }
+        i++;
+    }
+}
+
+int main(void)
+{
+	GraphType *g;
+	g = (GraphType *)malloc(sizeof(GraphType));
+	init_graph(g);
+
+	insert_edge(g, 0, 1, 29);
+	insert_edge(g, 1, 2, 16);
+	insert_edge(g, 2, 3, 12);
+	insert_edge(g, 3, 4, 22);
+	insert_edge(g, 4, 5, 27);
+	insert_edge(g, 5, 0, 10);
+	insert_edge(g, 6, 1, 15);
+	insert_edge(g, 6, 3, 18);
+	insert_edge(g, 6, 4, 25);
+
+	kruskal(g);
+	free(g);
+	return 0;
+}
+
+```
+
+> <img src="/assets/images/INU/datastructure/Kruskal_rs.png" alt="Kruskal_rs_Procdess" width="60%" min-width="200px" itemprop="image"><br>`Kruskal 알고리즘 실행 결과`<br>
 
 
 
+> <img src="/assets/images/INU/datastructure/.png" alt="_Procdess" width="100%" min-width="200px" itemprop="image"><br>`최소 신장 트리의 예`<br>
 
 <!-- > <img src="/assets/images/INU/datastructure/graph_map.png" alt="graph_map_Procdess" width="100%" min-width="200px" itemprop="image"><br>`그래프의 예 : 서울 지하철 노선의 모습`<br>
 `참고:`[Inflearn - 김영한님_강의](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-mvc-1/dashboard)<br><br>
