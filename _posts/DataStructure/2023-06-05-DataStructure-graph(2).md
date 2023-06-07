@@ -1,5 +1,5 @@
 ---
-title: "Data Structure - 그래프 (Graph) (2)"
+title: "Data Structure - 그래프 (Graph) (2) - Kruskal VS Prim"
 categories:
   - INU-DataStructure
   - C
@@ -401,21 +401,11 @@ int main(void) {
 }
 ```
 
-
-
 > <img src="/assets/images/INU/datastructure/Prim_rs.png" alt="Prim_rs_Procdess" width="60%" min-width="200px" itemprop="image"><br>`Prim 알고리즘 실행 결과`<br>
 >
 > **Prim 알고리즘의 분석**
 > - 주 반복문이 정점의 수 n 만큼 반복, 내부 반복문이 n번 반복하므로
 >   - Prim 알고리즘은 O(n^2)의 복잡도를 가진다.
-
-
-
-
-
-
-
-
 
 <br><br>
 
@@ -433,27 +423,6 @@ int main(void) {
 > - 밀집 그래프에 유리
 >   - O(n^2)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-> <img src="/assets/images/INU/datastructure/.png" alt="_Procdess" width="100%" min-width="200px" itemprop="image"><br>`최소 신장 트리의 예`<br>
 
 <!-- > <img src="/assets/images/INU/datastructure/graph_map.png" alt="graph_map_Procdess" width="100%" min-width="200px" itemprop="image"><br>`그래프의 예 : 서울 지하철 노선의 모습`<br>
 `참고:`[Inflearn - 김영한님_강의](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-mvc-1/dashboard)<br><br>
@@ -496,12 +465,9 @@ int main(void) {
 
 >
 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
+- [x] 신장 트리 (Spanning Tree) 란?
+- [x] 최소 비용 신장 트리 (MST : Minimum Spanning Tree) 란?
+- [x] Kruskal 의 MST 알고리즘
+- [x] (Kruskal) union - find 연산
+- [x] Prim 의 MST 알고리즘
+- [x] Kruskal VS Prim

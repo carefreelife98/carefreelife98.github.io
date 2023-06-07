@@ -273,7 +273,7 @@ Visit my Programming blog: https://carefreelife98.github.io -->
 >
 >  - 인접 리스트를 이용한 그래프 ADT의 구현
 >
-> ```java
+> ```c
 > #include<stdio.h>
 > #include<stdlib.h>
 >
@@ -458,7 +458,7 @@ void dfs_list(GraphType* g, int v){
 
 <br><br>
 
-# 너비 우선 탐색
+# 그래프 탐색 - 너비 우선 탐색(BFS : Breath First Search)
 
 ```
 너비 우선 탐색(Breath First Search : BFS)
@@ -486,7 +486,7 @@ void dfs_list(GraphType* g, int v){
 
 # 너비 우선 탐색(BFS) 의 구현
 
-<h3>너비 우선 탐색 - 인접 행렬</h3>
+<h3>너비 우선 탐색 - 인접 행렬 및 인접 리스트 사용</h3>
 
 ```c
 #include<stdio.h>
@@ -782,12 +782,15 @@ int main(void)
 
 >
 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
+- [x] 그래프 (graph) 란?
+- [x] 그래프의 역사
+- [x] 그래프(graph) 의 정의
+- [x] 그래프 표현
+- [x] 그래프 ADT
+- [x] 그래프의 표현 방법
+- [x] 그래프 탐색 - 깊이 우선 탐색(DFS: Depth First Search)
+- [x] 깊이 우선 탐색(DFS)의 분석
+- [x] 그래프 탐색 - 너비 우선 탐색(BFS : Breath First Search)
+- [x] 너비 우선 탐색(BFS) 의 구현
+- [x] 너비 우선 탐색(BFS)의 분석
+
