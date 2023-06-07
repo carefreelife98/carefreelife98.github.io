@@ -561,9 +561,6 @@ int main(void) {
 
 
 
-    > <img src="/assets/images/INU/datastructure/Spanning_Tree.png" alt="Spanning_Tree_Procdess" width="100%" min-width="200px" itemprop="image"><br>`신장 트리의 모습`<br>
-
-
 <!-- > <img src="/assets/images/INU/datastructure/Spanning_Tree.png" alt="Spanning_Tree_Procdess" width="100%" min-width="200px" itemprop="image"><br>`신장 트리의 모습`<br>
 `참고:`[Inflearn - 김영한님_강의](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-mvc-1/dashboard)<br><br>
 
@@ -599,18 +596,16 @@ int main(void) {
 
 [처음으로~](#){: .btn .btn--primary }
 
-`참고:`[Inflearn - 김영한님_강의](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-mvc-1/dashboard)<br><br>
+<span style="color:grey">`참고: C언어로 쉽게 풀어쓴 자료구조 <개정 3판> 천인국, 공용해, 하상국 지음`</span><br><br><br>
 
 ### Task Lists
 
 >
 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
+- [x] 최단 경로 (Shortest path) 문제
+- [x] Dijkstra의 최단 경로 알고리즘
+- [x] Dijkstra 알고리즘의 구현
+- [x] Floyd 의 최단 경로 알고리즘
+- [x] Floyd의 최단 경로 프로그램 구현
+- [x] 위상 정렬 (Topological Sort) 이란?
+- [x] 위상 정렬 알고리즘의 구현
