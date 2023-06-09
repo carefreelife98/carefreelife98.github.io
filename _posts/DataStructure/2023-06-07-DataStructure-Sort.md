@@ -1,5 +1,5 @@
 ---
-title: "[Data Structure]<br>정렬(Sort) - (1)선택 정렬(Selection Sort) / 삽입 정렬(Insertion Sort) / 버블 정렬(Bubble Sort)"
+title: "[Data Structure]<br>정렬(Sort)(1) - 선택 정렬(Selection Sort) / 삽입 정렬(Insertion Sort) / 버블 정렬(Bubble Sort)"
 categories:
   - INU-DataStructure
   - C
@@ -247,6 +247,10 @@ void insertion_sort(int list[], int n){
 > 3. 위와 같은 과정의 반복 결과로 Scan 1이 종료하게 되면 8이 리스트의 가장 오른쪽에 위치.
 > 4. Scan 2: 이전 Scan에서 위치가 결정된 레코드(8)를 제외한 나머지 레코드들을 대상으로 과정 반복.
 
+<br><br>
+
+# 버블 정렬의 알고리즘 및 구현
+
 ```c
 // 버블 정렬의 알고리즘 - pseudo code
 
@@ -267,6 +271,36 @@ for i ← n-1 to 1 do // 리스트의 길이만큼 반복
 > 2. 내부 루프는 각 스캔마다 반복 횟수가 1씩 줄어들며 비교 및 교환 실행.
 > 3. 위의 스캔 과정이 n-1번 반복되면 정렬이 끝나게 됨.
 
+```c
+// 버블 정렬
+
+#define SWAP(x, y, t) ((t) = (x), (x) = (y), (y) = (t))
+
+void bubble_sort(int list[], int n){
+    int i, j, temp;
+    printf("Bubble Sort:\n");
+    for(i = n - 1; i > 0; i--){
+        for(j = 0; j < i; j++){
+            if(list[j] > list[j+1]){
+                SWAP(list[j], list[j+1], temp);
+            }
+        }
+    }
+}
+```
+
+> <img src="/assets/images/INU/datastructure/BubbleSort_rs.png" alt="BubbleSort_rs_Procdess" width="70%" min-width="200px" itemprop="image"><br>`버블 정렬 알고리즘 - 실행 결과`<br><br>
+> 
+> **버블 정렬의 복잡도 분석**
+> - 비교 횟수 : O(n^2) - 어떠한 경우(최선, 평균, 최악)에도 항상 일정하다.<br>
+> <img src="/assets/images/INU/datastructure/BubbleSort_bigO.png" alt="BubbleSort_bigO_Procdess" width="50%" min-width="200px" itemprop="image"><br>`버블 정렬 알고리즘 - 복잡도 분석`<br><br>
+> - 이동 횟수 :
+>   - 최악 : 대상 자료가 역순으로 정렬되어 있는 경우 - (비교 연산의 횟수 X 3)
+>     - SWAP() 함수가 3번의 이동을 하기 때문.
+>   - 최선 : 대상 자료가 이미 정렬이 되어 있는 경우 - 자료 이동이 발생하지 않는다.
+> - 버블 정렬의 문제점 :
+>   - SCAN 과정 중 순서에 맞지 않는 요소이더라도 교환하게 된다.
+>   - 일반적으로 레코드의 교환(SWAP)작업이 이동(MOVE)작업보다 더 복잡.
 
 
 
@@ -281,7 +315,7 @@ for i ← n-1 to 1 do // 리스트의 길이만큼 반복
 
 
 
-> <img src="/assets/images/INU/datastructure/.png" alt="_Procdess" width="100%" min-width="200px" itemprop="image"><br>``<br>
+
 
 <!-- > > <img src="/assets/images/INU/datastructure/ShortestPathEx.png" alt="ShortestPathEx_Procdess" width="100%" min-width="200px" itemprop="image"><br>`최단 경로 예시 - 정점은 도시, 도시 간 거리는 간선의 가중치가 될 수 있다.`<br>
 `참고:`[Inflearn - 김영한님_강의](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-mvc-1/dashboard)<br><br>
@@ -325,7 +359,10 @@ for i ← n-1 to 1 do // 리스트의 길이만큼 반복
 >
 
 - [x] 정렬(Sorting) 이란?
-- [x] 선택 정렬 (Selection Sort) 이란?
-- [x] 선택 정렬의 알고리즘
+- [x] 선택 정렬 (Selection Sort) 의 원리
+- [x] 선택 정렬의 알고리즘 및 구현
 - [x] 삽입 정렬(Insertion Sort) 의 원리
-- [x] 삽입 정렬의 알고리즘
+- [x] 삽입 정렬의 알고리즘 및 구현
+- [x] 버블 정렬(Bubble Sort) 의 원리
+- [x] 버블 정렬의 알고리즘 및 구현
+
