@@ -461,6 +461,100 @@ void quick_sort(int list[], int left, int right){
 
 # 기수 정렬(Radix Sort)
 
+```
+대부분의 정렬 알고리즘은 모두 레코드들을 비교함으로써 정렬을 수행.
+기수 정렬(Radix Sort)는 레코드를 비교하지 않고 정렬을 수행 할 수 있다.
+- 비교에 의한 정렬 알고리즘의 하한(최선)인 O(n * log_2 n) 보다 좋을 수 있다.
+- 기수 정렬은 O(dn)의 시간 복잡도를 가진다. (대부분 d < 10)
+```
+
+> 기수(Radix) : 숫자의 자리수.
+> - 42 : (10의 자리수 4, 1의 자리수 2) 4, 2는 기수이다.
+> - 기수 정렬 == 다단계 정렬 : 단계의 수는 데이터의 자리수와 일치.
+> - 십진수는 0~9 까지 10개의 값을 가진다.
+>   - 10개의 버킷을 만들어 입력 데이터를 각 자리수의 값에 상응하는 상자에 넣는다.
+>   - 첫 상자부터 담겨있는 데이터를 순차적으로 읽어 데이터를 정렬.<br><br>
+>
+> <img src="/assets/images/INU/datastructure/Radix_sort.png" alt="Radix_sort_Procdess" width="100%" min-width="200px" itemprop="image"><br>`한 자리수 기수 정렬의 모습`<br><br>
+> 비교 연산을 사용하지 않으며, 단순히 각 자리수의 값에 맞춰 상자에 넣고 빼는 동작의 되풀이.<br><br>
+> 
+> 2개 이상의 자리수로 이루어진 수도 정렬이 가능하다.
+> - 각 자리수마다 버킷을 따로 사용하여 자리수 별로 정렬.
+> - 낮은 자리수부터 버킷에 삽입하여 정렬 후 높은 자리수를 정렬해나간다.
+>   - 예) 1의 자리수를 기준으로 버킷 0~9 에 삽입하여 정렬.
+>   - 10의 자리수를 기준으로 버킷 0~9에 삽입하여 정렬.<br>
+>
+> <img src="/assets/images/INU/datastructure/RadixSort2.png" alt="RadixSort2_Procdess" width="100%" min-width="200px" itemprop="image"><br>`두 자리수 기수 정렬의 모습`<br><br>
+
+# 기수 정렬의 알고리즘
+
+> LSD(Least Significant Digit) : 가장 낮은 자리수.<br>
+> MSD(Most Significant Digit) : 가장 높은 자리수.
+
+```c
+// 기수 정렬 알고리즘 - pseudo code
+
+RadixSort(list, n):
+
+for d ← LSD의 위치 to MSD의 위치 do {
+    d번째 자리수에 따라 0번부터 9번 버킷에 삽입.
+    버킷에서 숫자들을 순차적으로 읽어 하나의 리스트로 합친다.
+    d++;
+}
+```
+
+> - 버킷은 큐로 구현 : 가장 먼저 들어간 숫자가 먼저 나와야 함.
+> - 버킷의 개수는 key의 표현 방법과 밀접한 관계를 가진다.
+>   - 이진법을 사용한다면 두개의 버킷만 있으면 데이터의 구분이 가능. (0,1)
+>   - 알파벳을 사용한다면 26개의 버킷이 있어야 모든 데이터의 구분이 가능. (A~Z)
+>   - 십진법을 사용한다면 10개의 버킷이 있어야 모든 데이터의 구분이 가능. (0~9)<br>
+> - 예) 32비트의 정수인 경우, 8비트씩 나누면 버킷은 256개로 늘어나지만 필요한 패스의 수가 4개로 줄어든다.
+
+<br><br>
+
+# 기수 정렬의 구현
+
+```c
+// 6장의 큐 소스를 여기에...
+#define BUCKETS 10
+#define DIGITS 4
+void radix_sort(int list[], int n)
+{
+    int i, b, d, factor=1;
+    QueueType queues[BUCKETS];
+    
+    for(b=0;b<BUCKETS;b++) 
+        init(&queues[b]); // 큐들의 초기화
+    
+    for(d=0; d<DIGITS; d++){
+        for(i=0;i<n;i++) // 데이터들을 자리수에 따라 큐에 입력
+            enqueue( &queues[(list[i]/factor)%10], list[i]);
+
+        for(b=i=0;b<BUCKETS;b++) // 버켓에서 꺼내어 list로 합친다.
+            while( !is_empty(&queues[b]) )
+                list[i++] = dequeue(&queues[b]);
+        factor *= 10; // 그 다음 자리수로 간다.
+    }
+}
+```
+
+<br><br>
+
+# 기수 정렬의 복잡도 분석
+
+> - n개의 레코드, d개의 자릿수로 이루어진 키를 기수 정렬할 경우
+>   - 메인 루프는 자리수 d번 반복.
+>   - 큐에 n개 레코드 입력 수행.
+> - O(dn)의 시간 복잡도 (사실상 O(n))
+>   - 키의 자리수 d는 10 이하의 작은 수 이므로 빠른 정렬이라고 할 수 있다.
+> - 실수, 한글, 한자로 이루어진 키는 경우의 수가 매우 많아 정렬하지 못한다.
+>   - ex) 궭, 꿿, 갉 (...)
+
+<br><br>
+
+# 정렬 알고리즘의 비교
+
+> <img src="/assets/images/INU/datastructure/comp_Sort_Al.png" alt="comp_Sort_Al_Procdess" width="100%" min-width="200px" itemprop="image"><br>`정렬 알고리즘의 비교`<br><br>
 
 
 
@@ -474,11 +568,7 @@ void quick_sort(int list[], int left, int right){
 
 
 
-
-
-
-
-> <img src="/assets/images/INU/datastructure/Quick_sort_rs.png" alt="Quick_sort_rs_Procdess" width="50%" min-width="200px" itemprop="image"><br>`퀵 정렬 알고리즘 - 실행 결과`<br><br>
+> <img src="/assets/images/INU/datastructure/Quick_sort_rs.png" alt="Quick_sort_rs_Procdess" width="50%" min-width="200px" itemprop="image"><br>`기수 정렬 알고리즘 - 실행 결과`<br><br>
 
 <!-- > > 
 `참고:`[Inflearn - 김영한님_강의](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-mvc-1/dashboard)<br><br>
@@ -521,12 +611,19 @@ void quick_sort(int list[], int left, int right){
 
 >
 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
+- [x] 쉘 정렬(Shell Sort)의 원리
+- [x] 쉘 정렬의 구현
+- [x] 합병 정렬(Merge Sort)의 개념
+- [x] 합병 정렬 예시
+- [x] 합병 정렬(Merge Sort) 알고리즘
+- [x] 합병 (merge) 알고리즘
+- [x] 합병 정렬의 구현
+- [x] 합병 정렬의 복잡도 분석
+- [x] 퀵 정렬의 개념 (Quick Sort)
+- [x] 퀵 정렬 알고리즘
+- [x] partition() 의 구현
+- [x] 기수 정렬(Radix Sort)
+- [x] 기수 정렬의 알고리즘
+- [x] 기수 정렬의 구현
+- [x] 기수 정렬의 복잡도 분석
+- [x] 정렬 알고리즘의 비교
