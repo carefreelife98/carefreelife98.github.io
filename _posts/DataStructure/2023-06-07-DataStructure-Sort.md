@@ -1,5 +1,5 @@
 ---
-title: "[Data Structure]<br>정렬(Sort) - (1)선택 정렬(Selection Sort) / 삽입 정렬(Insertion Sort)"
+title: "[Data Structure]<br>정렬(Sort) - (1)선택 정렬(Selection Sort) / 삽입 정렬(Insertion Sort) / 버블 정렬(Bubble Sort)"
 categories:
   - INU-DataStructure
   - C
@@ -225,6 +225,57 @@ void insertion_sort(int list[], int n){
 > - 많은 이동이 필요하므로 레코드가 클 경우 불리한 정렬 방법.
 > - 안정된 정렬 방법
 > - 대부분 정렬되어 있는 자료인 경우 매우 효율적
+
+<br><br>
+
+# 버블 정렬(Bubble Sort)의 원리
+
+```
+버블 정렬(Bubble Sort) : 인접한 두 개의 레코드를 비교하여 순서대로 되어 있지 않으면 서로 교환
+```
+
+> <img src="/assets/images/INU/datastructure/BubbleSort.png" alt="BubbleSort_Procdess" width="100%" min-width="200px" itemprop="image"><br>`버블 정렬의 모습`<br><br>
+> 
+> 버블 정렬: 인접한 두 개의 레코드를 비교하여 크기가 순서대로 되어있지 않으면 서로 교환하는 비교-교환 과정.
+> - 리스트의 왼쪽 끝에서 시작하여 오른쪽 끝까지 진행.
+> - 비교-교환 과정(스캔)이 한번 완료되면 가장 큰 record가 리스트의 오른쪽 끝에 위치.
+> - 비교-교환 과정은 정체 숫자가 전부 정렬될 때까지 반복.<br>
+> 
+> <img src="/assets/images/INU/datastructure/BubbleSort2.png" alt="BubbleSort2_Procdess" width="100%" min-width="200px" itemprop="image"><br>`버블 정렬의 과정`<br>
+> 1. Scan 1: (5, 3)비교 - 5가 더 크므로 교환.
+> 2. Scan 1: (5, 8)비교 - 8이 더 크므로 교환x, 다음 레코드 비교
+> 3. 위와 같은 과정의 반복 결과로 Scan 1이 종료하게 되면 8이 리스트의 가장 오른쪽에 위치.
+> 4. Scan 2: 이전 Scan에서 위치가 결정된 레코드(8)를 제외한 나머지 레코드들을 대상으로 과정 반복.
+
+```c
+// 버블 정렬의 알고리즘 - pseudo code
+
+BubbleSort(A, n)
+
+for i ← n-1 to 1 do // 리스트의 길이만큼 반복
+    // 0부터 i-1 까지 실행 (각 스캔의 종료후 가장 오른쪽 정렬된 요소는 제외하고 나머지 요소 정렬)
+    for j ← 0 to i-1 do
+        j와 j+1번째의 요소가 크기순이 아니면 교환
+        j++;
+    i--;
+```
+
+> 1. 가장 바깥쪽의 루프는 리스트의 길이만큼 실행. (scan의 횟수)<br>
+>    또한 index가 내림차순으로 진행되며 내부 for문의 j의 인덱싱에 영향.<br>
+>    j가 i보다 1작은 위치까지만 비교 및 교환을 실행하게 됨.<br>
+>       -> 한번의 스캔 후 가장 오른쪽의 정렬된 요소는 배제<br>
+> 2. 내부 루프는 각 스캔마다 반복 횟수가 1씩 줄어들며 비교 및 교환 실행.
+> 3. 위의 스캔 과정이 n-1번 반복되면 정렬이 끝나게 됨.
+
+
+
+
+
+
+
+
+
+
 
 
 
