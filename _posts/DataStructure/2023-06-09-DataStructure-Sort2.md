@@ -23,9 +23,9 @@ Visit my Programming blog: https://carefreelife98.github.io -->
 > - 삽입 정렬은 요소들이 이웃한 위치로만 이동 - 이동 횟수가 많음<br>
 > - 쉘 정렬 - 리스트를 일정 간격의 부분리스트로 분류 후 삽입 정렬을 이용하여 정렬.
 >   - 요소들이 멀리 떨어진 위치로 이동할 수 있음.
-> 1. 전체 리스트를 일정 간격(gap)의 부분 리스트로 나눈다.
-> 2. 나뉘어진 각각의 부분 리스트를 삽입정렬.
-> 3. 모든 부분 리스트가 정렬된 후 전체 리스트를 더 작은 gap을 가진 부분 리스트로 나눠 삽입정렬.
+> 1. 전체 리스트를 일정 간격(gap)의 부분 리스트로 나눈다.<br>
+> 2. 나뉘어진 각각의 부분 리스트를 삽입정렬.<br>
+> 3. 모든 부분 리스트가 정렬된 후 전체 리스트를 더 작은 gap을 가진 부분 리스트로 나눠 삽입정렬.<br>
 > 4. 위 과정을 부분 리스트의 개수가 1이 될 때까지 반복.<br><br>
 > 
 > - 부분 리스트는 주어진 리스트의 각 k번째 요소를 추출하여 생성. k = 간격(gap)
@@ -47,7 +47,7 @@ Visit my Programming blog: https://carefreelife98.github.io -->
 > 부분 리스트 들은 실제로 생성되는 것이 아니고 일정한 간격으로 삽입 정렬을 수행하는 것 뿐.
 > - 추가적인 공간의 생성 X
 > 
-> 한번의 단계가 끝나면 k(gap)의 크기를 1/2 줄여 반복.
+> 한번의 단계가 끝나면 k(gap)의 크기를 1/2 줄여 반복.<br>
 > <img src="/assets/images/INU/datastructure/Shell_Sort_process.png" alt="Shell_Sort_process_Procdess" width="100%" min-width="200px" itemprop="image"><br>`쉘 정렬의 과정`<br><br>
 > 
 > - 부분 리스트의 개수는 k(gap)이 된다.
@@ -114,10 +114,10 @@ void shell_sort(int list[], int n){ // n = size
 
 > 합병 정렬은 Divide and Conquer(분할 정복) 개념에 바탕을 두고 있다.
 > - Divide and Conquer(분할 정복) :
->   - 문제를 더 작게 분할해 해결 후 합하여 기존 문제를 해결하는 방식.
-> 1. 분할(Divide) : 입력 배열을 같은 크기의 2개 배열로 분할.
-> 2. 정복(Conquer) : 부분 배열을 정렬.
->    - 만약 부분 배열의 크기가 충분히 작지 않다면 순환 호출을 이용하여 다시 분할.
+>   - 문제를 더 작게 분할해 해결 후 합하여 기존 문제를 해결하는 방식.<br>
+> 1. 분할(Divide) : 입력 배열을 같은 크기의 2개 배열로 분할.<br>
+> 2. 정복(Conquer) : 부분 배열을 정렬.<br>
+>    - 만약 부분 배열의 크기가 충분히 작지 않다면 순환 호출을 이용하여 다시 분할.<br>
 > 3. 결합(Combine) : 정렬된 부분 배열들을 하나의 배열에 통합.<br>
 >
 > <img src="/assets/images/INU/datastructure/MergeSort.png" alt="MergeSort_Procdess" width="100%" min-width="200px" itemprop="image"><br>`합병 정렬 알고리즘의 모습`
@@ -134,7 +134,7 @@ void shell_sort(int list[], int n){ // n = size
 3. 결합(Combine) : 2개의 정렬된 부분 배열 통합 (10 12 13 15 20 22 25 27)
 ```
 
-> <img src="/assets/images/INU/datastructure/MergeSortEx.png" alt="MergeSortEx_Procdess" width="100%" min-width="200px" itemprop="image"><br>`합병 정렬 예시`<br>
+> <img src="/assets/images/INU/datastructure/MergeSortEx.png" alt="MergeSortEx_Procdess" width="100%" min-width="200px" itemprop="image"><br>`합병 정렬 예시`<br><br>
 > <img src="/assets/images/INU/datastructure/MergeSortProcess.png" alt="MergeSortProcess_Procdess" width="100%" min-width="200px" itemprop="image"><br>`합병 정렬의 전체 과정`
 
 <br><br>
@@ -150,7 +150,8 @@ merge_sort(list, left, right)
         mid = (left + right) / 2;         // 중간 위치를 계산한다.
         merge_sort(list, left, mid);      // 앞 부분(left ~ mid) 배열을 정렬
         merge_sort(list, mid + 1, right); // 뒷 부분(mid+1 ~ right) 배열을 정렬 
-        merge(list, left, mid, right);    // 정렬된 앞, 뒤 부분 배열을 통합하여 하나의 정렬된 배열 생성
+        // 정렬된 앞, 뒤 부분 배열을 통합하여 하나의 정렬된 배열 생성
+        merge(list, left, mid, right);    
 ```
 
 > 합병 정렬 알고리즘에서 실질적인 정렬이 이루어지는 부분은 합병(merge) 단계이다.
@@ -290,15 +291,65 @@ void merge_sort(int list[], int left, int right){
 
 # 퀵 정렬의 개념 (Quick Sort)
 
+```
+퀵 정렬(Quick Sort)은 평균적으로 매우 빠른 수행속도를 가짐.
+Divide and Conquer(분할 정복)에 근거하는 알고리즘.
+리스트의 한 요소를 피벗(pivot) 으로 선택.
+피벗보다 작은 요소들의 부분 리스트, 피벗보다 큰 요소들의 부분 리스트로 분할.
+피벗을 제외한 왼쪽 리스트와 오른쪽 리스트를 정렬하게 되면 전체 리스트가 정렬됨.
+```
+
+> <img src="/assets/images/INU/datastructure/quick_sort.png" alt="quick_sort_Procdess" width="100%" min-width="200px" itemprop="image"><br>`퀵 정렬 알고리즘`<br><br>
+> - 퀵 정렬 함수는 부분 리스트에 대하여 순환 호출.
+> - 부분 리스트 에서도 다시 피봇을 정하고 피봇을 기준으로 2개의 리스트로 분할하는 과정이 반복.
+> - 부분 리스트들이 더 이상 분할 되지 않을 때까지 분할.
+
+<br><br>
+
+# 퀵 정렬 알고리즘
+
+```c
+// 퀵 정렬
+void quick_sort(int list[], int left, int right)
+    // 정렬할 범위가 2개 이상의 데이터라면
+    if(left < right) {
+        // partition 함수 호출 (피벗을 기준으로 2개의 리스트로 분할 및 피벗의 위치 반환)
+        int q = partition(list, left, right);
+        // left(0) ~ 피벗 직전(q-1)까지 순환 호출
+        quick_sort(list, left, q-1);
+        // 피벗 이후(q+1)부터 끝까지(right) 순환 호출
+        quick_sort(list, q+1, right);
+```
+
+> **퀵 정렬에서 가장 중요한 함수는 partition()**
+> - partition()
+>   - 초기 입력 배열을 pivot을 기준으로 2개의 부분 리스트로 분할.
+>   - 피벗보다 작은 요소는 왼쪽 부분리스트 / 큰 요소는 오른쪽 부분리스트에 존재
+>   1. 리스트의 첫번째 요소를 pivot으로 설정. (편의를 위해)
+>   2. pivot 이후의 요소중 첫번째 요소는 low, 마지막 요소는 high로 설정.
+>   3. low는 1씩 증가시키며 pivot 보다 높은 값을 만나면 해당 위치에서 멈춤.
+>   4. high는 1씩 감소시키며 pivot 보다 낮은 값을 만나면 해당 위치에서 멈춤.
+>   5. low와 high가 전부 멈추게 되면 두 요소를 바꿈.
+>   6. 리스트 내에서 점진적으로 low는 증가, high는 감소하므로 두 요소가 엇갈리기 전까지 반복.
+>   7. **low와 high의 인덱스가 엇갈리게 되면 high는 직전의 low가 가리키던 값을 가리키게 되고 low는 직전에 high가 가르키던 값을 가리키게 됨.**
+>   8. **따라서 현재 low는 pivot보다 큰 값, high는 pivot보다 작은 값을 가리키고 있음.**
+>   9. **이 때 high/low 의 경계선이 pivot을 기준으로 작은 값/큰 값 으로 나뉜 것**
+>   10. **pivot과 high의 요소 및 위치를 바꾸어주면 리스트는 pivot을 기준으로 (왼쪽 - 작은값) (오른쪽 - 큰값) 으로 분할됨.**
+
+> <h2>‼️정리‼️</h2>
+> 1. low와 high를 양 끝에서 출발.
+> 2. 서로 부적절한 데이터를 만나면 교환.
+> 3. low와 high의 index가 엇갈린 직후 pivot과 high의 요소 및 위치를 교환.
+> 4. pivot 기준 좌, 우 리스트가 작은 값, 큰 값으로 분할됨.
+{: .notice--info}
+{: style="text-align: left;"}
 
 
 
 
 
 
-
-
-> <img src="/assets/images/INU/datastructure/ShellSort_rs.png" alt="ShellSort_rs_Procdess" width="50%" min-width="200px" itemprop="image"><br>`쉘 정렬 알고리즘 - 실행 결과`<br><br>
+> <img src="/assets/images/INU/datastructure/quick_sort.png" alt="quick_sort_Procdess" width="100%" min-width="200px" itemprop="image"><br>`퀵 정렬 알고리즘`<br><br>
 
 
 
