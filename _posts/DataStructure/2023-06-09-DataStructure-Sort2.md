@@ -1,5 +1,5 @@
 ---
-title: "[Data Structure]<br>정렬(Sort)(2) - 쉘 정렬(Shell Sort) / 합병 정렬(Merge Sort) / 퀵 정렬(Quick Sort)"
+title: "[Data Structure]<br>정렬(Sort)(2) - 쉘 정렬(Shell Sort) / 합병 정렬(Merge Sort) / 퀵 정렬(Quick Sort) / 기수 정렬(Radix Sort)"
 categories:
   - INU-DataStructure
   - C
@@ -336,6 +336,9 @@ void quick_sort(int list[], int left, int right)
 >   9. **이 때 high/low 의 경계선이 pivot을 기준으로 작은 값/큰 값 으로 나뉜 것**
 >   10. **pivot과 high의 요소 및 위치를 바꾸어주면 리스트는 pivot을 기준으로 (왼쪽 - 작은값) (오른쪽 - 큰값) 으로 분할됨.**
 
+> <img src="/assets/images/INU/datastructure/Quick_Sort_process.png" alt="Quick_Sort_process_Procdess" width="100%" min-width="200px" itemprop="image"><br>`퀵 정렬의 분할 과정 - partition()`<br><br>
+
+
 > <h2>‼️정리‼️</h2>
 > 1. low와 high를 양 끝에서 출발.
 > 2. 서로 부적절한 데이터를 만나면 교환.
@@ -344,14 +347,138 @@ void quick_sort(int list[], int left, int right)
 {: .notice--info}
 {: style="text-align: left;"}
 
+<br><br>
+
+# partition() 의 구현
+
+```c
+// 퀵 정렬
+int partition(int list[], int left, int right){
+    int pivot, temp;
+    int low, high;
+
+    // left는 pivot의 위치이지만 for문 들어가며 +1 증가되어 피봇 다음 index부터 시작하게 된다.
+    low = left;
+    // high도 마찬가지로 for문 들어가며 -1 감소되어 시작되기 때문에 배열을 넘어서는 인덱스부터 시작.
+    high = right + 1;
+    // 편의를 위해 피봇을 list의 첫 인덱스로 설정.
+    pivot = list[left];
+
+    do {
+        // 두 개의 do-while문
+        do
+            low++;
+        while (list[low] < pivot);
+        // low가 pivot보다 큰 (low 부분 리스트에 있으면 안되는) 요소에서 멈춤
+        
+        do
+            high--;
+        while (list[high] > pivot);
+        // high가 pivot보다 작은 (high 부분 리스트에 있으면 안되는) 요소에서 멈춤
+
+        // 위의 do while문에 의해 멈춰 있는 low / high 가 가리키고 있는 요소를 교환.
+        // (부적절한 요소가 있는 위치)
+        if(low < high) SWAP(list[low], list[high], temp);
+    }while (low < high); // low와 high가 교차하면 종료
+
+    // pivot(list[left])과 high의 요소를 바꾸어준다.
+    SWAP(list[left], list[high], temp);
+    
+    return high;    // high가 가리키는 곳으로 이동한 pivot의 인덱스를 반환
+}
+```
+
+> partition() 함수가 한번 실행되어 pivot을 기준으로 좌우 데이터가 분할되면<br>
+> 왼쪽 부분 리스트는 pivot 보다 작은 요소 / 오른쪽 부분 리스트는 pivot 보다 큰 요소로 분할됨.<br>
+> - **따라서 pivot의 위치는 고정된다.**<br>
+> 이후 pivot을 제외한 좌 / 우 부분 리스트에 대해서만 퀵 정렬을 실행하면 전체 리스트가 정렬된다.<br>
+> 
+> <img src="/assets/images/INU/datastructure/Quick_sort_whole_process.png" alt="Quick_sort_whole_process_Procdess" width="100%" min-width="200px" itemprop="image"><br>`퀵 정렬 알고리즘 - 전체 과정`<br><br>
+
+<h2>퀵 정렬 전체 코드</h2>
+
+```c
+// 퀵 정렬
+int partition(int list[], int left, int right){
+    int pivot, temp;
+    int low, high;
+
+    // left는 pivot의 위치이지만 for문 들어가며 +1 증가되어 피봇 다음 index부터 시작하게 된다.
+    low = left;
+    // high도 마찬가지로 for문 들어가며 -1 감소되어 시작되기 때문에 배열을 넘어서는 인덱스부터 시작.
+    high = right + 1;
+    // 편의를 위해 피봇을 list의 첫 인덱스로 설정.
+    pivot = list[left];
+
+    do {
+        // 두 개의 do-while문
+        do
+            low++;
+        while (list[low] < pivot);
+        // low가 pivot보다 큰 (low 부분 리스트에 있으면 안되는) 요소에서 멈춤
+        
+        do
+            high--;
+        while (list[high] > pivot);
+        // high가 pivot보다 작은 (high 부분 리스트에 있으면 안되는) 요소에서 멈춤
+
+        // 위의 do while문에 의해 멈춰 있는 low / high 가 가리키고 있는 요소를 교환.
+        // (부적절한 요소가 있는 위치)
+        if(low < high) SWAP(list[low], list[high], temp);
+    }while (low < high); // low와 high가 교차하면 종료
+
+    // pivot(list[left])과 high의 요소를 바꾸어준다.
+    SWAP(list[left], list[high], temp);
+    
+    return high;    // high가 가리키는 곳으로 이동한 pivot의 인덱스를 반환
+}
+
+void quick_sort(int list[], int left, int right){
+    if(left < right){
+        // partition() 함수의 결과로 pivot 생성 후 리스트 분할.
+        int pivot = partition(list, left, right);
+        // left ~ pivot 전 요소까지 퀵 정렬
+        quick_sort(list, left, pivot - 1);
+        // pivot 이후 요소부터 right(끝)까지 퀵 정렬.
+        quick_sort(list, pivot + 1, right);
+    }
+}
+```
+
+> <img src="/assets/images/INU/datastructure/Quick_sort_rs.png" alt="Quick_sort_rs_Procdess" width="50%" min-width="200px" itemprop="image"><br>`퀵 정렬 알고리즘 - 실행 결과`<br><br>
+> 
+> **퀵 정렬의 복잡도 분석**
+> - 이진 트리의 높이가 낮을 때 교환 수가 최소.
+>   - 균등한 리스트(완전 이진트리) 인 경우 최선의 시간복잡도 도출가능.
+>   - O(n * log_2 n)
+> - 경사 이진 트리인경우 최악의 시간복잡도 도출.<br>
+>   - O(n^2)
+> pivot이 초기 입력리스트의 중간 값에 가까울수록 퀵 정렬의 효율성 증대.<br>
+> - random sampling :
+>   - 랜덤으로 몇가지 요소를 꺼내 그 평균과 비슷한 값을 pivot으로 지정. 
+
+<br><br>
+
+# 기수 정렬(Radix Sort)
 
 
 
 
 
-> <img src="/assets/images/INU/datastructure/quick_sort.png" alt="quick_sort_Procdess" width="100%" min-width="200px" itemprop="image"><br>`퀵 정렬 알고리즘`<br><br>
 
 
+
+
+
+
+
+
+
+
+
+
+
+> <img src="/assets/images/INU/datastructure/Quick_sort_rs.png" alt="Quick_sort_rs_Procdess" width="50%" min-width="200px" itemprop="image"><br>`퀵 정렬 알고리즘 - 실행 결과`<br><br>
 
 <!-- > > 
 `참고:`[Inflearn - 김영한님_강의](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-mvc-1/dashboard)<br><br>
