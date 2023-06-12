@@ -102,7 +102,7 @@ with open('파일명', '모드') as fileObj:
 
 
 
-<img src="/assets/images/INU/python/.png" alt="_Procdess" width="100%" min-width="200px" itemprop="image"><br>``<br><br>
+
 
 
 
@@ -148,12 +148,7 @@ with open('파일명', '모드') as fileObj:
 
 ### Task Lists
 > 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
+- [x] 파일 입출력 (File I/O)
+- [x] 파일 입출력 모드 & 내장 메소드
+- [x] 파일 데이터를 줄 (Line) 단위로 읽기
+- [x] 파일 출력 관련 메소드
