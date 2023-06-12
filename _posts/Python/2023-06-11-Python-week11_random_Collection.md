@@ -1,5 +1,5 @@
 ---
-title: "Python : 문자열 다루기 & 최장 연속 순차"
+title: "Python : 난수 모듈 Random / 집합 자료형 set / 튜플 자료형 ()"
 categories:
   - Python
 tags:
@@ -324,9 +324,51 @@ if __name__ == '__main__':
 최장 연속 순차의 길이 : 7
 ```
 
+```python
+import random
+
+N = input('리스트의 원소 개수 입력 : ')
+
+try:
+    N = int(N)
+    l = []
+    s = set()
+
+    while len(l) < N:
+        number = random.randint(1, 2*N)
+        # 중복이 없는 난수 리스트 생성
+        if number not in s:
+            l.append(number)
+            s.add(number)
+
+    l.sort()
+    print(l)
+
+    k = int(input('목표값 입력: '))
+
+    print(f'두 수의 합이 {k}인 원소 쌍')
+    
+    i = 0; j = N-1
+    while i < j:
+        total = l[i] + l[j]
+
+        if total == k:
+            print(f'{i+1}번째와 {j+1}번째 원소')
+            i += 1; j -= 1
+        elif total < k:
+            i += 1
+        else:
+            j -= 1
 
 
-> <img src="/assets/images/INU/python/.png" alt="_Procdess" width="100%" min-width="200px" itemprop="image"><br>``<br><br>
+except Exception as e:
+    print(e)
+    print('잘못된 입력입니다')
+```
+
+
+
+> <img src="/assets/images/INU/python/11_2_3.png" alt="11_2_3_Procdess" width="100%" min-width="200px" itemprop="image"><br>`예제 - 3 실행 결과`<br><br>
 <!-- > <img src="/assets/images/INU/python/.png" alt="_Procdess" width="100%" min-width="200px" itemprop="image"><br>``<br><br>
 `사진출처:`[]()
 <span style="color:green">``</span>
@@ -364,12 +406,15 @@ if __name__ == '__main__':
 
 ### Task Lists
 > 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
+- [x] 함수 파라미터 초기화 (Parameter Initialization)
+- [x] 난수 발생 모듈
+- [x] 집합(set) 자료형
+- [x] 집합 자료형의 생성
+- [x] 집합 자료형 간의 연산
+- [x] 집합 자료형의 내장 Method
+- [x] 튜플(Tuple) 자료형
+- [x] 튜플 자료형에서의 요소 접근
+- [x] List와 Tuple의 주요 차이점
+- [x] 예제 1. find 함수 구현
+- [x] 예제 2. 두 수의 합
+- [x] 예제 3. 최장 연속 순차
