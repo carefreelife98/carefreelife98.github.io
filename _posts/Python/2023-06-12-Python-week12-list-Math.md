@@ -25,21 +25,21 @@ map()
 > - 주로 이름 없는 함수인 Lambda 함수로 연산을 정의한 후 이를 각 요소에 적용하는 형태
 >   - 이때, lambda 함수의 인자 개수는 반드시 1개.<br><br>
 >   
->   ```python
->   //map
+> ```python
+> //map
 >
->   a = [1, 2, 3, 4, 5]
->   print(a)
+> a = [1, 2, 3, 4, 5]
+> print(a)
 >
->   a = list(map(str, a)) //list내의 요소들 type을 str로 변환
->   print(a)
+> a = list(map(str, a)) //list내의 요소들 type을 str로 변환
+> print(a)
 >
->   a = list(map(int, a)) //list내의 요소들 type을 int로 변환
->   print(a)
+> a = list(map(int, a)) //list내의 요소들 type을 int로 변환
+> print(a)
 >
->   a = list(map(lambda x: x+1, a)) //list 내의 요소 값 1씩 증가
->   print(a)
->   ```
+> a = list(map(lambda x: x+1, a)) //list 내의 요소 값 1씩 증가
+> print(a)
+> ```
 >
 > <img src="/assets/images/INU/python/12_map.png" alt="12_map_Procdess" width="60%" min-width="200px" itemprop="image"><br>`map() 함수 및 lambda 함수 적용`<br>
 
