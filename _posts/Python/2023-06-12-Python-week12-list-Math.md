@@ -188,7 +188,7 @@ if __name__ == '__main__':
     print(f'벡터의 내적 값은 : {dot([1, 2, 3, 4], [2, 3, 4, 5])}')
 ```
 
-> <img src="/assets/images/INU/python/12_1_1-2.png" alt="12_1_1-2_Procdess" width="60%" min-width="200px" itemprop="image"><br>`zip() 활용하여 벡터의 내적 구하기`<br>
+[//]: # (> <img src="/assets/images/INU/python/12_1_1-2.png" alt="12_1_1-2_Procdess" width="60%" min-width="200px" itemprop="image"><br>`zip&#40;&#41; 활용하여 벡터의 내적 구하기`<br>)
     
 <!-- > <img src="/assets/images/INU/python/.png" alt="_Procdess" width="100%" min-width="200px" itemprop="image"><br>``<br><br>
 `사진출처:`[]()
