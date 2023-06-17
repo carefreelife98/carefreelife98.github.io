@@ -20,7 +20,7 @@ Visit my Programming blog: https://carefreelife98.github.io -->
 어떠한 대상을 오름차순 (ascending order) 및 내림차순 (descending order) 으로 나열하는 것.
 ```
 
-> <img src="/assets/images/INU/datastructure/Sort.png" alt="Sort_Procdess" width="100%" min-width="200px" itemprop="image"><br>`[출처](https://engoo.co.kr/app/lessons/sort-out-settle-for-count-on-fall-behind-do-over/_H6h7FHeEeetxgef8rkGgA)정렬 (Sorting)`<br>
+> <img src="/assets/images/INU/datastructure/Sort.png" alt="Sort_Procdess" width="100%" min-width="200px" itemprop="image"><br>`[출처]``(https://engoo.co.kr/app/lessons/sort-out-settle-for-count-on-fall-behind-do-over/_H6h7FHeEeetxgef8rkGgA)``정렬 (Sorting)`<br>
 > - 정렬은 컴퓨터 공학에서 가장 기본적이고 중요한 알고리즘 중의 하나.
 > - 자료 탐색에 있어 필수적 - 탐색의 효율성 증대.
 > - 정렬시켜야 할 대상 : 레코드(record)
@@ -36,7 +36,7 @@ Visit my Programming blog: https://carefreelife98.github.io -->
 >   - 외부 기억 장치에 대부분의 데이터가 존재.
 >   - 일부만 주 기억장치에 저장된 상태에서 정렬.
 > 
-> <img src="/assets/images/INU/datastructure/in_ex_sorting.png" alt="in_ex_sorting_Procdess" width="100%" min-width="200px" itemprop="image"><br>`[출처](https://cs186.fandom.com/wiki/External_Sorting)내부 정렬과 외부 정렬의 모습`<br><br>
+> <img src="/assets/images/INU/datastructure/in_ex_sorting.png" alt="in_ex_sorting_Procdess" width="100%" min-width="200px" itemprop="image"><br>`[출처]``(https://cs186.fandom.com/wiki/External_Sorting)``내부 정렬과 외부 정렬의 모습`<br><br>
 > 
 > **정렬 알고리즘의 안정성 (Stability)**
 >   - 동일 한 키 값을 갖는 레코드들의 상대적인 위치가 정렬 후에도 같은 것.
@@ -53,7 +53,7 @@ Visit my Programming blog: https://carefreelife98.github.io -->
 
 > 정렬된 왼쪽 리스트와 정렬되지 않은 오른쪽 리스트가 있다고 가정.
 > - 왼쪽 리스트는 비어 있고, 정렬할 숫자들은 모두 오른쪽 리스트에 존재.
-> - **오른쪽 리스트에서 가장 작은 숫자를 선택하여 왼쪽 리스트로 이돌하는 작업을 되풀이.**
+> - **오른쪽 리스트에서 가장 작은 숫자를 선택하여 왼쪽 리스트로 이동하는 작업을 되풀이.**
 > - 오른쪽 리스트가 공백이 되면 종료.
 > <img src="/assets/images/INU/datastructure/Selection_sort.png" alt="Selection_sort_Procdess" width="100%" min-width="200px" itemprop="image"><br>`선택 정렬(Selection Sort)`<br><br>
 >
