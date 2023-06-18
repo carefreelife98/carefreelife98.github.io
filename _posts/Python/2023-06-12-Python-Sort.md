@@ -187,7 +187,7 @@ for k in range(len(l)):
 
 
 
-<img src="/assets/images/INU/python/.png" alt="_Procdess" width="100%" min-width="200px" itemprop="image"><br>``<br><br>
+
     
 <!-- > <img src="/assets/images/INU/python/.png" alt="_Procdess" width="100%" min-width="200px" itemprop="image"><br>``<br><br>
 `사진출처:`[]()
@@ -226,12 +226,8 @@ for k in range(len(l)):
 
 ### Task Lists
 > 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
+- [x] 정렬 문제의 정의
+- [x] 정렬 알고리즘 1. 선택 정렬 (Selection Sort)
+- [x] 정렬 알고리즘 2. 삽입 정렬 (Insert Sort)
+- [x] 정렬 알고리즘 3. 합병 정렬 (Merge Sort)
+- [x] 정렬 알고리즘 4. 버블 정렬 (Bubble Sort)
