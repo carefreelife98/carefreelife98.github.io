@@ -30,6 +30,14 @@
                     {% endif %}
                 {% endfor %}
             </ul>
+        <span class="nav__sub-title">Cloud Wave ☁️</span>
+            <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "Cloud-Wave" %}
+                        <li><a href="/Cloud-Wave/" class="">Cloud Wave ({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
         <span class="nav__sub-title">Spring🍀</span>
             <ul>
                 {% for category in site.categories %}
