@@ -140,7 +140,7 @@ Visit my Programming blog: https://carefreelife98.github.io -->
 
 <br><br>
 
-허용 가능한 만큼의 학습 내용을 복습 겸 이곳에 포스팅 해보려고 합니다.
+허용 가능한 만큼의 학습 내용을 복습 겸 이곳에 포스팅 해보려고 합니다.<br>
 긴 글 읽어주셔서 감사합니다. 포스팅을 마칩니다.<br>
 {: .notice--success}
 {: style="text-align: center;"}
