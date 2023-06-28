@@ -20,7 +20,7 @@ sidebar-category:
         category: "INU-DataStructure"
       - title: "Cloud Wave"
         url: "/Cloud-Wave/"
-        category: "Cloud"
+        category: "Cloud-Wave"
       - title: "C/C++"
         url: "/C/"
         category: "C"
