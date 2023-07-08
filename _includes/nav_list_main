@@ -30,11 +30,46 @@
                     {% endif %}
                 {% endfor %}
             </ul>
-        <span class="nav__sub-title">Cloud Wave ☁️</span>
+        <span class="nav__sub-title">[CJ Olivenetworks]<br>Cloud Wave ☁️</span>
             <ul>
                 {% for category in site.categories %}
                     {% if category[0] == "Cloud-Wave" %}
                         <li><a href="/Cloud-Wave/" class="">Cloud Wave ({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "Cloud-Wave-Virtualization" %}
+                        <li><a href="/Cloud-Wave-Virtualization/" class="">Virtualization ({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "Cloud-Wave-Kubernetes" %}
+                        <li><a href="/Cloud-Wave-Kubernetes/" class="">Kubernetes ({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "Cloud-Wave-Public" %}
+                        <li><a href="/Cloud-Wave-Public/" class="">Public ({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "Cloud-Wave-Cloud-Automation" %}
+                        <li><a href="/Cloud-Wave-Cloud-Automation/" class="">Cloud-Automation ({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "Cloud-Wave-Project" %}
+                        <li><a href="/Cloud-Wave-Project/" class="">Project ({{category[1].size}})</a></li>
                     {% endif %}
                 {% endfor %}
             </ul>
