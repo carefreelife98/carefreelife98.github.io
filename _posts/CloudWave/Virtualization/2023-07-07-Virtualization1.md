@@ -112,7 +112,7 @@ Protection Ring 은 시스템 아키텍쳐 내에서 둘 이상의 계층으로 
 
 # (참고) Full Virtualization
 
-<img src="/assets/images/CloudWave/Virtualization/FullVirtual.png" alt="FullVirtual_Procdess" width="100%" min-width="200px" itemprop="image"><br>`전 가상화`<br>
+<img src="/assets/images/CloudWave/Virtualization/FullVirtual.png" alt="FullVirtual_Procdess" width="100%" min-width="200px" itemprop="image"><br>`전 가상화 (Full Virtualization)`<br>
 
 - HostOS가 존재하지 않는다.
 - Hypervisor 만을 사용해서 가상화를 구현
@@ -127,6 +127,8 @@ Protection Ring 은 시스템 아키텍쳐 내에서 둘 이상의 계층으로 
 
 **에뮬레이션 (Emulation)**
 - 에뮬레이션은 Host Machine 에 존재하지 않는 하드웨어 및 아키텍쳐를 Virtual Machine 에게 제공하는 것.
+
+<br><br>
 
 **QEMU**
 - QEMU 는 대표적인 **에뮬레이터(Emulator)** 중 하나.
@@ -155,17 +157,16 @@ Protection Ring 은 시스템 아키텍쳐 내에서 둘 이상의 계층으로 
 
 # (참고) Cloud OS - OpenStack / OpenShift / Kubernetes
 
-**Cloud OS**
+<h1>Cloud OS</h1>
+
 >Cloud OS(클라우드 운영 체제)는 클라우드 컴퓨팅 환경에서 작동하는 운영 체제.
 >- 기존의 운영 체제가 개별적인 물리적 서버 또는 가상 머신에서 실행되는 것과 달리,
 >  - **클라우드 운영 체제는 클라우드 인프라에서 가상화된 리소스를 효율적으로 관리하고 제어하는 역할을 수행.** 
->- 클라우드 운영 체제는 **여러 가상 머신 또는 컨테이너 인스턴스를 동시에 실행하고 관리하며, 리소스 할당, 스케줄링, 보안, 모니터링 등의 기능을 제공.**
+>- 클라우드 운영 체제는 **여러 가상 머신 또는 컨테이너 인스턴스를 동시에 실행하고 관리하며, 리소스 할당, 스케줄링, 보안, 모니터링 등의 기능을 제공.**<br>
+> AWS : 백그라운드에서 Cloud OS가 동작함으로서 서비스 되는 것. <br><br>
 
-<br><br>
+<h1>OpenStack</h1>
 
-AWS : 백그라운드에서 Cloud OS가 동작함으로서 서비스 되는 것. <br><br>
-
-**OpenStack**
 > <img src="/assets/images/CloudWave/Virtualization/OpenStack.png" alt="OpenStack_Procdess" width="100%" min-width="200px" itemprop="image"><br>`OpenStack`<br>
 > **OpenStack은 오픈 소스 기반의 클라우드 컴퓨팅 플랫폼.**
 > - OpenStack은 **대규모의 프라이빗 클라우드 및 퍼블릭 클라우드 인프라를 구축하고 관리하기 위한 도구와 서비스를 제공.**
@@ -174,7 +175,8 @@ AWS : 백그라운드에서 Cloud OS가 동작함으로서 서비스 되는 것.
 
 <br><br>
 
-**OpenShift(상용) - Redhat**
+<h1>OpenShift(상용) - Redhat**</h1>
+
 > <img src="/assets/images/CloudWave/Virtualization/OpenShift.png" alt="OpenShift_Procdess" width="100%" min-width="200px" itemprop="image"><br>`OpenShift`<br>
 > **Kubernetes의 상위 버전.** 
 >
@@ -185,7 +187,8 @@ AWS : 백그라운드에서 Cloud OS가 동작함으로서 서비스 되는 것.
 
 <br><br>
 
-**Kubernetes** (Open Source)
+<h1>Kubernetes** (Open Source)</h1>
+
 > <img src="/assets/images/CloudWave/Virtualization/Kubernetes.png" alt="Kubernetes_Procdess" width="100%" min-width="200px" itemprop="image"><br>`Kubernetes`<br>
 > Kubernetes는 컨테이너 오케스트레이션 및 관리를 위한 오픈 소스 플랫폼.<br>
 > - 컨테이너화된 애플리케이션을 효율적으로 배포, 확장 및 관리하기 위한 기능을 제공.
