@@ -50,7 +50,7 @@ Visit my Programming blog: https://carefreelife98.github.io -->
 - Build / Ship : 주로 개발자가 진행
 - Ship / Run : 주로 운영자가 진행<br><br>
 
-# Docker 명령어
+# [Docker] 명령어
 
 <img src="/assets/images/CloudWave/Virtualization/DockerClientCommands.png" alt="DockerClientCommands_Procdess" width="100%" min-width="200px" itemprop="image"><br>`Docker Client Commands`<br>
 - **도커 명령어**
@@ -80,20 +80,7 @@ Visit my Programming blog: https://carefreelife98.github.io -->
 
 <br><br>
 
-# Docker & Podman
-
-- **Docker**
-  - Daemon 이 있음.
-  - Daemon 이 죽으면 해당 컨테이너도 중지됨.
-- **Podman**
-  - Daemon 이 없음
-  - Daemon 과 상관없이 해당 운영체제/ 컨테이너 가 종료될 때까지 종료되지 않음.
-- **Docker의 상용화 (유료화)**
-  - 점점 podman을 사용하는 추세가 보임 (대표적인 예로 KT)
-
-<br><br>
-
-# Docker 설치 (CentOS Stream 8)
+# [Docker] 설치 (CentOS Stream 8)
 
 ```bash
 [root@servera ~]# yum-config-manager --add-repo \
@@ -127,7 +114,7 @@ Created symlink from /etc/systemd/system/multi-user.target.wants/docker.service 
 
 <br><br>
 
-# Docker 실행 과정 예시 및 장/단점
+# [Docker] 실행 과정 예시 및 장/단점
 
 ```bash
 [root@servera ~]# docker pull mariadb
@@ -216,7 +203,11 @@ docker ps -a
 
 <br><br>
 
-# Docker Container 정의
+# [Docker] Container 정의
+
+```shell
+Docker Container 란?
+```
 
 - **개발자가 라이브러리 및 기타 종속성과 같이 필요한 모든 부분을 응용 프로그램(이미지)으로 패키징 하고 하나의 패키지(컨테이너)로 모두 전송.**
 - **여러 컨테이너가 동일한 머신에서 실행될 수 있고 해당 머신의 OS 커널을 다른 컨테이너와 공유해서 사용.**
@@ -228,11 +219,120 @@ docker ps -a
   2. 변경 사항을 Layer 상태로 저장하는 파일 시스템(Union File System)
 - **간단하게, 격리된(독립된) 공간에서 프로세스가 동작하게 해주는 가상화 기술.**
 
+<img src="/assets/images/CloudWave/Virtualization/DContainer.png" alt="DContainer_Procdess" width="100%" min-width="200px" itemprop="image"><br>`Docker Container 구조`<br>
+
+- **Container 개념에서 매우 중요한 것**
+  - 여러가지 Container 의 **Image 들은 전부 Read-Only** 속성이다.
+  - 하지만, 해당 이미지가 속한 **Container 들은 writable** 하다.
+    - 그 이유인 즉슨, 
+      **Image(read-only) 에 writable 한 Layer 를 추가한 것이 곧 Container 이기 때문.**
+- **Base Image는 OS**를 뜻한다. (Debian : Ubuntu와 비슷)
+- Linux
+  - bootfs : kernel을 가짐
+  - rootfs : 명령어를 가짐
+
+<br><br>
+
+# [Docker] Container 생성
+
+<img src="/assets/images/CloudWave/Virtualization/DContainerGen.png" alt="DContainerGen_Procdess" width="100%" min-width="200px" itemprop="image"><br>`Docker Container 생성`<br>
+
+Docker Client 가<br>
+
+```shell
+$docker container run ~
+```
+
+하게 되면, **Docker server의 Docker Daemon**이 요청을 받게 된다.<br>
+<img src="/assets/images/CloudWave/Virtualization/DDaemon.png" alt="DDaemon_Procdess" width="100%" min-width="200px" itemprop="image"><br>`Docker Daemon이 일하고 있는 모습`<br>
+- **~/docker.service; enabled;**
+  - 위 부분에서 Docker Daemon이 실행되었다는 것을 나타낸다.**(= dockerd)**
+
+<br><br>
+
+**Docker Container 생성 방법 1 - create 사용**
+
+```shell
+$ docker container create --name (컨테이너 이름 지정) -p (사용할 포트번호 지정- Host : Container) (이미지 이름)
+```
+
+<img src="/assets/images/CloudWave/Virtualization/DContGen1.png" alt="DContGen1_Procdess" width="70%" min-width="200px" itemprop="image"><br>`Docker container create`
+
+<br><br>
+
+```shell
+# 현재 docker에 다운로드 되어 있는 image 전부 출력
+$ docker images
+
+# 현재 Container 의 상태 정보 출력 (-a 사용시 이전에 중지된 작업들도 출력)
+$ docker container ls (-a)
+```
+
+<img src="/assets/images/CloudWave/Virtualization/DContGen2.png" alt="DContGen2_Procdess" width="70%" min-width="200px" itemprop="image"><br>`docker images / docker container ls (-a)`<br>
+
+<br><br>
+
+```shell
+# 컨테이너 실행
+$ docker container start (Container 이름)
+```
+
+<img src="/assets/images/CloudWave/Virtualization/DContGen3.png" alt="DContGen3_Procdess" width="70%" min-width="200px" itemprop="image"><br>`docker container start`<br>
+- STATUS 가 Up으로 변경되며 실행중인 것을 확인할 수 있다.
+
+<br><br>
+
+**Docker Container 생성 방법 2 - run 사용**
+
+```shell
+$ docker container run --name (컨테이너 이름 지정) -d(= 백그라운드에서 동작) -p (사용할 포트번호 지정- Host : Container) (이미지 이름)
+```
+
+<img src="/assets/images/CloudWave/Virtualization/DContainerRun.png" alt="DContainerRun_Procdess" width="70%" min-width="200px" itemprop="image"><br>`docker container run`<br>
+- `run` 옵션은 local에 지정된 이미지 정보가 없을 시, 자동으로 해당 이미지를 docker library에서 pull 하여 다운로드 진행 후 컨테이너를 생성 및 실행한다.
+  - 지정된 이미지 후미에 :(~버전)을 설정해주지 않을 시, default로 latest(가장 최근 버전) Tag를 달아 다운로드 / 실행한다.
+  - create / start 보다 간편해서 자주 사용.
+- -p 8180:80
+  - Port Forwarding : Host의 8180 포트와 Container 의 80 포트를 연결.
+    - Host 와 Container의 포트를 포트포워딩을 통해 연결 -> 컨테이너 생성 시 -p 옵션 주기
+- -d : Background 에서 동작하도록 한다. <br>
+<img src="/assets/images/CloudWave/Virtualization/DContainerRun2.png" alt="DContainerRun2_Procdess" width="70%" min-width="200px" itemprop="image"><br>`docker container run 실행 후 모습`<br>
+- nginx 의 STATUS 가 Up으로 변경되며 잘 실행이 되었고, 포트 포워딩도 잘 되어 있는 모습을 볼 수 있다.
+
+<br><br>
+
+# [Docker] Container 중지(stop), 재실행(restart), 일시중지(pause / unpause)
+
+```shell
+# Docker Container 중지
+$ docker container stop (컨테이너 이름)
+```
+
+<img src="/assets/images/CloudWave/Virtualization/DcontainerStop.png" alt="DcontainerStop_Procdess" width="70%" min-width="200px" itemprop="image"><br>`Docker Container Stop`<br>
+
+```shell
+# Docker Container 재실행
+$ docker container restart (컨테이너 이름)
+```
+
+<img src="/assets/images/CloudWave/Virtualization/DCRestart.png" alt="DCRestart_Procdess" width="70%" min-width="200px" itemprop="image"><br>`Docker Container Restart`<br>
+
+```shell
+# Docker Container 일시 중지
+$ docker container pause (컨테이너 이름)
+
+# 해제
+$ docker container unpause (컨테이너 이름)
+```
+
+<img src="/assets/images/CloudWave/Virtualization/DCPause.png" alt="DCPause_Procdess" width="70%" min-width="200px" itemprop="image"><br>`Docker Container Pause / Unpause`<br>
+
+
 <br><br>
 
 # Virtual Machine vs Container
 
-<img src="/assets/images/CloudWave/Virtualization/VM_Container.png" alt="DVM_Container_Procdess" width="80%" min-width="200px" itemprop="image"><br>`VM vs Container`<br>
+<img src="/assets/images/CloudWave/Virtualization/VM_Container.png" alt="VM_Container_Procdess" width="80%" min-width="200px" itemprop="image"><br>`VM vs Container`<br>
 
 Virtual Machine (Hypervisor : VSWare / OpenStack)
 - 결과물 : Virtual Machine
@@ -254,13 +354,13 @@ Container Runtime (Docker)
 
 # Podman (무료) vs Docker (유료)
 
-1. Layer (code)
-   - Docker 생성 가능.
-2. Image
-   - Docker 생성 가능.
-3. Container
-   - Docker 생성 가능.
-4. Pod (Group of Containers : 컨테이너 그룹)
+**1. Layer (code)**
+   - Docker/Podman 생성 가능.
+**2. Image**
+   - Docker/Podman 생성 가능.
+**3. Container**
+   - Docker/Podman 생성 가능.
+**4. Pod (Group of Containers : 컨테이너 그룹)**
    - Docker 생성 불가.
    - Podman은 Pod 까지 생성 가능
      - Pod 관리 프로그램
@@ -269,7 +369,26 @@ Container Runtime (Docker)
        - OpenShift (Redhat - 상용, 유료)
          - Podman을 이용하여 많이 사용
 
+- **Docker**
+  - Daemon 이 있음.
+  - Daemon 이 죽으면 해당 컨테이너도 중지됨.
+- **Podman**
+  - Daemon 이 없음
+  - Daemon 과 상관없이 해당 운영체제/ 컨테이너 가 종료될 때까지 종료되지 않음.
+- **Docker의 상용화 (유료화)**
+  - 점점 podman을 사용하는 추세가 보임 (대표적인 예로 KT)
 
+<br><br>
+
+# Kubernetes vs OpenShift
+
+가장 큰 차이점 ?
+- GUI (Web Console)
+  - Kubernetes : 저수준 (Linux 명령어 필수 사용)
+  - OpenShift : 고수준 (Linux를 잘 다루지 못해도 GUI 통해 충분히 사용 가능)
+    - 취업 후 OpenShift 강의 들어보기 !!! (꽤 비쌈)
+
+<br><br>
 
 
 
