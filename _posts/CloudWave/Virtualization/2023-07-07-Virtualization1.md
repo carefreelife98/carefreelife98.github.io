@@ -171,11 +171,11 @@ Protection Ring 은 시스템 아키텍쳐 내에서 둘 이상의 계층으로 
 > **OpenStack은 오픈 소스 기반의 클라우드 컴퓨팅 플랫폼.**
 > - OpenStack은 **대규모의 프라이빗 클라우드 및 퍼블릭 클라우드 인프라를 구축하고 관리하기 위한 도구와 서비스를 제공.**
 >   - 컴퓨팅, 네트워킹, 스토리지, 식별 및 액세스 관리 등의 다양한 기능을 포함하고 있다.
-> - Open Source이므로 무료이다.
+> - Open Source이므로 무료이다.<br><br>
 
-<br><br>
 
-<h1>OpenShift(상용) - Redhat**</h1>
+
+<h1>OpenShift(상용) - Redhat</h1>
 
 > <img src="/assets/images/CloudWave/Virtualization/OpenShift.png" alt="OpenShift_Procdess" width="100%" min-width="200px" itemprop="image"><br>`OpenShift`<br>
 > **Kubernetes의 상위 버전.** 
@@ -183,19 +183,19 @@ Protection Ring 은 시스템 아키텍쳐 내에서 둘 이상의 계층으로 
 > **OpenShift는 Red Hat에서 개발한 오픈 소스 기반의 컨테이너 플랫폼**
 > - OpenShift는 Kubernetes를 기반으로 한 컨테이너 오케스트레이션 및 애플리케이션 개발 및 배포를 위한 솔루션을 제공.
 > - 개발자들이 클라우드 환경에서 애플리케이션을 개발, 테스트, 배포, 관리할 수 있도록 도움을 주는 도구와 서비스를 포함.
-> - 유료
+> - 유료<br><br>
 
-<br><br>
 
-<h1>Kubernetes** (Open Source)</h1>
+
+<h1>Kubernetes (Open Source)</h1>
 
 > <img src="/assets/images/CloudWave/Virtualization/Kubernetes.png" alt="Kubernetes_Procdess" width="100%" min-width="200px" itemprop="image"><br>`Kubernetes`<br>
 > Kubernetes는 컨테이너 오케스트레이션 및 관리를 위한 오픈 소스 플랫폼.<br>
 > - 컨테이너화된 애플리케이션을 효율적으로 배포, 확장 및 관리하기 위한 기능을 제공.
 > - Kubernetes는 애플리케이션을 여러 대의 컴퓨터 노드로 분산시키고, 컨테이너의 상태를 모니터링하며, 자원 할당과 스케줄링을 관리.
-> - 무료
+> - 무료<br><br>
 
-<br><br>
+
 
 혹시 이해가 안가거나 추가적인 설명이 필요한 부분, 오류 등의 피드백은 언제든지 환영합니다!<br><br>
 긴 글 읽어주셔서 감사합니다. 포스팅을 마칩니다.<br>
