@@ -371,17 +371,73 @@ $ docker cp (복사 대상의 이름) (복사할 위치)
 > 지금까지 진행한<br>
 > 
 > ```
-> 컨테이너 생성
+> 컨테이너 생성 
 > 컨테이너 내부 정보 변경 
 > 컨테이너 내부 정보 확인
 > ```
 >
-> 의 세 단계가 모두 일치해야 한다.
+> 의 **세 단계가 모두 일치해야 한다.**
 {: .notice--info}
 {: style="text-align: left;"}
 
+<br><br>
 
+# [Docker] 컨테이너 프로세스 및 포트 확인하기(top, port)
 
+```shell
+$ docker container top (컨테이너 이름)
+
+$ docker container port (컨테이너 이름)
+```
+
+<img src="/assets/images/CloudWave/Virtualization/Dtop_port.png" alt="Dtop_port_Procdess" width="70%" min-width="200px" itemprop="image"><br>`docker container top / port`<br>
+- top : 현재 실행되고 있는 컨테이너가 실행중인 프로세스를 확인 할 수 있다.
+- port : 현재 실행되고 있는 컨테이너와 연결된 포트 정보를 확인 할 수 있다.
+
+<br><br>
+
+# [Docker] 컨테이너 이름 변경하기 (rename)
+
+```shell
+$ docker container rename (기존 컨테이너 이름) (변경 후 이름)
+```
+
+<img src="/assets/images/CloudWave/Virtualization/DCrename.png" alt="DCrename_Procdess" width="70%" min-width="200px" itemprop="image"><br>`docker container rename`<br>
+- 컨테이너의 이름을 변경한 모습
+
+<br><br>
+
+# [Docker] 컨테이너 변경 정보 확인 (diff)
+
+```shell
+$ docker container diff (컨테이너 이름)
+```
+
+<img src="/assets/images/CloudWave/Virtualization/DCdiff.png" alt="DCdiff_Procdess" width="70%" min-width="200px" itemprop="image"><br>`docker container diff`<br>
+- A : 추가된 파일을 나타냄
+- B : 삭제된 파일을 나타냄
+- C : 수정된 파일을 나타냄
+
+<br><br>
+
+# [Docker] 컨테이너 삭제하기 (rm / prune)
+
+```shell
+# docker rm (O) - 가능
+# docker container rm (O) - 이것도 가능
+
+# 특정 컨테이너 삭제 -> container stop 이후 실행
+$ docker container rm (컨테이너 이름 or 컨테이너 ID)
+
+# 특정 컨테이너 강제 삭제 (실행중인 컨테이너도 가능)
+$ docker container rm -f (컨테이너 이름 or 컨테이너 ID)
+
+# 로컬 시스템의 모든 컨테이너를 삭제 (삭제된 컨테이너는 복구가 불가능하다) -> 가능한 사용하지 말것. (위험)
+$ docker rm -f $(docker ps -aq)
+
+# 중지된 컨테이너만 일괄 삭제 -> 가능한 사용하지 말것. (위험)
+$ docker container prune
+```
 
 <br><br>
 
@@ -423,7 +479,7 @@ Container Runtime (Docker)
          - Podman을 이용하여 많이 사용
        - OpenShift (Redhat - 상용, 유료)
          - Podman을 이용하여 많이 사용
-
+<br>
 - **Docker**
   - Daemon 이 있음.
   - Daemon 이 죽으면 해당 컨테이너도 중지됨.
@@ -445,46 +501,9 @@ Container Runtime (Docker)
 
 <br><br>
 
-
-
-
-
-
-
-
 IaC (Infrastructuer as Code)
 - Ansible
 - Terraform
-
-<br><br>
-
-<img src="/assets/images/CloudWave/Virtualization/DockerArch.png" alt="DockerArch_Procdess" width="80%" min-width="200px" itemprop="image"><br>`Docker Architecture`<br>
-
-
-
-<!-- > 
-<img src="/assets/images/CloudWave/NetWork/.png" alt="_Procdess" width="100%" min-width="200px" itemprop="image"><br>``<br>
-`참고:`[Inflearn - 김영한님_강의](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-mvc-1/dashboard)<br><br>
-
-
-`사진출처:`[]()
-<span style="color:green">``</span>
-
-```
-
-```
-> 
-{: .notice--danger}
-{: style="text-align: center;"}
-
-
-<details>
-<summary><span style="color:blue">(클릭)</span></summary>
-<div markdown="1">       
-
-</div>
-</details> -->
-
 
 <br><br>
 
@@ -502,12 +521,20 @@ IaC (Infrastructuer as Code)
 
 >
 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
+- [x] Docker 정의
+- [x] Docker Architecture
+- [x] [Docker] 명령어
+- [x] [Docker] 설치 (CentOS Stream 8)
+- [x] [Docker] 실행 과정 예시 및 장/단점
+- [x] [Docker] Container 정의
+- [x] [Docker] Container 생성
+- [x] [Docker] Container 중지(stop), 재실행(restart), 일시중지(pause / unpause)
+- [x] [Docker] Container 접속 및 그 내부 정보 변경하기 (exec)
+- [x] [Docker] docker cp (복사)
+- [x] [Docker] 컨테이너 프로세스 및 포트 확인하기(top, port)
+- [x] [Docker] 컨테이너 이름 변경하기 (rename)
+- [x] [Docker] 컨테이너 변경 정보 확인 (diff)
+- [x] [Docker] 컨테이너 삭제하기 (rm / prune)
+- [x] Virtual Machine vs Container
+- [x] Podman (무료) vs Docker (유료)
+- [x] Kubernetes vs OpenShift
