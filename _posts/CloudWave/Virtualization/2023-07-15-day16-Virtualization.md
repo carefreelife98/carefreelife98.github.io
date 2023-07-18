@@ -327,6 +327,61 @@ $ docker container unpause (컨테이너 이름)
 
 <img src="/assets/images/CloudWave/Virtualization/DCPause.png" alt="DCPause_Procdess" width="70%" min-width="200px" itemprop="image"><br>`Docker Container Pause / Unpause`<br>
 
+<br><br>
+
+# [Docker] Container 접속 및 그 내부 정보 변경하기 (exec)
+
+```shell
+$ docker container exec -it (컨테이너 이름) /bin/bash
+# -it
+#   -i : interactive, 상호 입출력
+#   -t : tty -> 터미널 띄우기
+```
+
+<img src="/assets/images/CloudWave/Virtualization/DConExec.png" alt="DConExec_Procdess" width="70%" min-width="200px" itemprop="image"><br>`Docker Container Execute`<br>
+- **/bin/bash 명령어는 어디에서 실행되는 것인가?** - Container? Host?
+  - **Container 에서 실행되는 명령어이다.**
+  - 터미널을 사용해서 Kernel에 접근할 수 있게 된다.
+- 이전에 nginx 컨테이너 생성 정보를 다시 한번 살펴보자.
+  - **IP/port : 0.0.0.0:8100->80/tcp**
+    - 0.0.0.0 : serverb 내의 모든 사용자가 접속 가능.
+    - **8180(host) --> 80 (container)**
+      - host port 는 65535 개의 범위 내에서 단 하나만 사용이 가능.
+    - IP가 모두 접속 가능한 (0.0.0.0) IP 이므로 local / 해당 네트워크에 속한 사용자의 브라우저를 사용해서 직접 해당 URL 에 접근하여 내부 정보 변경 확인을 할 수 있다.<br>
+      <img src="/assets/images/CloudWave/Virtualization/DConExecCurl.png" alt="DConExecCurl_Procdess" width="70%" min-width="200px" itemprop="image"><br>`Docker Container 내부 정보 변경 후 local을 통해 확인하는 모습`<br>
+      
+<br><br>
+
+# [Docker] docker cp (복사)
+
+```shell
+# 복사 대상이 존재하는 경로에서 실행
+$ docker cp (복사 대상의 이름) (복사할 위치)
+```
+
+<img src="/assets/images/CloudWave/Virtualization/DockerCP.png" alt="DockerCP_Procdess" width="70%" min-width="200px" itemprop="image"><br>`Docker cp`<br>
+- **cp**
+  - host 상에 있는 경로를 container 으로 복사.
+  - container의 경로를 host로 복사.
+    - 위와 같이 직접 container 내부에 들어가지 않고 내부 정보 변경을 할 수도 있다.
+
+  
+<br><br>
+
+> 지금까지 진행한<br>
+> 
+> ```
+> 컨테이너 생성
+> 컨테이너 내부 정보 변경 
+> 컨테이너 내부 정보 확인
+> ```
+>
+> 의 세 단계가 모두 일치해야 한다.
+{: .notice--info}
+{: style="text-align: left;"}
+
+
+
 
 <br><br>
 
