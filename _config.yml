@@ -18,9 +18,9 @@ minimal_mistakes_skin    : "default" # "default", "air", "aqua", "contrast", "da
 locale                   : "ko-KO"
 title                    : "Carefree Life - Programming Blog"
 title_separator          : "-"
-subtitle                 : "Programming for Carefree Life!"
+subtitle                 : "DevOps for Carefree Life!"
 name                     : "Chae Seungmin"
-description              : "Programming for Carefree Life!"
+description              : "DevOps for Carefree Life!"
 url                      : "https://carefreelife98.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : "https://github.com/CarefreeLife98/carefreelife98.github.io"
@@ -106,7 +106,7 @@ analytics:
 author:
   name             : "Chae Seungmin"
   avatar           : "/assets/images/author.jpg"
-  bio              : "Chasing carefree life."
+  bio              : "DevOps & carefree life"
   location         : "Republic of Korea"
   email            :
   links:
