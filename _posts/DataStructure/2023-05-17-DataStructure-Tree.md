@@ -129,7 +129,7 @@ Visit my Programming blog: https://carefreelife98.github.io -->
   - 높이가 h인 이진트리는 적어도(최소) h개의 노드를 가진다. = 경사 이진트리
   - 하나의 노드는 최대 2개의 자식 노드를 가질 수 있다.
     - 따라서, **레벨 i에서의 최대 노드 개수는 2^(i-1)** 이 된다.
-    - 그러므로, 아래와 같이 전체 노드의 최대 개수를 구할 수 있는 식이 완성된다.
+    - 그러므로, 아래와 같이 전체 노드의 최대 개수를 구할 수 있는 식이 완성된다.<br>
       <img src="/assets/images/INU/datastructure/maxnodecal.png" alt="maxnodecal_Procdess" width="30%" min-width="200px" itemprop="image"><br>`이진 트리의 최대 노드 개수 (전체)`<br>
 
 <br><br>
@@ -402,7 +402,7 @@ int main(void) {
 
 <br><br>
 
-# 중위 순회 (inorder)
+# 2. 중위 순회 (inorder)
 
 ```
 중위 순회는 왼쪽 서브트리를 먼저 방문한 후 루트 노드, 오른쪽 서브트리 순으로 방문한다.
@@ -420,7 +420,7 @@ int main(void) {
 
 <br><br>
 
-# 후위 순회 (postorder)
+# 3. 후위 순회 (postorder)
 
 ```
 후위 순회는 왼쪽 서브트리를 먼저 방문한 후 오른쪽 서브트리, 루트 노드 순으로 방문한다.
