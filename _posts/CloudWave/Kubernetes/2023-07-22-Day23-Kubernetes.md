@@ -75,7 +75,7 @@ Visit my Programming blog: https://carefreelife98.github.io -->
 
 <br><br>
 
-**소프트웨어 관점에서의 추상화**
+**소프트웨어 관점에서의 추상화**<br>
 
 <img src="/assets/images/CloudWave/Kubernetes/softwareAbstrct.png" alt="softwareAbstrct_Procdess" width="100%" min-width="200px" itemprop="image"><br>`소프트웨어 관점에서의 추상화`<br>
 - **Application을 이미지화 하는 것.**
@@ -83,12 +83,12 @@ Visit my Programming blog: https://carefreelife98.github.io -->
 
 <br><br>
 
-**관심사의 분리**
+**관심사의 분리**<br>
 <img src="/assets/images/CloudWave/Kubernetes/SeperationOfConcern.png" alt="SeperationOfConcern_Procdess" width="100%" min-width="200px" itemprop="image"><br>`추상화는 결국 관심사의 분리`<br>
 
 <br><br>
 
-**추상화의 극대화**
+**추상화의 극대화**<br>
 <img src="/assets/images/CloudWave/Kubernetes/Abstraction.png" alt="Abstraction_Procdess" width="100%" min-width="200px" itemprop="image"><br>`추상화의 끝`<br>
 - 결국 추상화가 극대화 되어 발생한것이 Kubernetes, Service Mesh(Istio) 이다.
 
@@ -240,6 +240,7 @@ Visit my Programming blog: https://carefreelife98.github.io -->
   - **Pod 내의 여러 Container 들은 서로 다른 Port를 사용하여 Service(외부와의 통신) 해야 한다.**
 - **서로 다른 Pod의 각 내부 컨테이너 간의 통신은 IP Networking**을 통해 가능하다.
 - **Pod 내부 컨테이너는 system host 이름을 해당 Pod의 이름으로 간주한다.**
+
 <br><br>
 
 # [Kubernetes] 설치, 환경설정, 시작하기
