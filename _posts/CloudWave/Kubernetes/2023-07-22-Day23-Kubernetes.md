@@ -88,12 +88,6 @@ Visit my Programming blog: https://carefreelife98.github.io -->
 
 <br><br>
 
-**추상화의 극대화**<br>
-<img src="/assets/images/CloudWave/Kubernetes/Abstraction.png" alt="Abstraction_Procdess" width="100%" min-width="200px" itemprop="image"><br>`추상화의 끝`<br>
-- 결국 추상화가 극대화 되어 발생한것이 Kubernetes, Service Mesh(Istio) 이다.
-
-<br><br>
-
 # [Kubernetes] 쿠버네티스(Kubernetes, K8s)란?
 
 <img src="/assets/images/CloudWave/Kubernetes/Kubernetes.png" alt="Kubernetes_Procdess" width="100%" min-width="200px" itemprop="image"><br>`Kubernetes`<br>
@@ -159,14 +153,17 @@ Visit my Programming blog: https://carefreelife98.github.io -->
 
 <img src="/assets/images/CloudWave/Kubernetes/ControlPlane.png" alt="ControlPlane_Procdess" width="100%" min-width="200px" itemprop="image"><br>`Kubernetes's ControlPlane`<br>
 - **컨트롤 플레인은 쿠버네티스 전체 클러스터를 관리.**
+- Kubernetes의 머리 역할을 하며, Container가 올라가지 않는다.
 - 쿠버네티스 오브젝트의 레코드를 유지 및 관리 (제어 루프)
 - **컨트롤 플레인의 상세 구성**
   - **API server**
     - Kubernetes 오브젝트에 대한 데이터를 설정 및 검증
     - REST 서비스 제공
   - **Scheduler**
-    - 클러스터의 노드에 Pod를 Deploy 하는 역할
-    - Feasibility(가용성) 계산하여 Deploy.
+    - 클러스터의 노드에 Pod를 배정하는 역할
+    - Feasibility(가용성) 계산하여 배정.
+      - 명령어 입력 시 API server를 통해 Scheduler에게 먼저 간다.
+      - Scheduler 내부 Queue를 통해 최대한의 효율로 작업을 배정.
   - **Controller Manager (Daemon)**
     - **제어 루프를 이용, API server를 통해 Cluster의 상태를 감시하여 설정된 상태(Deployment)를 지속적으로 유지하도록 함.**
     - K8s에 존재하는 Controller 종류
@@ -176,6 +173,7 @@ Visit my Programming blog: https://carefreelife98.github.io -->
       - serviceaccounts controller.
   - **etcd**
     - **Cluster 오브젝트의 데이터를 분산하여 저장.**
+    - in-memory Database
       - 예) 
       - 클러스터에 어떤 노드가 몇 개 있는지
       - 어떤 Pod가 어떤 Node에서 동작하고 있는지
@@ -190,6 +188,21 @@ Visit my Programming blog: https://carefreelife98.github.io -->
     - **ETCD의 고가용성을 위해서는 최소 3대의 ETCD가 구성되어야 한다.**<br>
       <img src="/assets/images/CloudWave/Kubernetes/ETCD.png" alt="ETCD_Procdess" width="100%" min-width="200px" itemprop="image"><br>`Kubernetes's ETCD`<br>
       - ETCD는 Control Plane 내부 또는 외부에 구성 가능.
+
+<br><br>
+
+<h2> Nodes (Worker) </h2>
+
+<img src="/assets/images/CloudWave/Kubernetes/Nodes.png" alt="Nodes_Procdess" width="80%" min-width="200px" itemprop="image"><br>`Kubernetes's Nodes`<br>
+- Worker 노드는 컨테이너 화된 Application을 실행하는 시스템
+- Application의 실행 및 Monitoring을 담당한다.
+- Worker Node의 구성요소
+  - Container-Runtime
+    - Container를 실행하는 엔진. (Docker, rtk, Containerd ...)
+  - Kubelet : 일꾼
+    - API server와 통신하며 Worker Node의 컨테이너를 관리.
+  - Kube-proxy : 여러개의 VM 네트워크를 하나로
+    - Application의 구성 요소 간 네트워크 트래픽을 분산.
 
 <br><br>
 
@@ -227,6 +240,68 @@ Visit my Programming blog: https://carefreelife98.github.io -->
     - StatefulSet
     - DaemonSet
 
+<br><br>
+
+<h2> POD 기본 명령 </h2>
+
+**pod 보기 명령어**<br>
+
+```shell
+# 기본 pod 조회 명령어
+$ kubectl get pods
+
+# 축약어 사용
+$ kubectl get po
+
+# 상세 정보 포함 출력
+$ kubectl get po -o wide
+
+# 레이블 포함 출력
+$ kubectl get po --show-labels
+```
+
+<br><br>
+
+**Pod 생성 Template 사용하기**<br>
+
+```yaml
+apiVersion: v1 # K8s api Version
+kind: Pod # K8s 리소스 타입
+metadata: # 이름 , 레이블 등의 부가 정보
+  name: myapp-pod
+  labels:
+    name: myapp
+spec: # 컨테이너 정보
+  containers:
+    - name: myapp-container
+      image: <Image> 
+      resources:
+        limits:
+          memory: "128Mi"
+          cpu: "500m"
+      ports:
+        - containerPort: <Port>
+```
+
+
+
+
+<br><br>
+
+# VM(Virtual Machine) vs Container
+
+Virtual Machine : 하드웨어 관점의 추상화
+- 서버(인프라) 담당자가 편하다.
+Container : 서비스 관점의 추상화
+- 개발자가 편하다.
+결론 : 둘 다 같이 사용하는 것이 가장 이상적.
+- VM과 Container는 서로 목적이 다르다.
+- 비교 대상이 아님.
+
+따라서, 가장 이상적인 구조는 아래와 같다. (= 추상화 수준 높음)<br>
+**추상화의 극대화**<br>
+<img src="/assets/images/CloudWave/Kubernetes/Abstraction.png" alt="Abstraction_Procdess" width="100%" min-width="200px" itemprop="image"><br>`추상화의 끝`<br>
+- 결국 추상화가 극대화 되어 발생한것이 Kubernetes, Service Mesh(Istio) 이다.
 <br><br>
 
 # [Kubernetes] Network 기본
