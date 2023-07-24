@@ -267,11 +267,11 @@ $ kubectl get po --show-labels
 ```yaml
 apiVersion: v1 # K8s api Version
 kind: Pod # K8s 리소스 타입
-metadata: # 이름 , 레이블 등의 부가 정보
-  name: myapp-pod
-  labels:
+metadata: # Kind(현재 리소스 타입 - Pod)의 이름 , 레이블 등의 부가 정보
+  name: myapp-pod # 동일 Namespace에서는 유일한 값을 사용해야 함.
+  labels: # 특정 K8s 오브젝트의 나열 및 검색을 위한 Key-Value 데이터
     name: myapp
-spec: # 컨테이너 정보
+spec: # 생성할 Pod의 구체적인 정보를 나열
   containers:
     - name: myapp-container
       image: <Image> 
@@ -282,6 +282,31 @@ spec: # 컨테이너 정보
       ports:
         - containerPort: <Port>
 ```
+
+
+| key        | 설명              |
+|------------|-----------------|
+| apiVersion | k8s api version |
+| kind       | K8s 리소스 타입      |
+| metadata   | 이름, 레이블 등의 부가정보 |
+| spec       | 컨테이너 정보         |
+
+<br>
+
+```bash
+# yaml 파일을 이용해서 Pod 생성하기
+$ kubectl create -f (yaml파일 이름).yaml
+
+
+```
+
+<br>
+
+- 일반적으로 `kubectl run`은 실무 환경에서 잘 사용하지 않는다고 한다.
+  - 위와 같은 `yaml` 파일을 사용해서 주로 생성.
+- 무엇보다 Pod에 대한 이력을 관리하는 것이 중요함.
+
+<br>
 
 
 
