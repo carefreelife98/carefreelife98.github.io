@@ -308,9 +308,6 @@ $ kubectl create -f (yaml파일 이름).yaml
 
 <br>
 
-
-
-
 <br><br>
 
 # VM(Virtual Machine) vs Container
