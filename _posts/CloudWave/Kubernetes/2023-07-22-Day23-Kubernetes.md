@@ -219,13 +219,14 @@ Visit my Programming blog: https://carefreelife98.github.io -->
 
 - Pod는 쿠버네티스 애플리케이션의 기본 실행 단위 - 만들고 배포할 수 있는 가장 작은 단위.
 - Docker는 K8s Pod에서 사용되는 가장 대표적인 Container Runtime이지만 Pod는 다른 Container Runtime(rtk, containerd)도 지원한다.
-- 각 Pod당 컨테이너의 비율은 대체로 1:1
+- 각 Pod당 컨테이너의 비율은 대체로 1:1 (관례)
   - 여러 개의 컨테이너가 포함되는 경우도 존재.
 - Pod내의 컨테이너는 오로지 하나의 Node내에서만 존재한다.
   - 노드를 걸쳐서 Pod가 존재하지 않는다.<br>
     <img src="/assets/images/CloudWave/Kubernetes/PodInNode.png" alt="PodInNode_Procdess" width="30%" min-width="200px" itemprop="image"><br>`Pod는 두 개 이상의 Node를 걸쳐 존재할 수 없다.`<br>
-- 동일 Pod내의 컨테이너는 Storage / Network 자원을 공유한다.
+- 동일 Pod내의 컨테이너는 Storage / Network 자원 및 Volume을 공유한다.
 - Pod이 가지고 있는 각 컨테이너들의 실행 방법이 명시되어 있음.
+- Pod 끼리의 통신은 무조건 가능하다. (Kube Proxy를 통해서)
 - Pod의 구성 요소(Container)는 항상 동시에 배치 및 스케줄링 되며 공유 Context에서 실행된다.
   - 공유 Context
     - Linux Namespace, cgroup 및 잠재적 격리(Isolation)가 실현되는 모든 집합.
@@ -295,20 +296,41 @@ spec: # 생성할 Pod의 구체적인 정보를 나열
 
 ```bash
 # yaml 파일을 이용해서 Pod 생성하기
+
+# create 으로 생성 시 추후 리소스의 수정/업데이트가 불가능.
 $ kubectl create -f (yaml파일 이름).yaml
 
-
+# apply 사용 시 추후 리소스의 수정 및 업데이트 가능.
+# Version Control에 매우 강한 이점을 가진 명령어.
+$ kubectl apply -f (yaml 파일 이름).yaml
 ```
 
-<br>
 
 - 일반적으로 `kubectl run`은 실무 환경에서 잘 사용하지 않는다고 한다.
   - 위와 같은 `yaml` 파일을 사용해서 주로 생성.
 - 무엇보다 Pod에 대한 이력을 관리하는 것이 중요함.
 
-<br>
+<br><br>
+
+# POD 삭제
+
+```bash
+# 특정 Pod 삭제
+$ kubectl delete pod (pod 이름)
+
+# 현재 Namespce 의 모든 Pod 삭제
+$ kubectl delete pod --all
+
+# Namespace 내의 거의 모든 리소스 삭제
+# all --all 옵션을 사용해도 지워지지 않는 리소스 존재 (secret 등)
+$ kubectl delete all --all
+```
+
+
 
 <br><br>
+
+[//]: # (# Kubernetes Resources)
 
 # VM(Virtual Machine) vs Container
 
@@ -340,22 +362,7 @@ Container : 서비스 관점의 추상화
 
 <br><br>
 
-# [Kubernetes] 설치, 환경설정, 시작하기
 
-본 포스트는 MacBook M1을 기준으로 작성되었습니다.
-{: .notice--danger}
-{: style="text-align: center;"}
-
-<h2>Kubernetes Cli 설치</h2>
-
-```shell
-# M1 Mac
-$ brew install kubernets-cli
-```
-
-> 위 명령어를 통해 Cli를 설치하게 되면 Kubernetes의 전반적인 명령어 패키지를 사용할 수 있게 된다.
-
-<br><br>
 
 
 

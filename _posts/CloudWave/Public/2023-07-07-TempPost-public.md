@@ -1,5 +1,5 @@
 ---
-title: "[CJOliveNetworks] 임시 포스트입니다."
+title: "[AWS] Public Cloud"
 categories:
   - Cloud-Wave-Public
 tags:
@@ -12,8 +12,11 @@ toc_label: "Carefree to See"
 Visit my Programming blog: https://carefreelife98.github.io --> 
 ---
 
-<h1>임시 포스트 입니다.</h1>
+# 클라우드의 개요
 
+
+
+<img src="/assets/images/CloudWave/Public/.png" alt="_Procdess" width="100%" min-width="200px" itemprop="image"><br>``<br>
 
 <!-- > <img src="/assets/images/CloudWave/.png" alt="_Procdess" width="100%" min-width="200px" itemprop="image"><br>``<br>
 `참고:`[Inflearn - 김영한님_강의](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-mvc-1/dashboard)<br><br>
