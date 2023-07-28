@@ -14,9 +14,26 @@ Visit my Programming blog: https://carefreelife98.github.io -->
 
 # 클라우드의 개요
 
+<img src="/assets/images/CloudWave/Public/Cloud.png" alt="Cloud_Procdess" width="100%" min-width="200px" itemprop="image"><br>`Cloud 개요`<br>
+
+> Computing Resources 를 데이터 센터에 대량으로 구성하고 인터넷을 통해 사용자가 원하는 만큼 On-Demand 형태로 IT 서비스를 제공하는 방식.
+
+<br><br>
+
+# 클라우드의 유형
+
+클라우드는 구축 형태에 따라 4가지로 구분된다.
+> - Public Cloud
+> - Private Cloud
+> - Hybrid Cloud
+> - Multi Cloud
 
 
-<img src="/assets/images/CloudWave/Public/.png" alt="_Procdess" width="100%" min-width="200px" itemprop="image"><br>``<br>
+
+
+
+<img src="/assets/images/CloudWave/Public/fullArchitecture.png" alt="fullArchitecture_Procdess" width="100%" min-width="200px" itemprop="image"><br>`Cloud full Architecture`<br>
+
 
 <!-- > <img src="/assets/images/CloudWave/.png" alt="_Procdess" width="100%" min-width="200px" itemprop="image"><br>``<br>
 `참고:`[Inflearn - 김영한님_강의](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-mvc-1/dashboard)<br><br>
