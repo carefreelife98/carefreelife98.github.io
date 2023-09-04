@@ -1,5 +1,5 @@
 ---
-title: "[CJOlivenetworks] CGV Fast Order 시스템 인프라 구축 1. Terraform / Terraform Cloud 를 통한 Infra 구축 자동화"
+title: "[CJOlivenetworks] CGV Fast Order 시스템 인프라 구축 1. 프로젝트 기획 및 업무 분담 / 전체 Architecture 구성"
 categories:
   - Cloud-Wave-Project
 tags:
@@ -12,11 +12,11 @@ toc_label: "Carefree to See"
 Visit my Programming blog: https://carefreelife98.github.io --> 
 ---
 
-<img src="/assets/images/CloudWave/project/projectIntro.png" alt="projectIntro_Procdess" width="100%" min-width="200px" itemprop="image"><br>`프로젝트 주제`<br>
+<img src="/assets/images/CloudWave/project/projectIntro.png" alt="projectIntro_Procdess" width="100%" min-width="200px" itemprop="image"><br>`[CJ Olivenetworks - Cloud Wave 1기] 팀명: (주) 구름 건설`<br>
 
 <br><br>
 
-# 프로젝트 진행 기간 및 나의 역할
+# 프로젝트 일정 관리 및 나의 역할
 
 > 조 이름은 `Cloud Architecture` 에서 본따 `(주)구름 건설` 으로 설정했다.<br>
 > <img src="/assets/images/CloudWave/project/members.png" alt="members_Procdess" width="100%" min-width="200px" itemprop="image"><br>`(주)구름 건설 조직도`<br>
@@ -89,8 +89,8 @@ CGV는 국내 멀티플렉스 극장 상영을 담당하는 CJ의 주요 계열�
 
 # 고객사 요구사항 검토
 
-> 프로젝트 시작 후 가장 먼저 한일은 고객사 요구사항의 검토이다. <br>
-> 그 결과 아래와 같은 검토사항이 산출되었다.<br>
+> 프로젝트 시작 후 가장 먼저 한일은 **고객사 요구사항의 검토**이다. <br>
+> 그 결과 **아래와 같은 검토사항**이 산출되었다.<br>
 
 | 구 분 | CheckPoint | 비고 | 고객사 의견 |
 | --- | --- | --- | --- |
@@ -131,43 +131,57 @@ CGV는 국내 멀티플렉스 극장 상영을 담당하는 CJ의 주요 계열�
 
 <img src="/assets/images/CloudWave/project/projectFullArchitecture.png" alt="projectFullArchitecture_Procdess" width="100%" min-width="200px" itemprop="image"><br>`프로젝트 전체 Architecture`<br>
 
-> 고객사의 요구사항 및 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<img src="/assets/images/CloudWave/project/projectIntro.png" alt="projectIntro_Procdess" width="100%" min-width="200px" itemprop="image"><br>`프로젝트 주제`<br>
-
-<span style="color:green">``</span>
-
-{: .notice--danger}
-{: style="text-align: center;"}
-
-<details>
-<summary><span style="color:blue">(클릭)</span></summary>
-<div markdown="1">       
-
-</div>
-</details> -->
-
+> **(주)구름건설 에서 제안하는 사항을 추가하여 Architecture 구성**
+> 1. **MSA (Microservice Architecture)구조** 도입
+> 2. **CI / CD 환경에서의 Application 및 Infra 구축**을 통한 **자동화 및 현대화**
 
 <br><br>
 
-<!-- 최대한의 설명을 코드 블럭 내의 주석으로 달아 놓았습니다.<br><br>
-혹시 이해가 안가거나 추가적인 설명이 필요한 부분, 오류 등의 피드백은 언제든지 환영합니다!<br><br>
-긴 글 읽어주셔서 감사합니다. 포스팅을 마칩니다.<br>
+# 업무 분담 및 세분화
+
+- **인프라**
+  - **3 Tier Architecture**
+    - Public subnet
+      - Bastion / VPN / NAT Gateway
+    - Private subnet
+      - WEB EKS Cluster
+      - WAS EKS Cluster
+      - Aurora MySQL DataBase
+  - **네트워크**
+     - ACM, Route 53, ALB, NLB, Inter Region Peering, VPN Conection
+  - **자동화**
+     - Terraform, Terraform Cloud, Cloudformation(반복 작업 자동화)
+- **개발+리소스+서비스**
+   - **WEB, WAS, DB**
+     - WEB/WAS (As Docker Image)
+        - WEB : Apache2 (Httpd)
+        - WAS : Spring Boot (내장 Tomcat)
+        - WEB-WAS Connector : Mod_JK Connector (or Mod_JK Proxy)
+     - DB : AWS RDS (Aurora MySQL)
+     - 기타
+       - Auto Scaling, EC2/EKS, RDB, Redis
+- **스토리지, 백업**
+   - S3, AWS Backup, EFS 등, Cloud Front(CDN), Snapshot
+- **모니터링, 알림**
+   - Cloudwatch, Prometheus, Grafana, Datadog
+   - Kubecost
+   - SNS, Lambda
+- **※보안, 권한 중요!!!※ / 공통**
+   - WAF, Deep Security, IAM, VPC Endpoint
+- **※테스트※ / 공통**
+   - 부하 테스트(jmeter)
+   - Fail Over
+   - CI/CD 테스트
+- **부가 사항**
+   - Istio vs app mash
+   - EKS, ECS
+   - CI/CD
+   - 비용(추가 가점)
+
+**[CJ Olivenetworks - Cloud Wave 1기] 활동 중 진행한 팀 프로젝트입니다.** <br>
+**무단 복제 및 게시는 삼가주시기 바랍니다.** <br>
 {: .notice--success}
-{: style="text-align: center;"} -->
+{: style="text-align: center;"}
 
 <br><br>
 
@@ -177,12 +191,9 @@ CGV는 국내 멀티플렉스 극장 상영을 담당하는 CJ의 주요 계열�
 
 >
 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
+- [x] 프로젝트 일정 관리 및 나의 역할
+- [x] 시나리오
+- [x] 요구 조건
+- [x] 고객사 요구사항 검토
+- [x] 전체 Architecture 구성
+- [x] 업무 분담 및 세분화
