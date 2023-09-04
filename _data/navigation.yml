@@ -2,7 +2,7 @@
 main:
   - title: "Introduce"
     url: /about/
-  - title: "Posts"
+  - title: "Posts by Year"
     url: /year-archive/
   - title: "Category"
     url: /categories/ #/collection-archive/
