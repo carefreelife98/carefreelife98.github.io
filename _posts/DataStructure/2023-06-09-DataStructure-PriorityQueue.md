@@ -1,5 +1,5 @@
 ---
-title: "[Data Structure]<br>우선순위 큐(Priority Queue)
+title: "[Data Structure]<br>우선순위 큐(Priority Queue)"
 categories:
   - INU-DataStructure
   - C

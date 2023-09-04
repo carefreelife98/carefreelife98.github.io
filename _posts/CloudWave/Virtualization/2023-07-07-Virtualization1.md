@@ -1,5 +1,5 @@
 ---
-title: "[CJOliveNetworks] 가상화 (Virtualization)."
+title: "[CJOliveNetworks] 가상화 (Virtualization)"
 categories:
   - Cloud-Wave-Virtualization
 tags:
@@ -7,6 +7,8 @@ tags:
 toc: true
 toc_sticky: true
 toc_label: "Carefree to See"
+header:
+  teaser: "/assets/images/CloudWave/Virtualization/Virtualization.png"
 ---
 <!-- Created by Chae Seung Min - CarefreeLife
 Visit my Programming blog: https://carefreelife98.github.io --> 

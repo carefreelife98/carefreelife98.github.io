@@ -1,5 +1,30 @@
 ---
-layout: home
+excerpt : "🔥 Just Do Your Best On It 🔥"
+layout: archive
+sidebar_main: ture
 author_profile: true
-sidebar_main: true
+entries_layout: grid
+header:
+    overlay_image: /assets/images/overlay2.jpeg
+    overlay_filter: 0.1 # same as adding an opacity of 0.5 to a black background
+    caption: "Photo credit: [**CarefreeLife98**](https://github.com/CarefreeLife98)"
 ---
+
+<big>
+    <b>
+      <span style="font-family: 'KCC-Ganpan';">반갑습니다! DevOps를 지향하는 Carefree Life🌿 입니다!</span> 👋🏻
+      <br>
+    </b>
+</big>
+<br>
+
+<img src="/assets/images/about.jpg" alt="about_Procdess" width="100%" min-width="200px" itemprop="image">
+
+<h3 class="archive__subtitle">{{ site.data.ui-text[site.locale].recent_posts | default: "Traveling of CarefreeLife" }}</h3>
+
+<div class="grid__wrapper">
+{% for post in paginator.posts %}
+{% include archive-single.html type="grid" %}
+{% endfor %}
+</div>
+{% include paginator.html %} 
