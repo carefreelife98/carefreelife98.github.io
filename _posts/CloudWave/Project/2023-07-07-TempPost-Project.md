@@ -1,5 +1,7 @@
 ---
 title: "[CJOlivenetworks] CGV Fast Order 시스템 인프라 구축 1. 프로젝트 기획 및 업무 분담 / 전체 Architecture 구성"
+header:
+   teaser: /assets/images/CloudWave/project/projectIntro.png
 categories:
   - Cloud-Wave-Project
 tags:
