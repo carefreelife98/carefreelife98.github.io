@@ -143,16 +143,123 @@ jobs:
 > - 기존 Password 입력 후 새로운 Password 등록
 
 5. 현재 단계까지 진행하던 중 ArgoCD 의 접근 편리성을 위해 ALB 가 가장 처음 마주하는 첫번째 Private Subnet (WAS Cluster) 에 재설치 하였다.
-6. ArgoCD 로드 밸런서 생성하기
-> <img src="/assets/images/CloudWave/project/modSuccess2.png" alt="modSuccess_Procdess2" width="100%" min-width="200px" itemprop="image"><br>
-> <img src="/assets/images/CloudWave/project/modSuccess2.png" alt="modSuccess_Procdess2" width="100%" min-width="200px" itemprop="image"><br>
-> <img src="/assets/images/CloudWave/project/modSuccess2.png" alt="modSuccess_Procdess2" width="100%" min-width="200px" itemprop="image"><br>
-> <img src="/assets/images/CloudWave/project/modSuccess2.png" alt="modSuccess_Procdess2" width="100%" min-width="200px" itemprop="image"><br>
-> <img src="/assets/images/CloudWave/project/modSuccess2.png" alt="modSuccess_Procdess2" width="100%" min-width="200px" itemprop="image"><br>
-> <img src="/assets/images/CloudWave/project/modSuccess2.png" alt="modSuccess_Procdess2" width="100%" min-width="200px" itemprop="image"><br>
-> <img src="/assets/images/CloudWave/project/modSuccess2.png" alt="modSuccess_Procdess2" width="100%" min-width="200px" itemprop="image"><br>
-> <img src="/assets/images/CloudWave/project/modSuccess2.png" alt="modSuccess_Procdess2" width="100%" min-width="200px" itemprop="image"><br>
-> <img src="/assets/images/CloudWave/project/modSuccess2.png" alt="modSuccess_Procdess2" width="100%" min-width="200px" itemprop="image"><br>
+6. ArgoCD 로드 밸런서 생성하기 [참고: velog@junsugi](https://velog.io/@junsugi/Argo-CD-%EB%A5%BC-AWS-EKS-%EC%97%90-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0)
+> - 설치한 ArgoCD 에 접속하기 위해 `K8s 의 Ingress` 를 통해 외부와 통신할 수 있도록 해준다.
+> > **Ingress 란?**<br>
+> > 한 Namespace 안에 여러 개의 서비스들이 존재하고 서비스 내부에는 여러 개의 Pod 가 존재 할 수 있다.<br>
+> > 이때, 외부에서 Ingress 의 라우팅을 이용, 원하는 서비스에 접근해서 실제 Application에 접근할 수 있도록 해주는 리소스 이다.<br>
+> > <img src="/assets/images/CloudWave/project/argo6.png" alt="argo6_Procdess2" width="100%" min-width="200px" itemprop="image"><br>[출처: 쿠버네티스 공식 홈페이지](https://kubernetes.io/ko/)
+> 
+> ```yaml
+> apiVersion: networking.k8s.io/v1
+> kind: Ingress
+> metadata:
+>   annotations:
+>     alb.ingress.kubernetes.io/certificate-arn: <인증서 arn>
+>     alb.ingress.kubernetes.io/healthcheck-path: /
+>     alb.ingress.kubernetes.io/healthcheck-protocol: HTTP
+>     alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS":443}, {"HTTP":80}]'
+>     alb.ingress.kubernetes.io/scheme: internet-facing
+>     alb.ingress.kubernetes.io/target-type: ip
+>     kubernetes.io/ingress.class: alb
+>   finalizers:
+>   - ingress.k8s.aws/resources
+>   labels:
+>     app: velog-test
+>     tier: backend
+>   name: argocd-ingress # 인그레스 이름 정하기
+>   namespace: argocd    # 설치할 네임스페이스
+> spec:
+>   rules:
+>   - http:
+>       paths:
+>       - backend:
+>           service:
+>             name: argocd-server # 연결할 서비스 (이부분은 고정)
+>             port:
+>               number: 80 # (이부분도 고정)
+>         path: /*
+>         pathType: ImplementationSpecific
+> ```
+>
+> - Ingress 생성을 위한 k8s manifest 파일.
+> - Yaml 파일을 보면 `spec` 아래 `service` 부분에 `argocd-server` 라는 부분이 적혀 있다.
+>   - 해당 서비스 내부에 ArgoCD 페이지가 존재.
+>   - 우리는 해당 페이지 UI에 접근하기 위해 해당 서비스를 Ingress 에 연결 한 것.
+> <br>
+> - 위 파일을 .yaml 파일로 생성 후, 아래와 같이 argocd namespace 에 apply 하여 적용.
+> 
+> ```shell
+> $ kubectl apply -f <ingress yaml 경로> -n argocd
+> 
+> # 경로를 모르겠다면, 아래와 같이 실행
+> $ pwd
+> /home.ex2-user/argocd/(yaml 이름).yaml
+> 
+> $ kubectl apply -f (pwd에서 나온 yaml 파일 경로) -n argocd
+> ```
+> 
+> <img src="/assets/images/CloudWave/project/adgo7.png" alt="adgo7_Procdess2" width="100%" min-width="200px" itemprop="image"><br>
+> 
+> ```shell
+> $ kubectl get ing -A
+> ```
+> 
+> - Ingress 를 위 명령어를 통해 조회해보면 `ADDRESS` 를 볼 수 있다.<br>
+
+7. EKS Cluster 보안 그룹에 ArgoCD 와 연결된 CLB의 트래픽 허용하기
+> <img src="/assets/images/CloudWave/project/argo8.png" alt="argo8_Procdess2" width="100%" min-width="200px" itemprop="image"><br>
+> - 위 경로에서 클러스터 보안그룹을 찾아 편집해주자.
+> - in-bound 규칙: 모든 트래픽 -> ArgoCD 보안 그룹 <br>
+
+8. `argocd-server` Service 편집하기
+> 
+> ```shell
+> $ kubectl edit service argocd-server -n argocd
+> ```
+> 
+> <img src="/assets/images/CloudWave/project/argo9.png" alt="argo9_Procdess2" width="100%" min-width="200px" itemprop="image"><br>
+> - 가장 아래의 type : ClusterIP 부분을 LoadBalancer 로 수정
+> <br><br>
+> <img src="/assets/images/CloudWave/project/argo10.png" alt="argo10_Procdess2" width="100%" min-width="200px" itemprop="image"><br>
+> 
+> ```shell
+> $ kubectl get svc -n argocd
+> ```
+> 
+> - service 검색 후 ArgoCD-server 의 Type이 `LoadBalancer` 로 수정된 것을 확인.
+> - 생성된 해당 `External-IP` 로 접속하면 접속 성공.
+
+9. ArgoCD 접속 성공
+> <img src="/assets/images/CloudWave/project/argo11.png" alt="argo11_Procdess2" width="100%" min-width="200px" itemprop="image"><br>
+> <img src="/assets/images/CloudWave/project/argo12.png" alt="argo12_Procdess2" width="100%" min-width="200px" itemprop="image"><br>
+> - 이전에 생성한 ID / PW 를 사용해서 로그인 한다.
+
+<br><br>
+
+## ArgoCD 와 Github Repository 연동
+
+> <img src="/assets/images/CloudWave/project/argo_git.png" alt="argo_git_Procdess2" width="100%" min-width="200px" itemprop="image"><br>
+- ArgoCD 접속 -> settings -> Connect Repo
+
+<br><br>
+
+# [ArgoCD] AWS EKS 환경에 Spring boot Web APplication 배포하기
+
+1. Deployment 작성을 위한 WAS Application image의 성능 확인
+> <img src="/assets/images/CloudWave/project/cd1.png" alt="cd1_Procdess2" width="100%" min-width="200px" itemprop="image"><br>
+> - WAS 이미지를 Docker COntainer 에서 Running Test
+>   - CPU : 약 30% 사용
+>   - Memory : 약 5% 사용 
+
+
+
+
+
+
+
+
+
 > <img src="/assets/images/CloudWave/project/modSuccess2.png" alt="modSuccess_Procdess2" width="100%" min-width="200px" itemprop="image"><br>
 > <img src="/assets/images/CloudWave/project/modSuccess2.png" alt="modSuccess_Procdess2" width="100%" min-width="200px" itemprop="image"><br>
 > <img src="/assets/images/CloudWave/project/modSuccess2.png" alt="modSuccess_Procdess2" width="100%" min-width="200px" itemprop="image"><br>
