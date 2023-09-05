@@ -180,6 +180,20 @@ CGV는 국내 멀티플렉스 극장 상영을 담당하는 CJ의 주요 계열�
    - CI/CD
    - 비용(추가 가점)
 
+<br><br>
+
+# Naming Rule
+
+<img src="/assets/images/CloudWave/project/naming.png" alt="naming_Procdess" width="100%" min-width="200px" itemprop="image"><br>`(주)구름 건설의 Naming Rule`<br>
+
+1. **운영환경** DEV / STG / PROD
+2. **시스템 명칭** pay / user / item
+3. **리소스 명칭** Resource (EC2, RDS, EKS..)
+4. **시스템 역할** web / was / bastion … + (Pub, )
+5. **numbering**
+
+<br><br>
+
 **[CJ Olivenetworks - Cloud Wave 1기] 활동 중 진행한 팀 프로젝트입니다.** <br>
 **무단 복제 및 게시는 삼가주시기 바랍니다.** <br>
 {: .notice--success}
@@ -199,3 +213,4 @@ CGV는 국내 멀티플렉스 극장 상영을 담당하는 CJ의 주요 계열�
 - [x] 고객사 요구사항 검토
 - [x] 전체 Architecture 구성
 - [x] 업무 분담 및 세분화
+- [x] Naming Rule
