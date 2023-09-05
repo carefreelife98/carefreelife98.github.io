@@ -9,7 +9,6 @@ toc_sticky: true
 toc_label: "Carefree to See"
 header:
    teaser: "/assets/images/CloudWave/project/simpleapp.png"
-youtubeurl: https://youtu.be/ZPrLB_rOsJY
 ---
 <!-- Created by Chae Seung Min - CarefreeLife
 Visit my Programming blog: https://carefreelife98.github.io --> 
@@ -40,7 +39,7 @@ Visit my Programming blog: https://carefreelife98.github.io -->
 
 3. **해당 파일을 기반으로 동작할 Dockerfile을 프로젝트의 최상단 경로에 작성**
 > <img src="/assets/images/CloudWave/project/docker4.png" alt="docker4_Procdess" width="100%" min-width="200px" itemprop="image"><br>
-> ```docker
+> ```dockerfile
 > # Use the offical OpenJDK base image
 > FROM openjdk:19
 > CMD ["/.gradlew", "clean", "package"]
