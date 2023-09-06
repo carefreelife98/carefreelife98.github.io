@@ -1,5 +1,5 @@
 ---
-title: "[CJOlivenetworks] CGV Fast Order 시스템 인프라 구축 3-2. [CI/CD] Github Action - Docker / ArgoCD"
+title: "[CJ Olivenetworks - Cloud Wave] CGV Fast Order 시스템 인프라 구축 3-2. [CI/CD] Github Action - Docker / ArgoCD"
 categories:
   - Cloud-Wave-Project
 tags:

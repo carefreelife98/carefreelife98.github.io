@@ -1,5 +1,5 @@
 ---
-title: "[CJOliveNetworks] Day 2 - Subnet / Routing"
+title: "[CJ Olivenetworks - Cloud Wave] Day 2 - Subnet / Routing"
 categories:
   - Cloud-Wave
 tags:

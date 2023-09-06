@@ -1,5 +1,5 @@
 ---
-title: "[CJOliveNetworks] 도커 (Docker) 기초"
+title: "[CJ Olivenetworks - Cloud Wave] 도커 (Docker) 기초"
 categories:
   - Cloud-Wave-Virtualization
 tags:

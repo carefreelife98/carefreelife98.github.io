@@ -69,7 +69,7 @@
             <ul>
                 {% for category in site.categories %}
                     {% if category[0] == "Cloud-Wave-Project" %}
-                        <li><a href="/Cloud-Wave-Project/" class="">Project ({{category[1].size}})</a></li>
+                        <li><a href="/Cloud-Wave-Project/" class="">Project - CGV Fast-Order ({{category[1].size}})</a></li>
                     {% endif %}
                 {% endfor %}
             </ul>

@@ -1,5 +1,5 @@
 ---
-title: "[CJOliveNetworks] 가상화 (Virtualization)"
+title: "[CJ Olivenetworks - Cloud Wave] 가상화 (Virtualization)"
 categories:
   - Cloud-Wave-Virtualization
 tags:

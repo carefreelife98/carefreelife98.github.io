@@ -1,5 +1,5 @@
 ---
-title: "[CJOliveNetworks] Cloud Native & Kubernetes 시작하기"
+title: "[CJ Olivenetworks - Cloud Wave] Cloud Native & Kubernetes 시작하기"
 categories:
   - Cloud-Wave-Kubernetes
 tags:

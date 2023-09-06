@@ -1,5 +1,5 @@
 ---
-title: "[CJOliveNetworks] CloudWave 1기 합격 수기"
+title: "[CJ Olivenetworks - Cloud Wave] CloudWave 1기 합격 수기"
 categories:
   - Cloud-Wave
 tags:
