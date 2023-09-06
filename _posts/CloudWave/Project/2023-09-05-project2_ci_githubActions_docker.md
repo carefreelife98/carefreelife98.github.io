@@ -324,16 +324,39 @@ jobs:
 
 ## CI
 
-> **CI 전체 FLow** <br>
-> 1. Web Application 소스코드 추가/삭제/수정
-> 2. Git push
-> 3. Github Actions
->     - Docker Build
->     - Docker Push
+> **CI 전체 Flow** <br>
+> 1. **Web Application 소스코드 추가/삭제/수정**
+> 2. **Git push**
+> <img src="/assets/images/CloudWave/project/ci1.png" alt="ci1_Procdess2" width="100%" min-width="200px" itemprop="image"><br><br>
+> 3. **Github Actions**
+> <img src="/assets/images/CloudWave/project/ci2.png" alt="ci2_Procdess2" width="100%" min-width="200px" itemprop="image"><br>**`Docker Build`**<br><br>
+> <img src="/assets/images/CloudWave/project/ci3.png" alt="ci3_Procdess2" width="100%" min-width="200px" itemprop="image"><br>**`Docker Push`**<br>
 
+<br><br>
 
-<img src="/assets/images/CloudWave/project/cicd1.png" alt="cicd1_Procdess2" width="100%" min-width="200px" itemprop="image"><br>
+## CD
 
+> **CD 전체 Flow** <br>
+> 1. **CI 의 결과로 업그레이드 된 버전의 이미지를 K8s Manifest 에 적용 후 Git Push** <br>
+> <img src="/assets/images/CloudWave/project/finalcd1.png" alt="finalcd1_Procdess2" width="100%" min-width="200px" itemprop="image"><br>
+>    - **`Docker Image의 버전을 latest`** 로 설정했기 때문에 **`ImagePullPolicy 를 Always`** 로 설정하여 매 **`Pod가 뜰 때마다 Docker Hub에서 latest tag를 가진 이미지를 새로 다운`** 받도록 해준다.<br><br>
+> 2. **ArgoCD 가 보고 있던 Git repo에 존재하는 K8s Manifest 파일의 변동 사항을 Web Hook 하여 EKS Cluster 에 배포.**
+> <img src="/assets/images/CloudWave/project/finalcd2.png" alt="finalcd2_Procdess2" width="100%" min-width="200px" itemprop="image"><br>
+>    - Github 에 Push 하게 되면 해당 repository를 보고 있던 **`ArgoCD가 Webhook 을 통해 k8s manifest 파일의 변경사항을 확인`**하고 최신 이미지를 **`모든 Pod에 Rolling Update 방식으로 무중단 배포`**한다.
+
+<br><br>
+
+## CI / CD 후 변동 사항에 대해 정상적으로 배포된 애플리케이션의 모습
+
+<img src="/assets/images/CloudWave/project/cicdresult.png" alt="cicdresult_Procdess2" width="100%" min-width="200px" itemprop="image"><br>`CICD test -> Gooloom - CGV 로 Title이 변경되어 배포된 것을 볼 수 있다.`<br> 
+
+<br><br>
+
+# CI / CD 시연 영상 (배속)
+
+{% raw %}
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ZPrLB_rOsJY" frameborder="0" allowfullscreen></iframe>
+{% endraw %}
 
 <br><br>
 
@@ -350,12 +373,13 @@ jobs:
 
 >
 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
+- [x] Github Action / Docker 를 활용한 CI
+- [x] Workflow File 작성하기
+- [x] ArgoCD 를 활용하여 AWS EKS Cluster 에 자동 배포하기 - CD
+- [x] ArgoCD 설치
+- [x] ArgoCD 와 Github Repository 연동
+- [x] AWS EKS 환경에 Spring boot Web Application 배포하기
+- [x] Deployment 작성을 위한 WAS Application image의 성능 확인
+- [x] 3 Tier 구조 - EKS Cluster 두 개 (WEB/WAS) 에 각각 배포하기
+- [x] CGV 프로젝트 전체 CI / CD 과정
+- [x] CI / CD 시연 영상 (배속)
