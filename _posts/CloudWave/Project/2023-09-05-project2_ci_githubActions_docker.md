@@ -244,36 +244,96 @@ jobs:
 
 <br><br>
 
-# [ArgoCD] AWS EKS 환경에 Spring boot Web APplication 배포하기
+# [ArgoCD] AWS EKS 환경에 Spring boot Web Application 배포하기
 
-1. Deployment 작성을 위한 WAS Application image의 성능 확인
+## [사전 작업] Deployment 작성을 위한 WAS Application image의 성능 확인
+
 > <img src="/assets/images/CloudWave/project/cd1.png" alt="cd1_Procdess2" width="100%" min-width="200px" itemprop="image"><br>
 > - WAS 이미지를 Docker COntainer 에서 Running Test
 >   - CPU : 약 30% 사용
 >   - Memory : 약 5% 사용 
-
-
-
-
-
-
-
-
-
-> <img src="/assets/images/CloudWave/project/modSuccess2.png" alt="modSuccess_Procdess2" width="100%" min-width="200px" itemprop="image"><br>
-> <img src="/assets/images/CloudWave/project/modSuccess2.png" alt="modSuccess_Procdess2" width="100%" min-width="200px" itemprop="image"><br>
-> <img src="/assets/images/CloudWave/project/modSuccess2.png" alt="modSuccess_Procdess2" width="100%" min-width="200px" itemprop="image"><br>
-> <img src="/assets/images/CloudWave/project/modSuccess2.png" alt="modSuccess_Procdess2" width="100%" min-width="200px" itemprop="image"><br>
-
-
-
-
-
-
+> - 위 사용량 테스트를 기준으로 Deployment.yaml 작성.
+>   - 추후 Load Test (트래픽 부하 테스트) 를 통해 Pod 의 Spec을 더욱 상세하게 설정할 예정.
 
 <br><br>
 
-<img src="/assets/images/CloudWave/project/modSuccess2.png" alt="modSuccess_Procdess2" width="100%" min-width="200px" itemprop="image"><br>`Apache2(httpd) 와 Spring boot 내장 Tomcat 연동 성공`<br>
+## [ArgoCD] 3 Tier 구조 - EKS Cluster 두 개 (WEB/WAS) 에 각각 배포하기
+
+1. [ArgoCD CLI] ArgoCD 주소로 Login
+> 
+> ```shell
+> $ argocd login (ArgoCD 주소)
+> ```
+> 
+> <img src="/assets/images/CloudWave/project/deploy1.png" alt="deploy1_Procdess2" width="100%" min-width="200px" itemprop="image"><br>
+> - `kubectl get svc -n argocd` - External-IP 주소로 로그인
+
+2. [ArgoCD CLI] 하나의 ArgoCD server에 새로운 Cluser 추가하기
+> 
+> ```shell
+> $ argocd cluster add <클러스터 arn>
+> ```
+> 
+> <img src="/assets/images/CloudWave/project/deploy2.png" alt="deploy2_Procdess2" width="100%" min-width="200px" itemprop="image"><br>
+> - 위와 같이 클러스터 추가가 되면 성공. <br><br>
+> 
+> **[Trouble Shooting] exec plugin error : no valid apiVersion: v1alpha1** <br>
+> - 이번 프로젝트 진행 중 가장 많이 마주한 에러 중 하나이다.
+> - 결국은 버전 호환성 문제이다. <br><br>
+> 
+> **[해결]** <br>
+> 1. 루트 경로의 `.kube/config` 확인 후 각 Cluster 의 `apiVersion을 v1beta1` 으로 변경. <br>
+>    - 뭔가 더 진행이 되긴 하나 결국 다시 에러. <br><br>
+>    
+> 2. `aws eks update-kubeconfig --name (클러스터 이름)` <br>
+>    - update 는 진행이 되나 에러 해결은 되지 않음. <br><br>
+>    
+> 3. **Github Community 에 따르면 aws cli2 사용시 관련 apiVersion 에러가 발생하지 않는다고 함.** <br>
+>    <img src="/assets/images/CloudWave/project/apiVersionErr.png" alt="apiVersionErr_Procdess2" width="100%" min-width="200px" itemprop="image"><br>
+>    - `aws cli2` 로 upgrade 후 성공. <br> 
+>    - 이제 ArgoCD 가 두번째 WAS Cluster 도 관리하고 있다. <br> 
+
+3. [ArgoCD] 두 개의 EKS Cluster (WEB/WAS) 에 Application 배포.
+> 
+> <img src="/assets/images/CloudWave/project/deploy3.png" alt="deploy3_Procdess2" width="100%" min-width="200px" itemprop="image"><br>
+> - **application name** : ArgoCD 화면에서 뜰 application 의 이름 지정
+> - **Project Name** : 진행할 ArgoCD Project 선택
+> - **Sync Policy** : Automatic 선택 시 약 3분 간격으로 연결된 Github Repo의 변동 사항을 Checking.  
+>   - prune resource, self heal 둘 다 선택.
+> - **Source** : 배포할 K8s Manifest File이 있는 경로 설정
+> - **Destination** : 해당 K8s Manifest File을 배포할 EKS Cluster 설정. 
+> 
+> <br><br>
+> 
+> <img src="/assets/images/CloudWave/project/deploy4.png" alt="deploy4_Procdess2" width="100%" min-width="200px" itemprop="image"><br>
+> 1. ArgoCD 와 정상적으로 Source 및 Destination 이 연결 되었을 시, 위처럼 **약 3분 간격으로 Source의 변동 사항을 Checking** 하게 된다. <br><br>
+> 2. 만약 **Source에 변동사항 발생 시 ArgoCD 는 해당 변동 사항을 WebHook**. <br><br>
+> 3. **Destination 으로 설정된 Cluster 에 변동 사항을 적용하여 배포**하게 된다. <br><br><br><br>
+> 
+> **배포 성공** <br>
+> 
+> <img src="/assets/images/CloudWave/project/deploy5.png" alt="deploy5_Procdess2" width="100%" min-width="200px" itemprop="image"><br>
+
+<br><br>
+
+# CGV 프로젝트 전체 CI / CD 과정
+
+<img src="/assets/images/CloudWave/project/cicd1.png" alt="cicd1_Procdess2" width="100%" min-width="200px" itemprop="image"><br>
+- CI / CD Test 진행 전 초기 홈페이지의 모습.
+- **Title: "CICD Test"**
+
+## CI
+
+> **CI 전체 FLow** <br>
+> 1. Web Application 소스코드 추가/삭제/수정
+> 2. Git push
+> 3. Github Actions
+>     - Docker Build
+>     - Docker Push
+
+
+<img src="/assets/images/CloudWave/project/cicd1.png" alt="cicd1_Procdess2" width="100%" min-width="200px" itemprop="image"><br>
+
 
 <br><br>
 
