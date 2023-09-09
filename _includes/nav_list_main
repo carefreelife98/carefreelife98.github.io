@@ -6,6 +6,8 @@
   <input id="ac-toc" name="accordion-toc" type="checkbox" />
   <label for="ac-toc">{{ site.data.ui-text[site.locale].menu_label }}</label>
   <ul class="nav__items" id="category_tag_menu">
+    <a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fcarefreelife98.github.io&count_bg=%23848483&title_bg=%23C6923B&icon=opsgenie.svg&icon_color=%23E7E7E7&title=Total+Visitors&edge_flat=false"/></a>
+    <br><br>
       <!--전체 글 수-->
       <li>
             📂 <span style="font-family: 'KCC-Ganpan';">전체 글 수</style> <span style="font-family:'KCC-Ganpan';">{{sum}}</style> <span style="font-family:'KCC-Ganpan';">개</style> 
