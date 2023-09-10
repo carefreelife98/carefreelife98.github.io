@@ -32,6 +32,21 @@
                     {% endif %}
                 {% endfor %}
             </ul>
+        <span class="nav__sub-title">자격증 정복하기</span>
+            <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "aws-saa" %}
+                        <li><a href="/aws-saa/" class="">AWS-SAA ({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <!-- <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "INU-DataStructure" %}
+                        <li><a href="/INU-DataStructure/" class="">Data Structure ({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul> -->
         <span class="nav__sub-title">[CJ Olivenetworks]<br>Cloud Wave ☁️</span>
             <ul>
                 {% for category in site.categories %}

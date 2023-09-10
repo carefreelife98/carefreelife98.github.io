@@ -110,9 +110,9 @@ author:
   location         : "Republic of Korea"
   email            :
   links:
-    - label: "csm4903"
+    - label: "csm4903@naver.com"
       icon: "fas fa-fw fa-envelope-square"
-      url: "csm4903@naver.com"
+      # url: ""
     - label: "Website"
       icon: "fas fa-fw fa-link"
       url: "https://carefreelife98.github.io/"
@@ -132,21 +132,21 @@ author:
 # Site Footer
 footer:
   links:
-    - label: "Twitter"
-      icon: "fab fa-fw fa-twitter-square"
-      # url:
+    # - label: "Twitter"
+    #   icon: "fab fa-fw fa-twitter-square"
+    #   # url:
     - label: Facebook
       icon: "fab fa-fw fa-facebook-square"
       url: "https://www.facebook.com/profile.php?id=100009196937832"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/CarefreeLife98"
-    - label: "GitLab"
-      icon: "fab fa-fw fa-gitlab"
-      # url:
-    - label: "Bitbucket"
-      icon: "fab fa-fw fa-bitbucket"
-      # url:
+    # - label: "GitLab"
+    #   icon: "fab fa-fw fa-gitlab"
+    #   # url:
+    # - label: "Bitbucket"
+    #   icon: "fab fa-fw fa-bitbucket"
+    #   # url:
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
       url: "https://www.instagram.com/carefreelife._.98/"
