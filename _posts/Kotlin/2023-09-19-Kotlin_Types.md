@@ -200,7 +200,7 @@ NumbersEx().ex3typeCheck("Hello")
 	- Break문을 없애어 잦은 오류를 해결함.
 
 ## Basic Types : Char
-> **Char Type 변수는 `""` 로 묶은 문자만 할당 할 수 있음.**
+> **Char Type 변수는 `''` 로 묶은 문자만 할당 할 수 있음.**
 - ASCII 코드에 해당하는 숫자를 할당할 경우 에러가 발생함.
 	- `toChar()` 을 적용하여 **Char Type으로 변환해야 함.**
 
