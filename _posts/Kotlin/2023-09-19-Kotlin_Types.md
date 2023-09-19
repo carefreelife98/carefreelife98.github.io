@@ -14,6 +14,8 @@ header:
 Visit my Programming blog: https://carefreelife98.github.io --> 
 ---
 
+![path](/assets/images/INU/Kotlin/kotlinTeaser.svg)
+
 # Kotlin - val, var, const val 및 Basic Types
 
 ```kotlin
