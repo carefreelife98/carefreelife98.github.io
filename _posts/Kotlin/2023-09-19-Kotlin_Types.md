@@ -78,8 +78,9 @@ x += 1
 
 ## Basic Types : Number
 > **Number** : Kotlin type은 **첫 글자가 대문자.**
-- `Double(64)`, `Float(32)`
-- `Long(64)`,` Int(32)`, `Short(16)`, `Byte(8)`
+> **`Number` Type은 모든 숫자 Type 과 호환이 가능하다.**
+- Double(64), Float(32)
+- Long(64), Int(32), Short(16), Byte(8)
 
 - **상수(Literal Constants)**
 	- `Double` : 123.5, 123.5e10
@@ -278,6 +279,10 @@ class boolean {
 	- `String객체.get(index)`
 	- `String객체[index]`
 - String 자료구조는 `Immutable(변경 불가, Read-Only)` 함.
+	- String 의 값을 변경하게 되면 덮어 씌워지는 것이 아니다.
+	- 새로운 메모리 공간에 새로운 값이 쓰여지고 그것을 가리키게 되는 것.
+	- 기존 값은 Garbage 가 되어 Garbage Collector 가 회수하기 전까지 메모리 공간을 낭비하게 됨.
+	- 따라서 **String의 값을 바꾸기 위해서는** `String Buffer` 나 `String Builder` 를 사용해야 한다.
 
 ### 예시 1 - Indexing, Get()
 ```kotlin
