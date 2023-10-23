@@ -34,7 +34,8 @@ Visit my Programming blog: https://carefreelife98.github.io -->
 > 
 > **내부 정렬 (internal sorting)**:
 >   - 모든 데이터가 주 기억장치 내부에 저장된 상태에서 정렬.
->   <br>
+> 
+> <br>
 > **외부 정렬 (external sorting)**:
 >   - 외부 기억 장치에 대부분의 데이터가 존재.
 >   - 일부만 주 기억장치에 저장된 상태에서 정렬.
