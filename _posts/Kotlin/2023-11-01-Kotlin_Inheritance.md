@@ -18,7 +18,7 @@ Visit my Programming blog: https://carefreelife98.github.io -->
 
 # Inheritance Agenda
 
-> Inheritance(상속) 는 객체 지향 프로그래밍의 장점 중 하나.
+> Inheritance(상속) 는 객체 지향 프로그래밍의 장점 중 하나. <br>
 > Default Classes (public, final) 은 상속을 할 수 없음.
 > - **상속을 하기 위해서는 Class 를 `open` 으로 만들어 주어야 함.**
 >
@@ -138,9 +138,9 @@ fun main() {
 >     - **override** fun (Overriding 할 메소드) { }
 >
 > - **Property overriding**
-> 	- `Super class`
+>   - `Super class`
 >     - **open var** (Overriding 될 속성)
-> 	- `Sub class`
+>   - `Sub class`
 >     - **override var** (Overriding 할 속성): (속성의 Type) = (재정의)
 
 <br><br>
