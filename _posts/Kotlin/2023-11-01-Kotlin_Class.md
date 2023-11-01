@@ -413,12 +413,10 @@ fun main() {
 
 >
 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
+- [x] 생성자
+- [x] Class 선언 및 호출
+- [x] Class: Method 정의 및 호출
+- [x] Class 의 Property (속성)
+- [x] Class 속성 초기화
+- [x] Class 속성: Getter & Setter
+- [x] Scope Function (범위 함수) - with, apply
