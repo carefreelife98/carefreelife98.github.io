@@ -224,7 +224,7 @@ Visit my Programming blog: https://carefreelife98.github.io -->
 ![path](/assets/images/INU/ComputerArchitecture/SequentialCircuitInClassEX5.png)
 
 
-
+<br><br>
 
 지식 공유 및 기록을 위한 컴퓨터 구조 개인 학습 포스트입니다.
 피드백은 항상 환영합니다!
