@@ -52,15 +52,11 @@ Visit my Programming blog: https://carefreelife98.github.io -->
 > - **주소를 지정하는 세 가지 방식**이 존재.
 > 	1. **Direct Address (직접 주소)**
 > 		- 해당 **Address Field 값이 실제 Operand 의 주소**가 되는 경우.
-> 		
 >       <br><br>
->     
-> 	2. **Indirect Address (간접 주소)**
+> 	2. **Indirect Address (간접 주소)**<br>
 > 		![path](/assets/images/INU/ComputerArchitecture/instructionCode3.png)
 > 		- 해당 **Address Field 위치에 (다른 위치에 존재하는) Operand 의 주소가 존재**하는 경우.
-> 		
->     <br><br>
->     
+>       <br><br>
 > 	3. **Immediate**
 > 		- **Address Field 값 자체가 Operand** 가 되는 경우.
 
@@ -83,7 +79,7 @@ Visit my Programming blog: https://carefreelife98.github.io -->
 <br><br>
 
 # Computer Registers
-> **범용 Register 가 아닌 각각의 특수한 기능을 수행하는 Register 를 가지고 있는 16-Bit Computer 에 대한 것.**
+> **범용 Register 가 아닌 <br>각각의 특수한 기능을 수행하는 Register 를 가지고 있는 16-Bit Computer 에 대한 것.**
 
 <br><br>
 
@@ -121,14 +117,13 @@ Visit my Programming blog: https://carefreelife98.github.io -->
 
 ## Data 의 이동 - Bus System
 ![path](/assets/images/INU/ComputerArchitecture/instructionCode6.png)
-> **Bus System 을 이용**해서 **`Register <-> Register`** , **`Register <-> Memory`** 간의 **Data 전송이 수행**된다.
-> <br>
-> **각각의 Register 는 일반적으로 Load(LD), Increment(INR), Clear(CLR) 을 갖는다.**
-> <br>
-> **Selection Signal (S2, S1, S0) 에 의해 BUS 에 Load 될 Register 종류 및 그 값이 정해진다.**
-> <br>
-> Selection Signal 이 111 인 경우, **Register 에는 항상 AR 이 연결**되어 있으므로 **Memory 가 AR 에 저장되어 있는 주소 값을 참조해서 적절한 값을 찾아 BUS 에 Load** 하는 것.
+> - **Bus System 을 이용**해서 **`Register <-> Register`** , **`Register <-> Memory`** 간의 **Data 전송이 수행**된다.
+> - **각각의 Register 는 일반적으로 Load(LD), Increment(INR), Clear(CLR) 을 갖는다.**
+> - **Selection Signal (S2, S1, S0) 에 의해 BUS 에 Load 될 Register 종류 및 그 값이 정해진다.**
+> - Selection Signal 이 111 인 경우, **Register 에는 항상 AR 이 연결**되어 있으므로 **Memory 가 AR 에 저장되어 있는 주소 값을 참조해서 적절한 값을 찾아 BUS 에 Load** 하는 것.
+> 
 > <br><br>
+> 
 > ![path](/assets/images/INU/ComputerArchitecture/instructionCode7.png)
 > **AR 과 Program Ccounter 는 12 Bit** 이지만 **BUS 는 16 bit, 즉 16개의 Line** 으로 이루어짐.
 > - 위처럼 AR 과 PC 가 Selection Signal 에 의해 선택되어 **BUS 에 Load 될 경우에는 상위 4개의 Bit 가 0으로 채워진 후 BUS 에 Load** 된다.
