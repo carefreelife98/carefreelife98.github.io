@@ -8,7 +8,7 @@ toc: true
 toc_sticky: true
 toc_label: "Carefree to See"
 header:
-  teaser: "/assets/images/INU/ComputerArchitecture/minterm14.png"
+  teaser: "/assets/images/INU/ComputerArchitecture/instructionCode6.png"
 ---
 <!-- Created by Chae Seung Min - CarefreeLife
 Visit my Programming blog: https://carefreelife98.github.io --> 
@@ -177,6 +177,7 @@ Visit my Programming blog: https://carefreelife98.github.io -->
 {: style="text-align: center;"}
 
 <br><br>
+
 
 [처음으로~](#){: .btn .btn--primary }
 
