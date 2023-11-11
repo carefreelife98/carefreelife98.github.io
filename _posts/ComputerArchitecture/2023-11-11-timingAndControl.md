@@ -1,5 +1,5 @@
 ---
-title: "Basic Computer Organization and Design - Timing and Control"
+title: "Basic Computer Organization and Design - Timing and Control (Instruction Cycle, Memory 참조 명령어, Register 참조 명령어"
 categories:
   - INU-ComputerArchitecture
 tags:
