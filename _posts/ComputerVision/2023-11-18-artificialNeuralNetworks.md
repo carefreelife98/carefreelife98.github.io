@@ -36,6 +36,7 @@ Visit my Programming blog: https://carefreelife98.github.io -->
 > 	- input vector -> scalar
 > 3. **Activation function (Possibly Nonlinear)**
 
+<br><br>
 
 ## Activation function
 > ![path](/assets/images/INU/ComputerVision/artificialNeuralNetworks2.png)<br>
