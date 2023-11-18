@@ -25,7 +25,7 @@ Visit my Programming blog: https://carefreelife98.github.io -->
 <br><br>
 
 ## Problem Setup
-> Learning Problem 을어떻게 Setup 하는가?
+> Learning Problem 을 어떻게 Setup 하는가?
 ### Credit Approval
 > 각 Data 의 확실한 특징을 설정.
 >
@@ -55,19 +55,20 @@ Visit my Programming blog: https://carefreelife98.github.io -->
 > **Hypothesis**
 > - g
 > - 우리가 맞추어야 하는 F (Target Function) 를 근사, 모사하도록 학습이된다.
+
 - **우리는 Target Function 에 해당되는 정답이란 것을 수학적으로 정의하기는 어려움.**
 - 해당 **Target Function 을 대신 할 수 있는 Hypothesis (g) 를 생성.**
   - g 에 대한 Input(**x**) 을 통해 얻은 Output(y) 의 **정확도를 높이기 위한 Parameter 를 설정**하게 되는 것.
 
 <br><br>
 ### Credit Approval 예시
-![path](/assets/images/INU/ComputerVision/linearModel1.png)
-- 이성적인 판단 기준 (정답) 은 F 이나, 이를 **수학적으로 정의하기 어려움.**
-- 따라서 **F에 근접한 Hypothesis (g) 를 가장 기본적인 구조인 Linear (Model) 로서 표현.**
+> ![path](/assets/images/INU/ComputerVision/linearModel1.png)<br>
+> - 이성적인 판단 기준 (정답) 은 F 이나, 이를 **수학적으로 정의하기 어려움.**
+> - 따라서 **F에 근접한 Hypothesis (g) 를 가장 기본적인 구조인 Linear (Model) 로서 표현.**
 
 <br><br>
 ### Learning Algorithm (Model)
-![path](/assets/images/INU/ComputerVision/linearModel2.png)
+> ![path](/assets/images/INU/ComputerVision/linearModel2.png)<br>
 > **Learning Algorithm (Model) 생성이란?**
 > - **Hypothesis (g)를 생성하는 것.**
 > - Data 를 이용하여 f 에 근접한 g 라는 Folmula 를 생성.
@@ -77,8 +78,8 @@ Visit my Programming blog: https://carefreelife98.github.io -->
 
 <br><br>
 ### Basic Setup
-![path](/assets/images/INU/ComputerVision/linearModel3.png)
-- 이전까지 설명한 내용을 표로서 위와 같이 표현 할 수 있다.
+> ![path](/assets/images/INU/ComputerVision/linearModel3.png)<br>
+> - 이전까지 설명한 내용을 표로서 위와 같이 표현 할 수 있다.
 
 <br><br>
 
@@ -92,7 +93,7 @@ Visit my Programming blog: https://carefreelife98.github.io -->
 
 <br><br>
 ## Hypothesis Set
-![path](/assets/images/INU/ComputerVision/linearModel4.png)
+> ![path](/assets/images/INU/ComputerVision/linearModel4.png)<br>
 > **Hypothesis Set H 는 h(x) 로서 구체화됨.**
 > - 또한 h(x) 는 항상 H 에 포함됨.
 > <br>
@@ -113,7 +114,7 @@ Visit my Programming blog: https://carefreelife98.github.io -->
 > - **Input Data 의 속성 값이 숫자로서 표현되고 가중치와 같은 속성이 존재하게 되면 특정 기준 값과 비교하여 True / False 로서 판단이 가능하게 됨.**
 
 <br><br>
-![path](/assets/images/INU/ComputerVision/linearModel5.png)
+> ![path](/assets/images/INU/ComputerVision/linearModel5.png)<br>
 > **학습이 되어야 할 Parameter 값에서 threshold (기준 값) 를 Subtract 한 결과의 부호로서 판단.**<br>
 > **sign 함수**
 > - y = sign(a)
@@ -122,7 +123,7 @@ Visit my Programming blog: https://carefreelife98.github.io -->
 
 <br><br>
 ## Two-dimensional Case - 결정 경계 (Decision Boundary)
-![path](/assets/images/INU/ComputerVision/linearModel6.png)
+> ![path](/assets/images/INU/ComputerVision/linearModel6.png)<br>
 > **결정 결계 (Decision Boundary)**
 > - 2차원 에서 정의되는 y = ax + b 라는 기준 선.
 > <br>
@@ -130,18 +131,18 @@ Visit my Programming blog: https://carefreelife98.github.io -->
 > - Data Set 에 맞춰 적절히 작동하도록 결정 경계선의 기울기(parameter. {a, b})를 찾아가는 Algorithm.
 
 <br><br>
-![path](/assets/images/INU/ComputerVision/linearModel7.png)
+> ![path](/assets/images/INU/ComputerVision/linearModel7.png)<br>
 > **Learning Algorithm 에 의해 찾은 이상적인 Parameter 는 Hypothesis(g) 가 된다.**
 > - g 는 Opimal Choice 가 된다. (가장 이상적인 결정 경계 직선)
 
 <br><br>
 
 ## Perceptron Learning Algorithm (PLA)
-![path](/assets/images/INU/ComputerVision/linearModel8.png)
+> ![path](/assets/images/INU/ComputerVision/linearModel8.png)<br>
 > **Hypothesis(g) 를 생성하기 위하여 가지고 있는 Data Set 에 대해 가장 이상적인 결정 경계를 생성 할 수 있는 Parameter (w) 를 결정하는 알고리즘.**
 
 <br><br>
-![path](/assets/images/INU/ComputerVision/linearModel9.png)
+> ![path](/assets/images/INU/ComputerVision/linearModel9.png)<br>
 > 위처럼 주어진 Perceptron 의 weight 를 **sign 함수의 값에 따라 업데이트 해가며 이상적인 weight 를 찾아간다. (Iteration 을 통해서)**
 
 <br><br>
@@ -149,7 +150,7 @@ Visit my Programming blog: https://carefreelife98.github.io -->
 > Classification 이란 Category 를 분류하는 것.
 
 ## Linear Model for Binary Classification
-![path](/assets/images/INU/ComputerVision/linearModel10.png)
+> ![path](/assets/images/INU/ComputerVision/linearModel10.png)<br>
 > 가장 쉬운 Classification.
 > - **Binary, 즉 0과 1 (-1 or 1) 두개의 Category 로 분류.**
 > - Perceptron 을 활용.
@@ -157,7 +158,7 @@ Visit my Programming blog: https://carefreelife98.github.io -->
 
 <br><br>
 ## Reality : 선형 분류의 한계 (In-sample Error & Out-of-sample Error)
-![path](/assets/images/INU/ComputerVision/linearModel11.png)
+> ![path](/assets/images/INU/ComputerVision/linearModel11.png)<br>
 > 하지만 이상과 현실은 다르다.<br>
 > **실제 데이터들은 매우 혼잡한 상태로 분포하며, 아주 이상적인 경우를 제외하고 선형적으로 분리되기 어려움.**<br>
 > **In-sample Error**
@@ -190,25 +191,25 @@ return 𝒘;
 
 <br><br>
 ## PLA 와 Pocket Algorithm 의 모습
-![path](/assets/images/INU/ComputerVision/linearModel12.png)
+> ![path](/assets/images/INU/ComputerVision/linearModel12.png)<br>
 
 <br><br>
 
 # Linear Regression
-![path](/assets/images/INU/ComputerVision/linearModel13.png)
+> ![path](/assets/images/INU/ComputerVision/linearModel13.png)<br>
 > 이전에 학습한 내용에서는 f(**x**) = y 이며 이에 근사한 결과를 도출하기 위해 g(**x**) = y 를 찾아 y 값에 따라 적절히 Classification 했으나, **Regression의 경우 y 값이 정수가 아닌 실수(Real Number)로서 도출되어 명확한 Classification 이 불가한 경우**이다.<br>
 > - f 에 약간의 Noise 가 추가되어 있는 경우.
 
 <br><br>
 ## Linear Regression in 1D & 2D
 **1D**
-![path](/assets/images/INU/ComputerVision/linearModel14.png)
+> ![path](/assets/images/INU/ComputerVision/linearModel14.png)<br>
 > **Data 를 1차원 공간에 Mapping 하였을 시 분포하는 좌표 지점과 g 의 그래프 (선) 간의 오차가 Error 이다.**<br>
 > 모든 Error 를 더한 값이 총 Error 크기가 되고, **그 크기가 가장 적게 나타나는 직선을 선택하게 된다.**
 
 <br><br>
 ## Getting the Solution w
-![path](/assets/images/INU/ComputerVision/linearModel15.png)
+> ![path](/assets/images/INU/ComputerVision/linearModel15.png)<br>
 > 그렇다면 해당 **Error 가 최소화 되는 직선은 어떻게 구할 것인가?**
 > - **변수가 하나인 경우**
 > 	- **미분을 사용**하여 곡선 그래프를 직선 형태로 만들어 **0이 되는 지점을 찾으면 최소값**을 찾을 수 있다.
@@ -218,7 +219,7 @@ return 𝒘;
 <br><br>
 
 ## Linear Model 요약
-![path](/assets/images/INU/ComputerVision/linearModel16.png)
+> ![path](/assets/images/INU/ComputerVision/linearModel16.png)<br>
 > **Linear Model 생성 방법의 종류**
 > - **Classification**
 > - **Regression**
