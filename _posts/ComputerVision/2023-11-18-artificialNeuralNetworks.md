@@ -1,5 +1,5 @@
 ---
-title: "Linear Models - Credit Approval / Perceptron / Pocket Algorithm / Linear Regression"
+title: "Artificial Neural Networks - Multilayer Perceptron(MLP), Softmax Function, Forward / Backward Propagation, Error measures"
 categories:
   - INU-ComputerVision
 tags:
