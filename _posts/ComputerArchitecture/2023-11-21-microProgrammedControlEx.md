@@ -231,7 +231,7 @@ Visit my Programming blog: https://carefreelife98.github.io -->
 <br><br>
 
 # Design of Control Unit
-> 각 Control Unit 에 대한 하드웨어 설계 예시를 알아보자.
+> 각 Control Unit 에 대한 하드웨어 설계 예시
 ## Function (F1 ~ F3)
 > ![path](/assets/images/INU/ComputerArchitecture/microProgramEx11.png)<br>
 > **Decoding of F fields**
