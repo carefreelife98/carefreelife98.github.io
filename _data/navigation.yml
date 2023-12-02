@@ -12,6 +12,9 @@ main:
 sidebar-category:
   - title: "Carefree Lists"
     children:
+      - title: "Carefree Toy Projects"
+        url: "/toy-project/"
+        category: "toy-project"
       - title: "INU/Operating System"
         url: "/INU-OS/"
         category: "INU-OS"
