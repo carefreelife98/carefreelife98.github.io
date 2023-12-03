@@ -22,7 +22,7 @@ Visit my Programming blog: https://carefreelife98.github.io -->
 
 <br><br>
 
-## \[CarefreeOCR] Main Idea & Tools
+## \[Carefree OCR] Main Idea & Tools
 ```html
 휴대폰의 Camera 를 사용하여 찍은 책자 이미지를 OCR 기술을 이용해서 Web 화면에 띄어준다면, 
 해당 Text 만 복사하여 어머니께서 잘 사용하실 수 있을 것.
@@ -46,7 +46,7 @@ Visit my Programming blog: https://carefreelife98.github.io -->
 
 <br><br>
 
-## \[CarefreeOCR] Project Structure
+## \[Carefree OCR] Project Structure
 ![path](/assets/images/Projects/ToyProjects/CarefreeOCR1.png)<br>
 > 초기 계획은 Docker Hub 에 버전 별 이미지 저장 후 ArgoCD 를 통해 배포할 계획이었으나 AWS ECR / EKS 와 같은 컨테이너 서비스를 사용하자니 비용이 발생함.
 > - **Github Actions 를 통해 특정 Tag 를 가진 EC2 에 직접 Application을 Build 하여 Spring Boot 내장 Tomcat 서버에 띄우기로 했다.**
@@ -55,7 +55,7 @@ Visit my Programming blog: https://carefreelife98.github.io -->
 
 <br><br>
 
-# \[CarefreeOCR] Spring boot Application
+# \[Carefree OCR] Spring boot Application
 ## Clova OCR API 사용하기
 > NCP 자체에서 Sample code 를 제공하고 설명 또한 잘 되어 있어 비슷한 프로젝트를 진행한다면 아래 공식 Document를 참고해도 좋을 것 같다. <br>
 > [링크: NCP - Clova OCR](https://guide.ncloud-docs.com/docs/ko/clovaocr-overview)
@@ -387,9 +387,9 @@ public class uploadController {
 
 <br><br>
 
-# 완성 모습
+# \[Carefree OCR] 완성 모습
 
-> **th:each 를 통해 결과 리스트를 순환하며 결과를 출력.**
+> **th:each 를 통해 결과 리스트를 순환하며 결과를 출력.**<br>
 > ![path](/assets/images/Projects/ToyProjects/CarefreeOCR2.png)<br>
 > - **upload-form 에서 정상적으로 파일을 받아주는 모습.**
 >
