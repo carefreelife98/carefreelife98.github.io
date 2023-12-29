@@ -19,13 +19,13 @@ Visit my Programming blog: https://carefreelife98.github.io -->
 
 > 회사에서 **매년 우편물 등기 영수증을 일일히 Excel 에 수작업으로 옮기는 작업**을 하고 있는데, <br>
 > 담당자께서 다음과 같은 프로그램이 있다면 편리할 것 같다 하심에 진행한 개인 Toy Project 입니다.
->
-> **요구 사항**
-> 1. **공통**
-> 	- **사진 촬영 / 스캔본 과 같은 각 이미지 파일을 OCR 하여 Text 를 Detect 하고, Google Sheet 에 자동으로 Numbering 되어 입력 되었으면 좋겠다.**
+> ```
+> 요구 사항
+> 1. 공통
+> 	- 사진 촬영 / 스캔본 과 같은 각 이미지 파일을 OCR 하여 Text 를 Detect 하고, Google Sheet 에 자동으로 Numbering 되어 입력 되었으면 좋겠다.
 > 	- 여러 장의 이미지 파일을 한번에 Upload 가능해야 한다.
-> 2. **등기 영수증 OCR**
-> 	- **등기 영수증으로부터 사용할 정보**
+> 2. 등기 영수증 OCR
+> 	- 등기 영수증으로부터 사용할 정보
 > 		- 일자
 > 		- 개수
 > 		- 등기 번호
@@ -34,8 +34,8 @@ Visit my Programming blog: https://carefreelife98.github.io -->
 > 		- 법인 명
 > 		- 수신인
 > 		- 주소
-> 3. **사업자 등록증 OCR**
-> 	- **사업자 등록증으로부터 사용할 정보**
+> 3. 사업자 등록증 OCR
+> 	- 사업자 등록증으로부터 사용할 정보
 > 		- 개수
 > 		- 사업자명
 > 		- 대표자
@@ -46,11 +46,12 @@ Visit my Programming blog: https://carefreelife98.github.io -->
 > 		- 종목
 > 		- 전화번호
 > 		- 팩스번호
+> ```
 
 <br><br>
 
 # 2. 전체 구조 / Architecture
-<br><br>
+
 ## 2-1. AWS Cloud Infrastructure
 > ![path](/assets/images/Projects/ToyProjects/carefreeocrV2_1.png)<br>
 
@@ -67,15 +68,17 @@ Visit my Programming blog: https://carefreelife98.github.io -->
 <br><br>
 
 # 3. CI / CD Pipeline 구축 (Github Actions / AWS CodeDeploy)
-> **개발 및 배포 테스트 과정에서 CI/CD Pipeline 이 구축되어 있으면 매우 편리하므로 항상 개인 프로젝트 시작 전 CI/CD Pipeline 부터 간단하게 구축하고 시작하는 경향이 있습니다.**
+> **개발 및 배포 테스트 과정에서 CI/CD Pipeline 이 구축되어 있으면 매우 편리하므로** <br> 
+> **항상 개인 프로젝트 시작 전 CI/CD Pipeline 부터 간단하게 구축하고 시작하는 경향이 있습니다.**
 
 <br><br>
 
 ## 3-1. Github Actions
 > ![path](/assets/images/Projects/ToyProjects/carefreeocrV2_4.png)<br>
-> **Github Actions 에서 프로그램에서 사용할 Secret 을 Github secret 을 통해 코드에 삽입하고, Build 된 JAR 파일을 .zip 압축하여 AWS S3 에 저장 후 AWS CodeDeploy 를 실행하여 EC2 에 배포하게 됩니다.**
+> **Github Actions 에서 프로그램에서 사용할 Secret 을 Github secret 을 통해 코드에 삽입하고, <br>
+> Build 된 JAR 파일을 .zip 압축하여 AWS S3 에 저장 후 AWS CodeDeploy 를 실행하여 EC2 에 배포하게 됩니다.**
 > - **대부분의 secret 정보가 담겨 있는 application.properties 는 Github Secrets 에 넣어두고 Github Actions 과정에서 Secrets 을 통해 직접 생성하여 사용.**
-> - **Google API 를 사용하기 위한 사용자 인증 정보인 JSON 파일**은 Github Secret 에 복붙 후 그냥 꺼내어 사용 시 모든 "" 가 사라짐.
+> - **Google API 를 사용하기 위한 사용자 인증 정보인 JSON 파일**은 Github Secret 에 **복붙 후 그냥 꺼내어 사용 시 모든 "" 가 사라짐.**
 > 	- **따라서 create-json 을 사용하여 생성.**
 
 <br><br>
@@ -192,7 +195,7 @@ jobs:
 
 ## 4-1. NCP Clova OCR API
 > ![path](/assets/images/Projects/ToyProjects/carefreeocrV2_7.png)<br>
-`[NCP Clova OCR API 바로가기]`(https://console.ncloud.com/ocr/domain)
+[`NCP Clova OCR API 바로가기`](https://console.ncloud.com/ocr/domain)
 > **NCP Clova OCR API 같은 경우에는 다양한 서비스와 모델을 지원합니다.**
 > - **등기 영수증의 경우 매우 다양한 내용이 담겨 있고, 텍스트의 크기도 작아 더욱 정밀한 OCR 결과를 얻기 위해서 General OCR - Premium Model 을 사용했습니다.**
 > - **사업자 등록증의 경우 NCP 자체에서 사업자 등록증과 같은 특정 서류에 대하여 Template 을 생성할 수 있는 OCR service 를 지원합니다.**
@@ -202,7 +205,7 @@ jobs:
 
 ## 4-2. GCP Google Sheet API
 > ![path](/assets/images/Projects/ToyProjects/carefreeocrV2_8.png)<br>
-`[GCP Google Sheet API 바로가기]`(https://developers.google.com/sheets/api/reference/rest?hl=ko)
+[`GCP Google Sheet API 바로가기`](https://developers.google.com/sheets/api/reference/rest?hl=ko)
 **Google Sheet API 를 사용하는 것은 어렵지 않으나, API 를 사용하기 위한 과정(사용자 인증 정보 생성)이 조금 까다로울 수 있습니다.**
 
 <br><br>
@@ -689,21 +692,21 @@ public class uploadController {
 
 ## 6-1. 가비아 도메인 구매
 > ![path](/assets/images/Projects/ToyProjects/carefreeocrV2_10.png)<br>
-`[가비아]`(https://www.gabia.com/)
+[`가비아`](https://www.gabia.com/)
 > 회사 이름과 OCR 을 붙여 가장 저렴한 이벤트 도메인을 구매했습니다.
-> - **도메인 구매 후 사진 하단의 `"네임서버 설정"` 에서 1 ~ 4 차 네임 서버 항목을 6-2 단계에서 얻는 AWS Route53 의 NS 유형 값 4개를 채워주고 기다리면 도메인 등록이 완료됩니다.**
+> - **도메인 구매 후 사진 하단의 `"네임서버 설정"` 에서 1 ~ 4 차 네임 서버 항목을 다음 단계 (6-2) 에서 얻는 <br> AWS Route53 의 NS 유형 값 4개를 채워주고 기다리면 도메인 등록이 완료됩니다.**
 
 <br><br>
 
 ## 6-2. AWS Route53 레코드 생성
 > ![path](/assets/images/Projects/ToyProjects/carefreeocrV2_11.png)<br>
-`[AWS Route53]`(https://aws.amazon.com/ko/route53/)
+[`AWS Route53`](https://aws.amazon.com/ko/route53/)
 > 1. **AWS Route53 에서 호스팅 영역 생성 -> 6-1 에서 구매한 도메인 입력**
 > 2. **레코드 생성 -> 값 부분에 EC2 의 IP 주소를 입력. -> 생성**
 > 3. **NS(NameServer) 유형 값 4개를 도메인 구매처의 도메인 네임 서버 설정에 입력하여 연결.**
 >
 > <br>
-> - **[참고] 가비아에서 도메인 구매 후 등록하고 (6-2 까지 진행) 기다리다 보면 도메인 등록이 완료 되었다고 문자가 온다. 문자가 오면 해당 도메인으로 접근 시 EC2로 연결된다.**
+> - **[참고] 가비아에서 도메인 구매 후 등록하고 (6-2 까지 진행) 기다리다 보면 도메인 등록이 완료 되었다고 문자가 온다. <br> 문자가 오면 해당 도메인으로 접근 시 EC2로 연결된다.**
 
 <br><br>
 
@@ -713,10 +716,10 @@ public class uploadController {
 > ![path](/assets/images/Projects/ToyProjects/carefreeocrV2_12.png)<br>
 > Google Sheet API 를 사용하기 위한 계정 인증을 위한 JSON 파일을 CI/CD 환경에서 안전하게 사용하기 위해 Github Secrets 를 사용했다.
 > - 하지만 Google Sheet API 를 요청하자, 이전에 발생하지 않던 에러가 발생했다.
-> - **발생한 에러: `com.google.gson.stream.MalformedJsonException: Use JsonReader.setLenient(true) to accept malformed JSON at line 2 column 4 path $.`**
+> - **발생한 에러: <br> `com.google.gson.stream.MalformedJsonException: Use JsonReader.setLenient(true) to accept malformed JSON at line 2 column 4 path $.`**
 > 	- Malformed (흉한) Json Exception 이라는 에러 이름에서 JSON 파일의 형식이 잘못되었음을 유추하고 EC2 에 접속하여 해당 JSON 파일을 열어보았다.
 >
-> **해당 JSON 파일의 모습.**
+> **해당 JSON 파일의 모습.** <br>
 > ![path](/assets/images/Projects/ToyProjects/carefreeocrV2_13.png)<br>
 > - 위처럼 JSON 파일에서 "" 가 전부 빠져 있어 에러가 발생한 모습을 볼 수 있었다.
 > <br><br>
@@ -739,7 +742,7 @@ public class uploadController {
 # 8. 프로그램 시연 영상
 
 {% raw %}
-<iframe width="560" height="315" src="https://youtu.be/w_yWncXfCRM" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/w_yWncXfCRM" frameborder="0" allowfullscreen></iframe>
 {% endraw %}
 
 <br><br>
