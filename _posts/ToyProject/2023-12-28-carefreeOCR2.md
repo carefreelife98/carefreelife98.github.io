@@ -17,6 +17,7 @@ Visit my Programming blog: https://carefreelife98.github.io -->
 
 # 1. Agenda
 
+> ![path](/assets/images/Projects/ToyProjects/carefreeocrV2_teaser.png)<br>
 > 회사에서 **매년 우편물 등기 영수증을 일일히 Excel 에 수작업으로 옮기는 작업**을 하고 있는데, <br>
 > 담당자께서 다음과 같은 프로그램이 있다면 편리할 것 같다 하심에 진행한 개인 Toy Project 입니다.
 > 
