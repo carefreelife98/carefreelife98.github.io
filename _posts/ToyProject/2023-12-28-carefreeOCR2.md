@@ -22,8 +22,10 @@ Visit my Programming blog: https://carefreelife98.github.io -->
 > 
 > ```
 >   요구 사항
+>   
 >   1. 공통
-> 	    - 사진 촬영 / 스캔본 과 같은 각 이미지 파일을 OCR 하여 Text 를 Detect 하고, Google Sheet 에 자동으로 Numbering 되어 입력 되었으면 좋겠다.
+> 	    - 사진 촬영 / 스캔본 과 같은 각 이미지 파일을 OCR 하여 Text 를 Detect.
+>       - Google Sheet 에 자동으로 Numbering 되어 입력 되었으면 좋겠다.
 > 	    - 여러 장의 이미지 파일을 한번에 Upload 가능해야 한다.
 >   2. 등기 영수증 OCR
 > 	    - 등기 영수증으로부터 사용할 정보
@@ -212,7 +214,7 @@ jobs:
 <br><br>
 
 > ![path](/assets/images/Projects/ToyProjects/carefreeocrV2_9.png)<br>
-> **위와 같이 API 키, OAuth 2.0 Client ID, Service Account 세 가지를 각 용도에 맞추어 생성한 후 정상적으로 Google Sheet API 를 사용 할 수 있다.**
+> **위와 같이 API 키, OAuth 2.0 Client ID, Service Account 세 가지를 각 용도에 맞추어 생성한 후 정상적으로 Google Sheet API 를 사용 할 수 있습니다.**
 > - 만약 CI/CD Pipeline 이 구축되어 있다면, **해당 정보를 숨기기 위해 Github Actions 및 Github Secret** 에 미리 지정하여 배포하는 방법이 제겐 편리하고 가장 무난한 방법이었습니다.
 
 <br><br>
@@ -581,7 +583,8 @@ public class uploadController {
                         afterFmt.add("-");  
                         iter.previous();  
                     } else {  
-                        // 두 자 이름 / 다음 줄로 이름이 밀렸을 경우 Concat.                        if (text.length() <= 2) {  
+                        // 두 자 이름 / 다음 줄로 이름이 밀렸을 경우 Concat.                        
+                        if (text.length() <= 2) {  
                             text = text.concat(iter.next());  
                         }  
                         afterFmt.add(text);  
@@ -597,7 +600,8 @@ public class uploadController {
                             break;  
                         }  
   
-                        // 띄어 쓰기 포함 주소 문자열 concat.                        if (iter.hasNext())  
+                        // 띄어 쓰기 포함 주소 문자열 concat.                        
+                        if (iter.hasNext())  
                             adr.append(" ").append(text);  
                     }  
                 }  
@@ -641,7 +645,8 @@ public class uploadController {
             // NCP Clova OCR API Call  
             List<String> result = naverBusinessApi.callApiBusiness("POST", tempFile.getPath(), naverSecretKey, "jpeg");  
   
-            // api 호출 실패 시 exception 에 기록하고 pass.            if (errors(result, tempFile)) continue;  
+            // api 호출 실패 시 exception 에 기록하고 pass.            
+            if (errors(result, tempFile)) continue;  
   
             tempFile.delete(); // 임시 파일 삭제  
   
