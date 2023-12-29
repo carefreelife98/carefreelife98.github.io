@@ -8,7 +8,7 @@ toc: true
 toc_sticky: true
 toc_label: "Carefree to See"
 header:
-   teaser: "/assets/images/Projects/ToyProjects/CarefreeOCR0.png"
+   teaser: "/assets/images/Projects/ToyProjects/carefreeocrV2_teaser.png"
 youtubeurl: https://youtu.be/ZPrLB_rOsJY
 ---
 <!-- Created by Chae Seung Min - CarefreeLife
@@ -27,6 +27,7 @@ Visit my Programming blog: https://carefreelife98.github.io -->
 > 	    - 사진 촬영 / 스캔본 과 같은 각 이미지 파일을 OCR 하여 Text 를 Detect.
 >       - Google Sheet 에 자동으로 Numbering 되어 입력 되었으면 좋겠다.
 > 	    - 여러 장의 이미지 파일을 한번에 Upload 가능해야 한다.
+> 
 >   2. 등기 영수증 OCR
 > 	    - 등기 영수증으로부터 사용할 정보
 > 		    - 일자
@@ -37,6 +38,7 @@ Visit my Programming blog: https://carefreelife98.github.io -->
 > 		    - 법인 명
 > 		    - 수신인
 > 		    - 주소
+> 
 >   3. 사업자 등록증 OCR
 > 	    - 사업자 등록증으로부터 사용할 정보
 > 		    - 개수
