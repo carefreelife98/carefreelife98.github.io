@@ -743,7 +743,7 @@ public class uploadController {
 # 8. 프로그램 시연 영상
 
 {% raw %}
-<iframe width="560" height="315" src="https://www.youtube.com/embed/w_yWncXfCRM" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/w_yWncXfCRM?si=Rd4S8e3vZR8Equz1" frameborder="0" allowfullscreen></iframe>
 {% endraw %}
 
 <br><br>
