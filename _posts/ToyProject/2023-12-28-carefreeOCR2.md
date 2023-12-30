@@ -60,6 +60,7 @@ Visit my Programming blog: https://carefreelife98.github.io -->
 
 ## 2-1. AWS Cloud Infrastructure
 > ![path](/assets/images/Projects/ToyProjects/carefreeocrV2_1.png)<br>
+> - 회사 내부 관리자만 사용하는 프로그램이므로 최대한 가볍고 안정적이며 저렴한 클라우드 리소스 만을 사용하여 간단하게 구축 하였습니다.
 
 <br><br>
 
@@ -224,8 +225,6 @@ jobs:
 
 # 5. Spring Boot Application 개발
 > **프로젝트 진행하면서 개인적으로 기록했던 사항 및 설명은 소스코드 내부에 주석으로 달아두었습니다.**
-
-<br><br>
 
 ## 5-1. 전체 흐름
 
