@@ -733,15 +733,15 @@ public class uploadController {
 > <br><br>
 > **해결 방법**
 > - Github Actions 의 Workflow file 의 옵션 중 create-json 을 사용하여 해결.
-
-```yml
-- name: create-json
-      id: create-json
-      uses: jsdaniell/create-json@1.1.2
-      with:
-        name: "secrets.json"
-        json: ${{ secrets.SECERT_JSON }}
-```
+> 
+> ```yml
+> - name: create-json
+>       id: create-json
+>       uses: jsdaniell/create-json@1.1.2
+>       with:
+>         name: "secrets.json"
+>         json: ${{ secrets.SECERT_JSON }}
+> ```
 
 > **위 코드를 Workflow 파일에 추가하여 Github secrets 에 저장된 JSON 형식의 secret 을 정상적으로 사용할 수 있었다.**
 

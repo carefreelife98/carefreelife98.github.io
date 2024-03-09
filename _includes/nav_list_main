@@ -121,6 +121,13 @@
             </ul>
         <span class="nav__sub-title">Spring🍀</span>
             <ul>
+                {% if category[0] == "Spring-MVC" %}
+                {% for category in site.categories %}
+                        <li><a href="/Spring-Basic/" class="">Spring Basic ({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <ul>
                 {% for category in site.categories %}
                     {% if category[0] == "Spring-MVC" %}
                         <li><a href="/Spring-MVC/" class="">Spring MVC ({{category[1].size}})</a></li>
