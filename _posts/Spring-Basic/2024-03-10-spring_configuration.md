@@ -1,5 +1,5 @@
 ---
-title: "[Spring Basic] Spring Container & Bean - ApplicationContext 와 BeanFactory"
+title: "[Spring Basic] Spring Configuration - 설정 정보 구성"
 categories:
   - Spring-Basic
 tags:
@@ -40,6 +40,8 @@ AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(A
 ```
 - `AnnotationConfigApplicationContext` 를 사용하여 설정 클래스를 파라미터로 넘겨주면 된다.
 
+<br><br>
+
 ## XML 설정 사용
 
 > 근래에는 스프링 부트를 많이 사용하면서 XML 기반 설정 정보 구성 방식은 잘 사용하지 않는다고 한다.
@@ -75,6 +77,8 @@ GenericXmlApplicationContext xac = new GenericXmlApplicationContext("classpath:a
 - \<bean> 태그를 사용하여 스프링 빈을 등록.
 - Java 설정 클래스를 사용할 때와 비슷하게 1 : 1 매핑되는 것을 볼 수 있다.
 
+<br><br>
+
 # 스프링 빈 설정 메타 정보 - BeanDefinition
 
 > ![path](/assets/images/Spring/SpringBasic/spring_conf_2.png)<br>
@@ -86,6 +90,8 @@ GenericXmlApplicationContext xac = new GenericXmlApplicationContext("classpath:a
 - `BeanDefinition : 빈 설정 메타정보`
     - **`@Bean`, `<bean>` 당 각각 하나씩 메타 정보 생성.**
 - **스프링 컨테이너는 이 메타 정보를 기반으로 스프링 빈을 생성.**
+
+<br><br>
 
 ## AnnotationConfigApplicationContext - AnnotatedBeanDefinitionReader
 
@@ -106,6 +112,8 @@ GenericXmlApplicationContext xac = new GenericXmlApplicationContext("classpath:a
     - `XmlBeanDefinitionReader : 스프링 설정 정보(.xml) 을 읽어 적절한 BeanDefinition 을 생성하는 역할.`
 
 > 새로운 형식의 설정 정보가 추가되면, `~ BeanDefinitionReader` 를 만들어 BeanDefinition 을 생성하면 된다.
+
+<br><br>
 
 ## BeanDefinition 출력해보기
 
@@ -128,6 +136,8 @@ public class BeanDefinitionTest {
     }  
 }
 ```
+
+<br><br>
 
 ### 출력 결과
 ```
