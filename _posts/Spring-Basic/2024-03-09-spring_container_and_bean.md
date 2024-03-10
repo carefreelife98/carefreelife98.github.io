@@ -8,13 +8,22 @@ toc: true
 toc_sticky: true
 toc_label: "Carefree to See"
 header:
-  teaser: "/assets/images/Spring/SpringBasic/"
+  teaser: "/assets/images/Spring/SpringBasic/spring_container_1.png"
 ---
 <!-- Created by Chae Seungm Min - CarefreeLife
 Visit my Programming blog: https://carefreelife98.github.io --> 
 ---
 
 # 스프링 컨테이너
+
+```
+[기존]:
+기존에는 개발자가 직접 자바코드로 모든 것을 함. 
+
+[스프링 사용]:
+스프링 컨테이러에 객체를 스프링 빈으로 등록하고, 스프링 컨테이너에서 스프링 빈을 찾아 사용하도록 변경되었다.
+```
+
 > **Application Context 를 스프링 컨테이너**라고 함. (더 정확히는 BeanFactory 와 구분 하지만 일반적으로 BeanFactory 를 직접 사용하는 경우는 거의 없음)
 > - 기존에는 애플리케이션 구성 클래스(AppConfig) 등을 사용해서 직접 객체를 생성하고 DI(Dependency Injection)를 함.
 > - **스프링에서는 구성 정보 설정을 스프링 컨테이너를 통해서 사용.**
@@ -24,15 +33,6 @@ Visit my Programming blog: https://carefreelife98.github.io -->
 > - 스프링 빈은 **`@Bean` 이 붙은 메서드의 명을 스프링 빈의 이름으로 사용.**
 > - 스프링 컨테이너를 통해서 필요한 스프링 빈(객체) 를 찾아야 함.
 > 	- **`applicationContext.getBean("빈 이름", 반환 클래스)`** 를 통해 스프링 빈을 찾을 수 있다.
-
-
-```
-[기존]:
-기존에는 개발자가 직접 자바코드로 모든 것을 함. 
-
-[스프링 사용]:
-스프링 컨테이러에 객체를 스프링 빈으로 등록하고, 스프링 컨테이너에서 스프링 빈을 찾아 사용하도록 변경되었다.
-```
 
 <br><br>
 
@@ -56,7 +56,7 @@ Visit my Programming blog: https://carefreelife98.github.io -->
 # 스프링 컨테이너의 생성 과정
 
 ## 1. 스프링 컨테이너 생성
-> ![[스크린샷 2024-02-24 오후 8.17.57.png]]
+> ![path](/assets/images/Spring/SpringBasic/spring_container_1.png)<br>
 > 1. new AnnotationConfigApplicationContext(설정 / 구성 클래스)
 > 	- 위 구현체 생성 시  스프링 컨테이너가 생성됨.
 > 2. 스프링 컨테이너 내부에는 스프링 빈 저장소가 존재.(Key-Value 형태)
@@ -67,7 +67,7 @@ Visit my Programming blog: https://carefreelife98.github.io -->
 <br><br>
 
 ## 2. 스프링 빈 등록
-> ![[스크린샷 2024-02-24 오후 8.24.56.png]]
+> ![path](/assets/images/Spring/SpringBasic/spring_container_2.png)<br>
 > 스프링 컨테이너는 생성 시에 넘겨 받은 설정 정보 클래스에서 **@Bean Annotation**이 붙은 메서드들을 모두 찾아 **스프링 빈 저장소에 등록**한다.
 > - **Key : 메서드 이름** (옵션 name="" 을 사용해 직접 부여도 가능)
 >   ```java
@@ -80,7 +80,7 @@ Visit my Programming blog: https://carefreelife98.github.io -->
 <br><br>
 
 ## 3. 스프링 빈 의존관계 설정
-> ![[스크린샷 2024-02-24 오후 9.25.57.png]]
+> ![path](/assets/images/Spring/SpringBasic/spring_container_3.png)<br>
 > - 스프링 컨테이너는 등록된 설정 정보를 사용해서 의존 관계를 주입한다. (Dependency Injection)
 > - 객체 인스턴스 간 **의존관계를 동적으로 주입**.
 
@@ -105,7 +105,7 @@ void findAllBean() {
 }
 ```
 
-![[스크린샷 2024-02-25 오후 6.52.22.png]]
+> ![path](/assets/images/Spring/SpringBasic/spring_container_4.png)<br>
 `실행 모습 - 직접 등록한 빈 뿐 아니라 스프링 내부 빈까지 출력되는 모습을 볼 수 있다.`<br>
 > - **모든 빈 출력하기**
 > 	- 실행 시 **스프링에 등록된 모든 빈 정보를 출력**할 수 있다.
@@ -137,7 +137,7 @@ void findApplicationBean() {
 }
 ```
 
-![[스크린샷 2024-02-25 오후 6.54.21.png]]
+> ![path](/assets/images/Spring/SpringBasic/spring_container_5.png)<br>
 `실행 모습 - Bean 의 메타데이터 정보를 꺼내 ROLE_APPLICATION 에 해당하는 빈만 출력`<br>
 > - **애플리케이션 빈 출력하기**
 > 	- 스프링이 내부에서 사용하는 빈은 제외하고, **개발자가 직접 등록한 빈 출력.**
@@ -222,7 +222,7 @@ void findBeanByNameFail() {
 ```
 - 위 코드 실행 시 "no_such_name" 이라는 이름을 가진 빈이 등록되어 있지 않으므로 `NoSuchBeanDefinitionException` 예외를 발생시킬 것이다.
 
-![[스크린샷 2024-02-25 오후 8.35.25.png]]
+> ![path](/assets/images/Spring/SpringBasic/spring_container_6.png)<br>
 `실행 모습 - NoSuchBeanDefinitionException 예외가 발생한 것을 볼 수 있다.`
 
 <br><br>
@@ -279,7 +279,7 @@ static class SameBeanConfig {
 ```
 - 스프링 빈 조회 시 파라미터에 빈의 타입만을 지정했기 때문에 지정된 타입을 가진 빈 두 개가 조회되며, getBean() 메서드에서는 하나의 빈만 반환하므로 `NoUniqueBeanDefinitionException` 예외가 발생하게 된다.
 
-![[스크린샷 2024-02-25 오후 9.08.22.png]]
+> ![path](/assets/images/Spring/SpringBasic/spring_container_7.png)<br>
 `실행 모습 - NoUniqueBeanDefinitionException 예외 발생`
 
 <br><br>
@@ -317,7 +317,7 @@ void findAllBeanByType() {
 }
 ```
 
-![[스크린샷 2024-02-25 오후 9.21.46.png]]
+> ![path](/assets/images/Spring/SpringBasic/spring_container_8.png)<br>
 `실행 모습 - 예외가 발생하지 않고 동일 타입을 가진 모든 빈을 조회 할 수 있다.`
 
 <br><br>
@@ -337,7 +337,7 @@ void findAllBeanByType() {
 <br><br>
 
 ## ApplicationContext 가 제공하는 부가기능
-![[스크린샷 2024-03-02 오후 6.46.22.png]]
+> ![path](/assets/images/Spring/SpringBasic/spring_container_9.png)<br>
 - **메시지 소스를 활용한 국제화 기능**
     - 한국에서 접근 시 한국어 출력
     - 영미권에서 접근 시 영어 출력
@@ -356,6 +356,9 @@ void findAllBeanByType() {
 - BeanFactory 를 직접 사용할 일은 거의 없다. 부가기능이 포함된 ApplicationContext 를 사용한다.
 - **BeanFactory / ApplicationContext 를 스프링 컨테이너라 한다.**
 
+<br><br>
+
+`참고:`[Inflearn - 김영한님_강의(스프링 핵심 원리 기본편)](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-%ED%95%B5%EC%8B%AC-%EC%9B%90%EB%A6%AC-%EA%B8%B0%EB%B3%B8%ED%8E%B8)<br><br>
 
 <br><br>
 
