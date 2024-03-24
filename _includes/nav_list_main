@@ -61,6 +61,13 @@
                     {% endif %}
                 {% endfor %}
             </ul>
+            <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "INU-Capstone" %}
+                        <li><a href="/INU-Capstone/" class="">Capstone Design - 스마트 방지턱 ({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
         <span class="nav__sub-title">자격증 정복하기</span>
             <ul>
                 {% for category in site.categories %}
