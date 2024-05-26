@@ -18,15 +18,15 @@ Visit my Programming blog: https://carefreelife98.github.io -->
 - 다사다난했던 졸업 작품.. 회사 일이랑 병행한 나, 고생많았다.. 다른 분들은 졸업부터 하고 취업하시기를..(?)
 - 이번 포스팅에서는해당 2024 INU CSE 졸업 프로젝트에서 제가 맡아 진행한 부분을 소개드리려고 합니다.
 
-# 목차
+# 0. 목차
 ![path](/assets/images/INU/CapstoneDesign/smart_barricade2.png)
 
 
-## 1-1. 주제 선정 배경
+## 0-1-1. 주제 선정 배경
 ![path](/assets/images/INU/CapstoneDesign/smart_barricade3.png)
 - 최근 사회에 발생하고 있는 여러 이슈들을 모아 프로그래밍을 통해 해결 할 수 있을지에 대한 브레인 스토밍 진행 결과, 여러 대책 도입 이후에도 꾸준히 발생하며 사회적으로 큰 화두가 된 **"우회전 시 발생하는 교통사고"** 를 프로그래밍적으로 해결해보기로 하였다.
 
-## 1-2. 사고 위험 요인
+## 0-1-2. 사고 위험 요인
 ![path](/assets/images/INU/CapstoneDesign/smart_barricade4.png)
 - 가장 먼저 "우회전 차로에서 발생하는 교통사고" 의 **원인을 분석** 해보았고, 대부분의 원인은 다음과 같았다.
   1. 우회전 시 운전자 시야에서 사각지대가 발생.
@@ -35,7 +35,7 @@ Visit my Programming blog: https://carefreelife98.github.io -->
 - 이에 우리는 각각의 기존 설계를 변경할 필요없이 해당 문제를 해결하기 위해 "Smart Barricade" 라는 이름의 우회전 사고 방지 시스템 이번 프로젝트로서 설계하게 되었다.
 
 
-## 2. 기능
+## 0-2. 기능
 ![path](/assets/images/INU/CapstoneDesign/smart_barricade5.png)
 - Smart Barricade 의 기능은 다음과 같다.
   - **객체 탐지**
@@ -51,7 +51,7 @@ Visit my Programming blog: https://carefreelife98.github.io -->
     - **Smart Barricade 는 차종과 속도에 따라 높이를 조절하는 전자 방지턱이라 볼 수 있다.**
 
 
-## 3. Flow Chart
+## 0-3. Flow Chart
 ![path](/assets/images/INU/CapstoneDesign/smart_barricade6.png)
 - Smart Barricade 시스템의 대략적인 흐름은 위와 같다.
 
@@ -65,7 +65,8 @@ Visit my Programming blog: https://carefreelife98.github.io -->
   - **데이터의 저장 및 사용을 위한 Database 설계 및 AWS S3 Storage 연동**
   - **실시간 위험 상황 공유를 위한 Slack WebHook API 연동**
 
-## 4. Smart Barricade 프로젝트에서 사용한 기술 스택
+## 0-4. Smart Barricade 프로젝트에서 사용한 기술 스택
+
 | Category                               | Technologies            |
 | -------------------------------------- | ----------------------- |
 | **Backend Framework**                  | Spring Boot, Spring JPA |
