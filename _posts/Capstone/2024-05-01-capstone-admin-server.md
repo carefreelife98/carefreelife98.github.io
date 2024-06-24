@@ -16,7 +16,7 @@ Visit my Programming blog: https://carefreelife98.github.io -->
 
 ![path](/assets/images/INU/CapstoneDesign/smart_barricade1.png)
 - 다사다난했던 졸업 작품.. 회사 일이랑 병행한 나, 고생많았다.. 다른 분들은 졸업부터 하고 취업하시기를..(?)
-- 이번 포스팅에서는해당 2024 INU CSE 졸업 프로젝트에서 제가 맡아 진행한 부분을 소개드리려고 합니다.
+- 이번 포스팅에서는 해당 2024 INU CSE 졸업 프로젝트에서 제가 맡아 진행한 부분을 소개드리려고 합니다.
 
 # 0. 목차
 ![path](/assets/images/INU/CapstoneDesign/smart_barricade2.png)
