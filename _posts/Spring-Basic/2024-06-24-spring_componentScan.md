@@ -8,7 +8,7 @@ toc: true
 toc_sticky: true
 toc_label: "Carefree to See"
 header:
-  teaser: "/assets/images/Spring/SpringBasic/spring_singleton_1.png"
+  teaser: "/assets/images/Spring/SpringBasic/spring_component_teaser.png"
 ---
 <!-- Created by Chae Seungm Min - CarefreeLife
 Visit my Programming blog: https://carefreelife98.github.io --> 
