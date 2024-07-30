@@ -30,11 +30,14 @@
       }
       
       &.sticky {
-        overflow-y: hidden;
+        overflow-y: auto;
         /* calculate height of nav list
         viewport height - nav height - masthead x-padding
         */
         max-height: calc(100vh - #{$nav-height} - 2em);
+      }
+      .sticky::-webkit-scrollbar {
+        display: none;
       }
     }
     
