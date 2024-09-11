@@ -22,9 +22,51 @@
           width:12px;height:12px;background:transparent;
       } 
     </style>
+    <style>
+      /* 팝업 스타일 */
+      #popup {
+        display: none; /* 기본적으로 숨김 */
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        padding: 20px;
+        border: 2px solid #333;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+      }
+      #popup-overlay {
+        display: none; /* 기본적으로 숨김 */
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+      }
+      #popup button {
+        margin-top: 10px;
+      }
+    </style>
   </head>
 
   <body class="layout--{{ page.layout | default: layout.layout }}{% if page.classes or layout.classes %}{{ page.classes | default: layout.classes | join: ' ' | prepend: ' ' }}{% endif %}">
+
+    <!-- 팝업 오버레이 -->
+    <div id="popup-overlay"></div>
+
+    <!-- 팝업 내용 -->
+    <div id="popup">
+      <h2>※블로그 이전 안내※</h2>
+      <p>제 기술 블로그에 찾아와주시는 모든 분들의 편의 및 가독성의 증진을 위해</p>
+      <p>Jekyll 및 Google Ads 를 사용하지 않는 개인 블로그를 신설하여 이전하였습니다.</p>
+      <p>감사합니다. -개발자 채승민-</p>
+      <a href="https://carefreelife98.github.io/new">신규 블로그 구경하기!</a>
+      <button id="close-popup">Close</button>
+    </div>
+
     {% include_cached skip-links.html %}
     {% include_cached masthead.html %}
 
@@ -46,6 +88,7 @@
     </div>
 
     {% include scripts.html %}
-
+    <!-- alert.js 로드 -->
+    <script src="{{ '/assets/js/alert.js' | relative_url }}"></script>
   </body>
 </html>
